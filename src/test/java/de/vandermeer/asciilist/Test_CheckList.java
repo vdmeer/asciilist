@@ -28,7 +28,7 @@ import de.vandermeer.asciilist.styles.NestedCheckStyles;
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
  * @since      v0.0.1
  */
-public class Test_AbstractAL_Check {
+public class Test_CheckList {
 
 	protected class TAAI extends ItemizeList{}
 

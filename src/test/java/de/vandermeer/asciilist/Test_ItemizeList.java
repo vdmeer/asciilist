@@ -15,51 +15,51 @@
 
 package de.vandermeer.asciilist;
 
+import static org.junit.Assert.*;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
+import de.vandermeer.asciilist.styles.NestedItemizeStyles;
 
 /**
- * Tests for {@link EnumerateList}.
+ * Tests for {@link ItemizeList}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
  * @since      v0.0.1
  */
-public class Test_AbstractAL_Enumerate {
+public class Test_ItemizeList {
 
-	protected class TAAE extends EnumerateList{}
+	protected class TAAI extends ItemizeList{}
 
 	@Rule public ExpectedException exception = ExpectedException.none();
 
 	@Test
 	public void test_List(){
-		EnumerateList list = new EnumerateList();
+		ItemizeList list = new ItemizeList();
 		list.addItem("item 1");
 		list.addItem("item 2");
 		list.addItem("item 3");
+
 		System.err.println(list.render() + "\n");
 
-		EnumerateList list2 = new EnumerateList();
-		list2.addItem("two item 1");
-		list2.addItem("two item 2");
-		list2.addItem("two item 3");
-		list.addItem(list2);
+		list.setPostLabelIndent(4);
 		System.err.println(list.render() + "\n");
 
-		list.setListStyle(NestedEnumerateStyles.aLL_roman);
-		list.addItem("item 4");
-		EnumerateList list3 = new EnumerateList();
-		list3.addItem("three item 1");
-		list3.addItem("three item 2");
-		list3.addItem("three item 3");
-		list3.setPostLabelString(")");
-		list.addItem(list3);
+		list.setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
+		list.setPostLabelIndent(1);
+		ItemizeList list2 = new ItemizeList();
+		list2.addItem("two item one");
+		list2.addItem("two item two");
+		list2.addItem("two item three");
+		list2 = (ItemizeList)list.addItem(list2);
 		System.err.println(list.render() + "\n");
 
-		list.setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);
+		list.setListStyle(NestedItemizeStyles.HTML_LIKE);
+		assertEquals(NestedItemizeStyles.HTML_LIKE, list.style);
+		assertEquals(NestedItemizeStyles.HTML_LIKE, list2.style);
 		System.err.println(list.render() + "\n");
 	}
 }

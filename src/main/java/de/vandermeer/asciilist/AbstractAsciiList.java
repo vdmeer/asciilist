@@ -130,7 +130,7 @@ public abstract class AbstractAsciiList implements AsciiList {
 				ret.appendSeparator("\n").append(l.render());
 			}
 			else{
-				throw new NotImplementedException("not yet implemented, only AsciiListItem supported");//TODO
+				throw new NotImplementedException("not yet implemented, only AsciiList and AsciiListItem supported");
 			}
 		}
 		return ret.toString();
