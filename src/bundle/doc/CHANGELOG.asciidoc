@@ -1,2 +1,17 @@
+v0.0.2 - feature add - 2015-##-##
+---------------------------------
+* added width to list
+	** changed render behavior to render against a list width
+* added indentation calculation to list
+	** changed render behavior to use this calculation instead of manual one
+* added JavaDoc
+
+
 v0.0.1 - initial release - 2015-09-01
 -------------------------------------
+* original release with lists: itemize, enumerate, check
+* definition list only as place holder
+* lists can render with several shared capabilities: indent and string before the label as well as after the label
+* lists have styles, several default styles are defined
+* lists support nested lists with or without continuation
+* bundle released on Maven Central and source in GitHub
