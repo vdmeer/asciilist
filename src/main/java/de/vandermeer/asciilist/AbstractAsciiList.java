@@ -18,10 +18,12 @@ package de.vandermeer.asciilist;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
+import org.apache.commons.lang3.text.WordUtils;
 
 import de.vandermeer.asciilist.styles.ListStyle;
 
@@ -54,6 +56,12 @@ public abstract class AbstractAsciiList implements AsciiList {
 
 	/** Flag indicating if the list is continued from a previous list of the same type or not. */
 	protected final boolean isContinued;
+
+	/** The maximum item indentation, 0 until calculated. */
+	protected int maxItemIndent = 0;
+
+	/** The maximum width if the list (and all items and sub-lists), -1 for no width until set otherwise. */
+	protected int width = -1;
 
 	/**
 	 * Creates a new list.
@@ -114,19 +122,39 @@ public abstract class AbstractAsciiList implements AsciiList {
 	}
 
 	@Override
-	public String render(){
-		StrBuilder ret = new StrBuilder(100);
+	public int calculateMaxIndentation(){
 		int position = 0;
 		for(int i=0; i<this.items.size(); i++){
 			if(this.items.get(i) instanceof AsciiListItem){
 				position++;
-				ret.appendSeparator("\n").append(this.renderItem((AsciiListItem)this.items.get(i), position));
+				int indent = this.calculateMaxIndentation((AsciiListItem)this.items.get(i), position);
+				if(this.maxItemIndent < indent){
+					this.maxItemIndent = indent;
+				}
+			}
+		}
+		return this.maxItemIndent;
+	}
+
+	@Override
+	public String render(){
+		StrBuilder ret = new StrBuilder(100);
+
+		this.maxItemIndent = 0;
+		this.calculateMaxIndentation();
+		if(this.width>0 && ((maxItemIndent+6) > this.width)){
+			throw new IllegalArgumentException("width <" + this.width + "> is to small for list content with indentation already at <" + this.maxItemIndent + ">");
+		}
+
+		int position = 0;
+		for(int i=0; i<this.items.size(); i++){
+			if(this.items.get(i) instanceof AsciiListItem){
+				position++;
+				ret.appendSeparator("\n").append(this.wrapItem(this.renderItem((AsciiListItem)this.items.get(i), position)));
 			}
 			else if(this.items.get(i) instanceof AsciiList){
 				AsciiList l = (AsciiList)this.items.get(i);
-				//TODO 1 was label, needs to be calculated label width now
-				int indent = this.preLabelIndent + this.postLabelIndent + 1 + this.preLabelStr.length() + this.postLabelStr.length();
-				l.setPreLabelIndent(indent);
+				l.setPreLabelIndent(this.maxItemIndent);
 				ret.appendSeparator("\n").append(l.render());
 			}
 			else{
@@ -134,6 +162,37 @@ public abstract class AbstractAsciiList implements AsciiList {
 			}
 		}
 		return ret.toString();
+	}
+
+	/**
+	 * Wraps a rendered list item for the width given in the list.
+	 * @param renderedItem the rendered item to wrap
+	 * @return a string with the wrapped item (lines separated by "\n")
+	 */
+	protected String wrapItem(String renderedItem){
+		if(this.width>0 && renderedItem.length()>this.width){
+			String[] wrap = StringUtils.split(WordUtils.wrap(renderedItem, this.width, "@@@@", true), "@@@@");
+			String ret = StringUtils.repeat(" ", this.preLabelIndent) + StringUtils.repeat(" ", this.preLabelStr.length()) + wrap[0];
+			if(wrap.length>1){
+				ret += "\n" + this.wrapItemNextLine(StringUtils.repeat(" ", this.maxItemIndent) + StringUtils.join(ArrayUtils.remove(wrap, 0), " "));
+			}
+			return ret;
+		}
+		return renderedItem;
+	}
+
+	/**
+	 * Wraps all following lines of an item
+	 * @param str the string to wrap
+	 * @return wrapped string
+	 */
+	protected String wrapItemNextLine(String str){
+		String[] wrap = StringUtils.split(WordUtils.wrap(str, this.width, "@@@@", true), "@@@@");
+		String ret = StringUtils.repeat(" ", this.maxItemIndent) + wrap[0];
+		if(wrap.length==1){
+			return ret;
+		}
+		return ret + "\n" + this.wrapItemNextLine(StringUtils.repeat(" ", this.maxItemIndent) + StringUtils.join(ArrayUtils.remove(wrap, 0), " "));
 	}
 
 	@Override
@@ -205,5 +264,16 @@ public abstract class AbstractAsciiList implements AsciiList {
 	@Override
 	public boolean isContinuedList(){
 		return this.isContinued;
+	}
+
+	@Override
+	public AsciiList setWidth(int width){
+		this.width = width;
+		for(Object obj : this.items){
+			if(obj instanceof AsciiList){
+				((AsciiList)obj).setWidth(width);
+			}
+		}
+		return this;
 	}
 }

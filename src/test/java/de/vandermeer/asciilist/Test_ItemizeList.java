@@ -53,13 +53,16 @@ public class Test_ItemizeList {
 		ItemizeList list2 = new ItemizeList();
 		list2.addItem("two item one");
 		list2.addItem("two item two");
-		list2.addItem("two item three");
+		list2.addItem("two item three four five six seven eight nine ten");
 		list2 = (ItemizeList)list.addItem(list2);
 		System.err.println(list.render() + "\n");
 
 		list.setListStyle(NestedItemizeStyles.HTML_LIKE);
 		assertEquals(NestedItemizeStyles.HTML_LIKE, list.style);
 		assertEquals(NestedItemizeStyles.HTML_LIKE, list2.style);
+		System.err.println(list.render() + "\n");
+
+		list.setWidth(19);
 		System.err.println(list.render() + "\n");
 	}
 }

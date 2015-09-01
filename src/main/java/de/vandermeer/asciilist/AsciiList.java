@@ -98,15 +98,32 @@ public interface AsciiList {
 	/**
 	 * Renders the list, generates a string representation of it.
 	 * @return rendered list
+	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligebly
 	 */
 	String render();
 
-//	/**
-//	 * Renders the list, generates a string representation of it.
-//	 * @param width maximum width of each line in the rendered string
-//	 * @return rendered list
-//	 */
-//	String render(int width);
+	/**
+	 * Calculates indentation for each element of the list and returns the maximum value.
+	 * The max value contains the pre-label indent, the pre-label string, the actual label, the post-label string and the post-label indent.
+	 * This maximum indentation can then be used in the rendering process to indent all items and sub-lists, even with different length labels.
+	 * @return maximum indentation calculated over all list items
+	 */
+	int calculateMaxIndentation();
+
+	/**
+	 * Calculates indentation for a list item.
+	 * @param item the item to be used for calculation
+	 * @param position the position of the item in the item list
+	 * @return item indentation
+	 */
+	int calculateMaxIndentation(AsciiListItem item, int position);
+
+	/**
+	 * Sets the (maximum) width a list (and all items and sub-lists) can have when eing rendered.
+	 * @param width maximum width
+	 * @return self to allow chaining
+	 */
+	AsciiList setWidth(int width);
 
 	/**
 	 * Renders a particular item of a list.

@@ -92,4 +92,9 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 		return new ItemizeList(this);
 	}
 
+	@Override
+	public int calculateMaxIndentation(AsciiListItem item, int position) {
+		return this.preLabelIndent + this.preLabelStr.length() + this.style.getLabel(this.level).length() + this.postLabelStr.length() + this.postLabelIndent;
+	}
+
 }

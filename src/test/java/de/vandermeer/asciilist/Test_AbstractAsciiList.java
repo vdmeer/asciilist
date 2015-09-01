@@ -38,7 +38,7 @@ public class Test_AbstractAsciiList {
 		@Override public String renderItem(AsciiListItem item, int position) {return null;}
 		@Override public AsciiList setListStyle(ListStyle style) {return null;}
 		@Override public AsciiList copy() {return null;}
-//		@Override public String render(int width) {return null;}
+		@Override public int calculateMaxIndentation(AsciiListItem item, int position) {return 0;}
 	}
 
 	@Rule public ExpectedException exception = ExpectedException.none();

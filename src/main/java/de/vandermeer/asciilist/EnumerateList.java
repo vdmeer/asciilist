@@ -101,8 +101,12 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 		return added;
 	}
 
-	@Override
-	public String renderItem(AsciiListItem item, int position) {
+	/**
+	 * Calculates and returns the label for a list item.
+	 * @param position the position of the item in the list
+	 * @return calculated label
+	 */
+	protected String calculateItemLabel(int position){
 		String label = this.style.getStyle(this.level).getLabel(position);
 		if(this.parents!=null){
 			label = "";
@@ -114,8 +118,12 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 		if(this.useLabelSeparatorAfterLastItem==true){
 			label += this.labelSeparator;
 		}
+		return label;
+	}
 
-		return item.render(this.preLabelIndent, this.preLabelStr, label, this.postLabelStr, this.postLabelIndent);
+	@Override
+	public String renderItem(AsciiListItem item, int position) {
+		return item.render(this.preLabelIndent, this.preLabelStr, this.calculateItemLabel(position), this.postLabelStr, this.postLabelIndent);
 	}
 
 	@Override
@@ -157,6 +165,11 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	public AsciiList_Enumerate useLabelSeparatorAfterLastItem(boolean flag) {
 		this.useLabelSeparatorAfterLastItem = flag;
 		return this;
+	}
+
+	@Override
+	public int calculateMaxIndentation(AsciiListItem item, int position) {
+		return this.preLabelIndent + this.preLabelStr.length() + this.calculateItemLabel(position).length() + this.postLabelStr.length() + this.postLabelIndent;
 	}
 
 }

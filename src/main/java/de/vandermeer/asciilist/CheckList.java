@@ -116,16 +116,24 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 		return this;
 	}
 
-	@Override
-	public String renderItem(AsciiListItem item, int position) {
+	/**
+	 * Calculates and returns the label for a list item.
+	 * @param item list item for calculation
+	 * @return calculated label
+	 */
+	protected String calculateItemLabel(AsciiListItem item){
 		String label = this.style.getStyle(this.level).getLabelUnchecked();
 		if(item instanceof CheckListItem){
 			if(((CheckListItem)item).isChecked()){
 				label = this.style.getStyle(this.level).getLabelChecked();
 			}
 		}
+		return label;
+	}
 
-		return item.render(this.preLabelIndent, this.preLabelStr, label, this.postLabelStr, this.postLabelIndent);
+	@Override
+	public String renderItem(AsciiListItem item, int position) {
+		return item.render(this.preLabelIndent, this.preLabelStr, this.calculateItemLabel(item), this.postLabelStr, this.postLabelIndent);
 	}
 
 	@Override
@@ -139,6 +147,11 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 	@Override
 	public AsciiList copy() {
 		return new CheckList(this);
+	}
+
+	@Override
+	public int calculateMaxIndentation(AsciiListItem item, int position) {
+		return this.preLabelIndent + this.preLabelStr.length() + this.calculateItemLabel(item).length() + this.postLabelStr.length() + this.postLabelIndent;
 	}
 
 }
