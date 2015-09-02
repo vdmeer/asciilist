@@ -188,4 +188,11 @@ public interface AsciiList {
 	 * @return self to allow chaining
 	 */
 	AsciiList setPreLabelString(String str);
+
+	/**
+	 * Sets the values for pre/post paramters of labels back to their default values.
+	 * @return self to allow for chaining
+	 */
+	AsciiList setLabelDefaults();
+
 }

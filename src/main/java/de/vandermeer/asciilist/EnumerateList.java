@@ -39,6 +39,9 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	/** The levels of the parents for nested enumerate lists 1. - 1.1. - 1.1.1. */
 	protected int[] parents;
 
+	/** Flag stating if the list is fully prepared for rendering. */
+	protected boolean isPrepared = false;
+
 	/** The real position that is the position number an item belongs to, allowing for sub-lists belonging to an item here. */
 	protected int realPosition = 0;
 
@@ -93,13 +96,16 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 		for(Object obj : this.items){
 			if(obj instanceof AsciiList_Enumerate){
 				if(((AsciiList_Enumerate) obj).isContinuedList()){
-					this.realPosition++;
-					((AsciiList_Enumerate) obj).setListStyle(this.style);
-					if(this.parents==null){
-						((AsciiList_Enumerate) obj).setParents(new int[]{this.items.size()-this.realPosition});
-					}
-					else{
-						((AsciiList_Enumerate) obj).setParents(ArrayUtils.add(this.parents, this.items.size()-this.realPosition));
+					if(((AsciiList_Enumerate) obj).isPrepared()==false){
+						this.realPosition++;
+						((AsciiList_Enumerate) obj).setListStyle(this.style);
+						if(this.parents==null){
+							((AsciiList_Enumerate) obj).setParents(new int[]{this.items.size()-this.realPosition});
+						}
+						else{
+							((AsciiList_Enumerate) obj).setParents(ArrayUtils.add(this.parents, this.items.size()-this.realPosition));
+						}
+						((AsciiList_Enumerate) obj).setPrepared();
 					}
 				}
 			}
@@ -183,6 +189,16 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 			this.items.add(new AbstractAsciiListItem(item));
 		}
 		return this;
+	}
+
+	@Override
+	public boolean isPrepared(){
+		return this.isPrepared;
+	}
+
+	@Override
+	public void setPrepared() {
+		this.isPrepared = true;
 	}
 
 }

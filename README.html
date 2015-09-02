@@ -435,6 +435,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_nested_lists">Nested lists</a></li>
+<li><a href="#_width_with_automated_line_wrapping">Width with automated line wrapping</a></li>
+<li><a href="#_checklists">Checklists</a></li>
 </ul>
 </div>
 </div>
@@ -647,29 +649,44 @@ Then we set the post-label string to "all":</p>
 <pre>	list.setPreLabelIndent(5);
 	System.out.println(list.render());
 
+	list.setLabelDefaults();
 	list.setPostLabelIndent(5);
 	System.out.println(list.render());
 
-	list.setPostLabelString("all");
+	list.setLabelDefaults();
+	list.setPreLabelString("&gt;&gt;");
+	list.setPostLabelString("&lt;&lt;");
 	System.out.println(list.render());</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will result in the following three outputs:</p>
+<p>This will result in the following three outputs (given in three columns):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>	     * item 1
-	     * item 2
-	     * item 3
-
-	     *     item 1
-	     *     item 2
-	     *     item 3
-
-	     *all     item 1
-	     *all     item 2
-	     *all     item 3</pre>
+<pre>	     * item 1		 *     item 1		 &gt;&gt;*&lt;&lt; item 1
+	     * item 2		 *     item 2		 &gt;&gt;*&lt;&lt; item 2
+	     * item 3		 *     item 3		 &gt;&gt;*&lt;&lt; item 3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can also change the label style:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	list.setLabelDefaults();
+	list.setListStyle(NestedItemizeStyles.HTML_LIKE);
+	System.out.println(list.render());</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will result in the following list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	 • item 1
+	 • item 2
+	 • item 3</pre>
 </div>
 </div>
 </div>
@@ -737,10 +754,116 @@ Additionally, set a nested style for the list:</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_width_with_automated_line_wrapping">Width with automated line wrapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The lists allow to set a maximum width and will, if any item is longer than that width, an automatic line break with indentation calculation will be performed.
+All lists support this feature.</p>
+</div>
+<div class="paragraph">
+<p>We create two lits, one itemize and one enumerate:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	AsciiList itemize = new ItemizeList()
+		.addItem("il 1 item 1 some text")
+		.addItem("il 1 item 2 some text")
+		.addItem(new ItemizeList()
+			.addItem("il 2 item 1 text")
+			.addItem("il 2 item 2 text")
+		)
+		.setPreLabelIndent(0)
+		.setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
+
+	AsciiList enumerate = new EnumerateList()
+		.addItem("el 1 item 1 some text")
+		.addItem("el 1 item 2 some text")
+		.addItem(new EnumerateList()
+			.addItem("el 2 item 1 text")
+			.addItem("el 2 item 2 text")
+		)
+		.setPreLabelIndent(0)
+		.setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Rendering and printint the two lists will result in the following output (shown in two columns):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>        * il 1 item 1 some text        1 el 1 item 1 some text
+        * il 1 item 2 some text        2 el 1 item 2 some text
+          ** il 2 item 1 text            2.A el 2 item 1 text
+          ** il 2 item 2 text            2.B el 2 item 2 text</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Changing the width of both lists will result in line wrapping:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	itemize.setWidth(19);
+	enumerate.setWidth(19);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now the rendering and printing will result in the following output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>        * il 1 item 1 some        1 el 1 item 1 some
+          text                      text
+        * il 1 item 2 some        2 el 1 item 2 some
+          text                      text
+          ** il 2 item 1            2.A el 2 item 1
+             text                       text
+          ** il 2 item 2            2.B el 2 item 2
+             text                       text</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_checklists">Checklists</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The package also provides a check list.
+In this list, items can be marked as checked and unchecked resulting in different labels.
+The checklist supports styles to use different characters (ASCII and UTF) for checked and unchecked items.</p>
+</div>
+<div class="paragraph">
+<p>The following code shows the creation of a checklist and the use of different styles for rendering it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	CheckList list = new CheckList();
+	list.addItem("item unchecked");
+	list.addItemChecked("item checked");
+	System.err.println(list.render());
+
+	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
+	System.err.println(list.render());
+
+	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
+	System.err.println(list.render());</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting output of these examples is (in columns):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>         [ ] item unchecked     ☐ item unchecked     ☐ item unchecked
+         [X] item checked       ☑ item checked       ☒ item checked</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-09-02 18:12:50 IST
+Last updated 2015-09-02 20:40:32 IST
 </div>
 </div>
 </body>

@@ -149,27 +149,37 @@ Then we set the post-label string to "all":
 	list.setPreLabelIndent(5);
 	System.out.println(list.render());
 
+	list.setLabelDefaults();
 	list.setPostLabelIndent(5);
 	System.out.println(list.render());
 
-	list.setPostLabelString("all");
+	list.setLabelDefaults();
+	list.setPreLabelString(">>");
+	list.setPostLabelString("<<");
 	System.out.println(list.render());
 ----------------------------------------------------------------------------------------
 
 
-This will result in the following three outputs:
+This will result in the following three outputs (given in three columns):
 ----------------------------------------------------------------------------------------
-	     * item 1
-	     * item 2
-	     * item 3
+	     * item 1		 *     item 1		 >>*<< item 1
+	     * item 2		 *     item 2		 >>*<< item 2
+	     * item 3		 *     item 3		 >>*<< item 3
+----------------------------------------------------------------------------------------
 
-	     *     item 1
-	     *     item 2
-	     *     item 3
 
-	     *all     item 1
-	     *all     item 2
-	     *all     item 3
+We can also change the label style:
+----------------------------------------------------------------------------------------
+	list.setLabelDefaults();
+	list.setListStyle(NestedItemizeStyles.HTML_LIKE);
+	System.out.println(list.render());
+----------------------------------------------------------------------------------------
+
+This will result in the following list:
+----------------------------------------------------------------------------------------
+	 • item 1
+	 • item 2
+	 • item 3
 ----------------------------------------------------------------------------------------
 
 
@@ -224,3 +234,89 @@ These two examples will print as follows (manually formatted to a 2-column outpu
                ***** item 5                               1.1.1.1.1 item 5
                      ****** item 6                                  1.1.1.1.1.1 item 6
 ----------------------------------------------------------------------------------------
+
+
+
+Width with automated line wrapping
+----------------------------------
+The lists allow to set a maximum width and will, if any item is longer than that width, an automatic line break with indentation calculation will be performed.
+All lists support this feature.
+
+We create two lits, one itemize and one enumerate:
+----------------------------------------------------------------------------------------
+	AsciiList itemize = new ItemizeList()
+		.addItem("il 1 item 1 some text")
+		.addItem("il 1 item 2 some text")
+		.addItem(new ItemizeList()
+			.addItem("il 2 item 1 text")
+			.addItem("il 2 item 2 text")
+		)
+		.setPreLabelIndent(0)
+		.setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
+
+	AsciiList enumerate = new EnumerateList()
+		.addItem("el 1 item 1 some text")
+		.addItem("el 1 item 2 some text")
+		.addItem(new EnumerateList()
+			.addItem("el 2 item 1 text")
+			.addItem("el 2 item 2 text")
+		)
+		.setPreLabelIndent(0)
+		.setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);
+----------------------------------------------------------------------------------------
+
+Rendering and printint the two lists will result in the following output (shown in two columns):
+----------------------------------------------------------------------------------------
+        * il 1 item 1 some text        1 el 1 item 1 some text
+        * il 1 item 2 some text        2 el 1 item 2 some text
+          ** il 2 item 1 text            2.A el 2 item 1 text
+          ** il 2 item 2 text            2.B el 2 item 2 text
+----------------------------------------------------------------------------------------
+
+
+Changing the width of both lists will result in line wrapping:
+----------------------------------------------------------------------------------------
+	itemize.setWidth(19);
+	enumerate.setWidth(19);
+----------------------------------------------------------------------------------------
+
+Now the rendering and printing will result in the following output:
+----------------------------------------------------------------------------------------
+        * il 1 item 1 some        1 el 1 item 1 some
+          text                      text
+        * il 1 item 2 some        2 el 1 item 2 some
+          text                      text
+          ** il 2 item 1            2.A el 2 item 1
+             text                       text
+          ** il 2 item 2            2.B el 2 item 2
+             text                       text
+----------------------------------------------------------------------------------------
+
+
+
+Checklists
+----------
+The package also provides a check list.
+In this list, items can be marked as checked and unchecked resulting in different labels.
+The checklist supports styles to use different characters (ASCII and UTF) for checked and unchecked items.
+
+The following code shows the creation of a checklist and the use of different styles for rendering it:
+----------------------------------------------------------------------------------------
+	CheckList list = new CheckList();
+	list.addItem("item unchecked");
+	list.addItemChecked("item checked");
+	System.err.println(list.render());
+
+	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
+	System.err.println(list.render());
+
+	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
+	System.err.println(list.render());
+----------------------------------------------------------------------------------------
+
+The resulting output of these examples is (in columns):
+----------------------------------------------------------------------------------------
+         [ ] item unchecked     ☐ item unchecked     ☐ item unchecked
+         [X] item checked       ☑ item checked       ☒ item checked
+----------------------------------------------------------------------------------------
+

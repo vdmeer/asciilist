@@ -33,18 +33,12 @@ public class Test_CheckList {
 		CheckList list = new CheckList();
 		list.addItem("item 1");
 		list.addItemChecked("item 2");
-		list.addItem("item 3");
-
 		System.err.println(list.render() + "\n");
 
 		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
 		System.err.println(list.render() + "\n");
 
-		CheckList list2 = new CheckList(false);
-		list2.addItemChecked("two item 1");
-		list2.addItem("two item 2");
-		list2.addItem("two item 3");
-		list2.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
+		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
 		System.err.println(list.render() + "\n");
 	}
 }

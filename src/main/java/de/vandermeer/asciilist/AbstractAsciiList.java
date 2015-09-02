@@ -37,16 +37,16 @@ public abstract class AbstractAsciiList implements AsciiList {
 	protected List<Object> items;
 
 	/** The indentation before the label (and the pre-label string), default is 1. */
-	protected int preLabelIndent = 1;
+	protected int preLabelIndent;
 
 	/** The indentation after the label (and the post-label string), default is 1. */
-	protected int postLabelIndent = 1;
+	protected int postLabelIndent;
 
 	/** A string printed directly before the label, other than indentation, default is empty string. */
-	protected String preLabelStr = "";
+	protected String preLabelStr;
 
 	/** A string printed directly after the label, other than indentation, default is empty string. */
-	protected String postLabelStr = "";
+	protected String postLabelStr;
 
 	/** The level of the list, default is 1. */
 	protected int level = 1;
@@ -90,6 +90,16 @@ public abstract class AbstractAsciiList implements AsciiList {
 	public AbstractAsciiList(boolean isContinued){
 		this.items = new ArrayList<>();
 		this.isContinued = isContinued;
+		this.setLabelDefaults();
+	}
+
+	@Override
+	public AsciiList setLabelDefaults(){
+		this.preLabelIndent = 1;
+		this.postLabelIndent = 1;
+		this.preLabelStr = "";
+		this.postLabelStr = "";
+		return this;
 	}
 
 	@Override

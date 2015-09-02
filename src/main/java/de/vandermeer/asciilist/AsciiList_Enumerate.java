@@ -78,4 +78,14 @@ public interface AsciiList_Enumerate extends AsciiList {
 	 */
 	AsciiList_Enumerate useLabelSeparatorAfterLastItem(boolean flag);
 
+	/**
+	 * Returns a flag stating if the list is prepared for rendering.
+	 * @return true if prepared for rendering, false otherwise
+	 */
+	boolean isPrepared();
+
+	/**
+	 * Sets the list as being prepared for rendering.
+	 */
+	void setPrepared();
 }
