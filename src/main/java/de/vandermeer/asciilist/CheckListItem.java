@@ -17,7 +17,7 @@ package de.vandermeer.asciilist;
 
 
 /**
- * Abstract (fully featured) implementation of {@link AsciiListItem} for a checklist.
+ * Implementation of {@link AsciiListItem} for a checklist.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7

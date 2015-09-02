@@ -171,7 +171,7 @@ public abstract class AbstractAsciiList implements AsciiList {
 	protected String wrapItem(String renderedItem){
 		if(this.width>0 && renderedItem.length()>this.width){
 			//the width-4 is for word wrap
-			String[] wrap = StringUtils.split(WordUtils.wrap(renderedItem, this.width-4, "@@@@", true), "@@@@");
+			String[] wrap = StringUtils.split(WordUtils.wrap(renderedItem, (this.width-this.preLabelIndent-this.preLabelStr.length()), IMPLICIT_NEWLINE, true), IMPLICIT_NEWLINE);
 			String ret = StringUtils.repeat(" ", this.preLabelIndent) + StringUtils.repeat(" ", this.preLabelStr.length()) + wrap[0];
 			if(wrap.length>1){
 				ret += "\n" + this.wrapItemNextLine(StringUtils.repeat(" ", this.maxItemIndent) + StringUtils.join(ArrayUtils.remove(wrap, 0), " "));
@@ -187,7 +187,7 @@ public abstract class AbstractAsciiList implements AsciiList {
 	 * @return wrapped string
 	 */
 	protected String wrapItemNextLine(String str){
-		String[] wrap = StringUtils.split(WordUtils.wrap(str, this.width, "@@@@", true), "@@@@");
+		String[] wrap = StringUtils.split(WordUtils.wrap(str, (this.width-this.maxItemIndent), IMPLICIT_NEWLINE, true), IMPLICIT_NEWLINE);
 		String ret = StringUtils.repeat(" ", this.maxItemIndent) + wrap[0];
 		if(wrap.length==1){
 			return ret;

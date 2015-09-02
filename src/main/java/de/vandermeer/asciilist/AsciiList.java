@@ -29,6 +29,11 @@ import de.vandermeer.asciilist.styles.ListStyle;
 public interface AsciiList {
 
 	/**
+	 * A strin representing an implicit new line for item rendering or internal processing such as word wrapping.
+	 */
+	String IMPLICIT_NEWLINE = "@@@@";
+
+	/**
 	 * Adds a new list to the list.
 	 * If the list is not continued, then no style information will be copied and the list level will be 1.
 	 * If the list is a continued list, then all style information will be copied from the parent list and the level of the added list will be set accordingly.

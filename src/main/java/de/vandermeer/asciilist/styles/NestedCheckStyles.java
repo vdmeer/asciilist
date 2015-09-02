@@ -28,7 +28,7 @@ import org.apache.commons.lang3.text.StrBuilder;
 public enum NestedCheckStyles implements ListStyle_CheckNested {
 
 	/**
-	 * Style that uses {@link CheckListStyles#SQUARE_BRACKET_BLANK_X} for unlimited levels.
+	 * Style that uses {@link CheckListStyles#ASCII_SQUARE_BRACKET_BLANK_X} for unlimited levels.
 	 * For example:
 	 * <pre>
 	[ ] unchecked item
