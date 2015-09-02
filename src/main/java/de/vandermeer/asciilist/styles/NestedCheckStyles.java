@@ -45,7 +45,7 @@ public enum NestedCheckStyles implements ListStyle_CheckNested {
 	               [X] checked item
 	 * </pre>
 	 */
-	ALL_SQUARE_BRACKET_BLANK_X (CheckListStyles.SQUARE_BRACKET_BLANK_X),
+	ALL_SQUARE_BRACKET_BLANK_X (CheckListStyles.ASCII_SQUARE_BRACKET_BLANK_X),
 
 	/**
 	 * Style that uses {@link CheckListStyles#UTF_BALLOT_BOX} for unlimited levels.

@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.vandermeer</groupId>
 	<artifactId>asciilist</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>ASCII List</name>
@@ -48,7 +48,7 @@
 	<scm>
 		<developerConnection>scm:git:git@github.com:vdmeer/asciilist.git</developerConnection>
 		<connection>scm:git:git://github.com/vdmeer/asciilist.git</connection>
-		<tag>asciilist-0.0.1</tag>
+		<tag>asciilist-0.0.2</tag>
 		<url>https://github.com/vdmeer/asciilist</url>
 	</scm>
 

@@ -59,7 +59,7 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	 */
 	public EnumerateList(boolean isContinued){
 		super(isContinued);
-		this.style = NestedEnumerateStyles.aLL_arabic;
+		this.style = NestedEnumerateStyles.aLL_arabic_ascii;
 		this.labelSeparator = ".";
 		this.useLabelSeparatorAfterLastItem = false;
 	}

@@ -27,22 +27,31 @@ import org.apache.commons.lang3.text.StrBuilder;
  */
 public enum NestedEnumerateStyles implements ListStyle_EnumerateNested {
 
-	aLL_Alpha (EnumerateStyles.Alpha),
+	aLL_Alpha_ascii (EnumerateStyles.Alpha_ascii),
 
-	aLL_alpha (EnumerateStyles.alpha),
+	aLL_alpha_ascii (EnumerateStyles.alpha_ascii),
 
-	aLL_arabic (EnumerateStyles.arabic),
+	aLL_arabic_ascii (EnumerateStyles.arabic_ascii),
 
-	aLL_Roman (EnumerateStyles.Roman),
+	aLL_Roman_ascii (EnumerateStyles.Roman_ascii),
 
-	aLL_roman (EnumerateStyles.roman),
+	aLL_roman_ascii (EnumerateStyles.roman_ascii),
 
 	arabic_Alpha_alpha_Roman_roman (
-			EnumerateStyles.arabic,
-			EnumerateStyles.Alpha,
-			EnumerateStyles.alpha,
-			EnumerateStyles.Roman,
-			EnumerateStyles.roman,
+			EnumerateStyles.arabic_ascii,
+			EnumerateStyles.Alpha_ascii,
+			EnumerateStyles.alpha_ascii,
+			EnumerateStyles.Roman_ascii,
+			EnumerateStyles.roman_ascii,
+			null
+	),
+
+	arabic_utf_circled (
+			EnumerateStyles.arabic_utf_double_circle,
+			EnumerateStyles.arabic_utf_circle,
+			EnumerateStyles.arabic_utf_circle_dingbat_sanserif,
+			EnumerateStyles.arabic_utf_circle_dingbat_negative_sanserif,
+			EnumerateStyles.arabic_utf_circle_dingbat_negative_sanserif,
 			null
 	),
 

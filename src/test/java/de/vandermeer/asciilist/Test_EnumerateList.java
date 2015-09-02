@@ -49,7 +49,7 @@ public class Test_EnumerateList {
 		list.addItem(list2);
 		System.err.println(list.render() + "\n");
 
-		list.setListStyle(NestedEnumerateStyles.aLL_roman);
+		list.setListStyle(NestedEnumerateStyles.aLL_roman_ascii);
 		list.addItem("item 4");
 		EnumerateList list3 = new EnumerateList();
 		list3.addItem("three item 1");

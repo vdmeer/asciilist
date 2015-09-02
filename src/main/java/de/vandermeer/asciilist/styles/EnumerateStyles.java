@@ -41,7 +41,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	C item 3
 	 * </pre>
 	 */
-	Alpha,
+	Alpha_ascii,
 
 	/**
 	 * Enumerate style using upper case alphanumeric circled (circled latin capital letters) characters.
@@ -52,7 +52,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	Ⓒ item 3
 	 * </pre>
 	 */
-	Alpha_circle,
+	Alpha_utf_circle,
 
 	/**
 	 * Enumerate style using upper case alphanumeric fullwidth (UTF Fullwidth Latin Capital) characters.
@@ -63,7 +63,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	Ｃ item 3
 	 * </pre>
 	 */
-	Alpha_fullwidth,
+	Alpha_utf_fullwidth,
 
 	/**
 	 * Enumerate style using lower case alphanumeric characters.
@@ -74,7 +74,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	c item 3
 	 * </pre>
 	 */
-	alpha,
+	alpha_ascii,
 
 	/**
 	 * Enumerate style using upper case alphanumeric circled (circled latin small letters) characters.
@@ -85,7 +85,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	ⓒ item 3
 	 * </pre>
 	 */
-	alpha_circle,
+	alpha_utf_circle,
 
 	/**
 	 * Enumerate style using upper case alphanumeric paranthesized (UTF Parenthesized Latin Small Letter) characters.
@@ -96,7 +96,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	⒞ item 3
 	 * </pre>
 	 */
-	alpha_parenthesized,
+	alpha_utf_parenthesized,
 
 	/**
 	 * Enumerate style using upper case alphanumeric fullwidth (UTF Fullwidth Latin Small) characters.
@@ -118,7 +118,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	3 item 3
 	 * </pre>
 	 */
-	arabic,
+	arabic_ascii,
 
 	/**
 	 * Enumerate style using Arabic circled (UTF circled digit) characters.
@@ -129,7 +129,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	③ item 3
 	 * </pre>
 	 */
-	arabic_circle,
+	arabic_utf_circle,
 
 	/**
 	 * Enumerate style using Arabic double circled (UTF double circled digit) characters.
@@ -140,7 +140,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	⓷ item 3
 	 * </pre>
 	 */
-	arabic_double_circle,
+	arabic_utf_double_circle,
 
 	/**
 	 * Enumerate style using Arabic circled dingbat negative (UTF dingbat negative circled digit) characters.
@@ -151,7 +151,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	❸ item 3
 	 * </pre>
 	 */
-	arabic_circle_dingbat_negative,
+	arabic_utf_circle_dingbat_negative,
 
 	/**
 	 * Enumerate style using Arabic circled dingbat sanserif (UTF dingbat sanserif circled digit) characters.
@@ -162,7 +162,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	➂ item 3
 	 * </pre>
 	 */
-	arabic_circle_dingbat_sanserif,
+	arabic_utf_circle_dingbat_sanserif,
 
 	/**
 	 * Enumerate style using Arabic circled dingbat negative sanserif (UTF dingbat negative sanserif circled digit) characters.
@@ -173,7 +173,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	➌ item 3
 	 * </pre>
 	 */
-	arabic_circle_dingbat_negative_sanserif,
+	arabic_utf_circle_dingbat_negative_sanserif,
 
 	/**
 	 * Enumerate style using Arabic superscript (UTF Superscript) characters.
@@ -184,7 +184,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	³ item 3
 	 * </pre>
 	 */
-	arabic_superscript,
+	arabic_utf_superscript,
 
 	/**
 	 * Enumerate style using Arabic subscript (UTF Subscript) characters.
@@ -195,7 +195,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	₃ item 3
 	 * </pre>
 	 */
-	arabic_subscript,
+	arabic_utf_subscript,
 
 	/**
 	 * Enumerate style using Arabic fullstop (UTF Fullstop) characters.
@@ -206,7 +206,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	⒊ item 3
 	 * </pre>
 	 */
-	arabic_full_stop,
+	arabic_utf_full_stop,
 
 	/**
 	 * Enumerate style using Arabic paranthesized (UTF Parenthesized Digit) characters.
@@ -228,7 +228,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	３ item 3
 	 * </pre>
 	 */
-	arabic_fullwidth,
+	arabic_utf_fullwidth,
 
 	/**
 	 * Enumerate style using upper case Roman number literals characters.
@@ -239,7 +239,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	III item 3
 	 * </pre>
 	 */
-	Roman,
+	Roman_ascii,
 
 	/**
 	 * Enumerate style using upper case circled Roman number literals (UTF Circled Latin Capital) characters.
@@ -250,7 +250,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	ⒾⒾⒾ item 3
 	 * </pre>
 	 */
-	Roman_circled,
+	Roman_utf_circled,
 
 	/**
 	 * Enumerate style using upper case Roman number literals (UTF Number Forms) characters.
@@ -261,7 +261,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	Ⅲ item 3
 	 * </pre>
 	 */
-	Roman_number_forms,
+	Roman_utf_number_forms,
 
 	/**
 	 * Enumerate style using lower case Roman number literals characters.
@@ -272,7 +272,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	iii item 3
 	 * </pre>
 	 */
-	roman,
+	roman_ascii,
 
 	/**
 	 * Enumerate style using lower case circled Roman number literals (UTF Circled Latin Small) characters.
@@ -283,7 +283,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	ⓘⓘⓘ item 3
 	 * </pre>
 	 */
-	roman_circled,
+	roman_utf_circled,
 
 	/**
 	 * Enumerate style using lower case Roman number literals (UTF Number Forms) characters.
@@ -294,64 +294,64 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	ⅲ item 3
 	 * </pre>
 	 */
-	roman_number_forms,
+	roman_utf_number_forms,
 
 	;
 
 	@Override
 	public String getLabel(int position){
 		switch(this){
-			case Alpha:
+			case Alpha_ascii:
 				return AlphaLiteralUtils.toAscii(position);
-			case Alpha_circle:
+			case Alpha_utf_circle:
 				return AlphaLiteralUtils.toCircledLatinCapital(position);
-			case Alpha_fullwidth:
+			case Alpha_utf_fullwidth:
 				return AlphaLiteralUtils.toFullwidthLatinCapital(position);
 
-			case alpha:
+			case alpha_ascii:
 				return AlphaLiteralUtils.toAsciiLC(position);
-			case alpha_circle:
+			case alpha_utf_circle:
 				return AlphaLiteralUtils.toCircledLatinSmall(position);
-			case alpha_parenthesized:
+			case alpha_utf_parenthesized:
 				return AlphaLiteralUtils.toParenthesizedLatinSmallLetter(position);
 			case alpha_fullwidth:
 				return AlphaLiteralUtils.toFullwidthLatinSmall(position);
 
-			case arabic:
+			case arabic_ascii:
 				return ArabicLiteralUtils.toAscii(position);
-			case arabic_circle:
+			case arabic_utf_circle:
 				return ArabicLiteralUtils.toCircledDigit(position);
-			case arabic_double_circle:
+			case arabic_utf_double_circle:
 				return ArabicLiteralUtils.toDoubleCircledDigit(position);
-			case arabic_circle_dingbat_negative:
+			case arabic_utf_circle_dingbat_negative:
 				return ArabicLiteralUtils.toDingbatNegativeCircledDigit(position);
-			case arabic_circle_dingbat_sanserif:
+			case arabic_utf_circle_dingbat_sanserif:
 				return ArabicLiteralUtils.toDingbatSanserifCircledDigit(position);
-			case arabic_circle_dingbat_negative_sanserif:
+			case arabic_utf_circle_dingbat_negative_sanserif:
 				return ArabicLiteralUtils.toDingbatNegativeSanserifCircledDigit(position);
-			case arabic_superscript:
+			case arabic_utf_superscript:
 				return ArabicLiteralUtils.toSuperscript(position);
-			case arabic_subscript:
+			case arabic_utf_subscript:
 				return ArabicLiteralUtils.toSubscript(position);
-			case arabic_full_stop:
+			case arabic_utf_full_stop:
 				return ArabicLiteralUtils.toFullStop(position);
 			case arabic_parenthesized:
 				return ArabicLiteralUtils.toParenthesized(position);
-			case arabic_fullwidth:
+			case arabic_utf_fullwidth:
 				return ArabicLiteralUtils.toFullwidth(position);
 
-			case Roman:
+			case Roman_ascii:
 				return RomanNumberLiterals.toAscii(position);
-			case Roman_circled:
+			case Roman_utf_circled:
 				return RomanNumberLiterals.toCircledLatinCaptial(position);
-			case Roman_number_forms:
+			case Roman_utf_number_forms:
 				return RomanNumberLiterals.toNumberForms(position);
 
-			case roman:
+			case roman_ascii:
 				return RomanNumberLiterals.toAsciiLC(position);
-			case roman_circled:
+			case roman_utf_circled:
 				return RomanNumberLiterals.toCircledLatinSmall(position);
-			case roman_number_forms:
+			case roman_utf_number_forms:
 				return RomanNumberLiterals.toNumberFormsLC(position);
 
 			default:

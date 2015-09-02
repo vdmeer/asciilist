@@ -145,7 +145,6 @@ public abstract class AbstractAsciiList implements AsciiList {
 		if(this.width>0 && ((maxItemIndent+6) > this.width)){
 			throw new IllegalArgumentException("width <" + this.width + "> is to small for list content with indentation already at <" + this.maxItemIndent + ">");
 		}
-
 		int position = 0;
 		for(int i=0; i<this.items.size(); i++){
 			if(this.items.get(i) instanceof AsciiListItem){
@@ -171,7 +170,8 @@ public abstract class AbstractAsciiList implements AsciiList {
 	 */
 	protected String wrapItem(String renderedItem){
 		if(this.width>0 && renderedItem.length()>this.width){
-			String[] wrap = StringUtils.split(WordUtils.wrap(renderedItem, this.width, "@@@@", true), "@@@@");
+			//the width-4 is for word wrap
+			String[] wrap = StringUtils.split(WordUtils.wrap(renderedItem, this.width-4, "@@@@", true), "@@@@");
 			String ret = StringUtils.repeat(" ", this.preLabelIndent) + StringUtils.repeat(" ", this.preLabelStr.length()) + wrap[0];
 			if(wrap.length>1){
 				ret += "\n" + this.wrapItemNextLine(StringUtils.repeat(" ", this.maxItemIndent) + StringUtils.join(ArrayUtils.remove(wrap, 0), " "));

@@ -65,4 +65,21 @@ public class Test_ItemizeList {
 		list.setWidth(19);
 		System.err.println(list.render() + "\n");
 	}
+
+	@Test
+	public void test_19(){
+		ItemizeList il = new ItemizeList();
+		il.addItem("il 1 item 1 some text");
+		il.addItem("il 1 item 2 some text");
+		il.addItem("il 1 item 3 some text");
+		ItemizeList il2 = new ItemizeList();
+		il2.addItem("il 2 item 1 text");
+		il2.addItem("il 2 item 2 text");
+		il2.addItem("il 2 item 3 text");
+		il.addItem(il2);
+		il.setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
+		il.setPreLabelIndent(0);
+		il.setWidth(18);
+		System.err.println(il.render() + "\n");
+	}
 }
