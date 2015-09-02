@@ -32,8 +32,6 @@ import de.vandermeer.asciilist.styles.NestedItemizeStyles;
  */
 public class Test_ItemizeList {
 
-	protected class TAAI extends ItemizeList{}
-
 	@Rule public ExpectedException exception = ExpectedException.none();
 
 	@Test

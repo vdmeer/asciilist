@@ -17,13 +17,12 @@ package de.vandermeer.asciilist;
 
 import org.apache.commons.lang3.text.StrBuilder;
 
-
 /**
  * Implementation of {@link AsciiListItem} for a description list.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
- * @since      v0.0.1
+ * @since      v0.0.2
  */
 public class DescriptionListItem extends AbstractAsciiListItem {
 
@@ -81,4 +80,5 @@ public class DescriptionListItem extends AbstractAsciiListItem {
 	public Object getTerm(){
 		return this.term;
 	}
+
 }

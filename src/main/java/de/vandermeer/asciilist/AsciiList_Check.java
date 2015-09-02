@@ -47,6 +47,13 @@ public interface AsciiList_Check extends AsciiList {
 	AsciiList_Check setPostIndent(int indent);
 
 	/**
+	 * Adds a new item which is set to "unchecked".
+	 * @param item new item, only added if not blank
+	 * @return self to allow chaining
+	 */
+	AsciiList_Check addItem(String item);
+
+	/**
 	 * Adds a new item which is set to "checked".
 	 * @param item content for the checked item
 	 * @return self to allow chaining

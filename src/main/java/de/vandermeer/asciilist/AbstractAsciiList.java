@@ -21,7 +21,6 @@ import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -72,15 +71,6 @@ public abstract class AbstractAsciiList implements AsciiList {
 
 	/**
 	 * Creates a new list.
-	 * @param isContinued true if the list is continued from a previous list of the same type, false otherwise
-	 */
-	public AbstractAsciiList(boolean isContinued){
-		this.items = new ArrayList<>();
-		this.isContinued = isContinued;
-	}
-
-	/**
-	 * Creates a new list.
 	 * @param list original list
 	 */
 	public AbstractAsciiList(AbstractAsciiList list){
@@ -95,30 +85,13 @@ public abstract class AbstractAsciiList implements AsciiList {
 		this.items.addAll(list.items);
 	}
 
-	@Override
-	public AsciiList addItem(AsciiList list) {
-		Validate.notEmpty(list.getItems());
-		AsciiList add = list.copy();
-		this.items.add(add);
-		return add;
-	}
-
-	@Override
-	public AsciiList addItem(String item){
-		if(!StringUtils.isBlank(item)){
-			this.items.add(new AbstractAsciiListItem(item));
-		}
-		return this;
-	}
-
-	@Override
-	public List<Object> getItems() {
-		return this.items;
-	}
-
-	@Override
-	public int getLevel(){
-		return this.level;
+	/**
+	 * Creates a new list.
+	 * @param isContinued true if the list is continued from a previous list of the same type, false otherwise
+	 */
+	public AbstractAsciiList(boolean isContinued){
+		this.items = new ArrayList<>();
+		this.isContinued = isContinued;
 	}
 
 	@Override
@@ -134,6 +107,41 @@ public abstract class AbstractAsciiList implements AsciiList {
 			}
 		}
 		return this.maxItemIndent;
+	}
+
+	@Override
+	public List<Object> getItems() {
+		return this.items;
+	}
+
+	@Override
+	public int getLevel(){
+		return this.level;
+	}
+
+	@Override
+	public int getPostLabelIndent() {
+		return this.postLabelIndent;
+	}
+
+	@Override
+	public String getPostLabelString() {
+		return this.postLabelStr;
+	}
+
+	@Override
+	public int getPreLabelIndent() {
+		return this.preLabelIndent;
+	}
+
+	@Override
+	public String getPreLabelString() {
+		return this.preLabelStr;
+	}
+
+	@Override
+	public boolean isContinuedList(){
+		return this.isContinued;
 	}
 
 	@Override
@@ -161,6 +169,63 @@ public abstract class AbstractAsciiList implements AsciiList {
 			}
 		}
 		return ret.toString();
+	}
+
+	@Override
+	public AsciiList setLevel(int level){
+		if(level>1){
+			this.level = level;
+		}
+		return this;
+	}
+
+	@Override
+	public AsciiList setListStyle(ListStyle style) {
+		for(Object obj : this.items){
+			if(obj instanceof AsciiList){
+				((AsciiList)obj).setListStyle(style);
+			}
+		}
+		return this;
+	}
+
+	@Override
+	public AsciiList setPostLabelIndent(int indent) {
+		if(indent>-1){
+			this.postLabelIndent = indent;
+		}
+		return this;
+	}
+
+	@Override
+	public AsciiList setPostLabelString(String str) {
+		this.postLabelStr = str;
+		return this;
+	}
+
+	@Override
+	public AsciiList setPreLabelIndent(int indent) {
+		if(indent>-1){
+			this.preLabelIndent = indent;
+		}
+		return this;
+	}
+
+	@Override
+	public AsciiList setPreLabelString(String str) {
+		this.preLabelStr = str;
+		return this;
+	}
+
+	@Override
+	public AsciiList setWidth(int width){
+		this.width = width;
+		for(Object obj : this.items){
+			if(obj instanceof AsciiList){
+				((AsciiList)obj).setWidth(width);
+			}
+		}
+		return this;
 	}
 
 	/**
@@ -193,87 +258,5 @@ public abstract class AbstractAsciiList implements AsciiList {
 			return ret;
 		}
 		return ret + "\n" + this.wrapItemNextLine(StringUtils.repeat(" ", this.maxItemIndent) + StringUtils.join(ArrayUtils.remove(wrap, 0), " "));
-	}
-
-	@Override
-	public AsciiList setLevel(int level){
-		if(level>1){
-			this.level = level;
-		}
-		return this;
-	}
-
-	@Override
-	public AsciiList setListStyle(ListStyle style) {
-		for(Object obj : this.items){
-			if(obj instanceof AsciiList){
-				((AsciiList)obj).setListStyle(style);
-			}
-		}
-		return this;
-	}
-
-	@Override
-	public AsciiList setPreLabelIndent(int indent) {
-		if(indent>-1){
-			this.preLabelIndent = indent;
-		}
-		return this;
-	}
-
-	@Override
-	public AsciiList setPreLabelString(String str) {
-		this.preLabelStr = str;
-		return this;
-	}
-
-	@Override
-	public AsciiList setPostLabelString(String str) {
-		this.postLabelStr = str;
-		return this;
-	}
-
-	@Override
-	public AsciiList setPostLabelIndent(int indent) {
-		if(indent>-1){
-			this.postLabelIndent = indent;
-		}
-		return this;
-	}
-
-	@Override
-	public int getPreLabelIndent() {
-		return this.preLabelIndent;
-	}
-
-	@Override
-	public String getPreLabelString() {
-		return this.preLabelStr;
-	}
-
-	@Override
-	public String getPostLabelString() {
-		return this.postLabelStr;
-	}
-
-	@Override
-	public int getPostLabelIndent() {
-		return this.postLabelIndent;
-	}
-
-	@Override
-	public boolean isContinuedList(){
-		return this.isContinued;
-	}
-
-	@Override
-	public AsciiList setWidth(int width){
-		this.width = width;
-		for(Object obj : this.items){
-			if(obj instanceof AsciiList){
-				((AsciiList)obj).setWidth(width);
-			}
-		}
-		return this;
 	}
 }

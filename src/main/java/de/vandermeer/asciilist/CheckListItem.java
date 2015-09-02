@@ -15,7 +15,6 @@
 
 package de.vandermeer.asciilist;
 
-
 /**
  * Implementation of {@link AsciiListItem} for a checklist.
  *
@@ -47,4 +46,5 @@ public class CheckListItem extends AbstractAsciiListItem {
 	public boolean isChecked(){
 		return this.checked;
 	}
+
 }

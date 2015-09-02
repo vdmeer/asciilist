@@ -16,6 +16,8 @@
 package de.vandermeer.asciilist;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import de.vandermeer.asciilist.styles.ListStyle;
 import de.vandermeer.asciilist.styles.ListStyle_EnumerateNested;
@@ -79,10 +81,12 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 
 	@Override
 	public AsciiList addItem(AsciiList list) {
-		AsciiList added = super.addItem(list);
+		Validate.notEmpty(list.getItems());
+		AsciiList add = list.copy();
+		this.items.add(add);
 
-		if(added instanceof AsciiList_Enumerate){
-			AsciiList_Enumerate addE = (AsciiList_Enumerate)added;
+		if(add instanceof AsciiList_Enumerate){
+			AsciiList_Enumerate addE = (AsciiList_Enumerate)add;
 			if(addE.isContinuedList()){
 				this.realPosition++;
 				((AsciiList_Enumerate)addE).setListStyle(this.style);
@@ -98,7 +102,7 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 				addE.setLevel(1);
 			}
 		}
-		return added;
+		return add;
 	}
 
 	/**
@@ -170,6 +174,14 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	@Override
 	public int calculateMaxIndentation(AsciiListItem item, int position) {
 		return this.preLabelIndent + this.preLabelStr.length() + this.calculateItemLabel(position).length() + this.postLabelStr.length() + this.postLabelIndent;
+	}
+
+	@Override
+	public AsciiList_Enumerate addItem(String item){
+		if(!StringUtils.isBlank(item)){
+			this.items.add(new AbstractAsciiListItem(item));
+		}
+		return this;
 	}
 
 }

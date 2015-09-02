@@ -59,7 +59,7 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 	}
 
 	@Override
-	public CheckList addItem(String item){
+	public AsciiList_Check addItem(String item){
 		if(!StringUtils.isBlank(item)){
 			this.items.add(new CheckListItem(item, false));
 		}
@@ -67,29 +67,11 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 	}
 
 	@Override
-	public CheckList addItemChecked(String item){
+	public AsciiList_Check addItemChecked(String item){
 		if(!StringUtils.isBlank(item)){
 			this.items.add(new CheckListItem(item, true));
 		}
 		return this;
-	}
-
-	@Override
-	public AsciiList addItem(AsciiList list) {
-		AsciiList added = super.addItem(list);
-
-		if(added instanceof AsciiList_Check){
-			AsciiList_Check addC = (AsciiList_Check)added;
-			if(addC.isContinuedList()){
-				addC.setListStyle(this.style);
-				addC.setLevel(this.level+1);
-			}
-			else{
-				addC.setLevel(1);
-			}
-		}
-
-		return added;
 	}
 
 	@Override

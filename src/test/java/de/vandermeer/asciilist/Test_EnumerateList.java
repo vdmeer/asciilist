@@ -30,8 +30,6 @@ import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
  */
 public class Test_EnumerateList {
 
-	protected class TAAE extends EnumerateList{}
-
 	@Rule public ExpectedException exception = ExpectedException.none();
 
 	@Test

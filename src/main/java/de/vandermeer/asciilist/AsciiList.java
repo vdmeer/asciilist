@@ -21,6 +21,26 @@ import de.vandermeer.asciilist.styles.ListStyle;
 
 /**
  * Base of the ASCII list hierarchy - standard interface.
+ * The interface covers all generic functionality for ASCII lists:
+ * <ul>
+ * 		<li>Set/get all label related fomatting options (pre-label indentation and string, post-label indentation and string)</li>
+ * 		<li>Set list style (based on the style interface</li>
+ * 		<li>Render the list</li>
+ * 		<li>Retrieve list items for processing</li>
+ * </ul>
+ * 
+ * Some methods a more for internal use (by an abstract implementation supporting specific lists):
+ * <ul>
+ * 		<li>Set/get level (of nested lists)</li>
+ * 		<li>Calculation methods (e.g. for maximum indentation)</li>
+ * 		<li>Render and individual items</li>
+ * </ul>
+ * 
+ * The interface does not define any method to add content to a list.
+ * The reason for that is that list content is very specific for a particular list.
+ * For instance, a description will need a term and a description as content for an item,
+ * while an itemize list requires only text for the item.
+ * In addition: some lists allow for adding other lists (e.g. enumerate, itemize) while other lists do not support that (e.g. checklist).
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
@@ -32,25 +52,6 @@ public interface AsciiList {
 	 * A strin representing an implicit new line for item rendering or internal processing such as word wrapping.
 	 */
 	String IMPLICIT_NEWLINE = "@@@@";
-
-	/**
-	 * Adds a new list to the list.
-	 * If the list is not continued, then no style information will be copied and the list level will be 1.
-	 * If the list is a continued list, then all style information will be copied from the parent list and the level of the added list will be set accordingly.
-	 * A list is continued if {@link #isContinuedList()} returns true, not continued if it returns false.
-	 * @param list the new list
-	 * @throws NullPointerException - if the list is null
-	 * @throws IllegalArgumentException - if the list is empty
-	 * @return the new created list, which has been added to the current list
-	 */
-	AsciiList addItem(AsciiList list);
-
-	/**
-	 * Adds a new item to the list.
-	 * @param item new item, only added if not blank
-	 * @return self to allow chaining
-	 */
-	AsciiList addItem(String item);
 
 	/**
 	 * Returns a copy of the list.

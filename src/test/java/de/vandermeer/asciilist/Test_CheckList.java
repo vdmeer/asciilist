@@ -15,9 +15,7 @@
 
 package de.vandermeer.asciilist;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import de.vandermeer.asciilist.styles.NestedCheckStyles;
 
@@ -29,10 +27,6 @@ import de.vandermeer.asciilist.styles.NestedCheckStyles;
  * @since      v0.0.1
  */
 public class Test_CheckList {
-
-	protected class TAAI extends ItemizeList{}
-
-	@Rule public ExpectedException exception = ExpectedException.none();
 
 	@Test
 	public void test_List(){
@@ -51,21 +45,6 @@ public class Test_CheckList {
 		list2.addItem("two item 2");
 		list2.addItem("two item 3");
 		list2.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
-		list.addItem(list2);
-//		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
 		System.err.println(list.render() + "\n");
-
-//		list.setLabel("-");
-//		list.setPostIndent(4);
-//		System.err.println(list.render() + "\n");
-//
-//		list.setStyle(ItemizeStyles.ASCII_ALL_STAR);
-//		list.setPostIndent(1);
-//		AbstractAL_Itemize list2 = new AbstractAL_Itemize();
-//		list2.addItem("two item one");
-//		list2.addItem("two item two");
-//		list2.addItem("two item three");
-//		list.addItem(list2);
-//		System.err.println(list.render() + "\n");
 	}
 }

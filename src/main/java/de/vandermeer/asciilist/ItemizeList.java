@@ -15,6 +15,9 @@
 
 package de.vandermeer.asciilist;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+
 import de.vandermeer.asciilist.styles.ListStyle;
 import de.vandermeer.asciilist.styles.ListStyle_ItemizeNested;
 import de.vandermeer.asciilist.styles.NestedItemizeStyles;
@@ -58,10 +61,12 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 
 	@Override
 	public AsciiList addItem(AsciiList list) {
-		AsciiList added = super.addItem(list);
+		Validate.notEmpty(list.getItems());
+		AsciiList add = list.copy();
+		this.items.add(add);
 
-		if(added instanceof AsciiList_Itemize){
-			AsciiList_Itemize addI = (AsciiList_Itemize)added;
+		if(add instanceof AsciiList_Itemize){
+			AsciiList_Itemize addI = (AsciiList_Itemize)add;
 			if(addI.isContinuedList()){
 				addI.setListStyle(this.style);
 				addI.setLevel(this.level+1);
@@ -71,7 +76,7 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 			}
 		}
 
-		return added;
+		return add;
 	}
 
 	@Override
@@ -95,6 +100,14 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 	@Override
 	public int calculateMaxIndentation(AsciiListItem item, int position) {
 		return this.preLabelIndent + this.preLabelStr.length() + this.style.getLabel(this.level).length() + this.postLabelStr.length() + this.postLabelIndent;
+	}
+
+	@Override
+	public AsciiList_Itemize addItem(String item){
+		if(!StringUtils.isBlank(item)){
+			this.items.add(new AbstractAsciiListItem(item));
+		}
+		return this;
 	}
 
 }

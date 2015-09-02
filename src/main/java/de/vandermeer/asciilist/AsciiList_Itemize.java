@@ -24,4 +24,24 @@ package de.vandermeer.asciilist;
  */
 public interface AsciiList_Itemize extends AsciiList {
 
+	/**
+	 * Adds a new item to the list.
+	 * @param item new item, only added if not blank
+	 * @return self to allow chaining
+	 */
+	AsciiList_Itemize addItem(String item);
+
+	/**
+	 * Adds a new list to the list.
+	 * If the list is an itemize list, then continuation behavor will be as follows:
+	 * If the list is not continued, then no style information will be copied and the list level will be 1.
+	 * If the list is a continued list, then all style information will be copied from the parent list and the level of the added list will be set accordingly.
+	 * A list is continued if {@link #isContinuedList()} returns true, not continued if it returns false.
+	 * @param list the new list
+	 * @throws NullPointerException - if the list is null
+	 * @throws IllegalArgumentException - if the list is empty
+	 * @return the new created list, which has been added to the current list
+	 */
+	AsciiList addItem(AsciiList list);
+
 }

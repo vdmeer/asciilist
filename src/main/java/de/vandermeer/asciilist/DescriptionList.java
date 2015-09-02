@@ -40,12 +40,6 @@ public class DescriptionList extends AbstractAsciiList implements AsciiList_Desc
 	}
 
 	@Override
-	public DescriptionList addItem(String item){
-		//we do not add single string items
-		return this;
-	}
-
-	@Override
 	public AsciiList copy() {
 		// TODO Auto-generated method stub
 		return null;
@@ -53,20 +47,6 @@ public class DescriptionList extends AbstractAsciiList implements AsciiList_Desc
 
 	@Override
 	public int calculateMaxIndentation(AsciiListItem item, int position) {
-//		int ret = 0;
-//		if(item instanceof DescriptionListItem){
-//			if(this.useSingleLine==true){
-//				//single line, full term indentation
-//				ret += this.preLabelIndent + this.preLabelStr.length();
-//				ret += this.postLabelStr.length() + this.postLabelIndent;
-//				ret += ((DescriptionListItem)item).getTerm().toString().length();
-//			}
-//			else{
-				//multi line, only post label indentation
-//				ret += this.wrappedLineIndentation;
-//			}
-//		}
-//		return ret;
 		return this.wrappedLineIndentation;
 	}
 
