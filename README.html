@@ -431,12 +431,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_add_content_items">Add content (items)</a></li>
 <li><a href="#_render_the_list">Render the list</a></li>
 <li><a href="#_print_the_list">Print the list</a></li>
-<li><a href="#_change_list_render_behavior">Change list render behavior</a></li>
 </ul>
 </li>
+<li><a href="#_set_of_examples_for_list_features">Set of examples for list features</a>
+<ul class="sectlevel2">
+<li><a href="#_change_list_render_behavior">Change list render behavior</a></li>
 <li><a href="#_nested_lists">Nested lists</a></li>
 <li><a href="#_width_with_automated_line_wrapping">Width with automated line wrapping</a></li>
+<li><a href="#_enumerate_list_pre_label_string_and_special_style">Enumerate list, pre-label string and special style</a></li>
 <li><a href="#_checklists">Checklists</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -636,6 +641,11 @@ For some lists (e.g. enumerate) they also allow to re-use parts of the parent li
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_set_of_examples_for_list_features">Set of examples for list features</h2>
+<div class="sectionbody">
 <div class="sect2">
 <h3 id="_change_list_render_behavior">Change list render behavior</h3>
 <div class="paragraph">
@@ -690,11 +700,8 @@ Then we set the post-label string to "all":</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_nested_lists">Nested lists</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_nested_lists">Nested lists</h3>
 <div class="paragraph">
 <p>Itemize and enumerate lists can be nested.
 The nesting is not limited.
@@ -753,10 +760,8 @@ Additionally, set a nested style for the list:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_width_with_automated_line_wrapping">Width with automated line wrapping</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_width_with_automated_line_wrapping">Width with automated line wrapping</h3>
 <div class="paragraph">
 <p>The lists allow to set a maximum width and will, if any item is longer than that width, an automatic line break with indentation calculation will be performed.
 All lists support this feature.</p>
@@ -823,10 +828,36 @@ All lists support this feature.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_enumerate_list_pre_label_string_and_special_style">Enumerate list, pre-label string and special style</h3>
+<div class="paragraph">
+<p>The list configuration option offer a lot of possibilities.
+The following example creates an enumerate list with a set pre-label string and a particular style:</p>
 </div>
-<div class="sect1">
-<h2 id="_checklists">Checklists</h2>
-<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>	AsciiList enumerate = new EnumerateList()
+		.addItem("item 1")
+		.addItem("item 2")
+		.addItem("item 3")
+		.setPreLabelString("E")
+		.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
+	;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The rendered list looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	 E₁ item 1
+	 E₂ item 2
+	 E₃ item 3</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checklists">Checklists</h3>
 <div class="paragraph">
 <p>The package also provides a check list.
 In this list, items can be marked as checked and unchecked resulting in different labels.
@@ -861,9 +892,10 @@ The checklist supports styles to use different characters (ASCII and UTF) for ch
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-09-02 20:40:32 IST
+Last updated 2015-09-02 21:02:40 IST
 </div>
 </div>
 </body>

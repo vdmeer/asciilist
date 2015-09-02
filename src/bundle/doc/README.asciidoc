@@ -138,6 +138,11 @@ This will result in the following list:
 
 
 
+Set of examples for list features
+---------------------------------
+
+
+
 Change list render behavior
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We can change pre/post label indentation and strings as well as the label style.
@@ -185,7 +190,7 @@ This will result in the following list:
 
 
 Nested lists
-------------
+~~~~~~~~~~~~
 
 Itemize and enumerate lists can be nested.
 The nesting is not limited.
@@ -238,7 +243,7 @@ These two examples will print as follows (manually formatted to a 2-column outpu
 
 
 Width with automated line wrapping
-----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The lists allow to set a maximum width and will, if any item is longer than that width, an automatic line break with indentation calculation will be performed.
 All lists support this feature.
 
@@ -294,8 +299,32 @@ Now the rendering and printing will result in the following output:
 
 
 
+Enumerate list, pre-label string and special style
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The list configuration option offer a lot of possibilities.
+The following example creates an enumerate list with a set pre-label string and a particular style:
+----------------------------------------------------------------------------------------
+	AsciiList enumerate = new EnumerateList()
+		.addItem("item 1")
+		.addItem("item 2")
+		.addItem("item 3")
+		.setPreLabelString("E")
+		.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
+	;
+----------------------------------------------------------------------------------------
+
+The rendered list looks like this:
+----------------------------------------------------------------------------------------
+	 E₁ item 1
+	 E₂ item 2
+	 E₃ item 3
+----------------------------------------------------------------------------------------
+
+
+
 Checklists
-----------
+~~~~~~~~~~
 The package also provides a check list.
 In this list, items can be marked as checked and unchecked resulting in different labels.
 The checklist supports styles to use different characters (ASCII and UTF) for checked and unchecked items.
@@ -305,13 +334,10 @@ The following code shows the creation of a checklist and the use of different st
 	CheckList list = new CheckList();
 	list.addItem("item unchecked");
 	list.addItemChecked("item checked");
-	System.err.println(list.render());
 
 	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
-	System.err.println(list.render());
 
 	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
-	System.err.println(list.render());
 ----------------------------------------------------------------------------------------
 
 The resulting output of these examples is (in columns):

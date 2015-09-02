@@ -136,7 +136,11 @@
 	 &#42; item 3
  * </pre>
  * 
- * <h4>Change list render behavior</h4>
+ * 
+ * <br><h3>Set of examples for list features</h3>
+ * 
+ * 
+ * <br><h4>Change list render behavior</h4>
  * We can change pre/post label indentation and strings as well as the label style.
  * In the following example we first set the pre-label indentation to 5.
  * Then we set the post-label indentation to 5.
@@ -178,7 +182,7 @@
  * 
  * 
  * 
- * <br><h3>Nested lists</h3>
+ * <br><h4>Nested lists</h4>
  * <p>
  * 		Itemize and enumerate lists can be nested.
  * 		The nesting is not limited.
@@ -230,7 +234,7 @@
  * 
  * 
  * 
- * <br><h3>Width with automated line wrapping</h3>
+ * <br><h4>Width with automated line wrapping</h4>
  * <p>
  * 		The lists allow to set a maximum width and will, if any item is longer than that width, an automatic line break with indentation calculation will be performed.
  * 		All lists support this feature.
@@ -286,8 +290,28 @@
  * </pre>
  * 
  * 
+ *  <br><h4>Enumerate list, pre-label string and special style</h4>
+ * The list configuration option offer a lot of possibilities.
+ * The following example creates an enumerate list with a set pre-label string and a particular style:
+ * <pre>{@code
+	AsciiList enumerate = new EnumerateList()
+		.addItem("item 1")
+		.addItem("item 2")
+		.addItem("item 3")
+		.setPreLabelString("E")
+		.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
+	;
+ * }</pre>
  * 
- * <br><h3>Checklists</h3>
+ * The rendered list looks like this:
+ * <pre>
+	 E₁ item 1
+	 E₂ item 2
+	 E₃ item 3
+ * </pre>
+ * 
+ * 
+ * <br><h4>Checklists</h4>
  * <p>
  * 		The package also provides a check list.
  *		In this list, items can be marked as checked and unchecked resulting in different labels.
@@ -299,13 +323,10 @@
 	CheckList list = new CheckList();
 	list.addItem("item checked");
 	list.addItemChecked("item unchecked");
-	System.err.println(list.render() + "\n");
 
 	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
-	System.err.println(list.render() + "\n");
 
 	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
-	System.err.println(list.render() + "\n");
  * }</pre>
  * 
  * The resulting output of these examples is (in columns):
@@ -319,4 +340,5 @@
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
  */
 package de.vandermeer.asciilist;
+
 

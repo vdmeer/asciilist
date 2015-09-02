@@ -142,13 +142,30 @@ public class Test_CodeForDocs {
 		CheckList list = new CheckList();
 		list.addItem("item unchecked");
 		list.addItemChecked("item checked");
-		System.err.println(list.render() + "\n");
+		System.out.println(list.render() + "\n");
 
 		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
-		System.err.println(list.render() + "\n");
+		System.out.println(list.render() + "\n");
 
 		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
-		System.err.println(list.render() + "\n");
+		System.out.println(list.render() + "\n");
+
+		this.output();
+	}
+
+	@Test
+	public void test_EnumSubscript(){
+		this.output("enum subscript");
+
+		AsciiList enumerate = new EnumerateList()
+			.addItem("item 1")
+			.addItem("item 2")
+			.addItem("item 3")
+			.setPreLabelString("E")
+			.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
+		;
+
+		System.out.println(enumerate.render());
 
 		this.output();
 	}
