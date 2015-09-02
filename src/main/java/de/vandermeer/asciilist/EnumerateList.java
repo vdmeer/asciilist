@@ -80,29 +80,30 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	}
 
 	@Override
-	public AsciiList addItem(AsciiList list) {
+	public AsciiList_Enumerate addItem(AsciiList list) {
 		Validate.notEmpty(list.getItems());
 		AsciiList add = list.copy();
 		this.items.add(add);
+		return this;
+	}
 
-		if(add instanceof AsciiList_Enumerate){
-			AsciiList_Enumerate addE = (AsciiList_Enumerate)add;
-			if(addE.isContinuedList()){
-				this.realPosition++;
-				((AsciiList_Enumerate)addE).setListStyle(this.style);
-				addE.setLevel(this.level+1);
-				if(this.parents==null){
-					((AsciiList_Enumerate)addE).setParents(new int[]{this.items.size()-this.realPosition});
+	@Override
+	public void prepareRender() {
+		super.prepareRender();
+		for(Object obj : this.items){
+			if(obj instanceof AsciiList_Enumerate){
+				if(((AsciiList_Enumerate) obj).isContinuedList()){
+					this.realPosition++;
+					((AsciiList_Enumerate) obj).setListStyle(this.style);
+					if(this.parents==null){
+						((AsciiList_Enumerate) obj).setParents(new int[]{this.items.size()-this.realPosition});
+					}
+					else{
+						((AsciiList_Enumerate) obj).setParents(ArrayUtils.add(this.parents, this.items.size()-this.realPosition));
+					}
 				}
-				else{
-					((AsciiList_Enumerate)addE).setParents(ArrayUtils.add(this.parents, this.items.size()-this.realPosition));
-				}
-			}
-			else{
-				addE.setLevel(1);
 			}
 		}
-		return add;
 	}
 
 	/**
@@ -142,11 +143,11 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	}
 
 	@Override
-	public AsciiList setListStyle(ListStyle style) {
+	public AsciiList_Enumerate setListStyle(ListStyle style) {
 		if(style instanceof ListStyle_EnumerateNested){
 			this.style = (ListStyle_EnumerateNested)style;
 		}
-		return super.setListStyle(style);
+		return this;
 	}
 
 	@Override

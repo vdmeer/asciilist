@@ -60,23 +60,23 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 	}
 
 	@Override
-	public AsciiList addItem(AsciiList list) {
+	public AsciiList_Itemize addItem(AsciiList list) {
 		Validate.notEmpty(list.getItems());
 		AsciiList add = list.copy();
 		this.items.add(add);
+		return this;
+	}
 
-		if(add instanceof AsciiList_Itemize){
-			AsciiList_Itemize addI = (AsciiList_Itemize)add;
-			if(addI.isContinuedList()){
-				addI.setListStyle(this.style);
-				addI.setLevel(this.level+1);
-			}
-			else{
-				addI.setLevel(1);
+	@Override
+	public void prepareRender() {
+		super.prepareRender();
+		for(Object obj : this.items){
+			if(obj instanceof AsciiList_Itemize){
+				if(((AsciiList_Itemize) obj).isContinuedList()){
+					((AsciiList_Itemize) obj).setListStyle(this.style);
+				}
 			}
 		}
-
-		return add;
 	}
 
 	@Override
@@ -85,11 +85,11 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 	}
 
 	@Override
-	public AsciiList setListStyle(ListStyle style) {
+	public AsciiList_Itemize setListStyle(ListStyle style) {
 		if(style instanceof ListStyle_ItemizeNested){
 			this.style = (ListStyle_ItemizeNested)style;
 		}
-		return super.setListStyle(style);
+		return this;
 	}
 
 	@Override

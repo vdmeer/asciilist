@@ -109,6 +109,12 @@ public interface AsciiList {
 	String render();
 
 	/**
+	 * Prepares a list to be rendered.
+	 * This method should be automatically called by the list before starting the rendering.
+	 */
+	void prepareRender();
+
+	/**
 	 * Calculates indentation for each element of the list and returns the maximum value.
 	 * The max value contains the pre-label indent, the pre-label string, the actual label, the post-label string and the post-label indent.
 	 * This maximum indentation can then be used in the rendering process to indent all items and sub-lists, even with different length labels.

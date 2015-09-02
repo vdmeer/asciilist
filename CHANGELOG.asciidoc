@@ -7,6 +7,7 @@ v0.0.2 - feature add - 2015-##-##
 * added JavaDoc
 * changed rendering behavor for correct word wrapping
 * refactored some styles (naming)
+* refactored interface and abstract implementations, added prepareRender() to simplify nested lists and allow recursive creation of them
 
 
 v0.0.1 - initial release - 2015-09-01

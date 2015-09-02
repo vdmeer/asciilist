@@ -17,6 +17,8 @@ package de.vandermeer.asciilist;
 
 import org.apache.commons.lang3.StringUtils;
 
+import de.vandermeer.asciilist.styles.ListStyle;
+
 /**
  * Abstract implementation of a description list {@link AsciiList_Description}.
  *
@@ -81,6 +83,12 @@ public class DescriptionList extends AbstractAsciiList implements AsciiList_Desc
 	@Override
 	public int getWrappedLineIndentation() {
 		return this.wrappedLineIndentation;
+	}
+
+	@Override
+	public AsciiList setListStyle(ListStyle style) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

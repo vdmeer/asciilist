@@ -16,7 +16,7 @@
 package de.vandermeer.asciilist;
 
 /**
- * A list - called description in LaTeX, labeled list in ASCII Doc.
+ * A list - called description in LaTeX, definition list in HTML, labeled list in ASCII Doc.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
@@ -33,7 +33,7 @@ public interface AsciiList_Description extends AsciiList {
 
 	/**
 	 * Returns the indentation if lines need to be wrapped due to overlength compared to a given width.
-	 * return indentation the indentation
+	 * @return indentation the indentation
 	 */
 	int getWrappedLineIndentation();
 

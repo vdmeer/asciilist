@@ -119,11 +119,11 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 	}
 
 	@Override
-	public AsciiList setListStyle(ListStyle style) {
+	public AsciiList_Check setListStyle(ListStyle style) {
 		if(style instanceof ListStyle_CheckNested){
 			this.style = (ListStyle_CheckNested)style;
 		}
-		return super.setListStyle(style);
+		return this;
 	}
 
 	@Override

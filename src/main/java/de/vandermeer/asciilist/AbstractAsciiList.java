@@ -24,8 +24,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.StrBuilder;
 import org.apache.commons.lang3.text.WordUtils;
 
-import de.vandermeer.asciilist.styles.ListStyle;
-
 /**
  * Abstract implementation as base for the {@link AsciiList} hierarchy.
  *
@@ -146,6 +144,7 @@ public abstract class AbstractAsciiList implements AsciiList {
 
 	@Override
 	public String render(){
+		this.prepareRender();
 		StrBuilder ret = new StrBuilder(100);
 
 		this.maxItemIndent = 0;
@@ -180,13 +179,13 @@ public abstract class AbstractAsciiList implements AsciiList {
 	}
 
 	@Override
-	public AsciiList setListStyle(ListStyle style) {
+	public void prepareRender() {
 		for(Object obj : this.items){
 			if(obj instanceof AsciiList){
-				((AsciiList)obj).setListStyle(style);
+				((AsciiList) obj).setLevel(this.level+1);
+				((AsciiList) obj).setWidth(this.width);
 			}
 		}
-		return this;
 	}
 
 	@Override
@@ -220,11 +219,6 @@ public abstract class AbstractAsciiList implements AsciiList {
 	@Override
 	public AsciiList setWidth(int width){
 		this.width = width;
-		for(Object obj : this.items){
-			if(obj instanceof AsciiList){
-				((AsciiList)obj).setWidth(width);
-			}
-		}
 		return this;
 	}
 

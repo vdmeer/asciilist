@@ -33,9 +33,9 @@ public interface AsciiList_Enumerate extends AsciiList {
 	 * @param list the new list
 	 * @throws NullPointerException - if the list is null
 	 * @throws IllegalArgumentException - if the list is empty
-	 * @return the new created list, which has been added to the current list
+	 * @return self to allow chaining
 	 */
-	AsciiList addItem(AsciiList list);
+	AsciiList_Enumerate addItem(AsciiList list);
 
 	/**
 	 * Adds a new item to the list.
