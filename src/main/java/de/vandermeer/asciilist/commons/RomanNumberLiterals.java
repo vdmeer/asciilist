@@ -120,7 +120,7 @@ public enum RomanNumberLiterals {
 
 	/**
 	 * Converts a string of Roman literals into an array of enumerates for further character conversion.
-	 * @param roman string with roman literals
+	 * @param roman string with Roman literals
 	 * @return enumerate array for further character conversion
 	 */
 	public final static RomanNumberLiterals[] ROMAN_2_ENUM(String roman){
@@ -148,7 +148,7 @@ public enum RomanNumberLiterals {
 	/**
 	 * Returns a Roman literal representation of the given number using ASCII-7 upper case characters.
 	 * @param number to convert
-	 * @return Roman literal represention, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
+	 * @return Roman literal representation, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
 	 * @throws NotImplementedException see {link {@link #INTEGER_2_ROMAN(int)}
 	 */
 	public final static String toAscii(int number){
@@ -158,7 +158,7 @@ public enum RomanNumberLiterals {
 	/**
 	 * Returns a Roman literal representation of the given number using ASCII-7 lower case characters.
 	 * @param number to convert
-	 * @return Roman literal represention, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
+	 * @return Roman literal representation, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
 	 * @throws NotImplementedException see {link {@link #INTEGER_2_ROMAN(int)}
 	 */
 	public final static String toAsciiLC(int number){
@@ -168,7 +168,7 @@ public enum RomanNumberLiterals {
 	/**
 	 * Returns a Roman literal representation of the given number using UTF Number Forms upper case characters.
 	 * @param number to convert
-	 * @return Roman literal represention, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
+	 * @return Roman literal representation, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
 	 * @throws NotImplementedException see {link {@link #INTEGER_2_ROMAN(int)}
 	 */
 	public final static String toNumberForms(int number){
@@ -183,7 +183,7 @@ public enum RomanNumberLiterals {
 	/**
 	 * Returns a Roman literal representation of the given number using UTF Number Forms lower case characters.
 	 * @param number to convert
-	 * @return Roman literal represention, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
+	 * @return Roman literal representation, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
 	 * @throws NotImplementedException see {link {@link #INTEGER_2_ROMAN(int)}
 	 */
 	public final static String toNumberFormsLC(int number){
@@ -198,7 +198,7 @@ public enum RomanNumberLiterals {
 	/**
 	 * Returns a Roman literal representation of the given number using UTF Circled Latin Captial (upper case) characters.
 	 * @param number to convert
-	 * @return Roman literal represention, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
+	 * @return Roman literal representation, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
 	 * @throws NotImplementedException see {link {@link #INTEGER_2_ROMAN(int)}
 	 */
 	public final static String toCircledLatinCaptial(int number){
@@ -213,7 +213,7 @@ public enum RomanNumberLiterals {
 	/**
 	 * Returns a Roman literal representation of the given number using UTF Circled Latin Small (lower case) characters.
 	 * @param number to convert
-	 * @return Roman literal represention, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
+	 * @return Roman literal representation, see {link {@link #INTEGER_2_ROMAN(int)} for requirements in the number
 	 * @throws NotImplementedException see {link {@link #INTEGER_2_ROMAN(int)}
 	 */
 	public final static String toCircledLatinSmall(int number){

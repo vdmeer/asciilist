@@ -5,7 +5,7 @@ v0.0.2 - feature add - 2015-##-##
 * added indentation calculation to list
 	** changed render behavior to use this calculation instead of manual one
 * added JavaDoc
-* changed rendering behavor for correct word wrapping
+* changed rendering behavior for correct word wrapping
 * refactored some styles (naming)
 * refactored interface and abstract implementations, added prepareRender() to simplify nested lists and allow recursive creation of them
 

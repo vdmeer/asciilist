@@ -34,7 +34,7 @@ Lists can be:
 * Itemize or unordered - simple items with same label
 * Enumerate or ordered - simple items, ordered, with individual label
 * Checklist - items that have a label showing that they are checked or unchecked
-* Description or definition or labled - items that have a term and a description
+* Description or definition or labeled - items that have a term and a description
 * FAQ or Q&amp;A - items that have an question and an answer, can be itemize or enumerate
 
 
@@ -51,7 +51,7 @@ Item
 ^^^^
 An item is the actual content of a list.
 Simple items have only some text.
-More complex items have several parts, for instance the term and desription of a description list.
+More complex items have several parts, for instance the term and description of a description list.
 Some items have text plus other configuration options, such as items in a checklist.
 
 
@@ -95,7 +95,7 @@ The standard usage is:
 
 * create a list
 * add items to the list
-* configure any aspect to cange default render behavior, if required
+* configure any aspect to change default render behavior, if required
 * render the list
 * use the created string, e.g. print it to a console or write it to a file
 
@@ -198,7 +198,7 @@ Using standard labels ("*", "-", "+") for itemize lists and ASCII-7 characters f
 However, styles for nested lists currently support a maximum of 6 levels only.
 Some nested styles support less than 6 levels.
 
-Let's start with creating an itemize list and add nested itemize lists 6-levls deep to it.
+Let's start with creating an itemize list and add nested itemize lists 6-levels deep to it.
 Additionally, set a nested style for the list:
 ----------------------------------------------------------------------------------------
 AsciiList itemize = new ItemizeList()
@@ -247,7 +247,7 @@ Width with automated line wrapping
 The lists allow to set a maximum width and will, if any item is longer than that width, an automatic line break with indentation calculation will be performed.
 All lists support this feature.
 
-We create two lits, one itemize and one enumerate:
+We create two lists, one itemize and one enumerate:
 ----------------------------------------------------------------------------------------
 	AsciiList itemize = new ItemizeList()
 		.addItem("il 1 item 1 some text")

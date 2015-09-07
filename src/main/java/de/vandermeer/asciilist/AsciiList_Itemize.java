@@ -33,7 +33,7 @@ public interface AsciiList_Itemize extends AsciiList {
 
 	/**
 	 * Adds a new list to the list.
-	 * If the list is an itemize list, then continuation behavor will be as follows:
+	 * If the list is an itemize list, then continuation behavior will be as follows:
 	 * If the list is not continued, then no style information will be copied and the list level will be 1.
 	 * If the list is a continued list, then all style information will be copied from the parent list and the level of the added list will be set accordingly.
 	 * A list is continued if {@link #isContinuedList()} returns true, not continued if it returns false.

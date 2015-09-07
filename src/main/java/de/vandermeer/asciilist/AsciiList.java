@@ -23,7 +23,7 @@ import de.vandermeer.asciilist.styles.ListStyle;
  * Base of the ASCII list hierarchy - standard interface.
  * The interface covers all generic functionality for ASCII lists:
  * <ul>
- * 		<li>Set/get all label related fomatting options (pre-label indentation and string, post-label indentation and string)</li>
+ * 		<li>Set/get all label related formatting options (pre-label indentation and string, post-label indentation and string)</li>
  * 		<li>Set list style (based on the style interface</li>
  * 		<li>Render the list</li>
  * 		<li>Retrieve list items for processing</li>

@@ -31,7 +31,7 @@ public class DescriptionList extends AbstractAsciiList implements AsciiList_Desc
 	/** Flag directing the lists render behavior, true for single line, false for multiline, default is single line. */
 	protected boolean useSingleLine;
 
-	/** The indentation to be used if lines of the descrioption need to be wrapped, default is 5. */
+	/** The indentation to be used if lines of the description need to be wrapped, default is 5. */
 	protected int wrappedLineIndentation;
 
 	public DescriptionList(){

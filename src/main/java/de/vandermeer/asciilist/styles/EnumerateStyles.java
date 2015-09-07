@@ -44,7 +44,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	Alpha_ascii,
 
 	/**
-	 * Enumerate style using upper case alphanumeric circled (circled latin capital letters) characters.
+	 * Enumerate style using upper case alphanumeric circled (UTF Circled Latin Capital Letters) characters.
 	 * For example:
 	 * <pre>
 	Ⓐ item 1
@@ -55,7 +55,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	Alpha_utf_circle,
 
 	/**
-	 * Enumerate style using upper case alphanumeric fullwidth (UTF Fullwidth Latin Capital) characters.
+	 * Enumerate style using upper case alphanumeric full width (UTF Fullwidth Latin Capital) characters.
 	 * For example:
 	 * <pre>
 	Ａ item 1
@@ -77,7 +77,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	alpha_ascii,
 
 	/**
-	 * Enumerate style using upper case alphanumeric circled (circled latin small letters) characters.
+	 * Enumerate style using upper case alphanumeric circled (UTF Circled Latin Small Letters) characters.
 	 * For example:
 	 * <pre>
 	ⓐ item 1
@@ -88,7 +88,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	alpha_utf_circle,
 
 	/**
-	 * Enumerate style using upper case alphanumeric paranthesized (UTF Parenthesized Latin Small Letter) characters.
+	 * Enumerate style using upper case alphanumeric parenthesized (UTF Parenthesized Latin Small Letter) characters.
 	 * For example:
 	 * <pre>
 	⒜ item 1
@@ -99,7 +99,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	alpha_utf_parenthesized,
 
 	/**
-	 * Enumerate style using upper case alphanumeric fullwidth (UTF Fullwidth Latin Small) characters.
+	 * Enumerate style using upper case alphanumeric full width (UTF Fullwidth Latin Small) characters.
 	 * For example:
 	 * <pre>
 	ａ item 1
@@ -121,7 +121,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	arabic_ascii,
 
 	/**
-	 * Enumerate style using Arabic circled (UTF circled digit) characters.
+	 * Enumerate style using Arabic circled (UTF Circled Digit) characters.
 	 * For example:
 	 * <pre>
 	① item 1
@@ -132,7 +132,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	arabic_utf_circle,
 
 	/**
-	 * Enumerate style using Arabic double circled (UTF double circled digit) characters.
+	 * Enumerate style using Arabic double circled (UTF Double Circled Digit) characters.
 	 * For example:
 	 * <pre>
 	⓵ item 1
@@ -143,7 +143,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	arabic_utf_double_circle,
 
 	/**
-	 * Enumerate style using Arabic circled dingbat negative (UTF dingbat negative circled digit) characters.
+	 * Enumerate style using Arabic circled dingbat negative (UTF Dingbat Negative Circled Digit) characters.
 	 * For example:
 	 * <pre>
 	❶ item 1
@@ -154,7 +154,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	arabic_utf_circle_dingbat_negative,
 
 	/**
-	 * Enumerate style using Arabic circled dingbat sanserif (UTF dingbat sanserif circled digit) characters.
+	 * Enumerate style using Arabic circled dingbat sanserif (UTF Dingbat Sanserif Circled Digit) characters.
 	 * For example:
 	 * <pre>
 	➀ item 1
@@ -165,7 +165,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	arabic_utf_circle_dingbat_sanserif,
 
 	/**
-	 * Enumerate style using Arabic circled dingbat negative sanserif (UTF dingbat negative sanserif circled digit) characters.
+	 * Enumerate style using Arabic circled dingbat negative sanserif (UTF Dingbat Negative Sanserif Circled Digit) characters.
 	 * For example:
 	 * <pre>
 	➊ item 1
@@ -198,7 +198,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	arabic_utf_subscript,
 
 	/**
-	 * Enumerate style using Arabic fullstop (UTF Fullstop) characters.
+	 * Enumerate style using Arabic full stop (UTF Fullstop) characters.
 	 * For example:
 	 * <pre>
 	⒈ item 1
@@ -209,7 +209,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	arabic_utf_full_stop,
 
 	/**
-	 * Enumerate style using Arabic paranthesized (UTF Parenthesized Digit) characters.
+	 * Enumerate style using Arabic parenthesized (UTF Parenthesized Digit) characters.
 	 * For example:
 	 * <pre>
 	⑴ item 1
@@ -220,7 +220,7 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	arabic_parenthesized,
 
 	/**
-	 * Enumerate style using Arabic fullwidth (UTF Fullwidth Digit) characters.
+	 * Enumerate style using Arabic full width (UTF Fullwidth Digit) characters.
 	 * For example:
 	 * <pre>
 	１ item 1

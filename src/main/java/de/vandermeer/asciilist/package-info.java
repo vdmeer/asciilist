@@ -33,7 +33,7 @@
  * 		<li>Itemize or unordered - simple items with same label</li>
  * 		<li>Enumerate or ordered - simple items, ordered, with individual label</li>
  * 		<li>Checklist - items that have a label showing that they are checked or unchecked</li>
- * 		<li>Description or definition or labled - items that have a term and a description</li>
+ * 		<li>Description or definition or labeled - items that have a term and a description</li>
  * 		<li>FAQ or Q&amp;A - items that have an question and an answer, can be itemize or enumerate</li>
  * </ul>
  * 
@@ -53,7 +53,7 @@
  * <p>
  * 		An item is the actual content of a list.
  * 		Simple items have only some text.
- * 		More complex items have several parts, for instance the term and desription of a description list.
+ * 		More complex items have several parts, for instance the term and description of a description list.
  * 		Some items have text plus other configuration options, such as items in a checklist.
  * </p>
  * 
@@ -72,13 +72,13 @@
  * 		<li>Label - the actual label, for instance "*" or "-" for itemize or "1." and "1.1." for enumerate lists.</li>
  * 		<li>Post-label string - is a string printed right after every label of a list.</li>
  * 		<li>Post-label indentation - is the indentation after the label (and before the item's content).</li>
- * 		<li>Multi-line indentation - is used in some lists for the indentation from the second line onwards (if lines are wrapped).</li>
+ * 		<li>Multiline indentation - is used in some lists for the indentation from the second line onwards (if lines are wrapped).</li>
  * </ul>
  * 
  * <p>
  * 		All lists allow to manipulate the pre/post label characteristics directly.
  * 		The label can be styled using a style.
- * 		Multi-line indentation do only apply for some lists, where it cannot or should not be calculated automatically.
+ * 		Multiline indentation do only apply for some lists, where it cannot or should not be calculated automatically.
  * </p>
  * 
  * 
@@ -240,7 +240,7 @@
  * 		All lists support this feature.
  * </p>
  * 
- * We create two lits, one itemize and one enumerate:
+ * We create two lists, one itemize and one enumerate:
  * <pre>{@code
 	AsciiList itemize = new ItemizeList()
 		.addItem("il 1 item 1 some text")

@@ -25,14 +25,14 @@ package de.vandermeer.asciilist;
 public interface AsciiList_Description extends AsciiList {
 
 	/**
-	 * Sets the indentation if lines need to be wrapped due to overlength compared to a given width.
+	 * Sets the indentation if lines need to be wrapped due to over length compared to a given width.
 	 * @param indentation the indentation
 	 * @return self to allow chaining
 	 */
 	AsciiList_Description setWrappedLineIndentation(int indentation);
 
 	/**
-	 * Returns the indentation if lines need to be wrapped due to overlength compared to a given width.
+	 * Returns the indentation if lines need to be wrapped due to over length compared to a given width.
 	 * @return indentation the indentation
 	 */
 	int getWrappedLineIndentation();
@@ -47,7 +47,7 @@ public interface AsciiList_Description extends AsciiList {
 	AsciiList_Description addItem(String term, String description);
 
 	/**
-	 * Sets the list behavior for the descriptions to single line or multi line.
+	 * Sets the list behavior for the descriptions to single line or multiline.
 	 * @param flag true for single line (label and description in one line), false for multiline (separate lines for label and descriptions)
 	 * @return self to allow chaining
 	 */

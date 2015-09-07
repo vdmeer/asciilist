@@ -27,16 +27,37 @@ import org.junit.Test;
 public class Test_DescriptionList {
 
 	@Test
-	public void test_List(){
+	public void test_MultiLine(){
 		DescriptionList list = new DescriptionList();
 		list.useSingleLine(false);
-//		list.setWrappedLineIndentation(6);
-//		list.setPostLabelIndent(5);
-//		list.setWidth(15);
 		list.addItem("term 1", "this is the first term in the list");
 		list.addItem("term 2", "this is the second term in the list");
 		list.addItem("term 3", "this is the third term in the list");
+		System.out.println("multi-line");
+		System.out.println(list.render() + "\n");
 
-		System.err.println(list.render() + "\n");
+		list.setWrappedLineIndentation(4);
+		list.setPostLabelIndent(5);
+		list.setWidth(15);
+		System.out.println("multi-line wrapped");
+		System.out.println(list.render() + "\n");
 	}
+
+	@Test
+	public void test_SingleLine(){
+		DescriptionList list = new DescriptionList();
+		list.useSingleLine(true);
+		list.addItem("term 1", "this is the first term in the list");
+		list.addItem("term 2", "this is the second term in the list");
+		list.addItem("term 3", "this is the third term in the list");
+		System.out.println("single-line");
+		System.out.println(list.render() + "\n");
+
+		list.setWrappedLineIndentation(4);
+		list.setPostLabelIndent(5);
+		list.setWidth(15);
+		System.out.println("single-line wrapped");
+		System.out.println(list.render() + "\n");
+	}
+
 }

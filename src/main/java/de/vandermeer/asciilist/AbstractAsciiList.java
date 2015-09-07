@@ -238,10 +238,22 @@ public abstract class AbstractAsciiList implements AsciiList {
 	 * @return a string with the wrapped item (lines separated by "\n")
 	 */
 	protected String wrapItem(String renderedItem){
+		String ret = "";
+		if(renderedItem.contains(IMPLICIT_NEWLINE)){
+			//for descriptions with multi lines
+			String[] split = StringUtils.split(renderedItem, IMPLICIT_NEWLINE);
+			String rest = StringUtils.repeat(" ", this.maxItemIndent) + split[1];
+			if(this.width>0 && rest.length()<this.width){
+				return split[0] + "\n" + rest;
+			}
+			else if(this.width<0){
+				return split[0] + "\n" + rest;
+			}
+		}
+
 		if(this.width>0 && renderedItem.length()>this.width){
-			//the width-4 is for word wrap
 			String[] wrap = StringUtils.split(WordUtils.wrap(renderedItem, (this.width-this.preLabelIndent-this.preLabelStr.length()), IMPLICIT_NEWLINE, true), IMPLICIT_NEWLINE);
-			String ret = StringUtils.repeat(" ", this.preLabelIndent) + StringUtils.repeat(" ", this.preLabelStr.length()) + wrap[0];
+			ret += StringUtils.repeat(" ", this.preLabelIndent) + StringUtils.repeat(" ", this.preLabelStr.length()) + wrap[0];
 			if(wrap.length>1){
 				ret += "\n" + this.wrapItemNextLine(StringUtils.repeat(" ", this.maxItemIndent) + StringUtils.join(ArrayUtils.remove(wrap, 0), " "));
 			}
