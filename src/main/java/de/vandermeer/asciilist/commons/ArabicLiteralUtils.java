@@ -28,9 +28,9 @@ import org.apache.commons.lang3.NotImplementedException;
 public abstract class ArabicLiteralUtils {
 
 	/**
-	 * Returns an arabic literal representation of the given number using ASCII-7 characters.
+	 * Returns an Arabic literal representation of the given number using ASCII-7 characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 */
 	public final static String toAscii(int number){
 		return Integer.toString(number);
@@ -39,7 +39,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Circled Digit/Number characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 20)
 	 */
 	public final static String toCircledDigit(int number){
@@ -52,7 +52,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Double Circled Digit/Number characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 10)
 	 */
 	public final static String toDoubleCircledDigit(int number){
@@ -65,7 +65,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Dingbat Negative Circled Digit characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 10)
 	 */
 	public final static String toDingbatNegativeCircledDigit(int number){
@@ -78,7 +78,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Dingbat Negative Sanserif Circled Digit characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 10)
 	 */
 	public final static String toDingbatNegativeSanserifCircledDigit(int number){
@@ -91,7 +91,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Dingbat Sanserif Circled Digit characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 10)
 	 */
 	public final static String toDingbatSanserifCircledDigit(int number){
@@ -104,7 +104,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Superscript Latin Small Letter characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 9)
 	 */
 	public final static String toSuperscript(int number){
@@ -124,7 +124,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Subscript characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 9)
 	 */
 	public final static String toSubscript(int number){
@@ -137,7 +137,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Full Stop characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 20)
 	 */
 	public final static String toFullStop(int number){
@@ -150,7 +150,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Parenthesized Digit/Number characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 20)
 	 */
 	public final static String toParenthesized(int number){
@@ -163,7 +163,7 @@ public abstract class ArabicLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Fullwidth characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 9)
 	 */
 	public final static String toFullwidth(int number){
@@ -176,7 +176,7 @@ public abstract class ArabicLiteralUtils {
 //	/**
 //	 * Returns an alphanumeric literal representation of the given number using UTF Mathematical Monospace Digit characters.
 //	 * @param number to convert
-//	 * @return alphanumeric literal represention
+//	 * @return alphanumeric literal representation
 //	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 9)
 //	 */
 //	public final static String toMathematicalMonospace(int number){
@@ -189,7 +189,7 @@ public abstract class ArabicLiteralUtils {
 //	/**
 //	 * Returns an alphanumeric literal representation of the given number using UTF Mathematical Sans-Serif Bold Digit characters.
 //	 * @param number to convert
-//	 * @return alphanumeric literal represention
+//	 * @return alphanumeric literal representation
 //	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 9)
 //	 */
 //	public final static String toMathematicalSansSerifBold(int number){

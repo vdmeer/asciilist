@@ -15,51 +15,30 @@
 
 package de.vandermeer.asciilist;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
-import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
+import de.vandermeer.asciilist.styles.NestedCheckStyles;
 
 /**
- * Tests for {@link EnumerateList}.
+ * Tests for {@link CheckList}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
  * @since      v0.0.1
  */
-public class Test_AbstractAL_Enumerate {
-
-	protected class TAAE extends EnumerateList{}
-
-	@Rule public ExpectedException exception = ExpectedException.none();
+public class Test_CheckList {
 
 	@Test
 	public void test_List(){
-		EnumerateList list = new EnumerateList();
+		CheckList list = new CheckList();
 		list.addItem("item 1");
-		list.addItem("item 2");
-		list.addItem("item 3");
+		list.addItemChecked("item 2");
 		System.err.println(list.render() + "\n");
 
-		EnumerateList list2 = new EnumerateList();
-		list2.addItem("two item 1");
-		list2.addItem("two item 2");
-		list2.addItem("two item 3");
-		list.addItem(list2);
+		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
 		System.err.println(list.render() + "\n");
 
-		list.setListStyle(NestedEnumerateStyles.aLL_roman);
-		list.addItem("item 4");
-		EnumerateList list3 = new EnumerateList();
-		list3.addItem("three item 1");
-		list3.addItem("three item 2");
-		list3.addItem("three item 3");
-		list3.setPostLabelString(")");
-		list.addItem(list3);
-		System.err.println(list.render() + "\n");
-
-		list.setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);
+		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
 		System.err.println(list.render() + "\n");
 	}
 }

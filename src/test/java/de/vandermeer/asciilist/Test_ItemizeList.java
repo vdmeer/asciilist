@@ -30,9 +30,7 @@ import de.vandermeer.asciilist.styles.NestedItemizeStyles;
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
  * @since      v0.0.1
  */
-public class Test_AbstractAL_Itemize {
-
-	protected class TAAI extends ItemizeList{}
+public class Test_ItemizeList {
 
 	@Rule public ExpectedException exception = ExpectedException.none();
 
@@ -53,7 +51,7 @@ public class Test_AbstractAL_Itemize {
 		ItemizeList list2 = new ItemizeList();
 		list2.addItem("two item one");
 		list2.addItem("two item two");
-		list2.addItem("two item three");
+		list2.addItem("two item three four five six seven eight nine ten");
 		list2 = (ItemizeList)list.addItem(list2);
 		System.err.println(list.render() + "\n");
 
@@ -61,5 +59,25 @@ public class Test_AbstractAL_Itemize {
 		assertEquals(NestedItemizeStyles.HTML_LIKE, list.style);
 		assertEquals(NestedItemizeStyles.HTML_LIKE, list2.style);
 		System.err.println(list.render() + "\n");
+
+		list.setWidth(19);
+		System.err.println(list.render() + "\n");
+	}
+
+	@Test
+	public void test_19(){
+		ItemizeList il = new ItemizeList();
+		il.addItem("il 1 item 1 some text");
+		il.addItem("il 1 item 2 some text");
+		il.addItem("il 1 item 3 some text");
+		ItemizeList il2 = new ItemizeList();
+		il2.addItem("il 2 item 1 text");
+		il2.addItem("il 2 item 2 text");
+		il2.addItem("il 2 item 3 text");
+		il.addItem(il2);
+		il.setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
+		il.setPreLabelIndent(0);
+		il.setWidth(18);
+		System.err.println(il.render() + "\n");
 	}
 }

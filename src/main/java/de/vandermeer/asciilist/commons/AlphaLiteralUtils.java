@@ -29,7 +29,7 @@ public abstract class AlphaLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using ASCII-7 upper case characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 26)
 	 */
 	public final static String toAscii(int number){
@@ -42,7 +42,7 @@ public abstract class AlphaLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using ASCII-7 lower case characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 26)
 	 */
 	public final static String toAsciiLC(int number){
@@ -55,7 +55,7 @@ public abstract class AlphaLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Circled Latin Capital (upper case) characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 26)
 	 */
 	public final static String toCircledLatinCapital(int number){
@@ -68,7 +68,7 @@ public abstract class AlphaLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Circled Latin Small (lower case) characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 26)
 	 */
 	public final static String toCircledLatinSmall(int number){
@@ -81,7 +81,7 @@ public abstract class AlphaLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Parenthesized Latin Small Letter (lower case) characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 26)
 	 */
 	public final static String toParenthesizedLatinSmallLetter(int number){
@@ -94,7 +94,7 @@ public abstract class AlphaLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Fullwidth Latin Capital Letter (upper case) characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 26)
 	 */
 	public final static String toFullwidthLatinCapital(int number){
@@ -107,7 +107,7 @@ public abstract class AlphaLiteralUtils {
 	/**
 	 * Returns an alphanumeric literal representation of the given number using UTF Fullwidth Latin Small Letter (lower case) characters.
 	 * @param number to convert
-	 * @return alphanumeric literal represention
+	 * @return alphanumeric literal representation
 	 * @throws NotImplementedException if the number is out of bounds (currently smaller than 1 and larger than 26)
 	 */
 	public final static String toFullwidthLatinSmall(int number){

@@ -25,6 +25,26 @@ package de.vandermeer.asciilist;
 public interface AsciiList_Enumerate extends AsciiList {
 
 	/**
+	 * Adds a new list to the list.
+	 * If the list is an enumerate list, then continuation behavior will be as follows:
+	 * If the list is not continued, then no style information will be copied and the list level will be 1.
+	 * If the list is a continued list, then all style information will be copied from the parent list and the level of the added list will be set accordingly.
+	 * A list is continued if {@link #isContinuedList()} returns true, not continued if it returns false.
+	 * @param list the new list
+	 * @throws NullPointerException - if the list is null
+	 * @throws IllegalArgumentException - if the list is empty
+	 * @return self to allow chaining
+	 */
+	AsciiList_Enumerate addItem(AsciiList list);
+
+	/**
+	 * Adds a new item to the list.
+	 * @param item new item, only added if not blank
+	 * @return self to allow chaining
+	 */
+	AsciiList_Enumerate addItem(String item);
+
+	/**
 	 * Sets the parents (enumerations of all parent items) to generate for instance 1. - 1.1. - 1.1.1.
 	 * @param parents nested level, each entry in the array marks the position of a parent
 	 * @return self to allow chaining
@@ -58,4 +78,14 @@ public interface AsciiList_Enumerate extends AsciiList {
 	 */
 	AsciiList_Enumerate useLabelSeparatorAfterLastItem(boolean flag);
 
+	/**
+	 * Returns a flag stating if the list is prepared for rendering.
+	 * @return true if prepared for rendering, false otherwise
+	 */
+	boolean isPrepared();
+
+	/**
+	 * Sets the list as being prepared for rendering.
+	 */
+	void setPrepared();
 }

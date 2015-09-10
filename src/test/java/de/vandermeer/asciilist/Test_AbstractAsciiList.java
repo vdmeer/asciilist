@@ -16,13 +16,12 @@
 package de.vandermeer.asciilist;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import de.vandermeer.asciilist.styles.ListStyle;
+
 
 /**
  * Tests for {@link AbstractAsciiList}.
@@ -34,37 +33,34 @@ import de.vandermeer.asciilist.styles.ListStyle;
 public class Test_AbstractAsciiList {
 
 	protected class TAA extends AbstractAsciiList{
+		TAA(){super();}
+		TAA(boolean flag){super(flag);}
 		@Override public String render(){return this.items.toString();}
 		@Override public String renderItem(AsciiListItem item, int position) {return null;}
 		@Override public AsciiList setListStyle(ListStyle style) {return null;}
 		@Override public AsciiList copy() {return null;}
+		@Override public int calculateMaxIndentation(AsciiListItem item, int position) {return 0;}
 	}
 
-	@Rule public ExpectedException exception = ExpectedException.none();
-
 	@Test
-	public void test_List(){
+	public void test_Constructor(){
 		TAA taa = new TAA();
 
-		taa.addItem((String)null);
-		assertEquals(0, taa.items.size());
+		assertTrue(taa.getItems()!=null);
+		assertEquals(0, taa.getItems().size());
 
-		taa.addItem("");
-		assertEquals(0, taa.items.size());
+		assertEquals(1, taa.getPreLabelIndent());
+		assertEquals(1, taa.getPostLabelIndent());
+		assertEquals("", taa.getPreLabelString());
+		assertEquals("", taa.getPostLabelString());
+		assertEquals(1, taa.getLevel());
+		assertTrue(taa.isContinuedList()==true);
+		assertEquals(0, taa.maxItemIndent);
+		assertEquals(-1, taa.width);
 
-		taa.addItem("1");
-		assertEquals(1, taa.items.size());
-
-		taa.addItem("2");
-		assertEquals(2, taa.items.size());
-		assertEquals("1", ((AsciiListItem)taa.items.get(0)).getContent().toString());
-		assertEquals("2", ((AsciiListItem)taa.items.get(1)).getContent().toString());
-
-		TAA taa2 = new TAA();
-		try {taa2.addItem((AsciiList)null);fail( "no exception" );} catch (NullPointerException expected) {}
-		try {taa2.addItem(new TAA());fail( "no exception" );} catch (IllegalArgumentException expected) {}
-		assertEquals(0, taa2.items.size());
-		taa2.addItem(taa);
-		assertEquals(1, taa2.items.size());
+		taa = new TAA(false);
+		assertTrue(taa.isContinuedList()==false);
+		taa = new TAA(true);
+		assertTrue(taa.isContinuedList()==true);
 	}
 }

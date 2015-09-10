@@ -49,7 +49,7 @@ public enum NestedItemizeStyles implements ListStyle_ItemizeNested {
 
 
 	/**
-	 * Style using the "*" charachter, incremental for 6 levels.
+	 * Style using the "*" character, incremental for 6 levels.
 	 * For example:
 	 * <pre>
 	&#42; item 1
@@ -90,7 +90,7 @@ public enum NestedItemizeStyles implements ListStyle_ItemizeNested {
 
 
 	/**
-	 * Style using the "-" charachter, incremental for 6 levels.
+	 * Style using the "-" character, incremental for 6 levels.
 	 * For example:
 	 * <pre>
 	- item 1
@@ -131,7 +131,7 @@ public enum NestedItemizeStyles implements ListStyle_ItemizeNested {
 
 
 	/**
-	 * Style using the "+" charachter, incremental for 6 levels.
+	 * Style using the "+" character, incremental for 6 levels.
 	 * For example:
 	 * <pre>
 	+ item 1

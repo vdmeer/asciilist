@@ -16,6 +16,8 @@
 package de.vandermeer.asciilist;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import de.vandermeer.asciilist.styles.ListStyle;
 import de.vandermeer.asciilist.styles.ListStyle_EnumerateNested;
@@ -36,6 +38,9 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 
 	/** The levels of the parents for nested enumerate lists 1. - 1.1. - 1.1.1. */
 	protected int[] parents;
+
+	/** Flag stating if the list is fully prepared for rendering. */
+	protected boolean isPrepared = false;
 
 	/** The real position that is the position number an item belongs to, allowing for sub-lists belonging to an item here. */
 	protected int realPosition = 0;
@@ -59,7 +64,7 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	 */
 	public EnumerateList(boolean isContinued){
 		super(isContinued);
-		this.style = NestedEnumerateStyles.aLL_arabic;
+		this.style = NestedEnumerateStyles.aLL_arabic_ascii;
 		this.labelSeparator = ".";
 		this.useLabelSeparatorAfterLastItem = false;
 	}
@@ -78,31 +83,41 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	}
 
 	@Override
-	public AsciiList addItem(AsciiList list) {
-		AsciiList added = super.addItem(list);
-
-		if(added instanceof AsciiList_Enumerate){
-			AsciiList_Enumerate addE = (AsciiList_Enumerate)added;
-			if(addE.isContinuedList()){
-				this.realPosition++;
-				((AsciiList_Enumerate)addE).setListStyle(this.style);
-				addE.setLevel(this.level+1);
-				if(this.parents==null){
-					((AsciiList_Enumerate)addE).setParents(new int[]{this.items.size()-this.realPosition});
-				}
-				else{
-					((AsciiList_Enumerate)addE).setParents(ArrayUtils.add(this.parents, this.items.size()-this.realPosition));
-				}
-			}
-			else{
-				addE.setLevel(1);
-			}
-		}
-		return added;
+	public AsciiList_Enumerate addItem(AsciiList list) {
+		Validate.notEmpty(list.getItems());
+		AsciiList add = list.copy();
+		this.items.add(add);
+		return this;
 	}
 
 	@Override
-	public String renderItem(AsciiListItem item, int position) {
+	public void prepareRender() {
+		super.prepareRender();
+		for(Object obj : this.items){
+			if(obj instanceof AsciiList_Enumerate){
+				if(((AsciiList_Enumerate) obj).isContinuedList()){
+					if(((AsciiList_Enumerate) obj).isPrepared()==false){
+						this.realPosition++;
+						((AsciiList_Enumerate) obj).setListStyle(this.style);
+						if(this.parents==null){
+							((AsciiList_Enumerate) obj).setParents(new int[]{this.items.size()-this.realPosition});
+						}
+						else{
+							((AsciiList_Enumerate) obj).setParents(ArrayUtils.add(this.parents, this.items.size()-this.realPosition));
+						}
+						((AsciiList_Enumerate) obj).setPrepared();
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Calculates and returns the label for a list item.
+	 * @param position the position of the item in the list
+	 * @return calculated label
+	 */
+	protected String calculateItemLabel(int position){
 		String label = this.style.getStyle(this.level).getLabel(position);
 		if(this.parents!=null){
 			label = "";
@@ -114,8 +129,12 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 		if(this.useLabelSeparatorAfterLastItem==true){
 			label += this.labelSeparator;
 		}
+		return label;
+	}
 
-		return item.render(this.preLabelIndent, this.preLabelStr, label, this.postLabelStr, this.postLabelIndent);
+	@Override
+	public String renderItem(AsciiListItem item, int position) {
+		return item.render(this.preLabelIndent, this.preLabelStr, this.calculateItemLabel(position), this.postLabelStr, this.postLabelIndent);
 	}
 
 	@Override
@@ -130,11 +149,11 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	}
 
 	@Override
-	public AsciiList setListStyle(ListStyle style) {
+	public AsciiList_Enumerate setListStyle(ListStyle style) {
 		if(style instanceof ListStyle_EnumerateNested){
 			this.style = (ListStyle_EnumerateNested)style;
 		}
-		return super.setListStyle(style);
+		return this;
 	}
 
 	@Override
@@ -157,6 +176,29 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	public AsciiList_Enumerate useLabelSeparatorAfterLastItem(boolean flag) {
 		this.useLabelSeparatorAfterLastItem = flag;
 		return this;
+	}
+
+	@Override
+	public int calculateMaxIndentation(AsciiListItem item, int position) {
+		return this.preLabelIndent + this.preLabelStr.length() + this.calculateItemLabel(position).length() + this.postLabelStr.length() + this.postLabelIndent;
+	}
+
+	@Override
+	public AsciiList_Enumerate addItem(String item){
+		if(!StringUtils.isBlank(item)){
+			this.items.add(new AbstractAsciiListItem(item));
+		}
+		return this;
+	}
+
+	@Override
+	public boolean isPrepared(){
+		return this.isPrepared;
+	}
+
+	@Override
+	public void setPrepared() {
+		this.isPrepared = true;
 	}
 
 }

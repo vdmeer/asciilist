@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.2">
-<title>v0.0.1 - initial release - 2015-09-01</title>
+<title>v0.0.2 - feature add - 2015-09-10</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -414,21 +414,84 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_v0_0_2_feature_add_2015_09_10">v0.0.2 - feature add - 2015-09-10</a></li>
 <li><a href="#_v0_0_1_initial_release_2015_09_01">v0.0.1 - initial release - 2015-09-01</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
+<h2 id="_v0_0_2_feature_add_2015_09_10">v0.0.2 - feature add - 2015-09-10</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>added width to list</p>
+<div class="ulist">
+<ul>
+<li>
+<p>changed render behavior to render against a list width</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>added indentation calculation to list</p>
+<div class="ulist">
+<ul>
+<li>
+<p>changed render behavior to use this calculation instead of manual one</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>added JavaDoc</p>
+</li>
+<li>
+<p>changed rendering behavior for correct word wrapping</p>
+</li>
+<li>
+<p>refactored some styles (naming)</p>
+</li>
+<li>
+<p>refactored interface and abstract implementations, added prepareRender() to simplify nested lists and allow recursive creation of them</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_v0_0_1_initial_release_2015_09_01">v0.0.1 - initial release - 2015-09-01</h2>
 <div class="sectionbody">
-
+<div class="ulist">
+<ul>
+<li>
+<p>original release with lists: itemize, enumerate, check</p>
+</li>
+<li>
+<p>definition list only as place holder</p>
+</li>
+<li>
+<p>lists can render with several shared capabilities: indent and string before the label as well as after the label</p>
+</li>
+<li>
+<p>lists have styles, several default styles are defined</p>
+</li>
+<li>
+<p>lists support nested lists with or without continuation</p>
+</li>
+<li>
+<p>bundle released on Maven Central and source in GitHub</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-09-01 18:04:39 IST
+Last updated 2015-09-10 10:45:48 IST
 </div>
 </div>
 </body>

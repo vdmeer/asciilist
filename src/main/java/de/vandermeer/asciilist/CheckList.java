@@ -59,7 +59,7 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 	}
 
 	@Override
-	public CheckList addItem(String item){
+	public AsciiList_Check addItem(String item){
 		if(!StringUtils.isBlank(item)){
 			this.items.add(new CheckListItem(item, false));
 		}
@@ -67,29 +67,11 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 	}
 
 	@Override
-	public CheckList addItemChecked(String item){
+	public AsciiList_Check addItemChecked(String item){
 		if(!StringUtils.isBlank(item)){
 			this.items.add(new CheckListItem(item, true));
 		}
 		return this;
-	}
-
-	@Override
-	public AsciiList addItem(AsciiList list) {
-		AsciiList added = super.addItem(list);
-
-		if(added instanceof AsciiList_Check){
-			AsciiList_Check addC = (AsciiList_Check)added;
-			if(addC.isContinuedList()){
-				addC.setListStyle(this.style);
-				addC.setLevel(this.level+1);
-			}
-			else{
-				addC.setLevel(1);
-			}
-		}
-
-		return added;
 	}
 
 	@Override
@@ -116,29 +98,42 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 		return this;
 	}
 
-	@Override
-	public String renderItem(AsciiListItem item, int position) {
+	/**
+	 * Calculates and returns the label for a list item.
+	 * @param item list item for calculation
+	 * @return calculated label
+	 */
+	protected String calculateItemLabel(AsciiListItem item){
 		String label = this.style.getStyle(this.level).getLabelUnchecked();
 		if(item instanceof CheckListItem){
 			if(((CheckListItem)item).isChecked()){
 				label = this.style.getStyle(this.level).getLabelChecked();
 			}
 		}
-
-		return item.render(this.preLabelIndent, this.preLabelStr, label, this.postLabelStr, this.postLabelIndent);
+		return label;
 	}
 
 	@Override
-	public AsciiList setListStyle(ListStyle style) {
+	public String renderItem(AsciiListItem item, int position) {
+		return item.render(this.preLabelIndent, this.preLabelStr, this.calculateItemLabel(item), this.postLabelStr, this.postLabelIndent);
+	}
+
+	@Override
+	public AsciiList_Check setListStyle(ListStyle style) {
 		if(style instanceof ListStyle_CheckNested){
 			this.style = (ListStyle_CheckNested)style;
 		}
-		return super.setListStyle(style);
+		return this;
 	}
 
 	@Override
 	public AsciiList copy() {
 		return new CheckList(this);
+	}
+
+	@Override
+	public int calculateMaxIndentation(AsciiListItem item, int position) {
+		return this.preLabelIndent + this.preLabelStr.length() + this.calculateItemLabel(item).length() + this.postLabelStr.length() + this.postLabelIndent;
 	}
 
 }

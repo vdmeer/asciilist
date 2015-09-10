@@ -37,7 +37,7 @@ public enum CheckListStyles implements ListStyle_Check {
 	 * </pre>
 	 * 
 	 */
-	SQUARE_BRACKET_BLANK_X ("[", " ", "X", "]"),
+	ASCII_SQUARE_BRACKET_BLANK_X ("[", " ", "X", "]"),
 
 	/**
 	 * Style that uses UTF-8 ballot box characters.

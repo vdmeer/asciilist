@@ -19,53 +19,45 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import de.vandermeer.asciilist.styles.NestedCheckStyles;
+import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
 
 /**
- * Tests for {@link CheckList}.
+ * Tests for {@link EnumerateList}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
  * @since      v0.0.1
  */
-public class Test_AbstractAL_Check {
-
-	protected class TAAI extends ItemizeList{}
+public class Test_EnumerateList {
 
 	@Rule public ExpectedException exception = ExpectedException.none();
 
 	@Test
 	public void test_List(){
-		CheckList list = new CheckList();
+		EnumerateList list = new EnumerateList();
 		list.addItem("item 1");
-		list.addItemChecked("item 2");
+		list.addItem("item 2");
 		list.addItem("item 3");
-
 		System.err.println(list.render() + "\n");
 
-		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
-		System.err.println(list.render() + "\n");
-
-		CheckList list2 = new CheckList(false);
-		list2.addItemChecked("two item 1");
+		EnumerateList list2 = new EnumerateList();
+		list2.addItem("two item 1");
 		list2.addItem("two item 2");
 		list2.addItem("two item 3");
-		list2.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
 		list.addItem(list2);
-//		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
 		System.err.println(list.render() + "\n");
 
-//		list.setLabel("-");
-//		list.setPostIndent(4);
-//		System.err.println(list.render() + "\n");
-//
-//		list.setStyle(ItemizeStyles.ASCII_ALL_STAR);
-//		list.setPostIndent(1);
-//		AbstractAL_Itemize list2 = new AbstractAL_Itemize();
-//		list2.addItem("two item one");
-//		list2.addItem("two item two");
-//		list2.addItem("two item three");
-//		list.addItem(list2);
-//		System.err.println(list.render() + "\n");
+		list.setListStyle(NestedEnumerateStyles.aLL_roman_ascii);
+		list.addItem("item 4");
+		EnumerateList list3 = new EnumerateList();
+		list3.addItem("three item 1");
+		list3.addItem("three item 2");
+		list3.addItem("three item 3");
+		list3.setPostLabelString(")");
+		list.addItem(list3);
+		System.err.println(list.render() + "\n");
+
+		list.setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);
+		System.err.println(list.render() + "\n");
 	}
 }

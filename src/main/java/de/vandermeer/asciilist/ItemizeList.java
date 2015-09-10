@@ -15,6 +15,9 @@
 
 package de.vandermeer.asciilist;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+
 import de.vandermeer.asciilist.styles.ListStyle;
 import de.vandermeer.asciilist.styles.ListStyle_ItemizeNested;
 import de.vandermeer.asciilist.styles.NestedItemizeStyles;
@@ -57,21 +60,23 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 	}
 
 	@Override
-	public AsciiList addItem(AsciiList list) {
-		AsciiList added = super.addItem(list);
+	public AsciiList_Itemize addItem(AsciiList list) {
+		Validate.notEmpty(list.getItems());
+		AsciiList add = list.copy();
+		this.items.add(add);
+		return this;
+	}
 
-		if(added instanceof AsciiList_Itemize){
-			AsciiList_Itemize addI = (AsciiList_Itemize)added;
-			if(addI.isContinuedList()){
-				addI.setListStyle(this.style);
-				addI.setLevel(this.level+1);
-			}
-			else{
-				addI.setLevel(1);
+	@Override
+	public void prepareRender() {
+		super.prepareRender();
+		for(Object obj : this.items){
+			if(obj instanceof AsciiList_Itemize){
+				if(((AsciiList_Itemize) obj).isContinuedList()){
+					((AsciiList_Itemize) obj).setListStyle(this.style);
+				}
 			}
 		}
-
-		return added;
 	}
 
 	@Override
@@ -80,16 +85,29 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 	}
 
 	@Override
-	public AsciiList setListStyle(ListStyle style) {
+	public AsciiList_Itemize setListStyle(ListStyle style) {
 		if(style instanceof ListStyle_ItemizeNested){
 			this.style = (ListStyle_ItemizeNested)style;
 		}
-		return super.setListStyle(style);
+		return this;
 	}
 
 	@Override
 	public AsciiList copy() {
 		return new ItemizeList(this);
+	}
+
+	@Override
+	public int calculateMaxIndentation(AsciiListItem item, int position) {
+		return this.preLabelIndent + this.preLabelStr.length() + this.style.getLabel(this.level).length() + this.postLabelStr.length() + this.postLabelIndent;
+	}
+
+	@Override
+	public AsciiList_Itemize addItem(String item){
+		if(!StringUtils.isBlank(item)){
+			this.items.add(new AbstractAsciiListItem(item));
+		}
+		return this;
 	}
 
 }

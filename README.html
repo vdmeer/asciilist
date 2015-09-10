@@ -418,15 +418,41 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-
+<ul class="sectlevel1">
+<li><a href="#_overview">Overview</a>
+<ul class="sectlevel2">
+<li><a href="#_features">Features</a></li>
+<li><a href="#_concepts_and_realization">Concepts and Realization</a></li>
+</ul>
+</li>
+<li><a href="#_standard_usage_create_and_render_a_simple_list">Standard usage - create and render a simple list</a>
+<ul class="sectlevel2">
+<li><a href="#_create_a_list">Create a list</a></li>
+<li><a href="#_add_content_items">Add content (items)</a></li>
+<li><a href="#_render_the_list">Render the list</a></li>
+<li><a href="#_print_the_list">Print the list</a></li>
+</ul>
+</li>
+<li><a href="#_set_of_examples_for_list_features">Set of examples for list features</a>
+<ul class="sectlevel2">
+<li><a href="#_change_list_render_behavior">Change list render behavior</a></li>
+<li><a href="#_nested_lists">Nested lists</a></li>
+<li><a href="#_width_with_automated_line_wrapping">Width with automated line wrapping</a></li>
+<li><a href="#_enumerate_list_pre_label_string_and_special_style">Enumerate list, pre-label string and special style</a></li>
+<li><a href="#_checklists">Checklists</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>The lists allows for various degrees of flexibility for labels, nested lists, indentation (with auto-indentation for nested lists), and styles for list labels.</p>
 </div>
 <div class="paragraph">
-<p>Current release is <a href="https://search.maven.org/#artifactdetails|de.vandermeer|asciilist|0.0.1|jar">0.0.1</a>.
+<p>Current release is <a href="https://search.maven.org/#artifactdetails|de.vandermeer|asciilist|0.0.2|jar">0.0.2</a>.
 All releases are on <a href="https://search.maven.org/#search|gav|1|g%3A%22de.vandermeer%22%20AND%20a%3A%22asciilist%22">Maven Central</a>.</p>
 </div>
 <div class="paragraph">
@@ -434,9 +460,439 @@ All releases are on <a href="https://search.maven.org/#search|gav|1|g%3A%22de.va
 Updates will be at here <a href="https://github.com/vdmeer/skb/wiki/HowTo-UTF-8-Support-in-Java-and-Console">SKB Wiki on UTF-8</a>.</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_overview">Overview</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_features">Features</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_concepts_and_realization">Concepts and Realization</h3>
+<div class="paragraph">
+<p>The main concepts are: list, item, label, style.</p>
+</div>
+<div class="sect3">
+<h4 id="_list">List</h4>
+<div class="paragraph">
+<p>A list is a collection of items.
+The content and form of the items depends on the list.
+Lists can be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Itemize or unordered - simple items with same label</p>
+</li>
+<li>
+<p>Enumerate or ordered - simple items, ordered, with individual label</p>
+</li>
+<li>
+<p>Checklist - items that have a label showing that they are checked or unchecked</p>
+</li>
+<li>
+<p>Description or definition or labeled - items that have a term and a description</p>
+</li>
+<li>
+<p>FAQ or Q&amp;A - items that have an question and an answer, can be itemize or enumerate</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists items can contain other lists. This feature results in nested lists.
+If lists of the same type are nested the label itself ot the label style can be a continuation of the parent list.</p>
+</div>
+<div class="paragraph">
+<p>Lists are created and filled.
+Then lists can be configured to get the expected printed output.
+Finally, a list is rendered, i.e. a printable representation of the list and all its items is created.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_item">Item</h4>
+<div class="paragraph">
+<p>An item is the actual content of a list.
+Simple items have only some text.
+More complex items have several parts, for instance the term and description of a description list.
+Some items have text plus other configuration options, such as items in a checklist.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_label">Label</h4>
+<div class="paragraph">
+<p>A label is the marker of an item.
+Labels strongly depend on the particular list.
+Most configuration on lists is actually on the label.</p>
+</div>
+<div class="paragraph">
+<p>The following concepts are used in the lists here for labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pre-label indentation - is the indentation used before the label. This is the first set of characters printed.</p>
+</li>
+<li>
+<p>Pre-label string - is a string printed before every label of a list. This is printed after the pre-label indentation, as the second set of characters.</p>
+</li>
+<li>
+<p>Label - the actual label, for instance "*" or "-" for itemize or "1." and "1.1." for enumerate lists.</p>
+</li>
+<li>
+<p>Post-label string - is a string printed right after every label of a list.</p>
+</li>
+<li>
+<p>Post-label indentation - is the indentation after the label (and before the item&#8217;s content).</p>
+</li>
+<li>
+<p>Multi-line indentation - is used in some lists for the indentation from the second line onwards (if lines are wrapped).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All lists allow to manipulate the pre/post label characteristics directly.
+The label can be styled using a style.
+Multi-line indentation do only apply for some lists, where it cannot or should not be calculated automatically.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_style">Style</h4>
+<div class="paragraph">
+<p>Styles are used to style labels of lists or of nested lists.
+The style of a label depends on the particular list.
+Most lists in this package provide a number of different styles.</p>
+</div>
+<div class="paragraph">
+<p>Styles for nested lists are used if those lists are a continuation.
+These styles allow to change the label style in nested lists.
+For some lists (e.g. enumerate) they also allow to re-use parts of the parent list for the label.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_standard_usage_create_and_render_a_simple_list">Standard usage - create and render a simple list</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The standard usage is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>create a list</p>
+</li>
+<li>
+<p>add items to the list</p>
+</li>
+<li>
+<p>configure any aspect to change default render behavior, if required</p>
+</li>
+<li>
+<p>render the list</p>
+</li>
+<li>
+<p>use the created string, e.g. print it to a console or write it to a file</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_create_a_list">Create a list</h3>
+<div class="listingblock">
+<div class="content">
+<pre>	ItemizeList list = new ItemizeList();</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_content_items">Add content (items)</h3>
+<div class="listingblock">
+<div class="content">
+<pre>	list.addItem("item 1");
+	list.addItem("item 2");
+	list.addItem("item 3");</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_render_the_list">Render the list</h3>
+<div class="listingblock">
+<div class="content">
+<pre>	String rend = list.render();</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_print_the_list">Print the list</h3>
+<div class="listingblock">
+<div class="content">
+<pre>	System.out.println(rend);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will result in the following list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	 * item 1
+	 * item 2
+	 * item 3</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_set_of_examples_for_list_features">Set of examples for list features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_change_list_render_behavior">Change list render behavior</h3>
+<div class="paragraph">
+<p>We can change pre/post label indentation and strings as well as the label style.
+In the following example we first set the pre-label indentation to 5.
+Then we set the post-label indentation to 5.
+Then we set the post-label string to "all":</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	list.setPreLabelIndent(5);
+	System.out.println(list.render());
+
+	list.setLabelDefaults();
+	list.setPostLabelIndent(5);
+	System.out.println(list.render());
+
+	list.setLabelDefaults();
+	list.setPreLabelString("&gt;&gt;");
+	list.setPostLabelString("&lt;&lt;");
+	System.out.println(list.render());</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will result in the following three outputs (given in three columns):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	     * item 1		 *     item 1		 &gt;&gt;*&lt;&lt; item 1
+	     * item 2		 *     item 2		 &gt;&gt;*&lt;&lt; item 2
+	     * item 3		 *     item 3		 &gt;&gt;*&lt;&lt; item 3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can also change the label style:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	list.setLabelDefaults();
+	list.setListStyle(NestedItemizeStyles.HTML_LIKE);
+	System.out.println(list.render());</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will result in the following list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	 • item 1
+	 • item 2
+	 • item 3</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nested_lists">Nested lists</h3>
+<div class="paragraph">
+<p>Itemize and enumerate lists can be nested.
+The nesting is not limited.
+Using standard labels ("*", "-", "+") for itemize lists and ASCII-7 characters for enumerate lists, the nesting can be of any depth.
+However, styles for nested lists currently support a maximum of 6 levels only.
+Some nested styles support less than 6 levels.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s start with creating an itemize list and add nested itemize lists 6-levels deep to it.
+Additionally, set a nested style for the list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>AsciiList itemize = new ItemizeList()
+.addItem("item 1")
+.addItem(new ItemizeList().addItem("item 2")
+    .addItem(new ItemizeList().addItem("item 3")
+        .addItem(new ItemizeList().addItem("item 4")
+            .addItem(new ItemizeList().addItem("item 5")
+                addItem(new ItemizeList().addItem("item 6"))
+            )
+        )
+    )
+).setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, create an enumerate list in the same way, using it&#8217;s default configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>AsciiList_Enumerate enumerate = new EnumerateList()
+.addItem("item 1")
+.addItem(new EnumerateList().addItem("item 2")
+    .addItem(new EnumerateList().addItem("item 3")
+        .addItem(new EnumerateList().addItem("item 4")
+            .addItem(new EnumerateList().addItem("item 5")
+                .addItem(new EnumerateList().addItem("item 6"))
+            )
+        )
+    )
+);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These two examples will print as follows (manually formatted to a 2-column output):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> * item 1                             1 item 1
+   ** item 2                            1.1 item 2
+      *** item 3                            1.1.1 item 3
+          **** item 4                             1.1.1.1 item 4
+               ***** item 5                               1.1.1.1.1 item 5
+                     ****** item 6                                  1.1.1.1.1.1 item 6</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_width_with_automated_line_wrapping">Width with automated line wrapping</h3>
+<div class="paragraph">
+<p>The lists allow to set a maximum width and will, if any item is longer than that width, an automatic line break with indentation calculation will be performed.
+All lists support this feature.</p>
+</div>
+<div class="paragraph">
+<p>We create two lists, one itemize and one enumerate:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	AsciiList itemize = new ItemizeList()
+		.addItem("il 1 item 1 some text")
+		.addItem("il 1 item 2 some text")
+		.addItem(new ItemizeList()
+			.addItem("il 2 item 1 text")
+			.addItem("il 2 item 2 text")
+		)
+		.setPreLabelIndent(0)
+		.setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
+
+	AsciiList enumerate = new EnumerateList()
+		.addItem("el 1 item 1 some text")
+		.addItem("el 1 item 2 some text")
+		.addItem(new EnumerateList()
+			.addItem("el 2 item 1 text")
+			.addItem("el 2 item 2 text")
+		)
+		.setPreLabelIndent(0)
+		.setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Rendering and printint the two lists will result in the following output (shown in two columns):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>        * il 1 item 1 some text        1 el 1 item 1 some text
+        * il 1 item 2 some text        2 el 1 item 2 some text
+          ** il 2 item 1 text            2.A el 2 item 1 text
+          ** il 2 item 2 text            2.B el 2 item 2 text</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Changing the width of both lists will result in line wrapping:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	itemize.setWidth(19);
+	enumerate.setWidth(19);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now the rendering and printing will result in the following output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>        * il 1 item 1 some        1 el 1 item 1 some
+          text                      text
+        * il 1 item 2 some        2 el 1 item 2 some
+          text                      text
+          ** il 2 item 1            2.A el 2 item 1
+             text                       text
+          ** il 2 item 2            2.B el 2 item 2
+             text                       text</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enumerate_list_pre_label_string_and_special_style">Enumerate list, pre-label string and special style</h3>
+<div class="paragraph">
+<p>The list configuration option offer a lot of possibilities.
+The following example creates an enumerate list with a set pre-label string and a particular style:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	AsciiList enumerate = new EnumerateList()
+		.addItem("item 1")
+		.addItem("item 2")
+		.addItem("item 3")
+		.setPreLabelString("E")
+		.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
+	;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The rendered list looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	 E₁ item 1
+	 E₂ item 2
+	 E₃ item 3</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checklists">Checklists</h3>
+<div class="paragraph">
+<p>The package also provides a check list.
+In this list, items can be marked as checked and unchecked resulting in different labels.
+The checklist supports styles to use different characters (ASCII and UTF) for checked and unchecked items.</p>
+</div>
+<div class="paragraph">
+<p>The following code shows the creation of a checklist and the use of different styles for rendering it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	CheckList list = new CheckList();
+	list.addItem("item unchecked");
+	list.addItemChecked("item checked");
+
+	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
+
+	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting output of these examples is (in columns):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>         [ ] item unchecked     ☐ item unchecked     ☐ item unchecked
+         [X] item checked       ☑ item checked       ☒ item checked</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-09-01 13:29:45 IST
+Last updated 2015-09-10 10:45:57 IST
 </div>
 </div>
 </body>
