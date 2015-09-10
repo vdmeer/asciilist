@@ -22,7 +22,7 @@ import org.apache.commons.lang3.NotImplementedException;
  * Utilities to convert numbers (integers) into arabic number literals with several supported representations using ASCII-7 and UTF characters.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
+ * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
  * @since      v0.0.1
  */
 public abstract class ArabicLiteralUtils {

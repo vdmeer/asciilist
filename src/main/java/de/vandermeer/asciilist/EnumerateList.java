@@ -28,7 +28,7 @@ import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
  * Abstract implementation of an enumerate list {@link AsciiList_Enumerate}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
+ * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
  * @since      v0.0.1
  */
 public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumerate {

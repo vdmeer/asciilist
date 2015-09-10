@@ -26,7 +26,7 @@ import de.vandermeer.asciilist.styles.NestedItemizeStyles;
  * Abstract implementation of an itemize list {@link AsciiList_Itemize}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.1 build 150901 (01-Sep-15) for Java 1.7
+ * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
  * @since      v0.2.2
  */
 public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize {
