@@ -1,4 +1,4 @@
-v0.0.2 - feature add - 2015-##-##
+v0.0.2 - feature add - 2015-09-10
 ---------------------------------
 * added width to list
 	** changed render behavior to render against a list width

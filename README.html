@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>The lists allows for various degrees of flexibility for labels, nested lists, indentation (with auto-indentation for nested lists), and styles for list labels.</p>
 </div>
 <div class="paragraph">
-<p>Current release is <a href="https://search.maven.org/#artifactdetails|de.vandermeer|asciilist|0.0.1|jar">0.0.1</a>.
+<p>Current release is <a href="https://search.maven.org/#artifactdetails|de.vandermeer|asciilist|0.0.2|jar">0.0.2</a>.
 All releases are on <a href="https://search.maven.org/#search|gav|1|g%3A%22de.vandermeer%22%20AND%20a%3A%22asciilist%22">Maven Central</a>.</p>
 </div>
 <div class="paragraph">
@@ -492,7 +492,7 @@ Lists can be:</p>
 <p>Checklist - items that have a label showing that they are checked or unchecked</p>
 </li>
 <li>
-<p>Description or definition or labled - items that have a term and a description</p>
+<p>Description or definition or labeled - items that have a term and a description</p>
 </li>
 <li>
 <p>FAQ or Q&amp;A - items that have an question and an answer, can be itemize or enumerate</p>
@@ -514,7 +514,7 @@ Finally, a list is rendered, i.e. a printable representation of the list and all
 <div class="paragraph">
 <p>An item is the actual content of a list.
 Simple items have only some text.
-More complex items have several parts, for instance the term and desription of a description list.
+More complex items have several parts, for instance the term and description of a description list.
 Some items have text plus other configuration options, such as items in a checklist.</p>
 </div>
 </div>
@@ -587,7 +587,7 @@ For some lists (e.g. enumerate) they also allow to re-use parts of the parent li
 <p>add items to the list</p>
 </li>
 <li>
-<p>configure any aspect to cange default render behavior, if required</p>
+<p>configure any aspect to change default render behavior, if required</p>
 </li>
 <li>
 <p>render the list</p>
@@ -710,7 +710,7 @@ However, styles for nested lists currently support a maximum of 6 levels only.
 Some nested styles support less than 6 levels.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s start with creating an itemize list and add nested itemize lists 6-levls deep to it.
+<p>Let&#8217;s start with creating an itemize list and add nested itemize lists 6-levels deep to it.
 Additionally, set a nested style for the list:</p>
 </div>
 <div class="listingblock">
@@ -767,7 +767,7 @@ Additionally, set a nested style for the list:</p>
 All lists support this feature.</p>
 </div>
 <div class="paragraph">
-<p>We create two lits, one itemize and one enumerate:</p>
+<p>We create two lists, one itemize and one enumerate:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -871,13 +871,10 @@ The checklist supports styles to use different characters (ASCII and UTF) for ch
 <pre>	CheckList list = new CheckList();
 	list.addItem("item unchecked");
 	list.addItemChecked("item checked");
-	System.err.println(list.render());
 
 	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
-	System.err.println(list.render());
 
-	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
-	System.err.println(list.render());</pre>
+	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -895,7 +892,7 @@ The checklist supports styles to use different characters (ASCII and UTF) for ch
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-09-02 21:02:40 IST
+Last updated 2015-09-10 10:45:57 IST
 </div>
 </div>
 </body>
