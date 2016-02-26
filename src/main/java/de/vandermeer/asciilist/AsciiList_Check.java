@@ -15,6 +15,7 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
 
 /**
  * A list - called option (list) in HTML, checklist in ASCII Doc.
@@ -52,6 +53,13 @@ public interface AsciiList_Check extends AsciiList {
 	 * @return self to allow chaining
 	 */
 	AsciiList_Check addItem(String item);
+
+	/**
+	 * Adds a collection of new items to the list, all set to "unchecked".
+	 * @param items collection of items, individual items only added if not blank
+	 * @return self to allow chaining
+	 */
+	AsciiList_Check addAllItems(Collection<String> items);
 
 	/**
 	 * Adds a new item which is set to "checked".

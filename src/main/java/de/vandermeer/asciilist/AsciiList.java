@@ -49,7 +49,7 @@ import de.vandermeer.asciilist.styles.ListStyle;
 public interface AsciiList {
 
 	/**
-	 * A strin representing an implicit new line for item rendering or internal processing such as word wrapping.
+	 * A string representing an implicit new line for item rendering or internal processing such as word wrapping.
 	 */
 	String IMPLICIT_NEWLINE = "@@@@";
 
@@ -104,7 +104,7 @@ public interface AsciiList {
 	/**
 	 * Renders the list, generates a string representation of it.
 	 * @return rendered list
-	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligebly
+	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligibly
 	 */
 	String render();
 
@@ -131,7 +131,7 @@ public interface AsciiList {
 	int calculateMaxIndentation(AsciiListItem item, int position);
 
 	/**
-	 * Sets the (maximum) width a list (and all items and sub-lists) can have when eing rendered.
+	 * Sets the (maximum) width a list (and all items and sub-lists) can have when being rendered.
 	 * @param width maximum width
 	 * @return self to allow chaining
 	 */

@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
+
 import org.apache.commons.lang3.StringUtils;
 
 import de.vandermeer.asciilist.styles.ListStyle;
@@ -136,4 +138,13 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 		return this.preLabelIndent + this.preLabelStr.length() + this.calculateItemLabel(item).length() + this.postLabelStr.length() + this.postLabelIndent;
 	}
 
+	@Override
+	public AsciiList_Check addAllItems(Collection<String> items){
+		if(items!=null){
+			for(String s : items){
+				this.addItem(s);
+			}
+		}
+		return this;
+	}
 }

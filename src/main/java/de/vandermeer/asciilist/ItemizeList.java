@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
@@ -110,4 +112,13 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 		return this;
 	}
 
+	@Override
+	public AsciiList_Itemize addAllItems(Collection<String> items){
+		if(items!=null){
+			for(String s : items){
+				this.addItem(s);
+			}
+		}
+		return this;
+	}
 }

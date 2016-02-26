@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -187,6 +189,16 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	public AsciiList_Enumerate addItem(String item){
 		if(!StringUtils.isBlank(item)){
 			this.items.add(new AbstractAsciiListItem(item));
+		}
+		return this;
+	}
+
+	@Override
+	public AsciiList_Enumerate addAllItems(Collection<String> items){
+		if(items!=null){
+			for(String s : items){
+				this.addItem(s);
+			}
 		}
 		return this;
 	}

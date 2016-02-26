@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
+
 /**
  * A list - called itemize in LaTeX, unordered in HTML and ASCII Doc.
  *
@@ -30,6 +32,13 @@ public interface AsciiList_Itemize extends AsciiList {
 	 * @return self to allow chaining
 	 */
 	AsciiList_Itemize addItem(String item);
+
+	/**
+	 * Adds a collection of new items to the list.
+	 * @param items collection of items, individual items only added if not blank
+	 * @return self to allow chaining
+	 */
+	AsciiList_Itemize addAllItems(Collection<String> items);
 
 	/**
 	 * Adds a new list to the list.

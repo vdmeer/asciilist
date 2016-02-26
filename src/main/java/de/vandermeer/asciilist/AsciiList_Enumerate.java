@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
+
 /**
  * A list - called enumerate in LaTeX, ordered in HTML and ASCII Doc.
  *
@@ -43,6 +45,13 @@ public interface AsciiList_Enumerate extends AsciiList {
 	 * @return self to allow chaining
 	 */
 	AsciiList_Enumerate addItem(String item);
+
+	/**
+	 * Adds a collection of new items to the list.
+	 * @param items collection of items, individual items only added if not blank
+	 * @return self to allow chaining
+	 */
+	AsciiList_Enumerate addAllItems(Collection<String> items);
 
 	/**
 	 * Sets the parents (enumerations of all parent items) to generate for instance 1. - 1.1. - 1.1.1.
