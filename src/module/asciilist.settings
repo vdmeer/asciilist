@@ -1,4 +1,4 @@
-skb.module.version=0.0.2
+skb.module.version=0.0.3
 skb.module.alias=
 skb.module.name=ASCII List
 skb.module.url=https://github.com/vdmeer/asciilist
@@ -13,4 +13,6 @@ skb.module.scm.url=https://github.com/vdmeer/asciilist
 skb.module.issueManagement.url=https://github.com/vdmeer/asciilist/issues
 skb.module.issueManagement.system=github
 skb.module.internalDependencies=
+skb.module.externalDependencies.compile=commons-lang3
+skb.module.externalDependencies.test=junit loremipsum
 skb.module.packaging=
