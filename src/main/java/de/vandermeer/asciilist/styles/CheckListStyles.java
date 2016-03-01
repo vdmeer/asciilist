@@ -23,7 +23,7 @@ import de.vandermeer.asciilist.AsciiList_Check;
  * Styles for an check lists - {@link AsciiList_Check}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
+ * @version    v0.0.3-SNAPSHOT build 160301 (01-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
 public enum CheckListStyles implements ListStyle_Check {

@@ -22,7 +22,7 @@ import org.apache.commons.lang3.text.StrBuilder;
  * Standard styles for check lists implementing {@link ListStyle_CheckNested} for 6 levels.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
+ * @version    v0.0.3-SNAPSHOT build 160301 (01-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
 public enum NestedCheckStyles implements ListStyle_CheckNested {
