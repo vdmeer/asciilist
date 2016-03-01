@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
@@ -26,7 +28,7 @@ import de.vandermeer.asciilist.styles.NestedItemizeStyles;
  * Abstract implementation of an itemize list {@link AsciiList_Itemize}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
+ * @version    v0.0.3-SNAPSHOT build 160301 (01-Mar-16) for Java 1.7
  * @since      v0.2.2
  */
 public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize {
@@ -110,4 +112,13 @@ public class ItemizeList extends AbstractAsciiList implements AsciiList_Itemize 
 		return this;
 	}
 
+	@Override
+	public AsciiList_Itemize addAllItems(Collection<String> items){
+		if(items!=null){
+			for(String s : items){
+				this.addItem(s);
+			}
+		}
+		return this;
+	}
 }

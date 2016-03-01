@@ -43,13 +43,13 @@ import de.vandermeer.asciilist.styles.ListStyle;
  * In addition: some lists allow for adding other lists (e.g. enumerate, itemize) while other lists do not support that (e.g. checklist).
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
+ * @version    v0.0.3-SNAPSHOT build 160301 (01-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
 public interface AsciiList {
 
 	/**
-	 * A strin representing an implicit new line for item rendering or internal processing such as word wrapping.
+	 * A string representing an implicit new line for item rendering or internal processing such as word wrapping.
 	 */
 	String IMPLICIT_NEWLINE = "@@@@";
 
@@ -104,7 +104,7 @@ public interface AsciiList {
 	/**
 	 * Renders the list, generates a string representation of it.
 	 * @return rendered list
-	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligebly
+	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligibly
 	 */
 	String render();
 
@@ -131,7 +131,7 @@ public interface AsciiList {
 	int calculateMaxIndentation(AsciiListItem item, int position);
 
 	/**
-	 * Sets the (maximum) width a list (and all items and sub-lists) can have when eing rendered.
+	 * Sets the (maximum) width a list (and all items and sub-lists) can have when being rendered.
 	 * @param width maximum width
 	 * @return self to allow chaining
 	 */

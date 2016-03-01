@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -28,7 +30,7 @@ import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
  * Abstract implementation of an enumerate list {@link AsciiList_Enumerate}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
+ * @version    v0.0.3-SNAPSHOT build 160301 (01-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
 public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumerate {
@@ -187,6 +189,16 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	public AsciiList_Enumerate addItem(String item){
 		if(!StringUtils.isBlank(item)){
 			this.items.add(new AbstractAsciiListItem(item));
+		}
+		return this;
+	}
+
+	@Override
+	public AsciiList_Enumerate addAllItems(Collection<String> items){
+		if(items!=null){
+			for(String s : items){
+				this.addItem(s);
+			}
 		}
 		return this;
 	}

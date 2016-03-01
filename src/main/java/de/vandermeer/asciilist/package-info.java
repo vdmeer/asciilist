@@ -17,9 +17,6 @@
  * ASCII lists - ordered and unordered and checklist and more, with many configuration options.
  * 
  * 
- * <br><h3>Features</h3>
- * 
- * 
  * <br><h3>Concepts and Realization</h3>
  * <p>
  * 		The main concepts are: list, item, label, style.
@@ -39,7 +36,7 @@
  * 
  * <p>
  * 		Lists items can contain other lists. This feature results in nested lists.
- * 		If lists of the same type are nested the label itself ot the label style can be a continuation of the parent list.
+ * 		If lists of the same type are nested the label itself of the label style can be a continuation of the parent list.
  * </p>
  * 
  * <p>
@@ -102,7 +99,7 @@
  * <ul>
  * 		<li>create a list</li>
  * 		<li>add items to the list</li>
- * 		<li>configure any aspect to cange default render behavior, if required</li>
+ * 		<li>configure any aspect to change default render behavior, if required</li>
  * 		<li>render the list</li>
  * 		<li>use the created string, e.g. print it to a console or write it to a file</li>
  * </ul>
@@ -337,8 +334,6 @@
  * 
  * 
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
+ * @version    v0.0.3-SNAPSHOT build 160301 (01-Mar-16) for Java 1.7
  */
 package de.vandermeer.asciilist;
-
-

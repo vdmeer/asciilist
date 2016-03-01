@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
+
 import org.apache.commons.lang3.StringUtils;
 
 import de.vandermeer.asciilist.styles.ListStyle;
@@ -25,7 +27,7 @@ import de.vandermeer.asciilist.styles.NestedCheckStyles;
  * Abstract implementation of a checklist {@link AsciiList_Check}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.2 build 150910 (10-Sep-15) for Java 1.7
+ * @version    v0.0.3-SNAPSHOT build 160301 (01-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
 public class CheckList extends AbstractAsciiList implements AsciiList_Check {
@@ -136,4 +138,13 @@ public class CheckList extends AbstractAsciiList implements AsciiList_Check {
 		return this.preLabelIndent + this.preLabelStr.length() + this.calculateItemLabel(item).length() + this.postLabelStr.length() + this.postLabelIndent;
 	}
 
+	@Override
+	public AsciiList_Check addAllItems(Collection<String> items){
+		if(items!=null){
+			for(String s : items){
+				this.addItem(s);
+			}
+		}
+		return this;
+	}
 }

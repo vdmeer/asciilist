@@ -5,7 +5,7 @@ Many different lists (itemize/unordered, enumerate/ordered, checklist, descripti
 
 The lists allows for various degrees of flexibility for labels, nested lists, indentation (with auto-indentation for nested lists), and styles for list labels.
 
-Current release is https://search.maven.org/#artifactdetails|de.vandermeer|asciilist|0.0.2|jar[0.0.2].
+Current release is https://search.maven.org/#artifactdetails|de.vandermeer|asciilist|0.0.3|jar[0.0.3].
 All releases are on https://search.maven.org/#search|gav|1|g%3A%22de.vandermeer%22%20AND%20a%3A%22asciilist%22[Maven Central].
 
 This blog post explains how to get UTF-8 support in the whole tool chain http://vdmeer-sven.blogspot.ie/2014/06/utf-8-support-w-java-and-console.html[blog on UTF-8].
@@ -15,10 +15,6 @@ Updates will be at here https://github.com/vdmeer/skb/wiki/HowTo-UTF-8-Support-i
 
 Overview
 --------
-
-
-Features
-~~~~~~~~
 
 
 Concepts and Realization
@@ -39,7 +35,7 @@ Lists can be:
 
 
 Lists items can contain other lists. This feature results in nested lists.
-If lists of the same type are nested the label itself ot the label style can be a continuation of the parent list.
+If lists of the same type are nested the label itself of the label style can be a continuation of the parent list.
 
 Lists are created and filled.
 Then lists can be configured to get the expected printed output.

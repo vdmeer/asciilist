@@ -17,10 +17,6 @@ Overview
 --------
 
 
-Features
-~~~~~~~~
-
-
 Concepts and Realization
 ~~~~~~~~~~~~~~~~~~~~~~~~
 The main concepts are: list, item, label, style.
@@ -39,7 +35,7 @@ Lists can be:
 
 
 Lists items can contain other lists. This feature results in nested lists.
-If lists of the same type are nested the label itself ot the label style can be a continuation of the parent list.
+If lists of the same type are nested the label itself of the label style can be a continuation of the parent list.
 
 Lists are created and filled.
 Then lists can be configured to get the expected printed output.
