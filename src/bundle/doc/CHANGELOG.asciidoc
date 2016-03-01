@@ -1,4 +1,4 @@
-v0.0.3 - feature add - 2015-##-##
+v0.0.3 - feature add - 2016-03-01
 ---------------------------------
 * pushed asciidoctor plugin to 1.5.3
 * added addAllItems to AsciiList_Enumerate, AsciiList_Itemize, and AsciiList_Check
