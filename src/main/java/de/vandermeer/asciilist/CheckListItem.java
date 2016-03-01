@@ -19,7 +19,7 @@ package de.vandermeer.asciilist;
  * Implementation of {@link AsciiListItem} for a checklist.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.3-SNAPSHOT build 160301 (01-Mar-16) for Java 1.7
+ * @version    v0.0.3 build 160301 (01-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
 public class CheckListItem extends AbstractAsciiListItem {
