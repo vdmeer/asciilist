@@ -1,0 +1,4 @@
+Many different lists (itemize/unordered, enumerate/ordered, checklist, description, nested),
+using ASCII and UTF characters for labels,
+with various degrees of flexibility for labels, indentation, and styles.
+

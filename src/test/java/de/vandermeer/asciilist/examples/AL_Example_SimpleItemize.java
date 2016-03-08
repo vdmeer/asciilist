@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist.examples;
 
+import org.apache.commons.lang3.text.StrBuilder;
+
 import de.vandermeer.asciilist.ItemizeList;
 import de.vandermeer.asciilist.styles.NestedItemizeStyles;
 
@@ -25,12 +27,11 @@ import de.vandermeer.asciilist.styles.NestedItemizeStyles;
  * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
  * @since      v0.0.4
  */
-public class AL_Example_SimpleItemize {
+public class AL_Example_SimpleItemize implements StandardExample {
 
-	/**
-	 * Show the examples.
-	 */
-	public void show(){
+	@Override
+	public void showOutput(){
+		// tag::example[]
 		ItemizeList list = new ItemizeList();
 		list.addItem("item 1");
 		list.addItem("item 2");
@@ -40,65 +41,55 @@ public class AL_Example_SimpleItemize {
 		System.out.println(rend);
 
 		list.setPreLabelIndent(5);
-		System.out.println();
-		System.out.println(list.render());
+		System.out.println("\n" + list.render());
 
 		list.setLabelDefaults();
 		list.setPostLabelIndent(5);
-		System.out.println();
-		System.out.println(list.render());
+		System.out.println("\n" + list.render());
 
 		list.setLabelDefaults();
 		list.setPreLabelString(">>");
 		list.setPostLabelString("<<");
-		System.out.println();
-		System.out.println(list.render());
+		System.out.println("\n" + list.render());
 
 		list.setLabelDefaults();
 		list.setListStyle(NestedItemizeStyles.HTML_LIKE);
-		System.out.println();
-		System.out.println(list.render());
+		System.out.println("\n" + list.render());
+		// end::example[]
 	}
 
-	/**
-	 * Show the code for the examples.
-	 * @return example Java code
-	 */
-	public String getCode(){
-		String code =
-				"	ItemizeList list = new ItemizeList();\n" +
-				"	list.addItem(\"item 1\");\n" +
-				"	list.addItem(\"item 2\");\n" +
-				"	list.addItem(\"item 3\");\n" +
+	@Override
+	public StrBuilder getSource(){
+		String[] source = new String[]{
+				"ItemizeList list = new ItemizeList();",
+				"list.addItem(\"item 1\");",
+				"list.addItem(\"item 2\");",
+				"list.addItem(\"item 3\");",
 
-				"\n" +
-				"	String rend = list.render();\n" +
-				"	System.out.println(rend);\n" +
+				"",
+				"String rend = list.render();",
+				"System.out.println(rend);",
 
-				"\n" +
-				"	list.setPreLabelIndent(5);\n" +
-				"	System.out.println();\n" +
-				"	System.out.println(list.render());\n" +
+				"",
+				"list.setPreLabelIndent(5);",
+				"System.out.println(\"\\n\" + list.render());",
 
-				"\n" +
-				"	list.setLabelDefaults();\n" +
-				"	list.setPostLabelIndent(5);\n" +
-				"	System.out.println();\n" +
-				"	System.out.println(list.render());\n" +
+				"",
+				"list.setLabelDefaults();",
+				"list.setPostLabelIndent(5);",
+				"System.out.println(\"\\n\" + list.render());",
 
-				"\n" +
-				"	list.setLabelDefaults();\n" +
-				"	list.setPreLabelString(\">>\");\n" +
-				"	list.setPostLabelString(\"<<\");\n" +
-				"	System.out.println();\n" +
-				"	System.out.println(list.render());\n" +
+				"",
+				"list.setLabelDefaults();",
+				"list.setPreLabelString(\">>\");",
+				"list.setPostLabelString(\"<<\");",
+				"System.out.println(\"\\n\" + list.render());",
 
-				"\n" +
-				"	list.setLabelDefaults();\n" +
-				"	list.setListStyle(NestedItemizeStyles.HTML_LIKE);\n" +
-				"	System.out.println();\n" +
-				"	System.out.println(list.render());\n"
-		;
-		return code;
+				"",
+				"list.setLabelDefaults();",
+				"list.setListStyle(NestedItemizeStyles.HTML_LIKE);",
+				"System.out.println(\"\\n\" + list.render());",
+		};
+		return new StrBuilder().appendWithSeparators(source, "\n");
 	}
 }

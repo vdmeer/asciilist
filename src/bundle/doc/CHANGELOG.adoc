@@ -1,5 +1,12 @@
-v0.0.4 - ### - 2016-##-##
--------------------------
+v0.0.4 - refactoring - 2016-03-##
+---------------------------------
+* changed pm configuration to new project manager
+* Javadoc now using AsciiDoc doclet
+  * changed all documentation to AsciiDoc format
+* added site
+* fixed problem with Arabic superscript 1
+* fixed a naming error for UTF arrows in itemize styles
+* added all_utf_arabic_superscript to NestedEnumerateStyles
 
 
 v0.0.3 - feature add - 2016-03-01

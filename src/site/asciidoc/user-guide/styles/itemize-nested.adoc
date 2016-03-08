@@ -1,0 +1,100 @@
+=== Nested Itemize Lists
+
+Two options for using `*`:
+
+* `NestedItemizeStyles.ALL_STAR` for unlimited levels (left)
+* `NestedItemizeStyles.ALL_STAR_INCREMENTAL` incremental for up to 6 levels (right)
+
+---------------------------------------------------
+* item 1                          * item 1
+* item 2                          * item 2
+   * item 1                          ** item 1
+   * item 2                          ** item 2
+      * item 1                          *** item 1
+      * item 2                          *** item 2
+         * item 1                          **** item 1
+         * item 2                          **** item 2
+            * item 1                          ***** item 1
+            * item 2                          ***** item 2
+               * item 1                          ****** item 1
+               * item 2                          ****** item 2
+---------------------------------------------------
+
+Two options for using `-`:
+
+* `NestedItemizeStyles.ALL_HYPHEN` for unlimited levels (left)
+* `NestedItemizeStyles.ALL_HYPHEN_INCREMENTAL` incremental for up to 6 levels (right)
+
+---------------------------------------------------
+- item 1                       - item 1
+- item 2                       - item 2
+   - item 1                       -- item 1
+   - item 2                       -- item 2
+      - item 1                       --- item 1
+      - item 2                       --- item 2
+         - item 1                       ---- item 1
+         - item 2                       ---- item 2
+            - item 1                       ----- item 1
+            - item 2                       ----- item 2
+               - item 1                       ------ item 1
+               - item 2                       ------ item 2
+---------------------------------------------------
+
+Two options for using `+`:
+
+* `NestedItemizeStyles.ALL_PLUS` for unlimited levels (left)
+* `NestedItemizeStyles.ALL_PLUS_INCREMENTAL` incremental for up to 6 levels (right)
+
+---------------------------------------------------
++ item 1                       + item 1
++ item 2                       + item 2
+   + item 1                       ++ item 1
+   + item 2                       ++ item 2
+      + item 1                       +++ item 1
+      + item 2                       +++ item 2
+         + item 1                       ++++ item 1
+         + item 2                       ++++ item 2
+            + item 1                       +++++ item 1
+            + item 2                       +++++ item 2
+               + item 1                       ++++++ item 1
+               + item 2                       ++++++ item 2
+---------------------------------------------------
+
+Some more options defined for 3 and 2 levels:
+
+* `NestedItemizeStyles.HTML_LIKE` for 3 levels (most left)
+* `NestedItemizeStyles.UTF_TEAR_DROP` for 3 levels (second left)
+* `NestedItemizeStyles.UTF_FLORETTE` for 3 levels (middle)
+* `NestedItemizeStyles.UTF_SNOWFLAKE` for 3 levels (second right)
+* `NestedItemizeStyles.UTF_SPARKLE` for 2 levels (most right)
+
+---------------------------------------------------
+• item 1          ✻ item 1          ✿ item 1          ❄ item 1          ❇ item 1
+• item 2          ✻ item 2          ✿ item 2          ❄ item 2          ❇ item 2
+   ○ item 1          ✼ item 1          ❀ item 1          ❅ item 1          ❈ item 1
+   ○ item 2          ✼ item 2          ❀ item 2          ❅ item 2          ❈ item 2
+      ▪ item 1          ✾ item 1          ❁ item 1          ❆ item 1    
+      ▪ item 2          ✾ item 2          ❁ item 2          ❆ item 2    
+---------------------------------------------------
+
+Three more options for up to 6 levels each:
+
+* `NestedItemizeStyles.UTF_ARROwS` (left)
+* `NestedItemizeStyles.UTF_STARS` (middle)
+* `NestedItemizeStyles.UTF_STARS_OUTLINE` (right)
+
+---------------------------------------------------
+➔ item 1                   ✳ item 1                   ✧ item 1
+➔ item 2                   ✳ item 2                   ✧ item 2
+   ➜ item 1                   ✴ item 1                   ✩ item 1
+   ➜ item 2                   ✴ item 2                   ✩ item 2
+      ➡ item 1                   ✵ item 1                   ✫ item 1
+      ➡ item 2                   ✵ item 2                   ✫ item 2
+         ➞ item 1                   ✷ item 1                   ✬ item 1
+         ➞ item 2                   ✷ item 2                   ✬ item 2
+            ➝ item 1                   ✹ item 1                   ✭ item 1
+            ➝ item 2                   ✹ item 2                   ✭ item 2
+               ➙ item 1                   ✺ item 1                   ✯ item 1
+               ➙ item 2                   ✺ item 2                   ✯ item 2
+---------------------------------------------------
+

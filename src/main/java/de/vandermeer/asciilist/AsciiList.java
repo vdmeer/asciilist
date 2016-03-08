@@ -22,19 +22,17 @@ import de.vandermeer.asciilist.styles.ListStyle;
 /**
  * Base of the ASCII list hierarchy - standard interface.
  * The interface covers all generic functionality for ASCII lists:
- * <ul>
- * 		<li>Set/get all label related formatting options (pre-label indentation and string, post-label indentation and string)</li>
- * 		<li>Set list style (based on the style interface</li>
- * 		<li>Render the list</li>
- * 		<li>Retrieve list items for processing</li>
- * </ul>
+ * 
+ * * Set/get all label related formatting options (pre-label indentation and string, post-label indentation and string)
+ * * Set list style (based on the style interface
+ * * Render the list
+ * * Retrieve list items for processing
  * 
  * Some methods a more for internal use (by an abstract implementation supporting specific lists):
- * <ul>
- * 		<li>Set/get level (of nested lists)</li>
- * 		<li>Calculation methods (e.g. for maximum indentation)</li>
- * 		<li>Render and individual items</li>
- * </ul>
+ * 
+ * * Set/get level (of nested lists)
+ * * Calculation methods (e.g. for maximum indentation)
+ * * Render and individual items
  * 
  * The interface does not define any method to add content to a list.
  * The reason for that is that list content is very specific for a particular list.

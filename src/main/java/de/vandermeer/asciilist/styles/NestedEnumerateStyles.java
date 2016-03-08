@@ -39,6 +39,8 @@ public enum NestedEnumerateStyles implements ListStyle_EnumerateNested {
 
 	all_utf_arabic_subscript (EnumerateStyles.arabic_utf_subscript),
 
+	all_utf_arabic_superscript (EnumerateStyles.arabic_utf_superscript),
+
 	arabic_Alpha_alpha_Roman_roman (
 			EnumerateStyles.arabic_ascii,
 			EnumerateStyles.Alpha_ascii,

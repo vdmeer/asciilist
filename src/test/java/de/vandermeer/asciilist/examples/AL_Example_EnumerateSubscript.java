@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist.examples;
 
+import org.apache.commons.lang3.text.StrBuilder;
+
 import de.vandermeer.asciilist.AsciiList;
 import de.vandermeer.asciilist.EnumerateList;
 import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
@@ -26,39 +28,34 @@ import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
  * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
  * @since      v0.0.4
  */
-public class AL_Example_EnumerateSubscript {
+public class AL_Example_EnumerateSubscript implements StandardExample {
 
-	/**
-	 * Show the examples.
-	 */
-	public void show(){
+	@Override
+	public void showOutput(){
+		// tag::example[]
 		AsciiList enumerate = new EnumerateList()
-				.addItem("item 1")
-				.addItem("item 2")
-				.addItem("item 3")
-				.setPreLabelString("E")
-				.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
+		.addItem("item 1")
+		.addItem("item 2")
+		.addItem("item 3")
+		.setPreLabelString("E")
+		.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
 		;
 		System.out.println(enumerate.render());
+		// end::example[]
 	}
 
-	/**
-	 * Show the code for the examples.
-	 * @return example Java code
-	 */
-	public String getCode(){
-		String code =
-				"	AsciiList enumerate = new EnumerateList()\n" +
-				"			.addItem(\"item 1\")\n" +
-				"			.addItem(\"item 2\")\n" +
-				"			.addItem(\"item 3\")\n" +
-				"			.setPreLabelString(\"E\")\n" +
-				"			.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)\n" +
-				"	;\n" +
-
-				"\n" +
-				"	System.out.println(enumerate.render());\n"
-		;
-		return code;
+	@Override
+	public StrBuilder getSource(){
+		String[] source = new String[]{
+				"AsciiList enumerate = new EnumerateList()",
+				".addItem(\"item 1\")",
+				".addItem(\"item 2\")",
+				".addItem(\"item 3\")",
+				".setPreLabelString(\"E\")",
+				".setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)",
+				";",
+				"System.out.println(enumerate.render());",
+		};
+		return new StrBuilder().appendWithSeparators(source, "\n");
 	}
 }

@@ -30,60 +30,60 @@ public enum NestedCheckStyles implements ListStyle_CheckNested {
 	/**
 	 * Style that uses {@link CheckListStyles#ASCII_SQUARE_BRACKET_BLANK_X} for unlimited levels.
 	 * For example:
-	 * <pre>
-	[ ] unchecked item
-	[X] checked item
-	   [ ] unchecked item
-	   [X] checked item
-	      [ ] unchecked item
-	      [X] checked item
-	         [ ] unchecked item
-	         [X] checked item
-	            [ ] unchecked item
-	            [X] checked item
-	               [ ] unchecked item
-	               [X] checked item
-	 * </pre>
+	 * ----
+	 * [ ] unchecked item
+	 * [X] checked item
+	 *    [ ] unchecked item
+	 *    [X] checked item
+	 *       [ ] unchecked item
+	 *       [X] checked item
+	 *          [ ] unchecked item
+	 *          [X] checked item
+	 *             [ ] unchecked item
+	 *             [X] checked item
+	 *                [ ] unchecked item
+	 *                [X] checked item
+	 * ----
 	 */
 	ALL_SQUARE_BRACKET_BLANK_X (CheckListStyles.ASCII_SQUARE_BRACKET_BLANK_X),
 
 	/**
 	 * Style that uses {@link CheckListStyles#UTF_BALLOT_BOX} for unlimited levels.
 	 * For example:
-	 * <pre>
-	☐ unchecked item
-	☑ checked item
-	   ☐ unchecked item
-	   ☑ checked item
-	      ☐ unchecked item
-	      ☑ checked item
-	         ☐ unchecked item
-	         ☑ checked item
-	            ☐ unchecked item
-	            ☑ checked item
-	               ☐ unchecked item
-	               ☑ checked item
-	 * </pre>
+	 * ----
+	 * ☐ unchecked item
+	 * ☑ checked item
+	 *   ☐ unchecked item
+	 *   ☑ checked item
+	 *     ☐ unchecked item
+	 *     ☑ checked item
+	 *       ☐ unchecked item
+	 *       ☑ checked item
+	 *         ☐ unchecked item
+	 *         ☑ checked item
+	 *           ☐ unchecked item
+	 *           ☑ checked item
+	 * ----
 	 */
 	ALL_UTF_BALLOT_BOX (CheckListStyles.UTF_BALLOT_BOX),
 
 	/**
 	 * Style that uses {@link CheckListStyles#UTF_BALLOT_BOX_X} for unlimited levels.
 	 * For example:
-	 * <pre>
-	☐ unchecked item
-	☒ checked item
-	   ☐ unchecked item
-	   ☒ checked item
-	      ☐ unchecked item
-	      ☒ checked item
-	         ☐ unchecked item
-	         ☒ checked item
-	            ☐ unchecked item
-	            ☒ checked item
-	               ☐ unchecked item
-	               ☒ checked item
-	 * </pre>
+	 * ----
+	 * ☐ unchecked item
+	 * ☒ checked item
+	 *   ☐ unchecked item
+	 *   ☒ checked item
+	 *     ☐ unchecked item
+	 *     ☒ checked item
+	 *       ☐ unchecked item
+	 *       ☒ checked item
+	 *         ☐ unchecked item
+	 *         ☒ checked item
+	 *           ☐ unchecked item
+	 *           ☒ checked item
+	 * ----
 	 */
 	ALL_UTF_BALLOT_BOX_X (CheckListStyles.UTF_BALLOT_BOX_X),
 

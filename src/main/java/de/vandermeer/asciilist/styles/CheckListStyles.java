@@ -31,10 +31,10 @@ public enum CheckListStyles implements ListStyle_Check {
 	/**
 	 * Style that uses square brackets and X.
 	 * For example:
-	 * <pre>
-	[ ] unchecked item
-	[X] checked item
-	 * </pre>
+	 * ----
+	 * [ ] unchecked item
+	 * [X] checked item
+	 * ----
 	 * 
 	 */
 	ASCII_SQUARE_BRACKET_BLANK_X ("[", " ", "X", "]"),
@@ -42,60 +42,60 @@ public enum CheckListStyles implements ListStyle_Check {
 	/**
 	 * Style that uses UTF-8 ballot box characters.
 	 * For example:
-	 * <pre>
-	☐ unchecked item
-	☑ checked item
-	 * </pre>
+	 * ----
+	 * ☐ unchecked item
+	 * ☑ checked item
+	 * ----
 	 */
 	UTF_BALLOT_BOX ("", "☐", "☑", ""),
 
 	/**
 	 * Style that uses UTF-8 ballot box characters with X box for checked.
 	 * For example:
-	 * <pre>
-	☐ unchecked item
-	☒ checked item
-	 * </pre>
+	 * ----
+	 * ☐ unchecked item
+	 * ☒ checked item
+	 * ----
 	 */
 	UTF_BALLOT_BOX_X ("", "☐", "☒", ""),
 
 	/**
 	 * Style that uses blank for unchecked and UTF-8 ballot X for checked items.
 	 * For example:
-	 * <pre>
-	  unchecked item
-	✗ checked item
-	 * </pre>
+	 * ----
+	 *   unchecked item
+	 * ✗ checked item
+	 * ----
 	 */
 	UTF_BALLOT_X ("", " ", "✗", ""),
 
 	/**
 	 * Style that uses blank for unchecked and UTF-8 ballot heavy X for checked items.
 	 * For example:
-	 * <pre>
-	  unchecked item
-	✘ checked item
-	 * </pre>
+	 * ----
+	 *   unchecked item
+	 * ✘ checked item
+	 * ----
 	 */
 	UTF_BALLOT_X_HEAVY ("", " ", "✘", ""),
 
 	/**
 	 * Style that uses blank for unchecked and UTF-8 checkmark for checked items.
 	 * For example:
-	 * <pre>
-	  unchecked item
-	✓ checked item
-	 * </pre>
+	 * ----
+	 *   unchecked item
+	 * ✓ checked item
+	 * ----
 	 */
 	UTF_CHECKMARK ("", " ", "✓", ""),
 
 	/**
 	 * Style that uses blank for unchecked and UTF-8 multiplication x for checked items.
 	 * For example:
-	 * <pre>
-	  unchecked item
-	✕ checked item
-	 * </pre>
+	 * ----
+	 *   unchecked item
+	 * ✕ checked item
+	 * ----
 	 */
 	UTF_MULTIPLICATION_X ("", " ", "✕", ""),
 

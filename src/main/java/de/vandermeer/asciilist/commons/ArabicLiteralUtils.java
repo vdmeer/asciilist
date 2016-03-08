@@ -19,7 +19,7 @@ import org.apache.commons.lang3.NotImplementedException;
 
 
 /**
- * Utilities to convert numbers (integers) into arabic number literals with several supported representations using ASCII-7 and UTF characters.
+ * Utilities to convert numbers (integers) into Arabic number literals with several supported representations using ASCII-7 and UTF characters.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
@@ -111,8 +111,11 @@ public abstract class ArabicLiteralUtils {
 		if(number<1 || number>9){
 			throw new NotImplementedException("Arabic literals - UTF Superscript Latin Small Letter - supported 0<number<10 - number was: " + number);
 		}
-		if(number==1 || number>3){
-			//1, 4-10
+		if(number==1){
+			return new String(Character.toChars(number+184));
+		}
+		else if(number>3){
+			//4-10
 			return new String(Character.toChars(number+8304));
 		}
 		else{

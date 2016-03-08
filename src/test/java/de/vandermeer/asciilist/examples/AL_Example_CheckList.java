@@ -15,6 +15,8 @@
 
 package de.vandermeer.asciilist.examples;
 
+import org.apache.commons.lang3.text.StrBuilder;
+
 import de.vandermeer.asciilist.CheckList;
 import de.vandermeer.asciilist.styles.NestedCheckStyles;
 
@@ -25,12 +27,11 @@ import de.vandermeer.asciilist.styles.NestedCheckStyles;
  * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
  * @since      v0.0.4
  */
-public class AL_Example_CheckList {
+public class AL_Example_CheckList implements StandardExample {
 
-	/**
-	 * Show the examples.
-	 */
-	public void show(){
+	@Override
+	public void showOutput(){
+		// tag::example[]
 		CheckList list = new CheckList();
 		list.addItem("item unchecked");
 		list.addItemChecked("item checked");
@@ -41,27 +42,25 @@ public class AL_Example_CheckList {
 
 		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
 		System.out.println(list.render() + "\n");
+		// end::example[]
 	}
 
-	/**
-	 * Show the code for the examples.
-	 * @return example Java code
-	 */
-	public String getCode(){
-		String code =
-				"	CheckList list = new CheckList();\n" +
-				"	list.addItem(\"item unchecked\");\n" +
-				"	list.addItemChecked(\"item checked\");\n" +
-				"	System.out.println(list.render() + \"\\n\");\n" +
+	@Override
+	public StrBuilder getSource(){
+		String[] source = new String[]{
+				"CheckList list = new CheckList();",
+				"list.addItem(\"item unchecked\");",
+				"list.addItemChecked(\"item checked\");",
+				"System.out.println(list.render() + \"\\n\");",
 
-				"\n" +
-				"	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);\n" +
-				"	System.out.println(list.render() + \"\\n\");\n" +
+				"",
+				"list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);",
+				"System.out.println(list.render() + \"\\n\");",
 
-				"\n" +
-				"	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);\n" +
-				"	System.out.println(list.render() + \"\\n\");\n"
-		;
-		return code;
+				"",
+				"list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);",
+				"System.out.println(list.render() + \"\\n\");",
+		};
+		return new StrBuilder().appendWithSeparators(source, "\n");
 	}
 }

@@ -13,15 +13,9 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist;
+package de.vandermeer.asciilist.examples;
 
 import org.junit.Test;
-
-import de.vandermeer.asciilist.examples.AL_Example_CheckList;
-import de.vandermeer.asciilist.examples.AL_Example_EnumerateSubscript;
-import de.vandermeer.asciilist.examples.AL_Example_NestedLists;
-import de.vandermeer.asciilist.examples.AL_Example_SimpleItemize;
-import de.vandermeer.asciilist.examples.AL_Example_Width;
 
 
 /**
@@ -31,52 +25,31 @@ import de.vandermeer.asciilist.examples.AL_Example_Width;
  * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
  * @since      v0.0.2
  */
-public class Test_CodeForDocs {
+public class Test_Examples extends StandardExampleRunner {
 
 	@Test
 	public void test_SimpleListItemize(){
-		this.output("simple itemize lists");
-		new AL_Example_SimpleItemize().show();
-		this.output();
+		this.runExample(new AL_Example_SimpleItemize());
 	}
 
 	@Test
 	public void test_NestedLists(){
-		this.output("nested lists");
-		new AL_Example_NestedLists().show();
-		this.output();
+		this.runExample(new AL_Example_NestedLists());
 	}
 
 	@Test
 	public void test_Width(){
-		this.output("width");
-		new AL_Example_Width().show();
-		this.output();
+		this.runExample(new AL_Example_Width());
 	}
 
 	@Test
 	public void test_Checklist(){
-		this.output("checklist");
-		new AL_Example_CheckList().show();
-		this.output();
+		this.runExample(new AL_Example_CheckList());
 	}
 
 	@Test
 	public void test_EnumSubscript(){
-		this.output("enum subscript");
-		new AL_Example_EnumerateSubscript().show();
-		this.output();
-	}
-
-
-	protected void output(String str){
-		System.out.println(str);
-		System.out.println("----------------------------");
-	}
-
-	protected void output(){
-		System.out.println("----------------------------");
-		System.out.println();
+		this.runExample(new AL_Example_EnumerateSubscript());
 	}
 
 }

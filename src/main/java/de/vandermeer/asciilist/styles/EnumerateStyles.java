@@ -35,264 +35,264 @@ public enum EnumerateStyles implements ListStyle_Enumerate {
 	/**
 	 * Enumerate style using upper case alphanumeric characters.
 	 * For example:
-	 * <pre>
-	A item 1
-	B item 2
-	C item 3
-	 * </pre>
+	 * ----
+	 * A item 1
+	 * B item 2
+	 * C item 3
+	 * ----
 	 */
 	Alpha_ascii,
 
 	/**
 	 * Enumerate style using upper case alphanumeric circled (UTF Circled Latin Capital Letters) characters.
 	 * For example:
-	 * <pre>
-	Ⓐ item 1
-	Ⓑ item 2
-	Ⓒ item 3
-	 * </pre>
+	 * ----
+	 * Ⓐ item 1
+	 * Ⓑ item 2
+	 * Ⓒ item 3
+	 * ----
 	 */
 	Alpha_utf_circle,
 
 	/**
 	 * Enumerate style using upper case alphanumeric full width (UTF Fullwidth Latin Capital) characters.
 	 * For example:
-	 * <pre>
-	Ａ item 1
-	Ｂ item 2
-	Ｃ item 3
-	 * </pre>
+	 * ----
+	 * Ａ item 1
+	 * Ｂ item 2
+	 * Ｃ item 3
+	 * ----
 	 */
 	Alpha_utf_fullwidth,
 
 	/**
 	 * Enumerate style using lower case alphanumeric characters.
 	 * For example:
-	 * <pre>
-	a item 1
-	b item 2
-	c item 3
-	 * </pre>
+	 * ----
+	 * a item 1
+	 * b item 2
+	 * c item 3
+	 * ----
 	 */
 	alpha_ascii,
 
 	/**
 	 * Enumerate style using upper case alphanumeric circled (UTF Circled Latin Small Letters) characters.
 	 * For example:
-	 * <pre>
-	ⓐ item 1
-	ⓑ item 2
-	ⓒ item 3
-	 * </pre>
+	 * ----
+	 * ⓐ item 1
+	 * ⓑ item 2
+	 * ⓒ item 3
+	 * ----
 	 */
 	alpha_utf_circle,
 
 	/**
 	 * Enumerate style using upper case alphanumeric parenthesized (UTF Parenthesized Latin Small Letter) characters.
 	 * For example:
-	 * <pre>
-	⒜ item 1
-	⒝ item 2
-	⒞ item 3
-	 * </pre>
+	 * ----
+	 * ⒜ item 1
+	 * ⒝ item 2
+	 * ⒞ item 3
+	 * ----
 	 */
 	alpha_utf_parenthesized,
 
 	/**
 	 * Enumerate style using upper case alphanumeric full width (UTF Fullwidth Latin Small) characters.
 	 * For example:
-	 * <pre>
-	ａ item 1
-	ｂ item 2
-	ｃ item 3
-	 * </pre>
+	 * ----
+	 * ａ item 1
+	 * ｂ item 2
+	 * ｃ item 3
+	 * ----
 	 */
 	alpha_fullwidth,
 
 	/**
-	 * Enumerate style using Arabic numbers
+	 * Enumerate style using Arabic numbers.
 	 * For example:
-	 * <pre>
-	1 item 1
-	2 item 2
-	3 item 3
-	 * </pre>
+	 * ----
+	 * 1 item 1
+	 * 2 item 2
+	 * 3 item 3
+	 * ----
 	 */
 	arabic_ascii,
 
 	/**
 	 * Enumerate style using Arabic circled (UTF Circled Digit) characters.
 	 * For example:
-	 * <pre>
-	① item 1
-	② item 2
-	③ item 3
-	 * </pre>
+	 * ----
+	 * ① item 1
+	 * ② item 2
+	 * ③ item 3
+	 * ----
 	 */
 	arabic_utf_circle,
 
 	/**
 	 * Enumerate style using Arabic double circled (UTF Double Circled Digit) characters.
 	 * For example:
-	 * <pre>
-	⓵ item 1
-	⓶ item 2
-	⓷ item 3
-	 * </pre>
+	 * ----
+	 * ⓵ item 1
+	 * ⓶ item 2
+	 * ⓷ item 3
+	 * ----
 	 */
 	arabic_utf_double_circle,
 
 	/**
 	 * Enumerate style using Arabic circled dingbat negative (UTF Dingbat Negative Circled Digit) characters.
 	 * For example:
-	 * <pre>
-	❶ item 1
-	❷ item 2
-	❸ item 3
-	 * </pre>
+	 * ----
+	 * ❶ item 1
+	 * ❷ item 2
+	 * ❸ item 3
+	 * ----
 	 */
 	arabic_utf_circle_dingbat_negative,
 
 	/**
 	 * Enumerate style using Arabic circled dingbat sanserif (UTF Dingbat Sanserif Circled Digit) characters.
 	 * For example:
-	 * <pre>
-	➀ item 1
-	➁ item 2
-	➂ item 3
-	 * </pre>
+	 * ----
+	 * ➀ item 1
+	 * ➁ item 2
+	 * ➂ item 3
+	 * ----
 	 */
 	arabic_utf_circle_dingbat_sanserif,
 
 	/**
 	 * Enumerate style using Arabic circled dingbat negative sanserif (UTF Dingbat Negative Sanserif Circled Digit) characters.
 	 * For example:
-	 * <pre>
-	➊ item 1
-	➋ item 2
-	➌ item 3
-	 * </pre>
+	 * ----
+	 * ➊ item 1
+	 * ➋ item 2
+	 * ➌ item 3
+	 * ----
 	 */
 	arabic_utf_circle_dingbat_negative_sanserif,
 
 	/**
 	 * Enumerate style using Arabic superscript (UTF Superscript) characters.
 	 * For example:
-	 * <pre>
-	ⁱ item 1
-	² item 2
-	³ item 3
-	 * </pre>
+	 * ----
+	 * ⁱ item 1
+	 * ² item 2
+	 * ³ item 3
+	 * ----
 	 */
 	arabic_utf_superscript,
 
 	/**
 	 * Enumerate style using Arabic subscript (UTF Subscript) characters.
 	 * For example:
-	 * <pre>
-	₁ item 1
-	₂ item 2
-	₃ item 3
-	 * </pre>
+	 * ----
+	 * ₁ item 1
+	 * ₂ item 2
+	 * ₃ item 3
+	 * ----
 	 */
 	arabic_utf_subscript,
 
 	/**
 	 * Enumerate style using Arabic full stop (UTF Fullstop) characters.
 	 * For example:
-	 * <pre>
-	⒈ item 1
-	⒉ item 2
-	⒊ item 3
-	 * </pre>
+	 * ----
+	 * ⒈ item 1
+	 * ⒉ item 2
+	 * ⒊ item 3
+	 * ----
 	 */
 	arabic_utf_full_stop,
 
 	/**
 	 * Enumerate style using Arabic parenthesized (UTF Parenthesized Digit) characters.
 	 * For example:
-	 * <pre>
-	⑴ item 1
-	⑵ item 2
-	⑶ item 3
-	 * </pre>
+	 * ----
+	 * ⑴ item 1
+	 * ⑵ item 2
+	 * ⑶ item 3
+	 * ----
 	 */
 	arabic_parenthesized,
 
 	/**
 	 * Enumerate style using Arabic full width (UTF Fullwidth Digit) characters.
 	 * For example:
-	 * <pre>
-	１ item 1
-	２ item 2
-	３ item 3
-	 * </pre>
+	 * ----
+	 * １ item 1
+	 * ２ item 2
+	 * ３ item 3
+	 * ----
 	 */
 	arabic_utf_fullwidth,
 
 	/**
 	 * Enumerate style using upper case Roman number literals characters.
 	 * For example:
-	 * <pre>
-	I item 1
-	II item 2
-	III item 3
-	 * </pre>
+	 * ----
+	 * I item 1
+	 * II item 2
+	 * III item 3
+	 * ----
 	 */
 	Roman_ascii,
 
 	/**
 	 * Enumerate style using upper case circled Roman number literals (UTF Circled Latin Capital) characters.
 	 * For example:
-	 * <pre>
-	Ⓘ item 1
-	ⒾⒾ item 2
-	ⒾⒾⒾ item 3
-	 * </pre>
+	 * ----
+	 * Ⓘ item 1
+	 * ⒾⒾ item 2
+	 * ⒾⒾⒾ item 3
+	 * ----
 	 */
 	Roman_utf_circled,
 
 	/**
 	 * Enumerate style using upper case Roman number literals (UTF Number Forms) characters.
 	 * For example:
-	 * <pre>
-	Ⅰ item 1
-	Ⅱ item 2
-	Ⅲ item 3
-	 * </pre>
+	 * ----
+	 * Ⅰ item 1
+	 * Ⅱ item 2
+	 * Ⅲ item 3
+	 * ----
 	 */
 	Roman_utf_number_forms,
 
 	/**
 	 * Enumerate style using lower case Roman number literals characters.
 	 * For example:
-	 * <pre>
-	i item 1
-	ii item 2
-	iii item 3
-	 * </pre>
+	 * ----
+	 * i item 1
+	 * ii item 2
+	 * iii item 3
+	 * ----
 	 */
 	roman_ascii,
 
 	/**
 	 * Enumerate style using lower case circled Roman number literals (UTF Circled Latin Small) characters.
 	 * For example:
-	 * <pre>
-	ⓘ item 1
-	ⓘⓘ item 2
-	ⓘⓘⓘ item 3
-	 * </pre>
+	 * ----
+	 * ⓘ item 1
+	 * ⓘⓘ item 2
+	 * ⓘⓘⓘ item 3
+	 * ----
 	 */
 	roman_utf_circled,
 
 	/**
 	 * Enumerate style using lower case Roman number literals (UTF Number Forms) characters.
 	 * For example:
-	 * <pre>
-	ⅰ item 1
-	ⅱ item 2
-	ⅲ item 3
-	 * </pre>
+	 * ----
+	 * ⅰ item 1
+	 * ⅱ item 2
+	 * ⅲ item 3
+	 * ----
 	 */
 	roman_utf_number_forms,
 

@@ -1,0 +1,86 @@
+== Examples
+
+=== Render behavior
+
+Two examples with different renderer behavior:
+
+* indentation of 5 characters before the label
+* indentation of 5 characters after the label
+* pre and post label characters set to `>>` and `<<`
+
+----------------------------------------------------------------------------------------
+     * item 1		 *     item 1		 >>*<< item 1
+     * item 2		 *     item 2		 >>*<< item 2
+     * item 3		 *     item 3		 >>*<< item 3
+----------------------------------------------------------------------------------------
+
+
+=== Change list render behavior - label style
+
+Using HTML-like labels for an itemize list.
+----------------------------------------------------------------------------------------
+ • item 1
+ • item 2
+ • item 3
+----------------------------------------------------------------------------------------
+
+
+=== Nested lists
+
+Two examples:
+
+* itemize list with `*` character as label
+* numbered list with continued numbering
+
+----------------------------------------------------------------------------------------
+ * item 1                             1 item 1
+   ** item 2                            1.1 item 2
+      *** item 3                            1.1.1 item 3
+          **** item 4                             1.1.1.1 item 4
+               ***** item 5                               1.1.1.1.1 item 5
+                     ****** item 6                                  1.1.1.1.1.1 item 6
+----------------------------------------------------------------------------------------
+
+
+=== Width with automated line wrapping
+
+Two lists without any line wrapping (content of each item fits into the width set for the list).
+----------------------------------------------------------------------------------------
+        * il 1 item 1 some text        1 el 1 item 1 some text
+        * il 1 item 2 some text        2 el 1 item 2 some text
+          ** il 2 item 1 text            2.A el 2 item 1 text
+          ** il 2 item 2 text            2.B el 2 item 2 text
+----------------------------------------------------------------------------------------
+
+Same lists with smaller width and automated line wrapping.
+----------------------------------------------------------------------------------------
+        * il 1 item 1 some        1 el 1 item 1 some
+          text                      text
+        * il 1 item 2 some        2 el 1 item 2 some
+          text                      text
+          ** il 2 item 1            2.A el 2 item 1
+             text                       text
+          ** il 2 item 2            2.B el 2 item 2
+             text                       text
+----------------------------------------------------------------------------------------
+
+
+=== Enumerate list with special pre-label string and style
+
+Set the pre-label to `E` and the style to subscript using Arabic numbers.
+----------------------------------------------------------------------------------------
+	 E₁ item 1
+	 E₂ item 2
+	 E₃ item 3
+----------------------------------------------------------------------------------------
+
+
+=== Checklists with different styles
+
+Standard style (left), UTF ballot box style (middle), and UTF ballot box X style (right).
+
+----------------------------------------------------------------------------------------
+         [ ] item unchecked     ☐ item unchecked     ☐ item unchecked
+         [X] item checked       ☑ item checked       ☒ item checked
+----------------------------------------------------------------------------------------
+

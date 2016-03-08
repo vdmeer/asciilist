@@ -30,20 +30,20 @@ public enum NestedItemizeStyles implements ListStyle_ItemizeNested {
 	/**
 	 * Style using the "*" character for unlimited levels.
 	 * For example:
-	 * <pre>
-	&#42; item 1
-	&#42; item 2
-	   &#42; item 1
-	   &#42; item 2
-	      &#42; item 1
-	      &#42; item 2
-	         &#42; item 1
-	         &#42; item 2
-	            &#42; item 1
-	            &#42; item 2
-	               &#42; item 1
-	               &#42; item 2
-	 * </pre>
+	 * ----
+	 * * item 1
+	 * * item 2
+	 *    * item 1
+	 *    * item 2
+	 *       * item 1
+	 *       * item 2
+	 *          * item 1
+	 *          * item 2
+	 *             * item 1
+	 *             * item 2
+	 *                * item 1
+	 *                * item 2
+	 * ----
 	 */
 	ALL_STAR ("*"),
 
@@ -51,40 +51,41 @@ public enum NestedItemizeStyles implements ListStyle_ItemizeNested {
 	/**
 	 * Style using the "*" character, incremental for 6 levels.
 	 * For example:
-	 * <pre>
-	&#42; item 1
-	&#42; item 2
-	   &#42;&#42; item 1
-	   &#42;&#42; item 2
-	      &#42;&#42;&#42; item 1
-	      &#42;&#42;&#42; item 2
-	         &#42;&#42;&#42;&#42; item 1
-	         &#42;&#42;&#42;&#42; item 2
-	            &#42;&#42;&#42;&#42;&#42; item 1
-	            &#42;&#42;&#42;&#42;&#42; item 2
-	               &#42;&#42;&#42;&#42;&#42;&#42; item 1
-	               &#42;&#42;&#42;&#42;&#42;&#42; item 2
-	 * </pre>
+	 * ----
+	 * 
+	 * * item 1
+	 * * item 2
+	 *    ** item 1
+	 *    ** item 2
+	 *       *** item 1
+	 *       *** item 2
+	 *          **** item 1
+	 *          **** item 2
+	 *             ***** item 1
+	 *             ***** item 2
+	 *                ****** item 1
+	 *                ****** item 2
+	 * ----
 	 */
 	ALL_STAR_INCREMENTAL ("*", "**", "***", "****", "*****", "******"),
 
 	/**
 	 * Style using the "-" character for unlimited levels.
 	 * For example:
-	 * <pre>
-	- item 1
-	- item 2
-	   - item 1
-	   - item 2
-	      - item 1
-	      - item 2
-	         - item 1
-	         - item 2
-	            - item 1
-	            - item 2
-	               - item 1
-	               - item 2
-	 * </pre>
+	 * ----
+	 * - item 1
+	 * - item 2
+	 *    - item 1
+	 *    - item 2
+	 *       - item 1
+	 *       - item 2
+	 *          - item 1
+	 *          - item 2
+	 *             - item 1
+	 *             - item 2
+	 *                - item 1
+	 *                - item 2
+	 * ----
 	 */
 	ALL_HYPHEN ("-"),
 
@@ -92,40 +93,40 @@ public enum NestedItemizeStyles implements ListStyle_ItemizeNested {
 	/**
 	 * Style using the "-" character, incremental for 6 levels.
 	 * For example:
-	 * <pre>
-	- item 1
-	- item 2
-	   -- item 1
-	   -- item 2
-	      --- item 1
-	      --- item 2
-	         ---- item 1
-	         ---- item 2
-	            ----- item 1
-	            ----- item 2
-	               ------ item 1
-	               ------ item 2
-	 * </pre>
+	 * ----
+	 * - item 1
+	 * - item 2
+	 *    -- item 1
+	 *    -- item 2
+	 *       --- item 1
+	 *       --- item 2
+	 *          ---- item 1
+	 *          ---- item 2
+	 *             ----- item 1
+	 *             ----- item 2
+	 *                ------ item 1
+	 *                ------ item 2
+	 * ----
 	 */
 	ALL_HYPHEN_INCREMENTAL ("-", "--", "---", "----", "-----", "------"),
 
 	/**
 	 * Style using the "+" character for unlimited levels.
 	 * For example:
-	 * <pre>
-	+ item 1
-	+ item 2
-	   + item 1
-	   + item 2
-	      + item 1
-	      + item 2
-	         + item 1
-	         + item 2
-	            + item 1
-	            + item 2
-	               + item 1
-	               + item 2
-	 * </pre>
+	 * ----
+	 * + item 1
+	 * + item 2
+	 *    + item 1
+	 *    + item 2
+	 *       + item 1
+	 *       + item 2
+	 *          + item 1
+	 *          + item 2
+	 *             + item 1
+	 *             + item 2
+	 *                + item 1
+	 *                + item 2
+	 * ----
 	 */
 	ALL_PLUS ("+"),
 
@@ -133,20 +134,20 @@ public enum NestedItemizeStyles implements ListStyle_ItemizeNested {
 	/**
 	 * Style using the "+" character, incremental for 6 levels.
 	 * For example:
-	 * <pre>
-	+ item 1
-	+ item 2
-	   ++ item 1
-	   ++ item 2
-	      +++ item 1
-	      +++ item 2
-	         ++++ item 1
-	         ++++ item 2
-	            +++++ item 1
-	            +++++ item 2
-	               ++++++ item 1
-	               ++++++ item 2
-	 * </pre>
+	 * ----
+	 * + item 1
+	 * + item 2
+	 *    ++ item 1
+	 *    ++ item 2
+	 *       +++ item 1
+	 *       +++ item 2
+	 *          ++++ item 1
+	 *          ++++ item 2
+	 *             +++++ item 1
+	 *             +++++ item 2
+	 *                ++++++ item 1
+	 *                ++++++ item 2
+	 * ----
 	 */
 	ALL_PLUS_INCREMENTAL ("+", "++", "+++", "++++", "+++++", "++++++"),
 
@@ -155,128 +156,128 @@ public enum NestedItemizeStyles implements ListStyle_ItemizeNested {
 	/**
 	 * Style using standard HTML characters for 3 levels (bullet, circle, square).
 	 * For example:
-	 * <pre>
-	• item 1
-	• item 2
-	   ○ item 1
-	   ○ item 2
-	      ▪ item 1
-	      ▪ item 2
-	 * </pre>
+	 * ----
+	 * • item 1
+	 * • item 2
+	 *   ○ item 1
+	 *   ○ item 2
+	 *     ▪ item 1
+	 *     ▪ item 2
+	 * ----
 	 */
 	HTML_LIKE ("•", "○", "▪", null, null, null),
 
 	/**
 	 * Style using several UTF-8 arrow characters.
 	 * For example:
-	 * <pre>
-	➔ item 1
-	➔ item 2
-	   ➜ item 1
-	   ➜ item 2
-	      ➡ item 1
-	      ➡ item 2
-	         ➞ item 1
-	         ➞ item 2
-	            ➝ item 1
-	            ➝ item 2
-	               ➙ item 1
-	               ➙ item 2
-	 * </pre>
+	 * ----
+	 * ➔ item 1
+	 * ➔ item 2
+	 *  ➜ item 1
+	 *    ➜ item 2
+	 *      ➡ item 1
+	 *      ➡ item 2
+	 *        ➞ item 1
+	 *        ➞ item 2
+	 *          ➝ item 1
+	 *          ➝ item 2
+	 *            ➙ item 1
+	 *            ➙ item 2
+	 * ----
 	 */
-	UTF_ARROS ("➔", "➜", "➡", "➞", "➝", "➙"),
+	UTF_ARROWS ("➔", "➜", "➡", "➞", "➝", "➙"),
 
 	/**
 	 * Style using several UTF-8 star characters.
 	 * For example:
-	 * <pre>
-	✳ item 1
-	✳ item 2
-	   ✴ item 1
-	   ✴ item 2
-	      ✵ item 1
-	      ✵ item 2
-	         ✷ item 1
-	         ✷ item 2
-	            ✹ item 1
-	            ✹ item 2
-	               ✺ item 1
-	               ✺ item 2
-	 * </pre>
+	 * ----
+	 * ✳ item 1
+	 * ✳ item 2
+	 *   ✴ item 1
+	 *   ✴ item 2
+	 *     ✵ item 1
+	 *     ✵ item 2
+	 *       ✷ item 1
+	 *       ✷ item 2
+	 *         ✹ item 1
+	 *         ✹ item 2
+	 *           ✺ item 1
+	 *           ✺ item 2
+	 * ----
 	 */
 	UTF_STARS ("✳", "✴", "✵" ,"✷" ,"✹" ,"✺"),
 
 	/**
 	 * Style using several UTF-8 star characters.
 	 * For example:
-	 * <pre>
-	✧ item 1
-	✧ item 2
-	   ✩ item 1
-	   ✩ item 2
-	      ✫ item 1
-	      ✫ item 2
-	         ✬ item 1
-	         ✬ item 2
-	            ✭ item 1
-	            ✭ item 2
-	               ✯ item 1
-	               ✯ item 2
-	 * </pre>
+	 * ----
+	 * ✧ item 1
+	 * ✧ item 2
+	 *   ✩ item 1
+	 *   ✩ item 2
+	 *     ✫ item 1
+	 *     ✫ item 2
+	 *       ✬ item 1
+	 *       ✬ item 2
+	 *         ✭ item 1
+	 *         ✭ item 2
+	 *           ✯ item 1
+	 *           ✯ item 2
+	 * ----
 	 */
 	UTF_STARS_OUTLINE ("✧", "✩", "✫" ,"✬" ,"✭" ,"✯"),
 
 	/**
 	 * Style using several UTF-8 tear drop characters.
 	 * For example:
-	 * <pre>
-	✻ item 1
-	✻ item 2
-	    ✼ item 1
-	    ✼ item 2
-	      ✾ item 1
-	      ✾ item 2
-	 * </pre>
+	 * ----
+	 * ✻ item 1
+	 * ✻ item 2
+	 *   ✼ item 1
+	 *   ✼ item 2
+	 *     ✾ item 1
+	 *     ✾ item 2
+	 * ----
 	 */
 	UTF_TEAR_DROP("✻", "✼", "✾", null, null, null),
 
 	/**
 	 * Style using several UTF-8 florette characters.
 	 * For example:
-	 * <pre>
-	✿ item 1
-	✿ item 2
-	   ❀ item 1
-	   ❀ item 2
-	      ❁ item 1
-	      ❁ item 2
-	 * </pre>
+	 * ----
+	 * ✿ item 1
+	 * ✿ item 2
+	 *   ❀ item 1
+	 *   ❀ item 2
+	 *     ❁ item 1
+	  *    ❁ item 2
+	 * ----
 	 */
 	UTF_FLORETTE("✿", "❀", "❁", null, null, null),
 
 	/**
 	 * Style using several UTF-8 snowflake characters.
 	 * For example:
-	 * <pre>
-	❄ item 1
-	❄ item 2
-	   ❅ item 1
-	   ❅ item 2
-	      ❆ item 1
-	      ❆ item 2
-	 * </pre>
+	 * ----
+	 * ❄ item 1
+	 * ❄ item 2
+	 *   ❅ item 1
+	 *   ❅ item 2
+	 *     ❆ item 1
+	 *     ❆ item 2
+	 * ----
 	 */
 	UTF_SNOWFLAKE("❄", "❅", "❆", null, null, null),
 
 	/**
 	 * Style using several UTF-8 sparkle characters.
 	 * For example:
-	 * <pre>
-	❇ item 1
-	❇ item 2
-	   ❈ item 1
-	   ❈ item 2
-	 * </pre>
+	 * ----
+	 * ❇ item 1
+	 * ❇ item 2
+	 *   ❈ item 1
+	 *   ❈ item 2
+	 * ----
 	 */
 	UTF_SPARKLE("❇", "❈", null, null, null, null),
 
