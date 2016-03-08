@@ -17,156 +17,54 @@ package de.vandermeer.asciilist;
 
 import org.junit.Test;
 
-import de.vandermeer.asciilist.styles.NestedCheckStyles;
-import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
-import de.vandermeer.asciilist.styles.NestedItemizeStyles;
+import de.vandermeer.asciilist.examples.AL_Example_CheckList;
+import de.vandermeer.asciilist.examples.AL_Example_EnumerateSubscript;
+import de.vandermeer.asciilist.examples.AL_Example_NestedLists;
+import de.vandermeer.asciilist.examples.AL_Example_SimpleItemize;
+import de.vandermeer.asciilist.examples.AL_Example_Width;
 
 
 /**
- * Tests for ASCII table V2 for code used in documentation.
+ * Tests for ASCII List for code used in documentation.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 160304 (04-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
  * @since      v0.0.2
  */
 public class Test_CodeForDocs {
 
 	@Test
 	public void test_SimpleListItemize(){
-		this.output("simple itemize");
-
-		ItemizeList list = new ItemizeList();
-		list.addItem("item 1");
-		list.addItem("item 2");
-		list.addItem("item 3");
-
-		String rend = list.render();
-		System.out.println(rend);
-
-		list.setPreLabelIndent(5);
-		System.out.println();
-		System.out.println(list.render());
-
-		list.setLabelDefaults();
-		list.setPostLabelIndent(5);
-		System.out.println();
-		System.out.println(list.render());
-
-		list.setLabelDefaults();
-		list.setPreLabelString(">>");
-		list.setPostLabelString("<<");
-		System.out.println();
-		System.out.println(list.render());
-
-		list.setLabelDefaults();
-		list.setListStyle(NestedItemizeStyles.HTML_LIKE);
-		System.out.println();
-		System.out.println(list.render());
-
+		this.output("simple itemize lists");
+		new AL_Example_SimpleItemize().show();
 		this.output();
 	}
 
 	@Test
 	public void test_NestedLists(){
-		this.output("simple itemize");
-
-		AsciiList itemize = new ItemizeList()
-		.addItem("item 1")
-		.addItem(new ItemizeList().addItem("item 2")
-				.addItem(new ItemizeList().addItem("item 3")
-						.addItem(new ItemizeList().addItem("item 4")
-								.addItem(new ItemizeList().addItem("item 5")
-										.addItem(new ItemizeList().addItem("item 6"))
-								)
-						)
-				)
-		).setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
-
-		AsciiList_Enumerate enumerate = new EnumerateList()
-		.addItem("item 1")
-		.addItem(new EnumerateList().addItem("item 2")
-				.addItem(new EnumerateList().addItem("item 3")
-						.addItem(new EnumerateList().addItem("item 4")
-								.addItem(new EnumerateList().addItem("item 5")
-										.addItem(new EnumerateList().addItem("item 6"))
-								)
-						)
-				)
-		);
-
-		System.out.println(itemize.render());
-		System.out.println(enumerate.render());
-
+		this.output("nested lists");
+		new AL_Example_NestedLists().show();
 		this.output();
 	}
 
 	@Test
 	public void test_Width(){
 		this.output("width");
-
-		AsciiList itemize = new ItemizeList()
-			.addItem("il 1 item 1 some text")
-			.addItem("il 1 item 2 some text")
-			.addItem(new ItemizeList()
-				.addItem("il 2 item 1 text")
-				.addItem("il 2 item 2 text")
-			)
-			.setPreLabelIndent(0)
-			.setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
-
-		AsciiList enumerate = new EnumerateList()
-			.addItem("el 1 item 1 some text")
-			.addItem("el 1 item 2 some text")
-			.addItem(new EnumerateList()
-				.addItem("el 2 item 1 text")
-				.addItem("el 2 item 2 text")
-			)
-			.setPreLabelIndent(0)
-			.setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);
-
-		System.out.println(itemize.render());
-		System.out.println(enumerate.render());
-
-		itemize.setWidth(19);
-		enumerate.setWidth(19);
-		System.out.println(itemize.render());
-		System.out.println(enumerate.render());
-
+		new AL_Example_Width().show();
 		this.output();
 	}
 
 	@Test
 	public void test_Checklist(){
 		this.output("checklist");
-
-		CheckList list = new CheckList();
-		list.addItem("item unchecked");
-		list.addItemChecked("item checked");
-		System.out.println(list.render() + "\n");
-
-		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
-		System.out.println(list.render() + "\n");
-
-		list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);
-		System.out.println(list.render() + "\n");
-
+		new AL_Example_CheckList().show();
 		this.output();
 	}
 
 	@Test
 	public void test_EnumSubscript(){
 		this.output("enum subscript");
-
-		AsciiList enumerate = new EnumerateList()
-			.addItem("item 1")
-			.addItem("item 2")
-			.addItem("item 3")
-			.setPreLabelString("E")
-			.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
-		;
-
-		System.out.println(enumerate.render());
-
+		new AL_Example_EnumerateSubscript().show();
 		this.output();
 	}
 

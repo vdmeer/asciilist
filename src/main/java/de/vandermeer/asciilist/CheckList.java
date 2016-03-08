@@ -27,7 +27,7 @@ import de.vandermeer.asciilist.styles.NestedCheckStyles;
  * Abstract implementation of a checklist {@link AsciiList_Check}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 160304 (04-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
 public class CheckList extends AbstractAsciiList implements AsciiList_Check {
