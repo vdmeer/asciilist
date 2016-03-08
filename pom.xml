@@ -175,11 +175,11 @@
         						<phase>process-resources</phase>
         						<configuration>
         							<sourceDirectory>src/bundle/doc</sourceDirectory>
+        							<outputDirectory>./</outputDirectory>
         							<sourceHighlighter>coderay</sourceHighlighter>
         							<backend>html</backend>
         							<attributes>
         								<toc>true</toc>
-        								<sectnums>true</sectnums>
         							</attributes>
         						</configuration>
         						<goals>
@@ -190,11 +190,24 @@
         			</plugin>
 
         			<!-- Copy Changelog/Readme and then include in jar with License -->
-<!--
         			<plugin>
         				<artifactId>maven-resources-plugin</artifactId>
         				<version>2.4.3</version>
         				<executions>
+        					<execution>
+        						<id>copy-bundle-docs</id>
+        						<phase>generate-resources</phase>
+        						<goals><goal>copy-resources</goal></goals>
+        						<configuration>
+        							<outputDirectory>./</outputDirectory>
+        							<resources>
+        								<resource>
+        									<directory>src/bundle/doc</directory>
+        									<filtering>true</filtering>
+        								</resource>
+        							</resources>
+        						</configuration>
+        					</execution>
         					<execution>
         						<id>copy-to-jar</id>
         						<phase>prepare-package</phase>
@@ -215,7 +228,6 @@
         					</execution>
         				</executions>
         			</plugin>
--->
         		</plugins>
         	</build>
         </profile>
