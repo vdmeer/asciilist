@@ -9,7 +9,7 @@ The following code shows the creation of a checklist and the use of different st
 
 [source, java]
 ----------------------------------------------------------------------------------------
-include::../../test/java/de/vandermeer/asciilist/examples/AL_Example_CheckList.java[tags=example,indent=0]
+include::{basedir}/test/java/de/vandermeer/asciilist/examples/AL_Example_CheckList.java[tags=example,indent=0]
 ----------------------------------------------------------------------------------------
 
 

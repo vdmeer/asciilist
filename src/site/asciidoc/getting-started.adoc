@@ -10,8 +10,7 @@ The standard usage is:
 * use the created string, e.g. print it to a console or write it to a file
 
 
-Create a list
-~~~~~~~~~~~~~
+First, create a list. The example creates an itemize list.
 
 [source, java]
 ----------------------------------------------------------------------------------------
@@ -19,8 +18,9 @@ ItemizeList list = new ItemizeList();
 ----------------------------------------------------------------------------------------
 
 
-Add content (items)
-~~~~~~~~~~~~~~~~~~~
+Next, add content to your list.
+List content are items.
+We add one item at a time.
 
 [source, java]
 ----------------------------------------------------------------------------------------
@@ -30,8 +30,8 @@ list.addItem("item 3");
 ----------------------------------------------------------------------------------------
 
 
-Render the list
-~~~~~~~~~~~~~~~
+Next, render the list.
+This will provide the text output using all settings.
 
 [source, java]
 ----------------------------------------------------------------------------------------
@@ -39,15 +39,15 @@ String rend = list.render();
 ----------------------------------------------------------------------------------------
 
 
-Print the list
-~~~~~~~~~~~~~~
+Finally, print the list to standard out.
 
 [source, java]
 ----------------------------------------------------------------------------------------
 System.out.println(rend);
 ----------------------------------------------------------------------------------------
 
-This will result in the following list:
+The output will be:
+
 ----------------------------------------------------------------------------------------
  * item 1
  * item 2

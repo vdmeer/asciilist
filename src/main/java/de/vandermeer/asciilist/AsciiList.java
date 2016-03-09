@@ -52,6 +52,22 @@ public interface AsciiList {
 	String IMPLICIT_NEWLINE = "@@@@";
 
 	/**
+	 * Calculates indentation for each element of the list and returns the maximum value.
+	 * The max value contains the pre-label indent, the pre-label string, the actual label, the post-label string and the post-label indent.
+	 * This maximum indentation can then be used in the rendering process to indent all items and sub-lists, even with different length labels.
+	 * @return maximum indentation calculated over all list items
+	 */
+	int calculateMaxIndentation();
+
+	/**
+	 * Calculates indentation for a list item.
+	 * @param item the item to be used for calculation
+	 * @param position the position of the item in the item list
+	 * @return item indentation
+	 */
+	int calculateMaxIndentation(AsciiListItem item, int position);
+
+	/**
 	 * Returns a copy of the list.
 	 * @return copy of the list
 	 */
@@ -100,40 +116,17 @@ public interface AsciiList {
 	boolean isContinuedList();
 
 	/**
-	 * Renders the list, generates a string representation of it.
-	 * @return rendered list
-	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligibly
-	 */
-	String render();
-
-	/**
 	 * Prepares a list to be rendered.
 	 * This method should be automatically called by the list before starting the rendering.
 	 */
 	void prepareRender();
 
 	/**
-	 * Calculates indentation for each element of the list and returns the maximum value.
-	 * The max value contains the pre-label indent, the pre-label string, the actual label, the post-label string and the post-label indent.
-	 * This maximum indentation can then be used in the rendering process to indent all items and sub-lists, even with different length labels.
-	 * @return maximum indentation calculated over all list items
+	 * Renders the list, generates a string representation of it.
+	 * @return rendered list
+	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligibly
 	 */
-	int calculateMaxIndentation();
-
-	/**
-	 * Calculates indentation for a list item.
-	 * @param item the item to be used for calculation
-	 * @param position the position of the item in the item list
-	 * @return item indentation
-	 */
-	int calculateMaxIndentation(AsciiListItem item, int position);
-
-	/**
-	 * Sets the (maximum) width a list (and all items and sub-lists) can have when being rendered.
-	 * @param width maximum width
-	 * @return self to allow chaining
-	 */
-	AsciiList setWidth(int width);
+	String render();
 
 	/**
 	 * Renders a particular item of a list.
@@ -142,6 +135,12 @@ public interface AsciiList {
 	 * @return rendered item
 	 */
 	String renderItem(AsciiListItem item, int position);
+
+	/**
+	 * Sets the values for pre/post paramters of labels back to their default values.
+	 * @return self to allow for chaining
+	 */
+	AsciiList setLabelDefaults();
 
 	/**
 	 * Sets the level of the list.
@@ -188,9 +187,10 @@ public interface AsciiList {
 	AsciiList setPreLabelString(String str);
 
 	/**
-	 * Sets the values for pre/post paramters of labels back to their default values.
-	 * @return self to allow for chaining
+	 * Sets the (maximum) width a list (and all items and sub-lists) can have when being rendered.
+	 * @param width maximum width
+	 * @return self to allow chaining
 	 */
-	AsciiList setLabelDefaults();
+	AsciiList setWidth(int width);
 
 }

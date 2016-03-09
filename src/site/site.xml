@@ -1,8 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
 <project>
 
     <body>
         <menu name="Ascii List">
-            <item href="introduction.html" name="Introduction" />
+            <item href="features.html" name="Features" />
+            <item href="concepts.html" name="Concepts" />
+            <item href="installation.html" name="Installation" />
             <item href="getting-started.html" name="Getting Started" />
             <item name="User Guide" />
             <item name="Examples">
@@ -12,6 +32,7 @@
                 <item href="examples/render-behavior.html" name="Render Behavior" />
                 <item href="examples/width-line-wrapping.html" name="Width and Line Wrapping" />
             </item>
+            <item href="resources.html" name="Resources" />
             <item href="javadocs/api-release/index.html" name="API Doc (Current Release)" />
             <item href="changelog.html" name="Change Log" />
         </menu>

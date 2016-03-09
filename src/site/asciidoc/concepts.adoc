@@ -1,5 +1,5 @@
-Introduction
-------------
+Concepts
+--------
 
 The main concepts are: list, item, label, style.
 

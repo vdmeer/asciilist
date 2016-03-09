@@ -1,0 +1,25 @@
+Features
+--------
+
+The package offers a number of different lists.
+Some of those lists come with specific configuration options.
+
+- Itemize lists (as in LaTeX `itemize` or HTML `ul`)
+- Enumerate lists (as in LaTeX `enumerate` or HTML `ol`)
+- Check lists with items being checked or not checked
+- Description lists (as in LaTeX `description`)
+
+The lists come with several options to add content and to configure render options:
+
+- Add items as plain text, collection of objects, or other lists
+  ** checklist items can be added as a checked or not checked item
+  ** description list items can be added with title and content of the description
+  ** adding lists as item will create nested lists of any combination
+- Set width of the overall list, with automated line wrapping for overlength item text
+- Set indentation and string before and after the list label
+- Enumerate lists can set a label separator
+- Description lists can be one line or two lines, with flexible indentation
+- Set level of items manually
+- Set list style, with a large number of different pre-defined styles available
+
+

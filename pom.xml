@@ -54,14 +54,15 @@
         <project.resources.sourceEncoding>UTF-8</project.resources.sourceEncoding>
         <encoding>UTF-8</encoding>
         <file.encoding>UTF-8</file.encoding>
-		<pm.version.asciidoctor-maven-plugin>1.5.3</pm.version.asciidoctor-maven-plugin>
-		<pm.version.maven-compiler-plugin>3.2</pm.version.maven-compiler-plugin>
 		<pm.version.maven-jar-plugin>2.6</pm.version.maven-jar-plugin>
-		<pm.version.maven-javadoc-plugin>2.10.3</pm.version.maven-javadoc-plugin>
 		<pm.version.maven-site-plugin>3.5</pm.version.maven-site-plugin>
 		<pm.version.maven-source-plugin>2.4</pm.version.maven-source-plugin>
-		<pm.version.maven-resources-plugin>2.4.3</pm.version.maven-resources-plugin>
 		<pm.version.asciidoctor.asciidoclet>1.5.4</pm.version.asciidoctor.asciidoclet>
+		<pm.version.maven-compiler-plugin>3.2</pm.version.maven-compiler-plugin>
+		<pm.version.asciidoctor-maven-plugin>1.5.3</pm.version.asciidoctor-maven-plugin>
+		<pm.version.maven-javadoc-plugin>2.10.3</pm.version.maven-javadoc-plugin>
+		<pm.version.doxia-site-renderer>1.7</pm.version.doxia-site-renderer>
+		<pm.version.maven-resources-plugin>2.4.3</pm.version.maven-resources-plugin>
     </properties>
 
     <!--
@@ -150,6 +151,8 @@
             			<attributes>
             				<source-highlighter>coderay</source-highlighter>
             				<coderay-css>style</coderay-css>
+            				<release-version>${project.version}</release-version>
+            				<basedir>${project.basedir}/src</basedir>
             			</attributes>
             		</asciidoc>
             		<moduleExcludes>
@@ -209,6 +212,7 @@
         							<backend>html</backend>
         							<attributes>
         								<toc>true</toc>
+        								<baseDir>${project.basedir}/src</baseDir>
         							</attributes>
         						</configuration>
         						<goals>
@@ -305,11 +309,11 @@
         								<artifactId>asciidoclet</artifactId>
         								<version>${pm.version.asciidoctor.asciidoclet}</version>
         							</docletArtifact>
-        							<overview>src/main/java/overview.adoc</overview>
+        							<overview>src/main/asciidoc/overview.adoc</overview>
         							<additionalparam>
-        								--base-dir ${project.basedir}
+        								--base-dir ${project.basedir}/src
         								--attribute "name=${project.name}"
-        								--attribute "version=${project.version}"
+        								--attribute "release-version=${project.version}"
         								--attribute "title-link=http://example.com[${project.name} ${project.version}]"
         							</additionalparam>
 
@@ -317,7 +321,6 @@
         							<docencoding>${project.resources.sourceEncoding}</docencoding>
         							<charset>${project.resources.sourceEncoding}</charset>
         							<aggregate>true</aggregate>
-        							<overview>${basedir}/src/main/javadoc/overview.html</overview>
         							<nohelp>true</nohelp>
         							<header>${project.name}: ${project.version}</header>
         							<footer>${project.name}: ${project.version}</footer>
@@ -343,6 +346,7 @@
         	<plugin>
         		<groupId>org.apache.maven.plugins</groupId>
         		<artifactId>maven-javadoc-plugin</artifactId>
+        		<version>${pm.version.maven-javadoc-plugin}</version>
 
         		<reportSets>
         			<reportSet>
@@ -353,7 +357,38 @@
         			</reportSet>
         		</reportSets>
         		<configuration>
+
         			<destDir>javadocs/api-release</destDir>
+
+        			<source>${maven.compiler.target}</source>
+        			<doclet>org.asciidoctor.Asciidoclet</doclet>
+        			<docletArtifact>
+        				<groupId>org.asciidoctor</groupId>
+        				<artifactId>asciidoclet</artifactId>
+        				<version>${pm.version.asciidoctor.asciidoclet}</version>
+        			</docletArtifact>
+        			<overview>src/main/asciidoc/overview.adoc</overview>
+        			<additionalparam>
+        				--base-dir ${project.basedir}/src
+        				--attribute "name=${project.name}"
+        				--attribute "release-version=${project.version}"
+        				--attribute "title-link=http://example.com[${project.name} ${project.version}]"
+        			</additionalparam>
+
+        			<encoding>${project.resources.sourceEncoding}</encoding>
+        			<docencoding>${project.resources.sourceEncoding}</docencoding>
+        			<charset>${project.resources.sourceEncoding}</charset>
+        			<aggregate>true</aggregate>
+        			<nohelp>true</nohelp>
+        			<header>${project.name}: ${project.version}</header>
+        			<footer>${project.name}: ${project.version}</footer>
+        			<doctitle>${project.name}: ${project.version}</doctitle>
+        			<noqualifier>all</noqualifier>
+        			<detectLinks>true</detectLinks>
+        			<detectJavaApiLink>true</detectJavaApiLink>
+        			<javadocDirectory>${basedir}/src/main/javadoc</javadocDirectory>
+        			<docfilessubdirs>true</docfilessubdirs>
+
         		</configuration>
         	</plugin>
         </plugins>

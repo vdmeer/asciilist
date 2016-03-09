@@ -2,6 +2,7 @@
 = ASCII List
 :page-layout: base
 :toc: preamble
+
 :release-version: 0.0.4-SNAPSHOT
 
 Many different lists (itemize/unordered, enumerate/ordered, checklist, description, nested),
@@ -40,8 +41,33 @@ For Maven declare a dependency in the `<dependencies>` section of your POM file.
 
 For other build systems see https://search.maven.org/#artifactdetails\|de.vandermeer\|asciilist\|{release-version}\|jar[Maven Central]
 
-Introduction
-------------
+Features
+--------
+
+The package offers a number of different lists.
+Some of those lists come with specific configuration options.
+
+- Itemize lists (as in LaTeX `itemize` or HTML `ul`)
+- Enumerate lists (as in LaTeX `enumerate` or HTML `ol`)
+- Check lists with items being checked or not checked
+- Description lists (as in LaTeX `description`)
+
+The lists come with several options to add content and to configure render options:
+
+- Add items as plain text, collection of objects, or other lists
+  ** checklist items can be added as a checked or not checked item
+  ** description list items can be added with title and content of the description
+  ** adding lists as item will create nested lists of any combination
+- Set width of the overall list, with automated line wrapping for overlength item text
+- Set indentation and string before and after the list label
+- Enumerate lists can set a label separator
+- Description lists can be one line or two lines, with flexible indentation
+- Set level of items manually
+- Set list style, with a large number of different pre-defined styles available
+
+
+Concepts
+--------
 
 The main concepts are: list, item, label, style.
 
@@ -120,8 +146,7 @@ The standard usage is:
 * use the created string, e.g. print it to a console or write it to a file
 
 
-Create a list
-~~~~~~~~~~~~~
+First, create a list. The example creates an itemize list.
 
 [source, java]
 ----------------------------------------------------------------------------------------
@@ -129,8 +154,9 @@ ItemizeList list = new ItemizeList();
 ----------------------------------------------------------------------------------------
 
 
-Add content (items)
-~~~~~~~~~~~~~~~~~~~
+Next, add content to your list.
+List content are items.
+We add one item at a time.
 
 [source, java]
 ----------------------------------------------------------------------------------------
@@ -140,8 +166,8 @@ list.addItem("item 3");
 ----------------------------------------------------------------------------------------
 
 
-Render the list
-~~~~~~~~~~~~~~~
+Next, render the list.
+This will provide the text output using all settings.
 
 [source, java]
 ----------------------------------------------------------------------------------------
@@ -149,15 +175,15 @@ String rend = list.render();
 ----------------------------------------------------------------------------------------
 
 
-Print the list
-~~~~~~~~~~~~~~
+Finally, print the list to standard out.
 
 [source, java]
 ----------------------------------------------------------------------------------------
 System.out.println(rend);
 ----------------------------------------------------------------------------------------
 
-This will result in the following list:
+The output will be:
+
 ----------------------------------------------------------------------------------------
  * item 1
  * item 2

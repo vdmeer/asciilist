@@ -4,9 +4,10 @@ version=`cat src/bundle/pm/project.properties |grep "mvn.version"|sed -e 's/mvn.
 
 files="
 	src/main/asciidoc/overview-start.adoc
-	src/bundle/doc-fragments/resources.adoc
-	src/bundle/doc-fragments/installation.adoc
-	src/site/asciidoc/introduction.adoc
+	src/site/asciidoc/resources.adoc
+	src/site/asciidoc/installation.adoc
+	src/site/asciidoc/features.adoc
+	src/site/asciidoc/concepts.adoc
 	src/site/asciidoc/getting-started.adoc
 	src/bundle/doc-fragments/examples.adoc
 	src/bundle/doc-fragments/styles.adoc

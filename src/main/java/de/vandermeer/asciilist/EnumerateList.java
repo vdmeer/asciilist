@@ -85,11 +85,74 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	}
 
 	@Override
+	public AsciiList_Enumerate addAllItems(Collection<String> items){
+		if(items!=null){
+			for(String s : items){
+				this.addItem(s);
+			}
+		}
+		return this;
+	}
+
+	@Override
 	public AsciiList_Enumerate addItem(AsciiList list) {
 		Validate.notEmpty(list.getItems());
 		AsciiList add = list.copy();
 		this.items.add(add);
 		return this;
+	}
+
+	@Override
+	public AsciiList_Enumerate addItem(String item){
+		if(!StringUtils.isBlank(item)){
+			this.items.add(new AbstractAsciiListItem(item));
+		}
+		return this;
+	}
+
+	/**
+	 * Calculates and returns the label for a list item.
+	 * @param position the position of the item in the list
+	 * @return calculated label
+	 */
+	protected String calculateItemLabel(int position){
+		String label = this.style.getStyle(this.level).getLabel(position);
+		if(this.parents!=null){
+			label = "";
+			for(int i=0; i<this.parents.length; i++){
+				label += this.style.getStyle(i+1).getLabel(parents[i]) + this.labelSeparator;
+			}
+			label += this.style.getStyle(this.level).getLabel(position);
+		}
+		if(this.useLabelSeparatorAfterLastItem==true){
+			label += this.labelSeparator;
+		}
+		return label;
+	}
+
+	@Override
+	public int calculateMaxIndentation(AsciiListItem item, int position) {
+		return this.preLabelIndent + this.preLabelStr.length() + this.calculateItemLabel(position).length() + this.postLabelStr.length() + this.postLabelIndent;
+	}
+
+	@Override
+	public AsciiList copy() {
+		return new EnumerateList(this);
+	}
+
+	@Override
+	public String getLabelSeparator() {
+		return this.labelSeparator;
+	}
+
+	@Override
+	public int[] getParents() {
+		return this.parents;
+	}
+
+	@Override
+	public boolean isPrepared(){
+		return this.isPrepared;
 	}
 
 	@Override
@@ -114,40 +177,15 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 		}
 	}
 
-	/**
-	 * Calculates and returns the label for a list item.
-	 * @param position the position of the item in the list
-	 * @return calculated label
-	 */
-	protected String calculateItemLabel(int position){
-		String label = this.style.getStyle(this.level).getLabel(position);
-		if(this.parents!=null){
-			label = "";
-			for(int i=0; i<this.parents.length; i++){
-				label += this.style.getStyle(i+1).getLabel(parents[i]) + this.labelSeparator;
-			}
-			label += this.style.getStyle(this.level).getLabel(position);
-		}
-		if(this.useLabelSeparatorAfterLastItem==true){
-			label += this.labelSeparator;
-		}
-		return label;
-	}
-
 	@Override
 	public String renderItem(AsciiListItem item, int position) {
 		return item.render(this.preLabelIndent, this.preLabelStr, this.calculateItemLabel(position), this.postLabelStr, this.postLabelIndent);
 	}
 
 	@Override
-	public AsciiList_Enumerate setParents(int[] parents) {
-		this.parents = parents;
+	public AsciiList_Enumerate setLabelSeparator(String separator) {
+		this.labelSeparator = separator;
 		return this;
-	}
-
-	@Override
-	public int[] getParents() {
-		return this.parents;
 	}
 
 	@Override
@@ -159,58 +197,20 @@ public class EnumerateList extends AbstractAsciiList implements AsciiList_Enumer
 	}
 
 	@Override
-	public AsciiList copy() {
-		return new EnumerateList(this);
-	}
-
-	@Override
-	public AsciiList_Enumerate setLabelSeparator(String separator) {
-		this.labelSeparator = separator;
+	public AsciiList_Enumerate setParents(int[] parents) {
+		this.parents = parents;
 		return this;
 	}
 
 	@Override
-	public String getLabelSeparator() {
-		return this.labelSeparator;
+	public void setPrepared() {
+		this.isPrepared = true;
 	}
 
 	@Override
 	public AsciiList_Enumerate useLabelSeparatorAfterLastItem(boolean flag) {
 		this.useLabelSeparatorAfterLastItem = flag;
 		return this;
-	}
-
-	@Override
-	public int calculateMaxIndentation(AsciiListItem item, int position) {
-		return this.preLabelIndent + this.preLabelStr.length() + this.calculateItemLabel(position).length() + this.postLabelStr.length() + this.postLabelIndent;
-	}
-
-	@Override
-	public AsciiList_Enumerate addItem(String item){
-		if(!StringUtils.isBlank(item)){
-			this.items.add(new AbstractAsciiListItem(item));
-		}
-		return this;
-	}
-
-	@Override
-	public AsciiList_Enumerate addAllItems(Collection<String> items){
-		if(items!=null){
-			for(String s : items){
-				this.addItem(s);
-			}
-		}
-		return this;
-	}
-
-	@Override
-	public boolean isPrepared(){
-		return this.isPrepared;
-	}
-
-	@Override
-	public void setPrepared() {
-		this.isPrepared = true;
 	}
 
 }

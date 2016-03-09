@@ -520,7 +520,8 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_maven">Maven</a></li>
 </ul>
 </li>
-<li><a href="#_introduction">Introduction</a>
+<li><a href="#_features">Features</a></li>
+<li><a href="#_concepts">Concepts</a>
 <ul class="sectlevel2">
 <li><a href="#_list">List</a></li>
 <li><a href="#_item">Item</a></li>
@@ -528,14 +529,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_style">Style</a></li>
 </ul>
 </li>
-<li><a href="#_getting_started">Getting Started</a>
-<ul class="sectlevel2">
-<li><a href="#_create_a_list">Create a list</a></li>
-<li><a href="#_add_content_items">Add content (items)</a></li>
-<li><a href="#_render_the_list">Render the list</a></li>
-<li><a href="#_print_the_list">Print the list</a></li>
-</ul>
-</li>
+<li><a href="#_getting_started">Getting Started</a></li>
 <li><a href="#_examples">Examples</a>
 <ul class="sectlevel2">
 <li><a href="#_render_behavior">Render behavior</a></li>
@@ -616,7 +610,73 @@ with various degrees of flexibility for labels, indentation, and styles.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_introduction">Introduction</h2>
+<h2 id="_features">Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The package offers a number of different lists.
+Some of those lists come with specific configuration options.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Itemize lists (as in LaTeX <code>itemize</code> or HTML <code>ul</code>)</p>
+</li>
+<li>
+<p>Enumerate lists (as in LaTeX <code>enumerate</code> or HTML <code>ol</code>)</p>
+</li>
+<li>
+<p>Check lists with items being checked or not checked</p>
+</li>
+<li>
+<p>Description lists (as in LaTeX <code>description</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The lists come with several options to add content and to configure render options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add items as plain text, collection of objects, or other lists</p>
+<div class="ulist">
+<ul>
+<li>
+<p>checklist items can be added as a checked or not checked item</p>
+</li>
+<li>
+<p>description list items can be added with title and content of the description</p>
+</li>
+<li>
+<p>adding lists as item will create nested lists of any combination</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Set width of the overall list, with automated line wrapping for overlength item text</p>
+</li>
+<li>
+<p>Set indentation and string before and after the list label</p>
+</li>
+<li>
+<p>Enumerate lists can set a label separator</p>
+</li>
+<li>
+<p>Description lists can be one line or two lines, with flexible indentation</p>
+</li>
+<li>
+<p>Set level of items manually</p>
+</li>
+<li>
+<p>Set list style, with a large number of different pre-defined styles available</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_concepts">Concepts</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The main concepts are: list, item, label, style.</p>
@@ -744,16 +804,19 @@ For some lists (e.g. enumerate) they also allow to re-use parts of the parent li
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="_create_a_list">Create a list</h3>
+<div class="paragraph">
+<p>First, create a list. The example creates an itemize list.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">ItemizeList list = <span class="keyword">new</span> ItemizeList();</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Next, add content to your list.
+List content are items.
+We add one item at a time.</p>
 </div>
-<div class="sect2">
-<h3 id="_add_content_items">Add content (items)</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">list.addItem(<span class="string"><span class="delimiter">&quot;</span><span class="content">item 1</span><span class="delimiter">&quot;</span></span>);
@@ -761,31 +824,31 @@ list.addItem(<span class="string"><span class="delimiter">&quot;</span><span cla
 list.addItem(<span class="string"><span class="delimiter">&quot;</span><span class="content">item 3</span><span class="delimiter">&quot;</span></span>);</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Next, render the list.
+This will provide the text output using all settings.</p>
 </div>
-<div class="sect2">
-<h3 id="_render_the_list">Render the list</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">String</span> rend = list.render();</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Finally, print the list to standard out.</p>
 </div>
-<div class="sect2">
-<h3 id="_print_the_list">Print the list</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">System</span>.out.println(rend);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will result in the following list:</p>
+<p>The output will be:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre> * item 1
  * item 2
  * item 3</pre>
-</div>
 </div>
 </div>
 </div>
@@ -1456,7 +1519,7 @@ II. item 2                       ii. item 2
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-03-08 22:00:05 GMT
+Last updated 2016-03-09 03:06:34 GMT
 </div>
 </div>
 </body>
