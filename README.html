@@ -550,6 +550,9 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel2">
 <li><a href="#_nested_itemize_lists">Nested Itemize Lists</a></li>
 <li><a href="#_enumerate_lists">Enumerate Lists</a></li>
+<li><a href="#_nested_enumerate_lists">Nested Enumerate Lists</a></li>
+<li><a href="#_checklists">Checklists</a></li>
+<li><a href="#_nested_checklists">Nested Checklists</a></li>
 </ul>
 </li>
 </ul>
@@ -1227,12 +1230,233 @@ iii item 3        ⓘⓘⓘ item 3        ⅲ item 3</pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_nested_enumerate_lists">Nested Enumerate Lists</h3>
+<div class="paragraph">
+<p>Several styles for all alphanumeric labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedEnumerateStyles.all_Alpha_ascii</code> for standard upper case characters (left)</p>
+</li>
+<li>
+<p><code>NestedEnumerateStyles.all_alpha_ascii</code> for standard lower case characters (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>A. item 1                        a. item 1
+B. item 2                        b. item 2
+   A. item 1                        a. item 1
+   B. item 2                        b. item 2
+      A. item 1                        a. item 1
+      B. item 2                        b. item 2
+         A. item 1                        a. item 1
+         B. item 2                        b. item 2
+            A. item 1                        a. item 1
+            B. item 2                        b. item 2
+               A. item 1                        a. item 1
+               B. item 2                        b. item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Arabic numbers in <code>NestedEnumerateStyles.all_arabic_ascii</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>1. item 1
+2. item 2
+   1. item 1
+   2. item 2
+      1. item 1
+      2. item 2
+         1. item 1
+         2. item 2
+            1. item 1
+            2. item 2
+               1. item 1
+               2. item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Several styles for all roman number labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedEnumerateStyles.all_Roman_ascii</code> for upper case roman numbers (left)</p>
+</li>
+<li>
+<p><code>NestedEnumerateStyles.all_roman_ascii</code> for lower case roman numbers (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>I. item 1                        i. item 1
+II. item 2                       ii. item 2
+   I. item 1                        i. item 1
+   II. item 2                       ii. item 2
+      I. item 1                        i. item 1
+      II. item 2                       ii. item 2
+         I. item 1                        i. item 1
+         II. item 2                       ii. item 2
+            I. item 1                        i. item 1
+            II. item 2                       ii. item 2
+               I. item 1                        i. item 1
+               II. item 2                       ii. item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Styles for Arabic supscript and superscript labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedEnumerateStyles.all_utf_arabic_subscript</code> for supscript numbers (left)</p>
+</li>
+<li>
+<p><code>NestedEnumerateStyles.all_utf_arabic_superscript</code> for superscript numbers (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>₁. item 1                       ¹. item 1
+₂. item 2                       ². item 2
+   ₁. item 1                       ¹. item 1
+   ₂. item 2                       ². item 2
+      ₁. item 1                       ¹. item 1
+      ₂. item 2                       ². item 2
+         ₁. item 1                       ¹. item 1
+         ₂. item 2                       ². item 2
+            ₁. item 1                       ¹. item 1
+            ₂. item 2                       ². item 2
+               ₁. item 1                       ¹. item 1
+               ₂. item 2                       ². item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Mixed styles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman</code> for <mark>#</mark> (left)</p>
+</li>
+<li>
+<p><code>NestedEnumerateStyles.arabic_utf_circled</code> for <mark>#</mark> (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>1. item 1                     ⓵. item 1
+2. item 2                     ⓶. item 2
+   A. item 1                     ①. item 1
+   B. item 2                     ②. item 2
+      a. item 1                     ➀. item 1
+      b. item 2                     ➁. item 2
+         I. item 1                     ➊. item 1
+         II. item 2                    ➋. item 2
+            i. item 1                     ➊. item 1
+            ii. item 2                    ➋. item 2</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checklists">Checklists</h3>
+<div class="paragraph">
+<p>Available styles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CheckListStyles.ASCII_SQUARE_BRACKET_BLANK_X</code> for square brackets and X (left)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_BALLOT_BOX</code> for UTF-8 ballot box characters (middle)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_BALLOT_BOX_X</code> for UTF-8 ballot box characters with X box for checked (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[ ] unchecked item    ☐ unchecked item    ☐ unchecked item
+[X] checked item      ☑ checked item      ☒ checked item</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>More styles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CheckListStyles.UTF_BALLOT_X</code> using blank for unchecked and UTF-8 ballot X for checked items (left)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_BALLOT_X_HEAVY</code> using blank for unchecked and UTF-8 ballot heavy X for checked items (second left)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_CHECKMARK</code> using blank for unchecked and UTF-8 checkmark for checked items (second right)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_MULTIPLICATION_X</code> using blank for unchecked and UTF-8 multiplication x for checked items (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>   unchecked item      unchecked item       unchecked item       unchecked item
+✗ checked item      ✘ checked item      ✓ checked item      ✕ checked item</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nested_checklists">Nested Checklists</h3>
+<div class="paragraph">
+<p>Available styles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedCheckStyles.ALL_SQUARE_BRACKET_BLANK_X</code> for square brackets and X (left)</p>
+</li>
+<li>
+<p><code>NestedCheckStyles.ALL_UTF_BALLOT_BOX</code> for UTF-8 ballot box characters (middle)</p>
+</li>
+<li>
+<p><code>NestedCheckStyles.ALL_UTF_BALLOT_BOX_X</code> for UTF-8 ballot box characters with X box for checked (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+[X] checked item                     ☑ checked item                     ☒ checked item
+   [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+   [X] checked item                     ☑ checked item                     ☒ checked item
+      [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+      [X] checked item                     ☑ checked item                     ☒ checked item
+         [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+         [X] checked item                     ☑ checked item                     ☒ checked item
+            [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+            [X] checked item                     ☑ checked item                     ☒ checked item
+               [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+               [X] checked item                     ☑ checked item                     ☒ checked item</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-03-08 12:19:10 GMT
+Last updated 2016-03-08 13:04:12 GMT
 </div>
 </div>
 </body>

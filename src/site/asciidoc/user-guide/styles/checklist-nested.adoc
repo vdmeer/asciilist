@@ -1,0 +1,23 @@
+=== Nested Checklists
+
+Available styles:
+
+* `NestedCheckStyles.ALL_SQUARE_BRACKET_BLANK_X` for square brackets and X (left)
+* `NestedCheckStyles.ALL_UTF_BALLOT_BOX` for UTF-8 ballot box characters (middle)
+* `NestedCheckStyles.ALL_UTF_BALLOT_BOX_X` for UTF-8 ballot box characters with X box for checked (right)
+
+---------------------------------------------------
+[ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+[X] checked item                     ☑ checked item                     ☒ checked item
+   [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+   [X] checked item                     ☑ checked item                     ☒ checked item
+      [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+      [X] checked item                     ☑ checked item                     ☒ checked item
+         [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+         [X] checked item                     ☑ checked item                     ☒ checked item
+            [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+            [X] checked item                     ☑ checked item                     ☒ checked item
+               [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+               [X] checked item                     ☑ checked item                     ☒ checked item
+---------------------------------------------------
+
