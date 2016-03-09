@@ -12,6 +12,7 @@ files="
 	src/bundle/doc-fragments/styles.adoc
 	src/site/asciidoc/user-guide/styles/itemize-nested.adoc
 	src/site/asciidoc/user-guide/styles/enumerate.adoc
+	src/site/asciidoc/user-guide/styles/enumerate-nested.adoc
 "
 
 output_file=src/bundle/doc/README.adoc

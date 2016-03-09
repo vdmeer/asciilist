@@ -7,6 +7,7 @@ v0.0.4 - refactoring - 2016-03-##
 * fixed problem with Arabic superscript 1
 * fixed a naming error for UTF arrows in itemize styles
 * added all_utf_arabic_superscript to NestedEnumerateStyles
+* renamed a few styles in NestedEnumerateStyles (`aLL` to `all`)
 
 
 v0.0.3 - feature add - 2016-03-01
