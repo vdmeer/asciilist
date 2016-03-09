@@ -1,8 +1,10 @@
 <project>
+
     <body>
         <menu name="Ascii List">
             <item href="introduction.html" name="Introduction" />
             <item href="getting-started.html" name="Getting Started" />
+            <item name="User Guide" />
             <item name="Examples">
                 <item href="examples/check-lists.html" name="Checklists" />
                 <item href="examples/enumerate-index.html" name="Enumerate List" />
@@ -10,9 +12,17 @@
                 <item href="examples/render-behavior.html" name="Render Behavior" />
                 <item href="examples/width-line-wrapping.html" name="Width and Line Wrapping" />
             </item>
+            <item href="javadocs/api-release/index.html" name="API Doc (Current Release)" />
             <item href="changelog.html" name="Change Log" />
         </menu>
         <menu ref="reports" inherit="top"/>
         <menu ref="modules"/> 
     </body>
+
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.5</version>
+    </skin>
+
 </project>

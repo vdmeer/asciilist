@@ -109,13 +109,6 @@
             <version>1.0</version>
             <scope>test</scope>
         </dependency>
-
-  <dependency>
-    <groupId>org.asciidoctor</groupId>
-    <artifactId>asciidoctorj</artifactId>
-    <version>1.5.4</version>
-  </dependency>
-
     </dependencies>
 
 <!--
@@ -239,10 +232,7 @@
         							<resources>
         								<resource>
         									<directory>src/bundle/doc</directory>
-        									<includes>
-        										<include>CHANGELOG*</include>
-        										<include>README*</include>
-        									</includes>
+        									<filtering>true</filtering>
         								</resource>
         							</resources>
         						</configuration>
@@ -315,7 +305,7 @@
         								<artifactId>asciidoclet</artifactId>
         								<version>${pm.version.asciidoctor.asciidoclet}</version>
         							</docletArtifact>
-        							<overview>src/main/asciidoc/overview.adoc</overview>
+        							<overview>src/main/java/overview.adoc</overview>
         							<additionalparam>
         								--base-dir ${project.basedir}
         								--attribute "name=${project.name}"
@@ -327,6 +317,7 @@
         							<docencoding>${project.resources.sourceEncoding}</docencoding>
         							<charset>${project.resources.sourceEncoding}</charset>
         							<aggregate>true</aggregate>
+        							<overview>${basedir}/src/main/javadoc/overview.html</overview>
         							<nohelp>true</nohelp>
         							<header>${project.name}: ${project.version}</header>
         							<footer>${project.name}: ${project.version}</footer>
