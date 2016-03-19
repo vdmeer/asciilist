@@ -23,7 +23,7 @@ import de.vandermeer.asciilist.AsciiList_Check;
  * Customizable style for nested check lists - {@link AsciiList_Check}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.3 build 160301 (01-Mar-16) for Java 1.7
+ * @version    v1.0.0 build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
 public interface ListStyle_CheckNested extends ListStyle {
