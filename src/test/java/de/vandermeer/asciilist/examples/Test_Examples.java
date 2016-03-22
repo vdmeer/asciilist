@@ -17,15 +17,17 @@ package de.vandermeer.asciilist.examples;
 
 import org.junit.Test;
 
+import de.vandermeer.skb.interfaces.StandardExampleRunner;
+
 
 /**
  * Tests for ASCII List for code used in documentation.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.0.2
  */
-public class Test_Examples extends StandardExampleRunner {
+public class Test_Examples implements StandardExampleRunner {
 
 	@Test
 	public void test_SimpleListItemize(){

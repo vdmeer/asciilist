@@ -20,12 +20,13 @@ import org.apache.commons.lang3.text.StrBuilder;
 import de.vandermeer.asciilist.AsciiList;
 import de.vandermeer.asciilist.EnumerateList;
 import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
+import de.vandermeer.skb.interfaces.StandardExample;
 
 /**
  * AsciiList example for an enumerate list with subscripts.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.0.4
  */
 public class AL_Example_EnumerateSubscript implements StandardExample {

@@ -27,7 +27,7 @@ import de.vandermeer.asciilist.commons.RomanNumberLiterals;
  * Styles for an enumerate list /ordered list - {@link AsciiList_Enumerate}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 160306 (06-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
 public enum EnumerateStyles implements ListStyle_Enumerate {
