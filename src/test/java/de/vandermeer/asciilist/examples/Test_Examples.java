@@ -19,7 +19,6 @@ import org.junit.Test;
 
 import de.vandermeer.skb.interfaces.StandardExampleRunner;
 
-
 /**
  * Tests for ASCII List for code used in documentation.
  *

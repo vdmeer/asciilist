@@ -18,6 +18,8 @@ package de.vandermeer.asciilist;
 import java.util.List;
 
 import de.vandermeer.asciilist.styles.ListStyle;
+import de.vandermeer.skb.interfaces.categories.does.DoesRender;
+import de.vandermeer.skb.interfaces.categories.does.DoesRenderToWidth;
 
 /**
  * Base of the ASCII list hierarchy - standard interface.
@@ -44,7 +46,7 @@ import de.vandermeer.asciilist.styles.ListStyle;
  * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
-public interface AsciiList {
+public interface AsciiList extends DoesRender, DoesRenderToWidth {
 
 	/**
 	 * A string representing an implicit new line for item rendering or internal processing such as word wrapping.
@@ -121,12 +123,18 @@ public interface AsciiList {
 	 */
 	void prepareRender();
 
-	/**
-	 * Renders the list, generates a string representation of it.
-	 * @return rendered list
-	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligibly
-	 */
-	String render();
+//	/**
+//	 * Renders the list, generates a string representation of it.
+//	 * @return rendered list
+//	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligibly
+//	 */
+//	String render();
+
+	@Override
+	default String render(int width){
+		this.setWidth(width);
+		return this.render();
+	}
 
 	/**
 	 * Renders a particular item of a list.
