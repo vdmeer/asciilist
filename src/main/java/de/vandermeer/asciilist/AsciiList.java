@@ -1,4 +1,4 @@
-/* Copyright 2015 Sven van der Meer <vdmeer.sven@mykolab.com>
+/* Copyright 2016 Sven van der Meer <vdmeer.sven@mykolab.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,190 +15,157 @@
 
 package de.vandermeer.asciilist;
 
+import java.util.Collection;
 import java.util.List;
 
-import de.vandermeer.asciilist.styles.ListStyle;
-import de.vandermeer.skb.interfaces.categories.does.DoesRender;
-import de.vandermeer.skb.interfaces.categories.does.DoesRenderToWidth;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.text.StrBuilder;
+
+import de.vandermeer.skb.interfaces.document.IsList;
+import de.vandermeer.skb.interfaces.strategies.collections.IsListStrategy;
+import de.vandermeer.skb.interfaces.strategies.collections.list.ArrayListStrategy;
+import de.vandermeer.skb.interfaces.transformers.ClusterElementTransformer;
+import de.vandermeer.skb.interfaces.transformers.StrBuilder_To_String;
 
 /**
- * Base of the ASCII list hierarchy - standard interface.
- * The interface covers all generic functionality for ASCII lists:
- * 
- * * Set/get all label related formatting options (pre-label indentation and string, post-label indentation and string)
- * * Set list style (based on the style interface
- * * Render the list
- * * Retrieve list items for processing
- * 
- * Some methods a more for internal use (by an abstract implementation supporting specific lists):
- * 
- * * Set/get level (of nested lists)
- * * Calculation methods (e.g. for maximum indentation)
- * * Render and individual items
- * 
- * The interface does not define any method to add content to a list.
- * The reason for that is that list content is very specific for a particular list.
- * For instance, a description will need a term and a description as content for an item,
- * while an itemize list requires only text for the item.
- * In addition: some lists allow for adding other lists (e.g. enumerate, itemize) while other lists do not support that (e.g. checklist).
+ * An ASCII list with some formatting options.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
-public interface AsciiList extends DoesRender, DoesRenderToWidth {
+public abstract class AsciiList<C extends AL_Context<?, ?, ?, ?>, I extends ListItem, R extends AL_Renderer<I, C>> implements IsList {
+
+	/** The list context with optional settings for the list. */
+	protected C ctx;
+
+	/** The items of a list. */
+	protected List<I> items;
+
+	/** The default list strategy for the item list, set to {@link ArrayListStrategy}. */
+	protected IsListStrategy<?, I> defaultStrategy = ArrayListStrategy.create();
+
+	/** The renderer for this context. */
+	protected R renderer;
 
 	/**
-	 * A string representing an implicit new line for item rendering or internal processing such as word wrapping.
+	 * Creates a new list.
 	 */
-	String IMPLICIT_NEWLINE = "@@@@";
+	public AsciiList(){
+		this(null, null);
+	}
 
 	/**
-	 * Calculates indentation for each element of the list and returns the maximum value.
-	 * The max value contains the pre-label indent, the pre-label string, the actual label, the post-label string and the post-label indent.
-	 * This maximum indentation can then be used in the rendering process to indent all items and sub-lists, even with different length labels.
-	 * @return maximum indentation calculated over all list items
+	 * Creates a new list.
+	 * @param isContinued true if the list is continued from a previous list of the same type, false otherwise
+	 * @param ctx the list context, new default context created if null
+	 * @throws NullPointerException if the finally set context is null (that is the given context as well as the locally created context were null)
 	 */
-	int calculateMaxIndentation();
+	public AsciiList(IsListStrategy<?, I> strategy, C ctx){
+		this.items = (strategy==null)?this.defaultStrategy.get():strategy.get();
+		this.ctx = (ctx==null)?this.getNewContext():ctx;
+		Validate.notNull(this.ctx, "could not create any context, all attempts are 'null'");
+	}
 
 	/**
-	 * Calculates indentation for a list item.
-	 * @param item the item to be used for calculation
-	 * @param position the position of the item in the item list
-	 * @return item indentation
+	 * Returns a new context for the list
+	 * @return new context, cannot be null
 	 */
-	int calculateMaxIndentation(AsciiListItem item, int position);
+	protected abstract C getNewContext();
 
 	/**
-	 * Returns a copy of the list.
-	 * @return copy of the list
+	 * Returns the list context.
+	 * @return context, null if not set
 	 */
-	AsciiList copy();
+	public C getContext(){
+		return this.ctx;
+	}
 
 	/**
 	 * Returns the items of the list.
 	 * @return items of the list
 	 */
-	List<Object> getItems();
-
-	/**
-	 * Returns the level of the list.
-	 * @return list level, one if top list, greater than one if it is a nested list
-	 */
-	int getLevel();
-
-	/**
-	 * Sets the indentation to be used for an item after the label (and before the post-label string).
-	 * @return indent post-label indentation
-	 */
-	int getPostLabelIndent();
-
-	/**
-	 * Sets a string to be printed after an item label (and before the post-label indentation).
-	 * @return postLabel string for post label
-	 */
-	String getPostLabelString();
-
-	/**
-	 * Gets the indentation to be used for an item before the label (and after the pre-label string).
-	 * @return indent pre-label indentation
-	 */
-	int getPreLabelIndent();
-
-	/**
-	 * Sets a string to be printed before an item label (and after the pre-label indentation).
-	 * @return preLabel string for pre-label
-	 */
-	String getPreLabelString();
-
-	/**
-	 * Returns a flag indicating if the list is continued from a previous list of the same type or not.
-	 * @return true if is continued, false otherwise
-	 */
-	boolean isContinuedList();
-
-	/**
-	 * Prepares a list to be rendered.
-	 * This method should be automatically called by the list before starting the rendering.
-	 */
-	void prepareRender();
-
-//	/**
-//	 * Renders the list, generates a string representation of it.
-//	 * @return rendered list
-//	 * @throws IllegalArgumentException if a set width is too small for any list item being rendered intelligibly
-//	 */
-//	String render();
+	public List<I> getItems() {
+		return this.items;
+	}
 
 	@Override
-	default String render(int width){
-		this.setWidth(width);
-		return this.render();
+	public StrBuilder toLog() {
+		StrBuilder ret = new StrBuilder();
+		for(ListItem i : this.getItems()){
+			ret.append(i.toLog());
+			ret.appendNewLine();
+		}
+		return ret;
+	}
+
+	@Override
+	public String render() {
+		return new StrBuilder().appendWithSeparators(this.renderer.render(this.getRawContent(), this.ctx), "\n").toString();
+	}
+
+	@Override
+	public String render(int width) {
+		C renderCtx = this.getNewContext();
+		renderCtx.copySettings(this.ctx);
+		renderCtx.inheritSettings(this.ctx);
+		renderCtx.setWidth(renderCtx.getTextWidth(width + renderCtx.getItemString().length()));
+		return new StrBuilder().appendWithSeparators(this.renderer.render(this.getRawContent(), renderCtx), "\n").toString();
+	}
+
+	@Override
+	public Collection<String> renderAsCollection() {
+		return ClusterElementTransformer.create().transform(
+				this.renderer.render(this.getRawContent(), this.ctx),
+				StrBuilder_To_String.create(),
+				ArrayListStrategy.create()
+		);
+	}
+
+	@Override
+	public Collection<String> renderAsCollection(int width) {
+		return ClusterElementTransformer.create().transform(
+				this.renderer.render(this.getRawContent(), this.ctx, this.ctx.getTextWidth(width)),
+				StrBuilder_To_String.create(),
+				ArrayListStrategy.create()
+		);
+	}
+
+	public Collection<StrBuilder> renderAsChild(AL_Context<?, ?, ?, ?> parentCtx, int parentIndent){
+		C renderCtx = this.getNewContext();
+		renderCtx.copySettings(this.ctx);
+		renderCtx.inheritSettings(parentCtx);
+		renderCtx.setLevel(parentCtx.getLevel()+1);
+		renderCtx.setItemMargin(parentIndent);
+		renderCtx.setWidth((parentCtx.getWidth()+(renderCtx.getItemMargin()-renderCtx.getItemString().length())));
+		return this.renderer.render(this.getRawContent(), renderCtx);
+	}
+
+	@Override
+	public int getLongestLineLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<I> getRawContent() {
+		return this.items;
+	}
+
+	@Override
+	public AL_Renderer<I, C> getRenderer(){
+		return this.renderer;
 	}
 
 	/**
-	 * Renders a particular item of a list.
-	 * @param item the item to be rendered
-	 * @param position the position of the item in the item list
-	 * @return rendered item
+	 * Sets the renderer for the context.
+	 * @param renderer new renderer, only set if not null
+	 * @return this to allow chaining
 	 */
-	String renderItem(AsciiListItem item, int position);
-
-	/**
-	 * Sets the values for pre/post paramters of labels back to their default values.
-	 * @return self to allow for chaining
-	 */
-	AsciiList setLabelDefaults();
-
-	/**
-	 * Sets the level of the list.
-	 * @param level new list level, should only be used if 2 or larger (nested list) using 1 as default
-	 * @return self to allow chaining
-	 */
-	AsciiList setLevel(int level);
-
-	/**
-	 * Sets the style of a list.
-	 * The style is specific to the list type.
-	 * To set a style the list will go through all list items and set the style if the item class supports the given style.
-	 * @param style new list style
-	 * @return self to allow chaining
-	 */
-	AsciiList setListStyle(ListStyle style);
-
-	/**
-	 * Sets the indentation to be used for an item after the label (and before the post-label string).
-	 * @param indent post-label indentation, negative integer will use default
-	 * @return self to allow chaining
-	 */
-	AsciiList setPostLabelIndent(int indent);
-
-	/**
-	 * Sets a string to be printed after an item label (and before the post-label indentation).
-	 * @param str string for post label
-	 * @return self to allow chaining
-	 */
-	AsciiList setPostLabelString(String str);
-
-	/**
-	 * Sets the indentation to be used for an item before the label (and after the pre-label string).
-	 * @param indent pre-label indentation, negative integer will use default
-	 * @return self to allow chaining
-	 */
-	AsciiList setPreLabelIndent(int indent);
-
-	/**
-	 * Sets a string to be printed before an item label (and after the pre-label indentation).
-	 * @param str string for pre-label
-	 * @return self to allow chaining
-	 */
-	AsciiList setPreLabelString(String str);
-
-	/**
-	 * Sets the (maximum) width a list (and all items and sub-lists) can have when being rendered.
-	 * @param width maximum width
-	 * @return self to allow chaining
-	 */
-	AsciiList setWidth(int width);
-
+	public AsciiList<?, ?, ?> setRenderer(R renderer){
+		if(renderer!=null){
+			this.renderer = renderer;
+		}
+		return this;
+	}
 }

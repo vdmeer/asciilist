@@ -1,0 +1,53 @@
+/* Copyright 2016 Sven van der Meer <vdmeer.sven@mykolab.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package de.vandermeer.asciilist.enumerate;
+
+import de.vandermeer.asciilist.AL_Renderer;
+import de.vandermeer.asciilist.ListItem;
+
+/**
+ * An enumerate list renderer.
+ *
+ * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
+ * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
+ * @since      v0.1.0
+ */
+public class El_Renderer implements AL_Renderer<ListItem, El_Context> {
+
+	/**
+	 * Creates a new renderer.
+	 * @return new renderer
+	 */
+	static El_Renderer create(){
+		return new El_Renderer() {};
+	}
+
+//	@Override
+//	public StrBuilder getItemString(ListItem item, El_Context ctx) {
+//		StrBuilder ret = new StrBuilder(20);
+//		ret
+//			.appendPadding(ctx.getItemMargin(), ctx.getItemChar())
+//			.append(ctx.getLeftLabelString())
+//			.appendPadding(ctx.getLabelLeftMargin(), ctx.getLabelLeftChar())
+//			.append(ctx.getStyle().getStyle(ctx.getLevel()).getLabel(ctx.getLevel()))
+//			.appendPadding(ctx.getLabelRightMargin(), ctx.getLabelRightChar())
+//			.append(ctx.getRightLabelString())
+//			.appendPadding(ctx.getTextLeftMargin(), ctx.getTextLeftChar())
+//		;
+//		return ret;
+//	}
+
+}

@@ -63,6 +63,7 @@
 		<pm.version.maven-javadoc-plugin>2.10.3</pm.version.maven-javadoc-plugin>
 		<pm.version.doxia-site-renderer>1.7</pm.version.doxia-site-renderer>
 		<pm.version.maven-resources-plugin>2.4.3</pm.version.maven-resources-plugin>
+		<mp.project.url>https://github.com/vdmeer/asciilist</mp.project.url>
     </properties>
 
     <!--
@@ -94,9 +95,15 @@
     <dependencies>
         <dependency>
             <groupId>de.vandermeer</groupId>
-            <artifactId>skb-interfaces</artifactId>
+            <artifactId>ascii-utf-themes</artifactId>
             <version>0.0.1</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.vandermeer</groupId>
+            <artifactId>char-translation</artifactId>
+            <version>0.0.1</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -164,7 +171,7 @@
             		<dependency>
             			<groupId>org.apache.maven.doxia</groupId>
             			<artifactId>doxia-site-renderer</artifactId>
-            			<version>1.7</version>
+            			<version>${pm.version.doxia-site-renderer}</version>
             		</dependency>
             		<dependency>
             			<groupId>org.asciidoctor</groupId>
@@ -193,7 +200,7 @@
       -->
     <profiles>
         <profile>
-        	<id>env-bundledoc</id>
+        	<id>env-bdoc</id>
         	<build>
         		<plugins>
         			<!-- Create HTML versions of Changelog/Readme -->
@@ -301,7 +308,6 @@
         							<goal>jar</goal>
         						</goals>
         						<configuration>
-
         							<source>${maven.compiler.target}</source>
         							<doclet>org.asciidoctor.Asciidoclet</doclet>
         							<docletArtifact>
@@ -314,9 +320,8 @@
         								--base-dir ${project.basedir}/src
         								--attribute "name=${project.name}"
         								--attribute "release-version=${project.version}"
-        								--attribute "title-link=http://example.com[${project.name} ${project.version}]"
+        								--attribute "title-link=${mp.project.url}/[${project.name} ${project.version}]"
         							</additionalparam>
-
         							<encoding>${project.resources.sourceEncoding}</encoding>
         							<docencoding>${project.resources.sourceEncoding}</docencoding>
         							<charset>${project.resources.sourceEncoding}</charset>
@@ -337,8 +342,6 @@
         		</plugins>
         	</build>
         </profile>
-
-
     </profiles>
 
     <reporting>
