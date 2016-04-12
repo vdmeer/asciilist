@@ -27,7 +27,7 @@ import de.vandermeer.skb.interfaces.strategies.collections.sortedset.TreeSetStra
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class DescriptionList extends AbstractAsciiList<Dl_Context, DescriptionListItem, Dl_Renderer> {
+public class DescriptionList extends AbstractAsciiList<DescriptionListContext, DescriptionListItem, DescriptionListRenderer> {
 
 	/**
 	 * Creates a new description list with a sorted set for the list items.
@@ -40,7 +40,7 @@ public class DescriptionList extends AbstractAsciiList<Dl_Context, DescriptionLi
 	 * Creates a new description list with a sorted set for the list items.
 	 * @param ctx list context, using default if null
 	 */
-	public DescriptionList(Dl_Context ctx){
+	public DescriptionList(DescriptionListContext ctx){
 		this(ctx, TreeSetStrategy.create());
 	}
 
@@ -57,9 +57,9 @@ public class DescriptionList extends AbstractAsciiList<Dl_Context, DescriptionLi
 	 * @param ctx list context, using default if null
 	 * @param strategy the list strategy to be used for the list of items
 	 */
-	public DescriptionList(Dl_Context ctx, IsSetStrategy<?, DescriptionListItem> strategy){
+	public DescriptionList(DescriptionListContext ctx, IsSetStrategy<?, DescriptionListItem> strategy){
 		super(ctx, strategy);
-		this.renderer = new Dl_Renderer();
+		this.renderer = new DescriptionListRenderer();
 	}
 
 	/**
@@ -86,8 +86,8 @@ public class DescriptionList extends AbstractAsciiList<Dl_Context, DescriptionLi
 	}
 
 	@Override
-	public Dl_Context getNewContext() {
-		return new Dl_Context();
+	public DescriptionListContext getNewContext() {
+		return new DescriptionListContext();
 	}
 
 	/**

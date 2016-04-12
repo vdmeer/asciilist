@@ -26,7 +26,7 @@ import de.vandermeer.skb.interfaces.strategies.collections.IsSetStrategy;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class EnumerateList extends AbstractAsciiList<El_Context, EnumerateListItem, El_Renderer> {
+public class EnumerateList extends AbstractAsciiList<EnumerateListContext, EnumerateListItem, EnumerateListRenderer> {
 
 	/**
 	 * Creates a new enumerate list with a linked hash set for list items.
@@ -39,7 +39,7 @@ public class EnumerateList extends AbstractAsciiList<El_Context, EnumerateListIt
 	 * Creates a new enumerate list with a linked hash set for list items.
 	 * @param ctx list context, using default if null
 	 */
-	public EnumerateList(El_Context ctx){
+	public EnumerateList(EnumerateListContext ctx){
 		this(ctx, null);
 	}
 
@@ -56,9 +56,9 @@ public class EnumerateList extends AbstractAsciiList<El_Context, EnumerateListIt
 	 * @param ctx list context, using default if null
 	 * @param strategy the list strategy to be used for the list of items
 	 */
-	public EnumerateList(El_Context ctx, IsSetStrategy<?, EnumerateListItem> strategy){
+	public EnumerateList(EnumerateListContext ctx, IsSetStrategy<?, EnumerateListItem> strategy){
 		super(ctx, strategy);
-		this.renderer = new El_Renderer();
+		this.renderer = new EnumerateListRenderer();
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class EnumerateList extends AbstractAsciiList<El_Context, EnumerateListIt
 	}
 
 	@Override
-	public El_Context getNewContext() {
-		return new El_Context();
+	public EnumerateListContext getNewContext() {
+		return new EnumerateListContext();
 	}
 
 	/**

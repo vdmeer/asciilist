@@ -29,13 +29,13 @@ import de.vandermeer.skb.interfaces.transformers.ClusterElementTransformer;
 import de.vandermeer.skb.interfaces.transformers.StrBuilder_To_String;
 
 /**
- * Abstract implementation of an ASCII list.
+ * Fully functional abstract implementation of {@link AsciiList}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
-public abstract class AbstractAsciiList<C extends AL_Context<?, ?, ?, ?>, I extends ListItem, R extends AL_Renderer<I, C>> implements AsciiList<C, I, R> {
+public abstract class AbstractAsciiList<C extends AbstractAsciiListContext, I extends AsciiListItem, R extends AbstractAsciiListRenderer<I, C>> implements AsciiList<C, I, R> {
 
 	/** The list context with optional settings for the list. */
 	public final C ctx;
@@ -107,7 +107,7 @@ public abstract class AbstractAsciiList<C extends AL_Context<?, ?, ?, ?>, I exte
 	}
 
 	@Override
-	public AL_Renderer<I, C> getRenderer(){
+	public AbstractAsciiListRenderer<I, C> getRenderer(){
 		return this.renderer;
 	}
 
@@ -126,7 +126,7 @@ public abstract class AbstractAsciiList<C extends AL_Context<?, ?, ?, ?>, I exte
 	}
 
 	@Override
-	public Collection<StrBuilder> renderAsChild(AL_Context<?, ?, ?, ?> parentCtx, int parentIndent, int parentIndex){
+	public Collection<StrBuilder> renderAsChild(AsciiListContext parentCtx, int parentIndent, int parentIndex){
 		C renderCtx = this.getNewContext();
 		renderCtx.copySettings(this.ctx);
 		renderCtx.setParents(ArrayUtils.add(parentCtx.getParentIndex(), parentIndex));
@@ -166,7 +166,7 @@ public abstract class AbstractAsciiList<C extends AL_Context<?, ?, ?, ?>, I exte
 	@Override
 	public StrBuilder toLog() {
 		StrBuilder ret = new StrBuilder();
-		for(ListItem i : this.getItems()){
+		for(AsciiListItem i : this.getItems()){
 			ret.append(i.toLog());
 			ret.appendNewLine();
 		}

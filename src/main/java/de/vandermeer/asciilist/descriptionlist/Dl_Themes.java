@@ -35,7 +35,7 @@ public interface Dl_Themes {
 	static DescriptionListTheme latex(){
 		return new DescriptionListTheme() {
 			@Override
-			public void apply(Dl_Context ctx) {
+			public void apply(DescriptionListContext ctx) {
 				ctx.setTargetTranslator(new Text2Latex());
 				ctx.setListStart("\\begin{description}");
 				ctx.setListEnd("\\end{description}");

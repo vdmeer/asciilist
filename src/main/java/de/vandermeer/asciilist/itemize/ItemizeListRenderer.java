@@ -13,26 +13,25 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist;
+package de.vandermeer.asciilist.itemize;
+
+import de.vandermeer.asciilist.AbstractAsciiListRenderer;
 
 /**
- * Indentation object for an {@link AL_Context}.
+ * An itemize list renderer.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class AL_CtxtIndents {
+public class ItemizeListRenderer extends AbstractAsciiListRenderer<ItemizeListItem, ItemizeListContext> {
 
 	/**
-	 * Creates a new object.
+	 * Creates a new renderer.
+	 * @return new renderer
 	 */
-	public AL_CtxtIndents(){}
-
-	/**
-	 * Copies all settings from the given object.
-	 * @param indents the object to copy settings from
-	 */
-	public void copySettings(AL_CtxtIndents indents){
+	static ItemizeListRenderer create(){
+		return new ItemizeListRenderer() {};
 	}
+
 }

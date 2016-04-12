@@ -26,7 +26,7 @@ import de.vandermeer.skb.interfaces.strategies.collections.IsSetStrategy;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class Checklist extends AbstractAsciiList<Cl_Context, ChecklistItem, Cl_Renderer> {
+public class Checklist extends AbstractAsciiList<ChecklistContext, ChecklistItem, ChecklistRenderer> {
 
 	/**
 	 * Creates a new checklist list with a linked hash set for list items.
@@ -39,7 +39,7 @@ public class Checklist extends AbstractAsciiList<Cl_Context, ChecklistItem, Cl_R
 	 * Creates a new checklist list with a linked hash set for list items.
 	 * @param ctx list context, using default if null
 	 */
-	public Checklist(Cl_Context ctx){
+	public Checklist(ChecklistContext ctx){
 		this(ctx, null);
 	}
 
@@ -56,9 +56,9 @@ public class Checklist extends AbstractAsciiList<Cl_Context, ChecklistItem, Cl_R
 	 * @param ctx list context, using default if null
 	 * @param strategy the list strategy to be used for the list of items
 	 */
-	public Checklist(Cl_Context ctx, IsSetStrategy<?, ChecklistItem> strategy){
+	public Checklist(ChecklistContext ctx, IsSetStrategy<?, ChecklistItem> strategy){
 		super(ctx, strategy);
-		this.renderer = new Cl_Renderer();
+		this.renderer = new ChecklistRenderer();
 	}
 
 	/**
@@ -85,8 +85,8 @@ public class Checklist extends AbstractAsciiList<Cl_Context, ChecklistItem, Cl_R
 	}
 
 	@Override
-	public Cl_Context getNewContext() {
-		return new Cl_Context();
+	public ChecklistContext getNewContext() {
+		return new ChecklistContext();
 	}
 
 }

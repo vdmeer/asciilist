@@ -17,8 +17,8 @@ package de.vandermeer.asciilist.descriptionlist;
 
 import org.apache.commons.lang3.Validate;
 
+import de.vandermeer.asciilist.AbstractAsciiListItem;
 import de.vandermeer.asciilist.AsciiList;
-import de.vandermeer.asciilist.ListItem;
 
 /**
  * Description list item.
@@ -27,7 +27,7 @@ import de.vandermeer.asciilist.ListItem;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class DescriptionListItem extends ListItem implements Comparable<DescriptionListItem> {
+public class DescriptionListItem extends AbstractAsciiListItem implements Comparable<DescriptionListItem> {
 
 	/** The description key. */
 	protected String key;

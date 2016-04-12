@@ -17,11 +17,9 @@ package de.vandermeer.asciilist.descriptionlist;
 
 import org.apache.commons.lang3.text.StrBuilder;
 
-import de.vandermeer.asciilist.AL_Context;
-import de.vandermeer.asciilist.AL_CtxtCharacters;
-import de.vandermeer.asciilist.AL_CtxtMargins;
-import de.vandermeer.asciilist.AL_CtxtStrings;
-import de.vandermeer.asciilist.ListItem;
+import de.vandermeer.asciilist.AbstractAsciiListContext;
+import de.vandermeer.asciilist.AsciiListContext;
+import de.vandermeer.asciilist.AsciiListItem;
 
 /**
  * Context for a description list.
@@ -30,7 +28,10 @@ import de.vandermeer.asciilist.ListItem;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class Dl_Context extends AL_Context<AL_CtxtCharacters, Dl_CtxtIndents, AL_CtxtMargins, AL_CtxtStrings>{
+public class DescriptionListContext extends AbstractAsciiListContext {
+
+	/** The indentation for the description. */
+	protected int descriptionIndent;
 
 	/** Flag directing the lists render behavior, true for single line, false for multiline, default is single line. */
 	protected boolean useSameLine;
@@ -38,16 +39,16 @@ public class Dl_Context extends AL_Context<AL_CtxtCharacters, Dl_CtxtIndents, AL
 	/**
 	 * Creates a new context object for a description lists.
 	 */
-	public Dl_Context(){
+	public DescriptionListContext(){
 		this.init();
 	}
 
 	@Override
-	public Dl_Context copySettings(AL_Context<?, ?, ?, ?> ctx) {
+	public DescriptionListContext copySettings(AsciiListContext ctx) {
 		super.copySettings(ctx);
-		if(ctx instanceof Dl_Context){
-			this.useSameLine = ((Dl_Context) ctx).useSameLine;
-			this.indents.copySettings(((Dl_Context)ctx).indents);
+		if(ctx instanceof DescriptionListContext){
+			this.useSameLine = ((DescriptionListContext) ctx).useSameLine;
+			this.descriptionIndent = ((DescriptionListContext) ctx).descriptionIndent;
 		}
 		return this;
 	}
@@ -66,11 +67,11 @@ public class Dl_Context extends AL_Context<AL_CtxtCharacters, Dl_CtxtIndents, AL
 	 * @return description indentation
 	 */
 	public int getDescriptionIndent() {
-		return this.indents.descriptionIndent;
+		return this.descriptionIndent;
 	}
 
 	@Override
-	public <LI extends ListItem> StrBuilder getItemString(LI item, int index) {
+	public <LI extends AsciiListItem> StrBuilder getItemString(LI item, int index) {
 		StrBuilder ret = new StrBuilder(20);
 		ret
 			.appendPadding(this.getItemMargin(), this.getItemChar())
@@ -103,8 +104,8 @@ public class Dl_Context extends AL_Context<AL_CtxtCharacters, Dl_CtxtIndents, AL
 	}
 
 	@Override
-	public AL_Context<?, ?, ?, ?> inheritSettings(AL_Context<?, ?, ?, ?> ctx) {
-		if(ctx instanceof Dl_Context){
+	public DescriptionListContext inheritSettings(AsciiListContext ctx) {
+		if(ctx instanceof DescriptionListContext){
 		}
 		return this;
 	}
@@ -112,10 +113,8 @@ public class Dl_Context extends AL_Context<AL_CtxtCharacters, Dl_CtxtIndents, AL
 	@Override
 	public void init(){
 		super.init();
-		this.characters = new AL_CtxtCharacters();
-		this.indents = new Dl_CtxtIndents();
-		this.margins = new AL_CtxtMargins();
-		this.strings = new AL_CtxtStrings();
+		this.useSameLine = false;
+		this.descriptionIndent = 4;
 	}
 
 	/**
@@ -123,8 +122,10 @@ public class Dl_Context extends AL_Context<AL_CtxtCharacters, Dl_CtxtIndents, AL
 	 * @param descriptionIndent new indentation
 	 * @return this to allow chaining
 	 */
-	public Dl_Context setDescriptionIndent(int descriptionIndent) {
-		this.indents.setDescriptionIndent(descriptionIndent);
+	public DescriptionListContext setDescriptionIndent(int descriptionIndent) {
+		if(descriptionIndent>-1){
+			this.descriptionIndent = descriptionIndent;
+		}
 		return this;
 	}
 
@@ -133,7 +134,7 @@ public class Dl_Context extends AL_Context<AL_CtxtCharacters, Dl_CtxtIndents, AL
 	 * @param useSameLine true if same line (key and description on same line), false otherwise
 	 * @return this to allow chaining
 	 */
-	public Dl_Context setUseSameLine(boolean useSameLine) {
+	public DescriptionListContext setUseSameLine(boolean useSameLine) {
 		this.useSameLine = useSameLine;
 		return this;
 	}

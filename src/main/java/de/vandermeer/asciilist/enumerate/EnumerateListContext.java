@@ -19,11 +19,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
-import de.vandermeer.asciilist.AL_Context;
-import de.vandermeer.asciilist.AL_CtxtCharacters;
-import de.vandermeer.asciilist.AL_CtxtIndents;
-import de.vandermeer.asciilist.AL_CtxtMargins;
-import de.vandermeer.asciilist.ListItem;
+import de.vandermeer.asciilist.AbstractAsciiListContext;
+import de.vandermeer.asciilist.AsciiListContext;
+import de.vandermeer.asciilist.AsciiListItem;
 import de.vandermeer.asciithemes.TA_EnumerateList;
 import de.vandermeer.asciithemes.a7.A7_EnumerateLists;
 
@@ -34,7 +32,10 @@ import de.vandermeer.asciithemes.a7.A7_EnumerateLists;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL_CtxtMargins, El_CtxtStrings>{
+public class EnumerateListContext extends AbstractAsciiListContext {
+
+	/** A string to separate numbers, default is dot "'.'". */
+	protected String numberingSeparator = ".";
 
 	/** The style for list items. */
 	protected TA_EnumerateList style = A7_EnumerateLists.number();
@@ -48,24 +49,24 @@ public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	/**
 	 * Creates a new context object for an enumerate lists.
 	 */
-	public El_Context(){
+	public EnumerateListContext(){
 		this.init();
 	}
 
 	@Override
-	public El_Context copySettings(AL_Context<?, ?, ?, ?> ctx) {
+	public EnumerateListContext copySettings(AsciiListContext ctx) {
 		super.copySettings(ctx);
-		if(ctx instanceof El_Context){
-			this.style = ((El_Context)ctx).style;
-			this.inheritStyle = ((El_Context)ctx).inheritStyle;
-			this.useSeparatorAfterLastNumber = ((El_Context)ctx).useSeparatorAfterLastNumber;
-			this.strings.copySettings(((El_Context)ctx).strings);
+		if(ctx instanceof EnumerateListContext){
+			this.style = ((EnumerateListContext)ctx).style;
+			this.inheritStyle = ((EnumerateListContext)ctx).inheritStyle;
+			this.useSeparatorAfterLastNumber = ((EnumerateListContext)ctx).useSeparatorAfterLastNumber;
+			this.numberingSeparator = ((EnumerateListContext)ctx).numberingSeparator;
 		}
 		return this;
 	}
 
 	@Override
-	public <LI extends ListItem> StrBuilder getItemString(LI item, int index) {
+	public <LI extends AsciiListItem> StrBuilder getItemString(LI item, int index) {
 		StrBuilder ret = new StrBuilder(20);
 		ret
 			.appendPadding(this.getItemMargin(), this.getItemChar())
@@ -75,12 +76,12 @@ public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 
 		if(this.parentIndex!=null && index>0){
 			int[] levels = ArrayUtils.add(this.parentIndex, index);
-			ret.append(this.getStyle().getLabel(levels, this.strings.numberingSeparator, this.useSeparatorAfterLastNumber));
+			ret.append(this.getStyle().getLabel(levels, this.numberingSeparator, this.useSeparatorAfterLastNumber));
 		}
 		else if(index>0){
 			ret.append(this.getStyle().getLabel(index));
 			if(this.useSeparatorAfterLastNumber){
-				ret.append(this.strings.numberingSeparator);
+				ret.append(this.numberingSeparator);
 			}
 		}
 		else{
@@ -99,7 +100,7 @@ public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	 * @return label separator string
 	 */
 	public String getNumberingSeparator() {
-		return this.strings.numberingSeparator;
+		return this.numberingSeparator;
 	}
 
 	/**
@@ -119,10 +120,10 @@ public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	}
 
 	@Override
-	public AL_Context<?, ?, ?, ?> inheritSettings(AL_Context<?, ?, ?, ?> ctx) {
-		if(ctx instanceof El_Context){
+	public EnumerateListContext inheritSettings(AsciiListContext ctx) {
+		if(ctx instanceof EnumerateListContext){
 			if(this.inheritStyle){
-				this.style = ((El_Context)ctx).style;
+				this.style = ((EnumerateListContext)ctx).style;
 			}
 		}
 		return this;
@@ -131,10 +132,7 @@ public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	@Override
 	public void init(){
 		super.init();
-		this.characters = new AL_CtxtCharacters();
-		this.indents = new AL_CtxtIndents();
-		this.margins = new AL_CtxtMargins();
-		this.strings = new El_CtxtStrings();
+		this.numberingSeparator = ".";
 	}
 
 	/**
@@ -142,7 +140,7 @@ public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	 * @param flag true if this list should inherit style (if it is a child list), false otherwise
 	 * @return this to allow chaining
 	 */
-	public El_Context setInheritStyle(boolean flag){
+	public EnumerateListContext setInheritStyle(boolean flag){
 		this.inheritStyle = flag;
 		return this;
 	}
@@ -152,8 +150,8 @@ public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	 * @param numberingSeparator numbering separator string
 	 * @return this to allow chaining
 	 */
-	public El_Context setNumberingSeparator(String numberingSeparator) {
-		this.strings.setNumberingSeparator(numberingSeparator);
+	public EnumerateListContext setNumberingSeparator(String numberingSeparator) {
+		this.numberingSeparator = numberingSeparator;
 		return this;
 	}
 
@@ -162,7 +160,7 @@ public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	 * @param flag true to use string, false if not
 	 * @return this to allow chaining
 	 */
-	public El_Context setSeparatorAfterLastNumber(boolean flag){
+	public EnumerateListContext setSeparatorAfterLastNumber(boolean flag){
 		this.useSeparatorAfterLastNumber = flag;
 		return this;
 	}
@@ -173,7 +171,7 @@ public class El_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	 * @return this to allow chaining
 	 * @throws NullPointerException if style was null
 	 */
-	public El_Context setStyle(TA_EnumerateList style) {
+	public EnumerateListContext setStyle(TA_EnumerateList style) {
 		Validate.notNull(style);
 		this.style = style;
 		return this;

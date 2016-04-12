@@ -29,7 +29,7 @@ import de.vandermeer.skb.interfaces.document.IsList;
  * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.0.1
  */
-public interface AsciiList<C extends AL_Context<?, ?, ?, ?>, I extends ListItem, R extends AL_Renderer<I, C>> extends IsList {
+public interface AsciiList<C extends AsciiListContext, I extends AsciiListItem, R extends AsciiListRenderer<I, C>> extends IsList {
 
 	/**
 	 * Returns the list context.
@@ -57,7 +57,7 @@ public interface AsciiList<C extends AL_Context<?, ?, ?, ?>, I extends ListItem,
 	 * @param parentIndex the index of the parent list item
 	 * @return rendered list
 	 */
-	Collection<StrBuilder> renderAsChild(AL_Context<?, ?, ?, ?> parentCtx, int parentIndent, int parentIndex);
+	Collection<StrBuilder> renderAsChild(AsciiListContext parentCtx, int parentIndent, int parentIndex);
 
 	/**
 	 * Sets the renderer for the context.

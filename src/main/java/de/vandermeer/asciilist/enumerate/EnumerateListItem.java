@@ -15,8 +15,8 @@
 
 package de.vandermeer.asciilist.enumerate;
 
+import de.vandermeer.asciilist.AbstractAsciiListItem;
 import de.vandermeer.asciilist.AsciiList;
-import de.vandermeer.asciilist.ListItem;
 
 /**
  * Enumerate list item.
@@ -25,7 +25,7 @@ import de.vandermeer.asciilist.ListItem;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class EnumerateListItem extends ListItem implements Comparable<EnumerateListItem> {
+public class EnumerateListItem extends AbstractAsciiListItem implements Comparable<EnumerateListItem> {
 
 	/**
 	 * Creates a new item with text.

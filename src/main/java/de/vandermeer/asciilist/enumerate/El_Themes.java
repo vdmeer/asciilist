@@ -35,7 +35,7 @@ public interface El_Themes {
 	static EnumerateListTheme latex(){
 		return new EnumerateListTheme() {
 			@Override
-			public void apply(El_Context ctx) {
+			public void apply(EnumerateListContext ctx) {
 				ctx.setTargetTranslator(new Text2Latex());
 				ctx.setListStart("\\begin{enumerate}");
 				ctx.setListEnd("\\end{enumerate}");

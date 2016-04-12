@@ -28,5 +28,5 @@ public interface ItemizeListTheme {
 	 * Applies the theme by setting parameters in the given context.
 	 * @param ctx the context of the paragraph, should not be null
 	 */
-	void apply(Il_Context ctx);
+	void apply(ItemizeListContext ctx);
 }

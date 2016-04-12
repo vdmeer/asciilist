@@ -18,18 +18,17 @@ package de.vandermeer.asciilist;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
-import de.vandermeer.skb.interfaces.categories.has.HasToLog;
 import de.vandermeer.skb.interfaces.document.IsDocumentElement;
 import de.vandermeer.skb.interfaces.transformers.Object_To_StrBuilder;
 
 /**
- * Standard list item.
+ * Fully functional abstract implementation of {@link AsciiListItem}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class ListItem implements HasToLog {
+public abstract class AbstractAsciiListItem implements AsciiListItem {
 
 	/** The item text if it is not another list. */
 	protected StrBuilder text;
@@ -43,7 +42,7 @@ public class ListItem implements HasToLog {
 	 * @throws NullPointerException if the argument was null or was a collection with null elements
 	 * @throws IllegalArgumentException if any text to be added was blank
 	 */
-	public ListItem(Object text){
+	public AbstractAsciiListItem(Object text){
 		Validate.notNull(text);
 		this.text = new StrBuilder();
 		this.setText(text);
@@ -56,7 +55,7 @@ public class ListItem implements HasToLog {
 	 * @param list another list
 	 * @throws NullPointerException if the argument was null or had null elements
 	 */
-	public ListItem(Object text, AsciiList<?, ?, ?> list){
+	public AbstractAsciiListItem(Object text, AsciiList<?, ?, ?> list){
 		this(text);
 		Validate.notNull(list);
 		this.list = list;
@@ -132,7 +131,7 @@ public class ListItem implements HasToLog {
 				.append("] - text == ")
 				.append(this.getRawText())
 			;
-			for(ListItem i : this.list.getItems()){
+			for(AsciiListItem i : this.list.getItems()){
 				ret
 					.appendNewLine()
 					.appendPadding(this.list.getContext().getLevel() * 2, ' ')

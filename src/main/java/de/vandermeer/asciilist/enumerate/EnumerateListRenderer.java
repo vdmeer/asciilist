@@ -13,25 +13,25 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist.itemize;
+package de.vandermeer.asciilist.enumerate;
 
-import de.vandermeer.asciilist.AL_Renderer;
+import de.vandermeer.asciilist.AbstractAsciiListRenderer;
 
 /**
- * An itemize list renderer.
+ * An enumerate list renderer.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class Il_Renderer implements AL_Renderer<ItemizeListItem, Il_Context> {
+public class EnumerateListRenderer extends AbstractAsciiListRenderer<EnumerateListItem, EnumerateListContext> {
 
 	/**
 	 * Creates a new renderer.
 	 * @return new renderer
 	 */
-	static Il_Renderer create(){
-		return new Il_Renderer() {};
+	static EnumerateListRenderer create(){
+		return new EnumerateListRenderer() {};
 	}
 
 }

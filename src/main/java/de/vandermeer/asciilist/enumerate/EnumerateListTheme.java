@@ -28,5 +28,5 @@ public interface EnumerateListTheme {
 	 * Applies the theme by setting parameters in the given context.
 	 * @param ctx the context of the paragraph, should not be null
 	 */
-	void apply(El_Context ctx);
+	void apply(EnumerateListContext ctx);
 }

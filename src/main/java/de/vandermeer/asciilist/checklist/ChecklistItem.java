@@ -15,8 +15,8 @@
 
 package de.vandermeer.asciilist.checklist;
 
+import de.vandermeer.asciilist.AbstractAsciiListItem;
 import de.vandermeer.asciilist.AsciiList;
-import de.vandermeer.asciilist.ListItem;
 
 /**
  * Checklist item.
@@ -25,7 +25,7 @@ import de.vandermeer.asciilist.ListItem;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class ChecklistItem extends ListItem implements Comparable<ChecklistItem> {
+public class ChecklistItem extends AbstractAsciiListItem implements Comparable<ChecklistItem> {
 
 	/** Flag for the checked status, true if checked, false otherwise, default is false. */
 	protected boolean isChecked = false;

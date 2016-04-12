@@ -22,7 +22,7 @@ import java.util.Set;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
-import de.vandermeer.asciilist.AL_Renderer;
+import de.vandermeer.asciilist.AbstractAsciiListRenderer;
 import de.vandermeer.skb.interfaces.transformers.textformat.Text_To_FormattedText;
 
 /**
@@ -32,18 +32,18 @@ import de.vandermeer.skb.interfaces.transformers.textformat.Text_To_FormattedTex
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class Dl_Renderer implements AL_Renderer<DescriptionListItem, Dl_Context> {
+public class DescriptionListRenderer extends AbstractAsciiListRenderer<DescriptionListItem, DescriptionListContext> {
 
 	/**
 	 * Creates a new renderer.
 	 * @return new renderer
 	 */
-	static Dl_Renderer create(){
-		return new Dl_Renderer() {};
+	static DescriptionListRenderer create(){
+		return new DescriptionListRenderer() {};
 	}
 
 	@Override
-	public Collection<StrBuilder> render(Set<DescriptionListItem> items, Dl_Context ctx, int width){
+	public Collection<StrBuilder> render(Set<DescriptionListItem> items, DescriptionListContext ctx, int width){
 		Validate.notNull(items);
 		Validate.notNull(ctx);
 

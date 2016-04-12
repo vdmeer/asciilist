@@ -26,7 +26,7 @@ import de.vandermeer.skb.interfaces.strategies.collections.IsSetStrategy;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class ItemizeList extends AbstractAsciiList<Il_Context, ItemizeListItem, Il_Renderer> {
+public class ItemizeList extends AbstractAsciiList<ItemizeListContext, ItemizeListItem, ItemizeListRenderer> {
 
 	/**
 	 * Creates a new itemize list with a linked hash set for list items.
@@ -39,7 +39,7 @@ public class ItemizeList extends AbstractAsciiList<Il_Context, ItemizeListItem, 
 	 * Creates a new itemize list with a linked hash set for list items.
 	 * @param ctx list context, using default if null
 	 */
-	public ItemizeList(Il_Context ctx){
+	public ItemizeList(ItemizeListContext ctx){
 		this(ctx, null);
 	}
 
@@ -56,9 +56,9 @@ public class ItemizeList extends AbstractAsciiList<Il_Context, ItemizeListItem, 
 	 * @param ctx list context, using default if null
 	 * @param strategy the list strategy to be used for the list of items
 	 */
-	public ItemizeList(Il_Context ctx, IsSetStrategy<?, ItemizeListItem> strategy){
+	public ItemizeList(ItemizeListContext ctx, IsSetStrategy<?, ItemizeListItem> strategy){
 		super(ctx, strategy);
-		this.renderer = new Il_Renderer();
+		this.renderer = new ItemizeListRenderer();
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class ItemizeList extends AbstractAsciiList<Il_Context, ItemizeListItem, 
 	}
 
 	@Override
-	public Il_Context getNewContext() {
-		return new Il_Context();
+	public ItemizeListContext getNewContext() {
+		return new ItemizeListContext();
 	}
 
 	/**

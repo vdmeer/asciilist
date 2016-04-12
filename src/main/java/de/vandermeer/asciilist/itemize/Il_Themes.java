@@ -35,7 +35,7 @@ public interface Il_Themes {
 	static ItemizeListTheme latex(){
 		return new ItemizeListTheme() {
 			@Override
-			public void apply(Il_Context ctx) {
+			public void apply(ItemizeListContext ctx) {
 				ctx.setTargetTranslator(new Text2Latex());
 				ctx.setListStart("\\begin{itemize}");
 				ctx.setListEnd("\\end{itemize}");

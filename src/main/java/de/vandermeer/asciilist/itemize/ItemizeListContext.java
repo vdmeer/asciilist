@@ -13,31 +13,28 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist.checklist;
+package de.vandermeer.asciilist.itemize;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
-import de.vandermeer.asciilist.AL_Context;
-import de.vandermeer.asciilist.AL_CtxtCharacters;
-import de.vandermeer.asciilist.AL_CtxtIndents;
-import de.vandermeer.asciilist.AL_CtxtMargins;
-import de.vandermeer.asciilist.AL_CtxtStrings;
-import de.vandermeer.asciilist.ListItem;
-import de.vandermeer.asciithemes.TA_Checklist;
-import de.vandermeer.asciithemes.a7.A7_Checklists;
+import de.vandermeer.asciilist.AbstractAsciiListContext;
+import de.vandermeer.asciilist.AsciiListContext;
+import de.vandermeer.asciilist.AsciiListItem;
+import de.vandermeer.asciithemes.TA_ItemizeList;
+import de.vandermeer.asciithemes.a7.A7_ItemizeLists;
 
 /**
- * Context for a checklist.
+ * Context for an itemize list.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class Cl_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL_CtxtMargins, AL_CtxtStrings>{
+public class ItemizeListContext extends AbstractAsciiListContext{
 
 	/** The style for list items. */
-	protected TA_Checklist style = A7_Checklists.sbrX();
+	protected TA_ItemizeList style = A7_ItemizeLists.allStarIncremental();
 
 	/** Flag for inhering style from another itemize list if this list is a child, default is true. */
 	protected boolean inheritStyle = true;
@@ -45,37 +42,29 @@ public class Cl_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	/**
 	 * Creates a new context object for an itemize lists.
 	 */
-	public Cl_Context(){
+	public ItemizeListContext(){
 		this.init();
 	}
 
 	@Override
-	public Cl_Context copySettings(AL_Context<?, ?, ?, ?> ctx) {
+	public ItemizeListContext copySettings(AsciiListContext ctx) {
 		super.copySettings(ctx);
-		if(ctx instanceof Cl_Context){
-			this.style = ((Cl_Context)ctx).style;
-			this.inheritStyle = ((Cl_Context)ctx).inheritStyle;
+		if(ctx instanceof ItemizeListContext){
+			this.style = ((ItemizeListContext)ctx).style;
+			this.inheritStyle = ((ItemizeListContext)ctx).inheritStyle;
 		}
 		return this;
 	}
 
 	@Override
-	public <LI extends ListItem> StrBuilder getItemString(LI item, int index) {
+	public <LI extends AsciiListItem> StrBuilder getItemString(LI item, int index) {
 		StrBuilder ret = new StrBuilder(20);
 		ret
 			.appendPadding(this.getItemMargin(), this.getItemChar())
 			.append(this.getLeftLabelString())
 			.appendPadding(this.getLabelLeftMargin(), this.getLabelLeftChar())
-		;
-
-		if(item instanceof ChecklistItem){
-			ret.append(this.getStyle().getLabel(this.getLevel(), ((ChecklistItem) item).isChecked()));
-		}
-		else{
-			ret.append(this.getStyle().getLabel(this.getLevel(), false));
-		}
-
-		ret.appendPadding(this.getLabelRightMargin(), this.getLabelRightChar())
+			.append(this.getStyle().getLabel(this.getLevel()))
+			.appendPadding(this.getLabelRightMargin(), this.getLabelRightChar())
 			.append(this.getRightLabelString())
 			.appendPadding(this.getTextLeftMargin(), this.getTextLeftChar())
 		;
@@ -86,15 +75,15 @@ public class Cl_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	 * Returns the list style.
 	 * @return list style
 	 */
-	public TA_Checklist getStyle() {
+	public TA_ItemizeList getStyle() {
 		return this.style;
 	}
 
 	@Override
-	public AL_Context<?, ?, ?, ?> inheritSettings(AL_Context<?, ?, ?, ?> ctx) {
-		if(ctx instanceof Cl_Context){
+	public AbstractAsciiListContext inheritSettings(AsciiListContext ctx) {
+		if(ctx instanceof ItemizeListContext){
 			if(this.inheritStyle){
-				this.style = ((Cl_Context)ctx).style;
+				this.style = ((ItemizeListContext)ctx).style;
 			}
 		}
 		return this;
@@ -103,10 +92,6 @@ public class Cl_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	@Override
 	public void init(){
 		super.init();
-		this.characters = new AL_CtxtCharacters();
-		this.indents = new AL_CtxtIndents();
-		this.margins = new AL_CtxtMargins();
-		this.strings = new AL_CtxtStrings();
 	}
 
 	/**
@@ -114,7 +99,7 @@ public class Cl_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	 * @param flag true if this list should inherit style (if it is a child list), false otherwise
 	 * @return this to allow chaining
 	 */
-	public Cl_Context setInheritStyle(boolean flag){
+	public ItemizeListContext setInheritStyle(boolean flag){
 		this.inheritStyle = flag;
 		return this;
 	}
@@ -125,7 +110,7 @@ public class Cl_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	 * @return this to allow chaining
 	 * @throws NullPointerException if style was null
 	 */
-	public Cl_Context setStyle(TA_Checklist style) {
+	public ItemizeListContext setStyle(TA_ItemizeList style) {
 		Validate.notNull(style);
 		this.style = style;
 		return this;
