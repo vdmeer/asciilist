@@ -45,43 +45,23 @@ public class AL_CtxtCharacters {
 	public AL_CtxtCharacters(){}
 
 	/**
-	 * Returns the left text margin character.
-	 * @return left text margin character
+	 * Copies all settings from the given object.
+	 * @param chars the object to copy settings from
 	 */
-	public Character getTextLeft() {
-		return textLeft;
+	public void copySettings(AL_CtxtCharacters chars){
+		this.item = chars.item;
+		this.labelLeft = chars.labelLeft;
+		this.labelRight = chars.labelRight;
+		this.textLeft = chars.textLeft;
+		this.textRight = chars.textRight;
 	}
 
 	/**
-	 * Sets the left text margin character.
-	 * @param c new left text margin character, ignored if null
-	 * @return this to allow chaining
+	 * Returns the item margin character.
+	 * @return item margin character
 	 */
-	public AL_CtxtCharacters setTextLeft(Character c) {
-		if(c!=null){
-			this.textLeft = c;
-		}
-		return this;
-	}
-
-	/**
-	 * Returns the right text margin character.
-	 * @return right text margin character
-	 */
-	public Character getTextRight() {
-		return textRight;
-	}
-
-	/**
-	 * Sets the right text margin character.
-	 * @param c new right text margin character, ignored if null
-	 * @return this to allow chaining
-	 */
-	public AL_CtxtCharacters setTextRight(Character c) {
-		if(c!=null){
-			this.textRight = c;
-		}
-		return this;
+	public Character getItem() {
+		return this.item;
 	}
 
 	/**
@@ -93,18 +73,6 @@ public class AL_CtxtCharacters {
 	}
 
 	/**
-	 * Sets the left label margin character.
-	 * @param c new left label margin character, ignored if null
-	 * @return this to allow chaining
-	 */
-	public AL_CtxtCharacters setLabelLeft(Character c) {
-		if(c!=null){
-			this.labelLeft = c;
-		}
-		return this;
-	}
-
-	/**
 	 * Returns the right label margin character.
 	 * @return right label margin character
 	 */
@@ -113,23 +81,19 @@ public class AL_CtxtCharacters {
 	}
 
 	/**
-	 * Sets the right label margin character.
-	 * @param c new right label margin character, ignored if null
-	 * @return this to allow chaining
+	 * Returns the left text margin character.
+	 * @return left text margin character
 	 */
-	public AL_CtxtCharacters setLabelRight(Character c) {
-		if(c!=null){
-			this.labelRight = c;
-		}
-		return this;
+	public Character getTextLeft() {
+		return textLeft;
 	}
 
 	/**
-	 * Returns the item margin character.
-	 * @return item margin character
+	 * Returns the right text margin character.
+	 * @return right text margin character
 	 */
-	public Character getItem() {
-		return this.item;
+	public Character getTextRight() {
+		return textRight;
 	}
 
 	/**
@@ -145,15 +109,51 @@ public class AL_CtxtCharacters {
 	}
 
 	/**
-	 * Copies all settings from the given object.
-	 * @param object the object to copy settings from
+	 * Sets the left label margin character.
+	 * @param c new left label margin character, ignored if null
+	 * @return this to allow chaining
 	 */
-	public void copySettings(AL_CtxtCharacters chars){
-		this.item = chars.item;
-		this.labelLeft = chars.labelLeft;
-		this.labelRight = chars.labelRight;
-		this.textLeft = chars.textLeft;
-		this.textRight = chars.textRight;
+	public AL_CtxtCharacters setLabelLeft(Character c) {
+		if(c!=null){
+			this.labelLeft = c;
+		}
+		return this;
+	}
+
+	/**
+	 * Sets the right label margin character.
+	 * @param c new right label margin character, ignored if null
+	 * @return this to allow chaining
+	 */
+	public AL_CtxtCharacters setLabelRight(Character c) {
+		if(c!=null){
+			this.labelRight = c;
+		}
+		return this;
+	}
+
+	/**
+	 * Sets the left text margin character.
+	 * @param c new left text margin character, ignored if null
+	 * @return this to allow chaining
+	 */
+	public AL_CtxtCharacters setTextLeft(Character c) {
+		if(c!=null){
+			this.textLeft = c;
+		}
+		return this;
+	}
+
+	/**
+	 * Sets the right text margin character.
+	 * @param c new right text margin character, ignored if null
+	 * @return this to allow chaining
+	 */
+	public AL_CtxtCharacters setTextRight(Character c) {
+		if(c!=null){
+			this.textRight = c;
+		}
+		return this;
 	}
 
 }

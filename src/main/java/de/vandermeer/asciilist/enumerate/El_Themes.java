@@ -15,23 +15,38 @@
 
 package de.vandermeer.asciilist.enumerate;
 
-import de.vandermeer.asciilist.AL_Renderer;
+import de.vandermeer.asciithemes.a7.A7_EnumerateLists;
+import de.vandermeer.translation.targets.Text2Latex;
 
 /**
- * An enumerate list renderer.
+ * Collection of themes for an {@link EnumerateList}.
+ * Simply use the {@link EnumerateList#applyTheme(EnumerateListTheme)} method and render it.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class El_Renderer implements AL_Renderer<EnumerateListItem, El_Context> {
+public interface El_Themes {
 
 	/**
-	 * Creates a new renderer.
-	 * @return new renderer
+	 * A theme for LaTeX target.
+	 * @return the theme
 	 */
-	static El_Renderer create(){
-		return new El_Renderer() {};
+	static EnumerateListTheme latex(){
+		return new EnumerateListTheme() {
+			@Override
+			public void apply(El_Context ctx) {
+				ctx.setTargetTranslator(new Text2Latex());
+				ctx.setListStart("\\begin{enumerate}");
+				ctx.setListEnd("\\end{enumerate}");
+				ctx.setStyle(A7_EnumerateLists.blank());
+				ctx.setLeftLabelString("\\item");
+				ctx.setItemMargin(4);
+				ctx.setLabelRightMargin(0);
+				ctx.setTextLeftMargin(0);
+				ctx.setSeparatorAfterLastNumber(false);
+			}
+		};
 	}
 
 }

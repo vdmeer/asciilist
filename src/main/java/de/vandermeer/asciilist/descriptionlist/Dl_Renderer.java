@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist;
+package de.vandermeer.asciilist.descriptionlist;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,44 +22,28 @@ import java.util.Set;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
-import de.vandermeer.skb.interfaces.document.IsListRenderer;
+import de.vandermeer.asciilist.AL_Renderer;
 import de.vandermeer.skb.interfaces.transformers.textformat.Text_To_FormattedText;
 
 /**
- * List renderer interface.
+ * An description list renderer.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public interface AL_Renderer<I extends ListItem, C extends AL_Context<?, ?, ?, ?>> extends IsListRenderer {
+public class Dl_Renderer implements AL_Renderer<DescriptionListItem, Dl_Context> {
 
 	/**
-	 * Renders an {@link AsciiList}.
-	 * Each line will have text according to width.
-	 * Any padding (left or right) and start/end strings will add to the line width.
-	 * To use a calculated width for rendering use one of the other render methods.
-	 * @param items the set of items to render
-	 * @param ctx context of the original list with relevant settings
-	 * @return collection of lines, each as a {@link StrBuilder}
+	 * Creates a new renderer.
+	 * @return new renderer
 	 */
-	default Collection<StrBuilder> render(Set<I> items, C ctx){
-		Validate.notNull(items);
-		Validate.notNull(ctx);
-		return this.render(items, ctx, ctx.getWidth());
+	static Dl_Renderer create(){
+		return new Dl_Renderer() {};
 	}
 
-	/**
-	 * Renders an {@link AsciiList}.
-	 * Each line will have text according to width.
-	 * Any padding (left or right) and start/end strings will add to the line width.
-	 * To use a calculated width for rendering use one of the other render methods.
-	 * @param items the set of items to render
-	 * @param ctx context of the original list with relevant settings
-	 * @param width maximum line width, excluding any extra strings and paddings
-	 * @return collection of lines, each as a {@link StrBuilder}
-	 */
-	default Collection<StrBuilder> render(Set<I> items, C ctx, int width){
+	@Override
+	public Collection<StrBuilder> render(Set<DescriptionListItem> items, Dl_Context ctx, int width){
 		Validate.notNull(items);
 		Validate.notNull(ctx);
 
@@ -70,7 +54,7 @@ public interface AL_Renderer<I extends ListItem, C extends AL_Context<?, ?, ?, ?
 		}
 
 		int index = 1;
-		for(I item : items){
+		for(DescriptionListItem item : items){
 			String text = item.getText().toString().replaceAll("\\s+", " ");
 			//check for translators, use what is available
 			if(ctx.getTargetTranslator()!=null){
@@ -86,19 +70,35 @@ public interface AL_Renderer<I extends ListItem, C extends AL_Context<?, ?, ?, ?
 			}
 
 			StrBuilder itemString = ctx.getItemString(item, index);
-			Collection<StrBuilder> itList = Text_To_FormattedText.create(
-					width, ctx.getAlignment().getMappingToTransformer(), Text_To_FormattedText.FORMAT_NONE,
-					null, null, null,
-					0, 0, null, 0, 0, null)
-			.transform(text);
+			Collection<StrBuilder> itList = null;
+			if(ctx.getUseSameLine()==true){
+				//render for key/text on same line
+				itList = Text_To_FormattedText.create(
+						width, ctx.getAlignment().getMappingToTransformer(), Text_To_FormattedText.FORMAT_FIRSTLINE_AND_HANGINGPARAGRAPH,
+						null, null, null,
+						0, itemString.length(), null, 0, 0, null)
+				.transform(text);
+			}
+			else{
+				//render for key on first line, text on following lines
+				itList = Text_To_FormattedText.create(
+						width-ctx.getDescriptionIndent(), ctx.getAlignment().getMappingToTransformer(), Text_To_FormattedText.FORMAT_NONE,
+						null, null, null,
+						0, 0, null, 0, 0, null)
+				.transform(text);
+			}
+
+			if(ctx.getUseSameLine()==false){
+				ret.add(new StrBuilder().append(itemString).appendPadding(width-itemString.size(), ctx.getTextRightChar()));
+			}
 
 			int count = 0;
 			for(StrBuilder sb : itList){
-				if(count==0){
-					sb.insert(0, itemString);
+				if(count==0 && ctx.getUseSameLine()){
+					sb.replace(0, itemString.length(), itemString.toString());
 				}
-				else if(count>0){
-					sb.insert(0, new StrBuilder().appendPadding(itemString.toString().length(), ' '));
+				else if(ctx.getUseSameLine()==false){
+					sb.insert(0, new StrBuilder().appendPadding(ctx.getDescriptionIndent(), ' '));
 				}
 				sb.appendPadding(ctx.getTextRightMargin(), ctx.getTextRightChar());
 				ret.add(sb);
@@ -120,4 +120,5 @@ public interface AL_Renderer<I extends ListItem, C extends AL_Context<?, ?, ?, ?
 
 		return ret;
 	}
+
 }

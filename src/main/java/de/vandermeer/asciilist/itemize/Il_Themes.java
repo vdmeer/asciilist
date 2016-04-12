@@ -13,26 +13,39 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist;
+package de.vandermeer.asciilist.itemize;
+
+import de.vandermeer.asciithemes.a7.A7_ItemizeLists;
+import de.vandermeer.translation.targets.Text2Latex;
 
 /**
- * Indentation object for an {@link AL_Context}.
+ * Collection of themes for an {@link ItemizeList}.
+ * Simply use the {@link ItemizeList#applyTheme(ItemizeListTheme)} method and render it.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class AL_CtxtIndents {
+public interface Il_Themes {
 
 	/**
-	 * Creates a new object.
+	 * A theme for LaTeX target.
+	 * @return the theme
 	 */
-	public AL_CtxtIndents(){}
-
-	/**
-	 * Copies all settings from the given object.
-	 * @param indents the object to copy settings from
-	 */
-	public void copySettings(AL_CtxtIndents indents){
+	static ItemizeListTheme latex(){
+		return new ItemizeListTheme() {
+			@Override
+			public void apply(Il_Context ctx) {
+				ctx.setTargetTranslator(new Text2Latex());
+				ctx.setListStart("\\begin{itemize}");
+				ctx.setListEnd("\\end{itemize}");
+				ctx.setStyle(A7_ItemizeLists.allBlank());
+				ctx.setLeftLabelString("\\item");
+				ctx.setItemMargin(4);
+				ctx.setLabelRightMargin(0);
+				ctx.setTextLeftMargin(0);
+			}
+		};
 	}
+
 }

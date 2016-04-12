@@ -13,78 +13,81 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist.itemize;
+package de.vandermeer.asciilist.descriptionlist;
 
 import de.vandermeer.asciilist.AbstractAsciiList;
 import de.vandermeer.asciilist.AsciiList;
 import de.vandermeer.skb.interfaces.strategies.collections.IsSetStrategy;
+import de.vandermeer.skb.interfaces.strategies.collections.sortedset.TreeSetStrategy;
 
 /**
- * An itemize list.
+ * A description list.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class ItemizeList extends AbstractAsciiList<Il_Context, ItemizeListItem, Il_Renderer> {
+public class DescriptionList extends AbstractAsciiList<Dl_Context, DescriptionListItem, Dl_Renderer> {
 
 	/**
-	 * Creates a new itemize list with a linked hash set for list items.
+	 * Creates a new description list with a sorted set for the list items.
 	 */
-	public ItemizeList(){
+	public DescriptionList(){
 		this(null, null);
 	}
 
 	/**
-	 * Creates a new itemize list with a linked hash set for list items.
+	 * Creates a new description list with a sorted set for the list items.
 	 * @param ctx list context, using default if null
 	 */
-	public ItemizeList(Il_Context ctx){
-		this(ctx, null);
+	public DescriptionList(Dl_Context ctx){
+		this(ctx, TreeSetStrategy.create());
 	}
 
 	/**
-	 * Creates a new itemize list with a sorted set for the list items.
+	 * Creates a new description list.
 	 * @param strategy the list strategy to be used for the list of items
 	 */
-	public ItemizeList(IsSetStrategy<?, ItemizeListItem> strategy){
+	public DescriptionList(IsSetStrategy<?, DescriptionListItem> strategy){
 		this(null, strategy);
 	}
 
 	/**
-	 * Creates a new itemize list.
+	 * Creates a new description list.
 	 * @param ctx list context, using default if null
 	 * @param strategy the list strategy to be used for the list of items
 	 */
-	public ItemizeList(Il_Context ctx, IsSetStrategy<?, ItemizeListItem> strategy){
+	public DescriptionList(Dl_Context ctx, IsSetStrategy<?, DescriptionListItem> strategy){
 		super(ctx, strategy);
-		this.renderer = new Il_Renderer();
+		this.renderer = new Dl_Renderer();
 	}
 
 	/**
 	 * Adds a new item to the list.
-	 * @param text the item text
+	 * @param key the key of the description
+	 * @param text description text
 	 * @return this to allow chaining
 	 */
-	public ItemizeList addItem(Object text){
-		this.getItems().add(new ItemizeListItem(text));
+	public DescriptionList addItem(String key, Object text){
+		this.getItems().add(new DescriptionListItem(key, text));
 		return this;
 	}
 
 	/**
 	 * Adds a new item to the list.
-	 * @param text the item text
+	 * @param key the key of the description
+	 * @param text description text
 	 * @param list a child list
 	 * @return this to allow chaining
 	 */
-	public ItemizeList addItem(Object text, AsciiList<?, ?, ?> list){
-		this.getItems().add(new ItemizeListItem(text, list));
+	public DescriptionList addItem(String key, Object text, AsciiList<?, ?, ?> list){
+		this.getItems().add(new DescriptionListItem(key, text, list));
 		return this;
 	}
 
 	@Override
-	public Il_Context getNewContext() {
-		return new Il_Context();
+	public Dl_Context getNewContext() {
+		return new Dl_Context();
 	}
 
 	/**
@@ -92,7 +95,7 @@ public class ItemizeList extends AbstractAsciiList<Il_Context, ItemizeListItem, 
 	 * @param theme the theme to apply
 	 * @return this to allow chaining
 	 */
-	public ItemizeList applyTheme(ItemizeListTheme theme){
+	public DescriptionList applyTheme(DescriptionListTheme theme){
 		if(theme!=null){
 			theme.apply(this.ctx);
 		}

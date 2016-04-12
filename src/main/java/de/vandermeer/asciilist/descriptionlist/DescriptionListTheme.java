@@ -13,26 +13,20 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist;
+package de.vandermeer.asciilist.descriptionlist;
 
 /**
- * Indentation object for an {@link AL_Context}.
+ * A theme for an {@link DescriptionList}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class AL_CtxtIndents {
+public interface DescriptionListTheme {
 
 	/**
-	 * Creates a new object.
+	 * Applies the theme by setting parameters in the given context.
+	 * @param ctx the context of the paragraph, should not be null
 	 */
-	public AL_CtxtIndents(){}
-
-	/**
-	 * Copies all settings from the given object.
-	 * @param indents the object to copy settings from
-	 */
-	public void copySettings(AL_CtxtIndents indents){
-	}
+	void apply(Dl_Context ctx);
 }

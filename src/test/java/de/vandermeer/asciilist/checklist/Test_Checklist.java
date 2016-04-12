@@ -13,26 +13,25 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist;
+package de.vandermeer.asciilist.checklist;
+
+import org.junit.Test;
 
 /**
- * Indentation object for an {@link AL_Context}.
+ * Tests for {@link Checklist}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class AL_CtxtIndents {
+public class Test_Checklist {
 
-	/**
-	 * Creates a new object.
-	 */
-	public AL_CtxtIndents(){}
-
-	/**
-	 * Copies all settings from the given object.
-	 * @param indents the object to copy settings from
-	 */
-	public void copySettings(AL_CtxtIndents indents){
+	@Test
+	public void test_Checklist(){
+		Checklist list = new Checklist();
+		list.addItem("item 1", false);
+		list.addItem("item 2", true);
+		list.addItem("item 3", false);
+		System.err.println(list.render(10) + "\n");
 	}
 }

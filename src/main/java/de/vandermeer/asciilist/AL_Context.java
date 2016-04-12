@@ -15,6 +15,7 @@
 
 package de.vandermeer.asciilist;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
@@ -32,15 +33,6 @@ import de.vandermeer.skb.interfaces.translators.TargetTranslator;
  * @since      v0.1.0
  */
 public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_CtxtIndents, M extends AL_CtxtMargins, S extends AL_CtxtStrings> implements IsListContext {
-
-//	/** List characteristics: child of another list (then level says how deep). */
-//	public static int CH_IS_CHILD = 0b00000000001;
-//
-//	/** List characteristics: parent is the same list type. */
-//	public static int CH_PARENT_IS_SAME_TYPE = 0b00000000010;
-//
-//	/** List characteristics: continue parent (nested list continue item style and numbering if available). */
-//	public static int CH_CONTINUE_PARENT = 0b00000000100;
 
 	/** List margins. */
 	protected M margins;
@@ -69,17 +61,39 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 	/** The mode for a frame. */
 	protected int frameMode = TA_Frame.THEME_FULL_FRAME;
 
-//	/** A bit mask maintaining all general list characteristics. */
-//	protected int characteristics = 0;
-
 	/** The level of this list in the context of other lists, default is 1, cannot be smaller than 1. */
 	protected int level = 1;
+
+	/** The index of all parents for a nested list. */
+	protected int[] parentIndex;
 
 	/**
 	 * Creates a new paragraph context with default settings.
 	 */
 	public AL_Context(){
 		this.init();
+	}
+
+	/**
+	 * Copies all settings from the given object.
+	 * @param ctx the object to copy settings from
+	 * @return this to allow chaining
+	 */
+	public AL_Context<?, ?, ?, ?> copySettings(AL_Context<?, ?, ?, ?> ctx){
+		this.alignment = ctx.alignment;
+		this.width = ctx.width;
+		this.frame = ctx.frame;
+		this.frameMode = ctx.frameMode;
+		this.level = ctx.level;
+		this.parentIndex = ArrayUtils.clone(ctx.parentIndex);
+
+		this.characters.copySettings(ctx.getCharacters());
+		this.indents.copySettings(ctx.getIndents());
+		this.margins.copySettings(ctx.getMargins());
+		this.strings.copySettings(ctx.getStrings());
+		this.converters = ctx.converters.getCopy();
+
+		return this;
 	}
 
 	/**
@@ -90,13 +104,24 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 		return this.alignment;
 	}
 
-//	/**
-//	 * Returns the list characteristics.
-//	 * @return list characteristics
-//	 */
-//	public int getCharacteristics(){
-//		return characteristics;
-//	}
+	/**
+	 * Returns a calculated item label string, item label plus all margins and indentations.
+	 * Calculated means that the returned item string is using default values.
+	 * The return can be used to calculate nested indentations, but not as an actual item string.
+	 * To get an actual item string, use {@link #getItemString(ListItem, int)}.
+	 * @return calculated item label string
+	 */
+	public StrBuilder getCalculatedItemString(){
+		return this.getItemString(null, 0);
+	}
+
+	/**
+	 * Returns the context's characters object.
+	 * @return characters object
+	 */
+	protected C getCharacters() {
+		return this.characters;
+	}
 
 	/**
 	 * Returns the character translator
@@ -131,6 +156,14 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 	}
 
 	/**
+	 * Returns the context's indents object.
+	 * @return indents object
+	 */
+	protected I getIndents() {
+		return this.indents;
+	}
+
+	/**
 	 * Returns the item margin character.
 	 * @return item margin character
 	 */
@@ -145,6 +178,15 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 	public int getItemMargin() {
 		return this.margins.getItem();
 	}
+
+	/**
+	 * Returns the item label string, item label plus all margins and indentations.
+	 * @param item the list item for which the string should be returned, can be null to use default settings
+	 * @param index the index of the label in the item list, can be null to use default settings
+	 * @param <LI> list item type
+	 * @return item label string, default if no item is provided
+	 */
+	public abstract <LI extends ListItem> StrBuilder getItemString(LI item, int index);
 
 	/**
 	 * Returns the left label margin character.
@@ -195,11 +237,51 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 	}
 
 	/**
+	 * Returns the list end string
+	 * @return list end string
+	 */
+	public String getListEnd() {
+		return this.strings.listEnd;
+	}
+
+	/**
+	 * Returns the list start string
+	 * @return list start string
+	 */
+	public String getListStart() {
+		return this.strings.listStart;
+	}
+
+	/**
+	 * Returns the context's margin object.
+	 * @return margin object
+	 */
+	protected M getMargins() {
+		return this.margins;
+	}
+
+	/**
+	 * Returns the parent index array.
+	 * @return parent index array
+	 */
+	public int[] getParentIndex(){
+		return this.parentIndex;
+	}
+
+	/**
 	 * Returns the right label string.
 	 * @return right label string, null if not set
 	 */
 	public String getRightLabelString() {
 		return this.strings.getRightLabel();
+	}
+
+	/**
+	 * Returns the context's strings object.
+	 * @return strings object
+	 */
+	protected S getStrings() {
+		return this.strings;
 	}
 
 	/**
@@ -256,7 +338,7 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 	 * @return text width
 	 */
 	public int getTextWidth(int width){
-		return (width - this.getItemString().length());
+		return (width - this.getCalculatedItemString().length());
 	}
 
 	/**
@@ -268,27 +350,19 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 	}
 
 	/**
+	 * Inherit settings from another context.
+	 * @param ctx the context to inherit settings from
+	 * @return self to allow chaining
+	 */
+	public abstract AL_Context<?, ?, ?, ?> inheritSettings(AL_Context<?, ?, ?, ?> ctx);
+
+	/**
 	 * Sets all converters, margins, characters, indentations, and strings to default values.
 	 */
 	public void init(){
 		this.converters = new AL_CtxtConverters();
+		this.parentIndex = null;
 	}
-
-//	/**
-//	 * Tests if the list is a child list.
-//	 * @return true if list is a child list, false otherwise
-//	 */
-//	public boolean isChild(){
-//		return ((this.characteristics & CH_IS_CHILD) == CH_IS_CHILD);
-//	}
-
-//	/**
-//	 * Tests if the list is a child list and if the parent list is of same type.
-//	 * @return true if list is a child list and parent list is of same type, false otherwise
-//	 */
-//	public boolean parentIsSameType(){
-//		return this.isChild() && ((this.characteristics & CH_PARENT_IS_SAME_TYPE) == CH_PARENT_IS_SAME_TYPE);
-//	}
 
 	/**
 	 * Sets the paragraph alignment.
@@ -301,32 +375,6 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 		this.alignment = alignment;
 		return this;
 	}
-
-//	/**
-//	 * Sets the characteristic "continue parent".
-//	 * @return this to allow chaining
-//	 */
-//	protected AL_Context<?, ?, ?, ?> setCharacteristicContinueParent(){
-//		this.characteristics = this.characteristics | CH_CONTINUE_PARENT;
-//		return this;
-//	}
-
-//	/**
-//	 * Sets the characteristic "is child".
-//	 * @param parentSameType true if the parent is same list type, false otherwise
-//	 * @param parentLevel the level of the parent list
-//	 * @return this to allow chaining
-//	 * @throws IllegalStateException if the parent level was less than 1 (no child can have a level of 1 or less)
-//	 */
-//	protected AL_Context<?, ?, ?, ?> setCharacteristicIsChild(boolean parentSameType, int parentLevel){
-//		Validate.validState(parentLevel>0, "cannot set a list as child with parent level being smaller than 1");
-//		this.characteristics = this.characteristics | CH_IS_CHILD;
-//		if(parentSameType){
-//			this.characteristics = this.characteristics | CH_PARENT_IS_SAME_TYPE;
-//		}
-//		this.level = parentLevel + 1;
-//		return this;
-//	}
 
 	/**
 	 * Sets the character translator.
@@ -453,6 +501,37 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 	}
 
 	/**
+	 * Sets the list end string
+	 * @param listEnd new list end string, null and blank are ok
+	 * @return this to allow chaining
+	 */
+	public AL_Context<?, ?, ?, ?> setListEnd(String listEnd) {
+		this.strings.setListEnd(listEnd);
+		return this;
+	}
+
+	/**
+	 * Sets the list start string
+	 * @param listStart new list start string, null and blank are ok
+	 * @return this to allow chaining
+	 */
+	public AL_Context<?, ?, ?, ?> setListStart(String listStart) {
+		this.strings.setListStart(listStart);
+		return this;
+	}
+
+	/**
+	 * Sets the parent index array
+	 * @param parentIndex parent index array
+	 * @return this to allow chaining
+	 */
+	public AL_Context<?, ?, ?, ?> setParents(int[] parentIndex){
+		Validate.notNull(parentIndex);
+		this.parentIndex = parentIndex;
+		return this;
+	}
+
+	/**
 	 * Sets the right label string.
 	 * @param rightLabel right label string, null is ok
 	 * @return this to allow chaining
@@ -522,70 +601,4 @@ public abstract class AL_Context <C extends AL_CtxtCharacters, I extends AL_Ctxt
 		this.width = width;
 		return this;
 	}
-
-	/**
-	 * Copies all settings from the given object.
-	 * @param object the object to copy settings from
-	 * @return this to allow chaining
-	 */
-	public AL_Context<?, ?, ?, ?> copySettings(AL_Context<?, ?, ?, ?> ctx){
-		this.alignment = ctx.alignment;
-		this.width = ctx.width;
-		this.frame = ctx.frame;
-		this.frameMode = ctx.frameMode;
-		this.level = ctx.level;
-
-		this.characters.copySettings(ctx.getCharacters());
-		this.indents.copySettings(ctx.getIndents());
-		this.margins.copySettings(ctx.getMargins());
-		this.strings.copySettings(ctx.getStrings());
-		this.converters = ctx.converters.getCopy();
-
-		return this;
-	}
-
-	/**
-	 * Returns the context's margin object.
-	 * @return margin object
-	 */
-	protected M getMargins() {
-		return this.margins;
-	}
-
-	/**
-	 * Returns the context's characters object.
-	 * @return characters object
-	 */
-	protected C getCharacters() {
-		return this.characters;
-	}
-
-	/**
-	 * Returns the context's indents object.
-	 * @return indents object
-	 */
-	protected I getIndents() {
-		return this.indents;
-	}
-
-	/**
-	 * Returns the context's strings object.
-	 * @return strings object
-	 */
-	protected S getStrings() {
-		return this.strings;
-	}
-
-	/**
-	 * Inherit settings from another context.
-	 * @param ctx the context to inherit settings from
-	 * @return self to allow chaining
-	 */
-	public abstract AL_Context<?, ?, ?, ?> inheritSettings(AL_Context<?, ?, ?, ?> ctx);
-
-	/**
-	 * Returns the item label string, item label plus all margins and indentations.
-	 * @return item label string
-	 */
-	public abstract StrBuilder getItemString();
 }

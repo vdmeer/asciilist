@@ -16,7 +16,6 @@
 package de.vandermeer.asciilist.itemize;
 
 import de.vandermeer.asciilist.AL_Renderer;
-import de.vandermeer.asciilist.ListItem;
 
 /**
  * An itemize list renderer.
@@ -25,7 +24,7 @@ import de.vandermeer.asciilist.ListItem;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class Il_Renderer implements AL_Renderer<ListItem, Il_Context> {
+public class Il_Renderer implements AL_Renderer<ItemizeListItem, Il_Context> {
 
 	/**
 	 * Creates a new renderer.
@@ -34,20 +33,5 @@ public class Il_Renderer implements AL_Renderer<ListItem, Il_Context> {
 	static Il_Renderer create(){
 		return new Il_Renderer() {};
 	}
-
-//	@Override
-//	public StrBuilder getItemString(ListItem item, Il_Context ctx) {
-//		StrBuilder ret = new StrBuilder(20);
-//		ret
-//			.appendPadding(ctx.getItemMargin(), ctx.getItemChar())
-//			.append(ctx.getLeftLabelString())
-//			.appendPadding(ctx.getLabelLeftMargin(), ctx.getLabelLeftChar())
-//			.append(ctx.getStyle().getLabel(ctx.getLevel()))
-//			.appendPadding(ctx.getLabelRightMargin(), ctx.getLabelRightChar())
-//			.append(ctx.getRightLabelString())
-//			.appendPadding(ctx.getTextLeftMargin(), ctx.getTextLeftChar())
-//		;
-//		return ret;
-//	}
 
 }

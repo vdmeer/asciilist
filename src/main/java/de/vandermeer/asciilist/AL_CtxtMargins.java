@@ -47,43 +47,23 @@ public class AL_CtxtMargins {
 	}
 
 	/**
-	 * Returns the left text margin.
-	 * @return left text margin
+	 * Copies all settings from the given object.
+	 * @param margins the object to copy settings from
 	 */
-	public int getTextLeft() {
-		return this.textLeft;
+	public void copySettings(AL_CtxtMargins margins){
+		this.item = margins.item;
+		this.labelLeft = margins.labelLeft;
+		this.labelRight = margins.labelRight;
+		this.textLeft = margins.textLeft;
+		this.textRight = margins.textRight;
 	}
 
 	/**
-	 * Sets the left text margin.
-	 * @param margin new left text margin, ignored if negative
-	 * @return this to allow chaining
+	 * Returns the item margin.
+	 * @return item margin
 	 */
-	public AL_CtxtMargins setTextLeft(int margin) {
-		if(margin>-1){
-			this.textLeft = margin;
-		}
-		return this;
-	}
-
-	/**
-	 * Returns the right text margin.
-	 * @return right text margin
-	 */
-	public int getTextRight() {
-		return this.textRight;
-	}
-
-	/**
-	 * Sets the right text margin.
-	 * @param margin new right text margin, ignored if negative
-	 * @return this to allow chaining
-	 */
-	public AL_CtxtMargins setTextRight(int margin) {
-		if(margin>-1){
-			this.textRight = margin;
-		}
-		return this;
+	public int getItem() {
+		return this.item;
 	}
 
 	/**
@@ -95,18 +75,6 @@ public class AL_CtxtMargins {
 	}
 
 	/**
-	 * Sets the left label margin.
-	 * @param margin new left label margin, ignored if negative
-	 * @return this to allow chaining
-	 */
-	public AL_CtxtMargins setLabelLeft(int margin) {
-		if(margin>-1){
-			this.labelLeft = margin;
-		}
-		return this;
-	}
-
-	/**
 	 * Returns the right label margin.
 	 * @return right label margin
 	 */
@@ -115,23 +83,19 @@ public class AL_CtxtMargins {
 	}
 
 	/**
-	 * Sets the right label margin.
-	 * @param margin new right label margin, ignored if negative
-	 * @return this to allow chaining
+	 * Returns the left text margin.
+	 * @return left text margin
 	 */
-	public AL_CtxtMargins setLabelRight(int margin) {
-		if(margin>-1){
-			this.labelRight = margin;
-		}
-		return this;
+	public int getTextLeft() {
+		return this.textLeft;
 	}
 
 	/**
-	 * Returns the item margin.
-	 * @return item margin
+	 * Returns the right text margin.
+	 * @return right text margin
 	 */
-	public int getItem() {
-		return this.item;
+	public int getTextRight() {
+		return this.textRight;
 	}
 
 	/**
@@ -147,14 +111,50 @@ public class AL_CtxtMargins {
 	}
 
 	/**
-	 * Copies all settings from the given object.
-	 * @param object the object to copy settings from
+	 * Sets the left label margin.
+	 * @param margin new left label margin, ignored if negative
+	 * @return this to allow chaining
 	 */
-	public void copySettings(AL_CtxtMargins margins){
-		this.item = margins.item;
-		this.labelLeft = margins.labelLeft;
-		this.labelRight = margins.labelRight;
-		this.textLeft = margins.textLeft;
-		this.textRight = margins.textRight;
+	public AL_CtxtMargins setLabelLeft(int margin) {
+		if(margin>-1){
+			this.labelLeft = margin;
+		}
+		return this;
+	}
+
+	/**
+	 * Sets the right label margin.
+	 * @param margin new right label margin, ignored if negative
+	 * @return this to allow chaining
+	 */
+	public AL_CtxtMargins setLabelRight(int margin) {
+		if(margin>-1){
+			this.labelRight = margin;
+		}
+		return this;
+	}
+
+	/**
+	 * Sets the left text margin.
+	 * @param margin new left text margin, ignored if negative
+	 * @return this to allow chaining
+	 */
+	public AL_CtxtMargins setTextLeft(int margin) {
+		if(margin>-1){
+			this.textLeft = margin;
+		}
+		return this;
+	}
+
+	/**
+	 * Sets the right text margin.
+	 * @param margin new right text margin, ignored if negative
+	 * @return this to allow chaining
+	 */
+	public AL_CtxtMargins setTextRight(int margin) {
+		if(margin>-1){
+			this.textRight = margin;
+		}
+		return this;
 	}
 }

@@ -30,10 +30,35 @@ public class AL_CtxtStrings {
 	/** Left label string. */
 	protected String rightLabel = null;
 
+	/** A string to be put before the list starts, on a separate line. */
+	protected String listStart = null;
+
+	/** A string to be put after the list ends, on a separate line. */
+	protected String listEnd = null;
+
 	/**
 	 * Creates a new object with all strings set to null.
 	 */
 	public AL_CtxtStrings(){}
+
+	/**
+	 * Copies all settings from the given object.
+	 * @param strings the object to copy settings from
+	 */
+	public void copySettings(AL_CtxtStrings strings){
+		this.leftLabel = strings.leftLabel;
+		this.rightLabel = strings.rightLabel;
+		this.listStart = strings.listStart;
+		this.listEnd = strings.listEnd;
+	}
+
+	/**
+	 * Returns a copy of the object with all current settings.
+	 * @return copy with all current settings
+	 */
+	public AL_CtxtStrings getCopy(){
+		return new AL_CtxtStrings();
+	}
 
 	/**
 	 * Returns the left label string.
@@ -41,6 +66,30 @@ public class AL_CtxtStrings {
 	 */
 	public String getLeftLabel() {
 		return this.leftLabel;
+	}
+
+	/**
+	 * Returns the list end string
+	 * @return list end string
+	 */
+	public String getListEnd() {
+		return this.listEnd;
+	}
+
+	/**
+	 * Returns the list start string
+	 * @return list start string
+	 */
+	public String getListStart() {
+		return this.listStart;
+	}
+
+	/**
+	 * Returns the right label string.
+	 * @return right label string, null if not set
+	 */
+	public String getRightLabel() {
+		return this.rightLabel;
 	}
 
 	/**
@@ -54,11 +103,23 @@ public class AL_CtxtStrings {
 	}
 
 	/**
-	 * Returns the right label string.
-	 * @return right label string, null if not set
+	 * Sets the list end string
+	 * @param listEnd new list end string, null and blank are ok
+	 * @return this to allow chaining
 	 */
-	public String getRightLabel() {
-		return this.rightLabel;
+	public AL_CtxtStrings setListEnd(String listEnd) {
+		this.listEnd = listEnd;
+		return this;
+	}
+
+	/**
+	 * Sets the list start string
+	 * @param listStart new list start string, null and blank are ok
+	 * @return this to allow chaining
+	 */
+	public AL_CtxtStrings setListStart(String listStart) {
+		this.listStart = listStart;
+		return this;
 	}
 
 	/**
@@ -69,24 +130,5 @@ public class AL_CtxtStrings {
 	public AL_CtxtStrings setRightLabel(String rightLabel) {
 		this.rightLabel = rightLabel;
 		return this;
-	}
-
-	/**
-	 * Returns a copy of the object with all current settings.
-	 * @return copy with all current settings
-	 */
-	public AL_CtxtStrings getCopy(){
-		return new AL_CtxtStrings()
-				
-		;
-	}
-
-	/**
-	 * Copies all settings from the given object.
-	 * @param object the object to copy settings from
-	 */
-	public void copySettings(AL_CtxtStrings strings){
-		this.leftLabel = strings.leftLabel;
-		this.rightLabel = strings.rightLabel;
 	}
 }

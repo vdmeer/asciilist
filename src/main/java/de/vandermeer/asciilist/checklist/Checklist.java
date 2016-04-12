@@ -13,89 +13,80 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist.itemize;
+package de.vandermeer.asciilist.checklist;
 
 import de.vandermeer.asciilist.AbstractAsciiList;
 import de.vandermeer.asciilist.AsciiList;
 import de.vandermeer.skb.interfaces.strategies.collections.IsSetStrategy;
 
 /**
- * An itemize list.
+ * An checklist.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class ItemizeList extends AbstractAsciiList<Il_Context, ItemizeListItem, Il_Renderer> {
+public class Checklist extends AbstractAsciiList<Cl_Context, ChecklistItem, Cl_Renderer> {
 
 	/**
-	 * Creates a new itemize list with a linked hash set for list items.
+	 * Creates a new checklist list with a linked hash set for list items.
 	 */
-	public ItemizeList(){
+	public Checklist(){
 		this(null, null);
 	}
 
 	/**
-	 * Creates a new itemize list with a linked hash set for list items.
+	 * Creates a new checklist list with a linked hash set for list items.
 	 * @param ctx list context, using default if null
 	 */
-	public ItemizeList(Il_Context ctx){
+	public Checklist(Cl_Context ctx){
 		this(ctx, null);
 	}
 
 	/**
-	 * Creates a new itemize list with a sorted set for the list items.
+	 * Creates a new checklist list with a sorted set for the list items.
 	 * @param strategy the list strategy to be used for the list of items
 	 */
-	public ItemizeList(IsSetStrategy<?, ItemizeListItem> strategy){
+	public Checklist(IsSetStrategy<?, ChecklistItem> strategy){
 		this(null, strategy);
 	}
 
 	/**
-	 * Creates a new itemize list.
+	 * Creates a new checklist list.
 	 * @param ctx list context, using default if null
 	 * @param strategy the list strategy to be used for the list of items
 	 */
-	public ItemizeList(Il_Context ctx, IsSetStrategy<?, ItemizeListItem> strategy){
+	public Checklist(Cl_Context ctx, IsSetStrategy<?, ChecklistItem> strategy){
 		super(ctx, strategy);
-		this.renderer = new Il_Renderer();
+		this.renderer = new Cl_Renderer();
 	}
 
 	/**
 	 * Adds a new item to the list.
-	 * @param text the item text
+	 * @param text item text
+	 * @param isChecked the checked status, true if checked, false otherwise
 	 * @return this to allow chaining
 	 */
-	public ItemizeList addItem(Object text){
-		this.getItems().add(new ItemizeListItem(text));
+	public Checklist addItem(Object text, boolean isChecked){
+		this.getItems().add(new ChecklistItem(text, isChecked));
 		return this;
 	}
 
 	/**
-	 * Adds a new item to the list.
-	 * @param text the item text
-	 * @param list a child list
+	 * Adds a new item to the list and a child list.
+	 * @param text item text
+	 * @param isChecked the checked status, true if checked, false otherwise
+	 * @param list another list
 	 * @return this to allow chaining
 	 */
-	public ItemizeList addItem(Object text, AsciiList<?, ?, ?> list){
-		this.getItems().add(new ItemizeListItem(text, list));
+	public Checklist addItem(Object text, boolean isChecked, AsciiList<?, ?, ?> list){
+		this.getItems().add(new ChecklistItem(text, isChecked, list));
 		return this;
 	}
 
 	@Override
-	public Il_Context getNewContext() {
-		return new Il_Context();
+	public Cl_Context getNewContext() {
+		return new Cl_Context();
 	}
 
-	/**
-	 * Applies the theme by setting parameters in the given context.
-	 * @param theme the theme to apply
-	 * @return this to allow chaining
-	 */
-	public ItemizeList applyTheme(ItemizeListTheme theme){
-		if(theme!=null){
-			theme.apply(this.ctx);
-		}
-		return this;
-	}
 }

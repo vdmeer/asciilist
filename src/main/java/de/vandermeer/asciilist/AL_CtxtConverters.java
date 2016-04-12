@@ -54,6 +54,34 @@ public class AL_CtxtConverters {
 	}
 
 	/**
+	 * Returns a copy of the object with all current settings.
+	 * @return copy with all current settings
+	 */
+	public AL_CtxtConverters getCopy(){
+		return new AL_CtxtConverters()
+				.setCharTranslator(this.getCharTranslator())
+				.setHtmlElementTranslator(this.getHtmlElementTranslator())
+				.setTargetTranslator(this.getTargetTranslator())
+		;
+	}
+
+	/**
+	 * Returns the HTML entity translator.
+	 * @return HTML entity
+	 */
+	public HtmlElementTranslator getHtmlElementTranslator() {
+		return this.htmlElementTranslator;
+	}
+
+	/**
+	 * Returns the target translator.
+	 * @return target translator, null if not set
+	 */
+	public TargetTranslator getTargetTranslator() {
+		return this.targetTranslator;
+	}
+
+	/**
 	 * Sets the character translator.
 	 * It will also remove any other translator set.
 	 * Nothing will happen if the argument is null.
@@ -67,14 +95,6 @@ public class AL_CtxtConverters {
 			this.targetTranslator = null;
 		}
 		return this;
-	}
-
-	/**
-	 * Returns the HTML entity translator.
-	 * @return HTML entity
-	 */
-	public HtmlElementTranslator getHtmlElementTranslator() {
-		return this.htmlElementTranslator;
 	}
 
 	/**
@@ -94,14 +114,6 @@ public class AL_CtxtConverters {
 	}
 
 	/**
-	 * Returns the target translator.
-	 * @return target translator, null if not set
-	 */
-	public TargetTranslator getTargetTranslator() {
-		return this.targetTranslator;
-	}
-
-	/**
 	 * Sets the target translator.
 	 * It will also remove any other translator set.
 	 * Nothing will happen if the argument is null.
@@ -115,17 +127,5 @@ public class AL_CtxtConverters {
 			this.htmlElementTranslator = null;
 		}
 		return this;
-	}
-
-	/**
-	 * Returns a copy of the object with all current settings.
-	 * @return copy with all current settings
-	 */
-	public AL_CtxtConverters getCopy(){
-		return new AL_CtxtConverters()
-				.setCharTranslator(this.getCharTranslator())
-				.setHtmlElementTranslator(this.getHtmlElementTranslator())
-				.setTargetTranslator(this.getTargetTranslator())
-		;
 	}
 }

@@ -13,26 +13,51 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist;
+package de.vandermeer.asciilist.descriptionlist;
+
+import de.vandermeer.asciilist.AL_CtxtIndents;
 
 /**
- * Indentation object for an {@link AL_Context}.
+ * Indentation object for description lists.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class AL_CtxtIndents {
+public class Dl_CtxtIndents extends AL_CtxtIndents {
+
+	/** The indentation for the description. */
+	protected int descriptionIndent = 4;
 
 	/**
 	 * Creates a new object.
 	 */
-	public AL_CtxtIndents(){}
+	public Dl_CtxtIndents(){}
 
 	/**
 	 * Copies all settings from the given object.
 	 * @param indents the object to copy settings from
 	 */
-	public void copySettings(AL_CtxtIndents indents){
+	public void copySettings(Dl_CtxtIndents indents){
+		this.descriptionIndent = indents.descriptionIndent;
 	}
+
+	/**
+	 * Returns the description indentation.
+	 * @return description indentation
+	 */
+	public int getDescriptionIndent() {
+		return descriptionIndent;
+	}
+
+	/**
+	 * Sets the description indentation.
+	 * @param descriptionIndent new indentation
+	 * @return this to allow chaining
+	 */
+	public Dl_CtxtIndents setDescriptionIndent(int descriptionIndent) {
+		this.descriptionIndent = descriptionIndent;
+		return this;
+	}
+
 }

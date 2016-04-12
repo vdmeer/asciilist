@@ -15,8 +15,9 @@
 
 package de.vandermeer.asciilist.enumerate;
 
+import de.vandermeer.asciilist.AbstractAsciiList;
 import de.vandermeer.asciilist.AsciiList;
-import de.vandermeer.asciilist.ListItem;
+import de.vandermeer.skb.interfaces.strategies.collections.IsSetStrategy;
 
 /**
  * An enumerate list.
@@ -25,41 +26,76 @@ import de.vandermeer.asciilist.ListItem;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class EnumerateList extends AsciiList<El_Context, ListItem, El_Renderer> {
+public class EnumerateList extends AbstractAsciiList<El_Context, EnumerateListItem, El_Renderer> {
 
 	/**
-	 * Creates a new enumerate list.
+	 * Creates a new enumerate list with a linked hash set for list items.
 	 */
 	public EnumerateList(){
-		this(null);
+		this(null, null);
+	}
+
+	/**
+	 * Creates a new enumerate list with a linked hash set for list items.
+	 * @param ctx list context, using default if null
+	 */
+	public EnumerateList(El_Context ctx){
+		this(ctx, null);
+	}
+
+	/**
+	 * Creates a new enumerate list with a sorted set for the list items.
+	 * @param strategy the list strategy to be used for the list of items
+	 */
+	public EnumerateList(IsSetStrategy<?, EnumerateListItem> strategy){
+		this(null, strategy);
 	}
 
 	/**
 	 * Creates a new enumerate list.
 	 * @param ctx list context, using default if null
+	 * @param strategy the list strategy to be used for the list of items
 	 */
-	public EnumerateList(El_Context ctx){
-		if(ctx==null){
-			this.ctx = new El_Context();
-		}
-		else{
-			this.ctx = ctx;
-		}
+	public EnumerateList(El_Context ctx, IsSetStrategy<?, EnumerateListItem> strategy){
+		super(ctx, strategy);
 		this.renderer = new El_Renderer();
 	}
 
+	/**
+	 * Adds a new item to the list.
+	 * @param text item text
+	 * @return this. to allow chaining
+	 */
 	public EnumerateList addItem(Object text){
-		this.getItems().add(new ListItem(text));
+		this.getItems().add(new EnumerateListItem(text));
 		return this;
 	}
 
+	/**
+	 * Adds a new item to the list.
+	 * @param text item text
+	 * @param list a child list
+	 * @return this. to allow chaining
+	 */
 	public EnumerateList addItem(Object text, AsciiList<?, ?, ?> list){
-		this.getItems().add(new ListItem(text, list));
+		this.getItems().add(new EnumerateListItem(text, list));
 		return this;
 	}
 
 	@Override
-	protected El_Context getNewContext() {
+	public El_Context getNewContext() {
 		return new El_Context();
+	}
+
+	/**
+	 * Applies the theme by setting parameters in the given context.
+	 * @param theme the theme to apply
+	 * @return this to allow chaining
+	 */
+	public EnumerateList applyTheme(EnumerateListTheme theme){
+		if(theme!=null){
+			theme.apply(this.ctx);
+		}
+		return this;
 	}
 }

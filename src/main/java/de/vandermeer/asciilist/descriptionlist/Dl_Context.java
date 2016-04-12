@@ -13,50 +13,60 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist.itemize;
+package de.vandermeer.asciilist.descriptionlist;
 
-import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
 import de.vandermeer.asciilist.AL_Context;
 import de.vandermeer.asciilist.AL_CtxtCharacters;
-import de.vandermeer.asciilist.AL_CtxtIndents;
 import de.vandermeer.asciilist.AL_CtxtMargins;
 import de.vandermeer.asciilist.AL_CtxtStrings;
 import de.vandermeer.asciilist.ListItem;
-import de.vandermeer.asciithemes.TA_ItemizeList;
-import de.vandermeer.asciithemes.a7.A7_ItemizeLists;
 
 /**
- * Context for an itemize list.
+ * Context for a description list.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.3-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
  * @since      v0.1.0
  */
-public class Il_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL_CtxtMargins, AL_CtxtStrings>{
+public class Dl_Context extends AL_Context<AL_CtxtCharacters, Dl_CtxtIndents, AL_CtxtMargins, AL_CtxtStrings>{
 
-	/** The style for list items. */
-	protected TA_ItemizeList style = A7_ItemizeLists.allStarIncremental();
-
-	/** Flag for inhering style from another itemize list if this list is a child, default is true. */
-	protected boolean inheritStyle = true;
+	/** Flag directing the lists render behavior, true for single line, false for multiline, default is single line. */
+	protected boolean useSameLine;
 
 	/**
-	 * Creates a new context object for an itemize lists.
+	 * Creates a new context object for a description lists.
 	 */
-	public Il_Context(){
+	public Dl_Context(){
 		this.init();
 	}
 
 	@Override
-	public Il_Context copySettings(AL_Context<?, ?, ?, ?> ctx) {
+	public Dl_Context copySettings(AL_Context<?, ?, ?, ?> ctx) {
 		super.copySettings(ctx);
-		if(ctx instanceof Il_Context){
-			this.style = ((Il_Context)ctx).style;
-			this.inheritStyle = ((Il_Context)ctx).inheritStyle;
+		if(ctx instanceof Dl_Context){
+			this.useSameLine = ((Dl_Context) ctx).useSameLine;
+			this.indents.copySettings(((Dl_Context)ctx).indents);
 		}
 		return this;
+	}
+
+	@Override
+	public StrBuilder getCalculatedItemString(){
+		StrBuilder ret = new StrBuilder(20);
+		ret
+			.appendPadding(this.getDescriptionIndent(), this.getLabelLeftChar())
+		;
+		return ret;
+	}
+
+	/**
+	 * Returns the description indentation.
+	 * @return description indentation
+	 */
+	public int getDescriptionIndent() {
+		return this.indents.descriptionIndent;
 	}
 
 	@Override
@@ -66,28 +76,35 @@ public class Il_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 			.appendPadding(this.getItemMargin(), this.getItemChar())
 			.append(this.getLeftLabelString())
 			.appendPadding(this.getLabelLeftMargin(), this.getLabelLeftChar())
-			.append(this.getStyle().getLabel(this.getLevel()))
+		;
+
+		if(item instanceof DescriptionListItem){
+			ret.append(((DescriptionListItem) item).getKey());
+		}
+
+		ret
 			.appendPadding(this.getLabelRightMargin(), this.getLabelRightChar())
 			.append(this.getRightLabelString())
-			.appendPadding(this.getTextLeftMargin(), this.getTextLeftChar())
 		;
+
+		if(item instanceof DescriptionListItem){
+			ret.appendPadding(this.getTextLeftMargin(), this.getTextLeftChar());
+		}
+
 		return ret;
 	}
 
 	/**
-	 * Returns the list style.
-	 * @return list style
+	 * Returns the same line flag.
+	 * @return true if same line (key and description on same line), false otherwise
 	 */
-	public TA_ItemizeList getStyle() {
-		return this.style;
+	public boolean getUseSameLine() {
+		return this.useSameLine;
 	}
 
 	@Override
 	public AL_Context<?, ?, ?, ?> inheritSettings(AL_Context<?, ?, ?, ?> ctx) {
-		if(ctx instanceof Il_Context){
-			if(this.inheritStyle){
-				this.style = ((Il_Context)ctx).style;
-			}
+		if(ctx instanceof Dl_Context){
 		}
 		return this;
 	}
@@ -96,30 +113,29 @@ public class Il_Context extends AL_Context<AL_CtxtCharacters, AL_CtxtIndents, AL
 	public void init(){
 		super.init();
 		this.characters = new AL_CtxtCharacters();
-		this.indents = new AL_CtxtIndents();
+		this.indents = new Dl_CtxtIndents();
 		this.margins = new AL_CtxtMargins();
 		this.strings = new AL_CtxtStrings();
 	}
 
 	/**
-	 * Sets the inherit-style flag.
-	 * @param flag true if this list should inherit style (if it is a child list), false otherwise
+	 * Sets the description indentation.
+	 * @param descriptionIndent new indentation
 	 * @return this to allow chaining
 	 */
-	public Il_Context setInheritStyle(boolean flag){
-		this.inheritStyle = flag;
+	public Dl_Context setDescriptionIndent(int descriptionIndent) {
+		this.indents.setDescriptionIndent(descriptionIndent);
 		return this;
 	}
 
 	/**
-	 * Sets the list style.
-	 * @param style new style
+	 * Sets the same line flag.
+	 * @param useSameLine true if same line (key and description on same line), false otherwise
 	 * @return this to allow chaining
-	 * @throws NullPointerException if style was null
 	 */
-	public Il_Context setStyle(TA_ItemizeList style) {
-		Validate.notNull(style);
-		this.style = style;
+	public Dl_Context setUseSameLine(boolean useSameLine) {
+		this.useSameLine = useSameLine;
 		return this;
 	}
+
 }
