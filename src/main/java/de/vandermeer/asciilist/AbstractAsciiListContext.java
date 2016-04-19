@@ -20,6 +20,7 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
 import de.vandermeer.asciithemes.TA_Frame;
+import de.vandermeer.asciithemes.TA_FrameOptions;
 import de.vandermeer.skb.interfaces.translators.CharacterTranslator;
 import de.vandermeer.skb.interfaces.translators.HtmlElementTranslator;
 import de.vandermeer.skb.interfaces.translators.TargetTranslator;
@@ -292,7 +293,7 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 		this.alignment = AL_Alignment.JUSTIFIED_LEFT;
 		this.width = 80;
 		this.frame = null;
-		this.frameMode = TA_Frame.THEME_FULL_FRAME;
+		this.frameMode = TA_FrameOptions.THEME_FULL_FRAME;
 		this.level = 1;
 		this.parentIndex = null;
 
