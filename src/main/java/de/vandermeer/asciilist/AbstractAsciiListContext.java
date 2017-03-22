@@ -37,8 +37,8 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	/** List alignment, default is {@link AL_Alignment#JUSTIFIED_LEFT}. */
 	protected AL_Alignment alignment;
 
-	/** The width of the paragraph, actual width depends on padding settings, default is `80`. */
-	protected int width;
+	/** A simple character translator. */
+	protected CharacterTranslator charTranslator;
 
 	/** The theme for a frame. */
 	protected TA_Frame frame;
@@ -46,29 +46,44 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	/** The mode for a frame. */
 	protected int frameMode;
 
+	/** A translator for HTML elements. */
+	protected HtmlElementTranslator htmlElementTranslator;
+
+	/** Item margin character. */
+	protected Character itemChar;
+
+	/** Item margin. */
+	protected int itemMargin;
+
+	/** Left label margin character. */
+	protected Character labelLeftChar;
+
+	/** Left label margin. */
+	protected int labelLeftMargin;
+
+	/** Right label margin character. */
+	protected Character labelRightChar;
+
+	/** Right label margin. */
+	protected int labelRightMargin;
+
+	/** Left label string. */
+	protected String leftLabelString;
+
 	/** The level of this list in the context of other lists, default is 1, cannot be smaller than 1. */
 	protected int level;
+
+	/** A string to be put after the list ends, on a separate line. */
+	protected String listEndString;
+
+	/** A string to be put before the list starts, on a separate line. */
+	protected String listStartString;
 
 	/** The index of all parents for a nested list. */
 	protected int[] parentIndex;
 
 	/** Left label string. */
-	protected String leftLabelString;
-
-	/** Left label string. */
 	protected String rightLabelString;
-
-	/** A string to be put before the list starts, on a separate line. */
-	protected String listStartString;
-
-	/** A string to be put after the list ends, on a separate line. */
-	protected String listEndString;
-
-	/** A simple character translator. */
-	protected CharacterTranslator charTranslator;
-
-	/** A translator for HTML elements. */
-	protected HtmlElementTranslator htmlElementTranslator;
 
 	/** A translator for a particular target. */
 	protected TargetTranslator targetTranslator;
@@ -76,32 +91,17 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	/** Left text margin character. */
 	protected Character textLeftChar;
 
-	/** Right text margin character. */
-	protected Character textRightChar;
-
-	/** Left label margin character. */
-	protected Character labelLeftChar;
-
-	/** Right label margin character. */
-	protected Character labelRightChar;
-
-	/** Item margin character. */
-	protected Character itemChar;
-
 	/** Left text margin. */
 	protected int textLeftMargin;
+
+	/** Right text margin character. */
+	protected Character textRightChar;
 
 	/** Right text margin. */
 	protected int textRightMargin;
 
-	/** Left label margin. */
-	protected int labelLeftMargin;
-
-	/** Right label margin. */
-	protected int labelRightMargin;
-
-	/** Item margin. */
-	protected int itemMargin;
+	/** The width of the paragraph, actual width depends on padding settings, default is `80`. */
+	protected int width;
 
 	/**
 	 * Creates a new paragraph context with default settings.
