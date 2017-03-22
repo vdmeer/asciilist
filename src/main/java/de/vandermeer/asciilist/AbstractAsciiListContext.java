@@ -21,6 +21,7 @@ import org.apache.commons.lang3.text.StrBuilder;
 
 import de.vandermeer.asciithemes.TA_Frame;
 import de.vandermeer.asciithemes.TA_FrameOptions;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 import de.vandermeer.skb.interfaces.translators.CharacterTranslator;
 import de.vandermeer.skb.interfaces.translators.HtmlElementTranslator;
 import de.vandermeer.skb.interfaces.translators.TargetTranslator;
@@ -35,7 +36,7 @@ import de.vandermeer.skb.interfaces.translators.TargetTranslator;
 public abstract class AbstractAsciiListContext implements AsciiListContext {
 
 	/** List alignment, default is {@link AL_Alignment#JUSTIFIED_LEFT}. */
-	protected AL_Alignment alignment;
+	protected TextAlignment alignment;
 
 	/** A simple character translator. */
 	protected CharacterTranslator charTranslator;
@@ -152,7 +153,7 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	}
 
 	@Override
-	public AL_Alignment getAlignment(){
+	public TextAlignment getAlignment(){
 		return this.alignment;
 	}
 
@@ -290,7 +291,7 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 
 	@Override
 	public void init(){
-		this.alignment = AL_Alignment.JUSTIFIED_LEFT;
+		this.alignment = TextAlignment.JUSTIFIED_LEFT;
 		this.width = 80;
 		this.frame = null;
 		this.frameMode = TA_FrameOptions.THEME_FULL_FRAME;
@@ -320,7 +321,7 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	}
 
 	@Override
-	public AsciiListContext setAlignment(AL_Alignment alignment){
+	public AsciiListContext setAlignment(TextAlignment alignment){
 		Validate.notNull(alignment);
 		this.alignment = alignment;
 		return this;

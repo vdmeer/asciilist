@@ -17,7 +17,7 @@ package de.vandermeer.asciilist.descriptionlist;
 
 import org.junit.Test;
 
-import de.vandermeer.asciilist.AL_Alignment;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 
 /**
  * Tests for {@link DescriptionList}.
@@ -41,14 +41,14 @@ public class Test_DescriptionList {
 		list.getContext().setListStart("\\begin{description}");
 		list.getContext().setListEnd("\\end{description}");
 		list.getContext().setItemMargin(4);
-		list.getContext().setAlignment(AL_Alignment.LEFT);
+		list.getContext().setAlignment(TextAlignment.LEFT);
 		System.err.println(list.render(80) + "\n");
 	}
 
 	@Test
 	public void test_MultiLine(){
 		DescriptionList list = new DescriptionList();
-		list.getContext().setAlignment(AL_Alignment.LEFT);
+		list.getContext().setAlignment(TextAlignment.LEFT);
 		list.getContext().setUseSameLine(false);
 		list.addItem("term 1", "this is the first term in the list");
 		list.addItem("term 2", "this is the second term in the list");
@@ -65,7 +65,7 @@ public class Test_DescriptionList {
 	@Test
 	public void test_SingleLine(){
 		DescriptionList list = new DescriptionList();
-		list.getContext().setAlignment(AL_Alignment.LEFT);
+		list.getContext().setAlignment(TextAlignment.LEFT);
 		list.getContext().setUseSameLine(true);
 		list.addItem("term 1", "this is the first term in the list");
 		list.addItem("term 2", "this is the second term in the list");

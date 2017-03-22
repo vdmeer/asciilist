@@ -19,10 +19,10 @@ import org.apache.commons.lang3.text.StrBuilder;
 import org.junit.Test;
 
 import de.svenjacobs.loremipsum.LoremIpsum;
-import de.vandermeer.asciilist.AL_Alignment;
 import de.vandermeer.asciithemes.a7.A7_ItemizeLists;
 import de.vandermeer.asciithemes.u8.U8_ItemizeLists;
 import de.vandermeer.skb.interfaces.strategies.collections.sortedset.TreeSetStrategy;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 
 /**
  * Tests for {@link ItemizeList}.
@@ -64,7 +64,7 @@ public class Test_ItemizeList {
 	@Test
 	public void test_Itemize(){
 		ItemizeList list = new ItemizeList();
-		list.getContext().setAlignment(AL_Alignment.LEFT);
+		list.getContext().setAlignment(TextAlignment.LEFT);
 		list.addItem(new LoremIpsum().getWords(10));
 		list.addItem("item 2");
 		list.addItem("item 3");

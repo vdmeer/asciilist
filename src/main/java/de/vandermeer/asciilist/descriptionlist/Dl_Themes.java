@@ -15,7 +15,7 @@
 
 package de.vandermeer.asciilist.descriptionlist;
 
-import de.vandermeer.asciilist.AL_Alignment;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 import de.vandermeer.translation.targets.Text2Latex;
 
 /**
@@ -44,7 +44,7 @@ public interface Dl_Themes {
 				ctx.setItemMargin(4);
 				ctx.setLabelRightMargin(0);
 				ctx.setTextLeftMargin(1);
-				ctx.setAlignment(AL_Alignment.LEFT);
+				ctx.setAlignment(TextAlignment.LEFT);
 				ctx.setUseSameLine(true);
 			}
 		};

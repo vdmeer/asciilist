@@ -19,6 +19,7 @@ import org.apache.commons.lang3.text.StrBuilder;
 
 import de.vandermeer.asciithemes.TA_Frame;
 import de.vandermeer.skb.interfaces.document.IsListContext;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 import de.vandermeer.skb.interfaces.translators.CharacterTranslator;
 import de.vandermeer.skb.interfaces.translators.HtmlElementTranslator;
 import de.vandermeer.skb.interfaces.translators.TargetTranslator;
@@ -43,7 +44,7 @@ public interface AsciiListContext extends IsListContext {
 	 * Returns the set alignment.
 	 * @return paragraph alignment
 	 */
-	AL_Alignment getAlignment();
+	TextAlignment getAlignment();
 
 	/**
 	 * Returns a calculated item label string, item label plus all margins and indentations.
@@ -232,7 +233,7 @@ public interface AsciiListContext extends IsListContext {
 	 * @throws NullPointerException if the argument was null
 	 * @return this to allow chaining
 	 */
-	AsciiListContext setAlignment(AL_Alignment alignment);
+	AsciiListContext setAlignment(TextAlignment alignment);
 
 	/**
 	 * Sets the character translator.
