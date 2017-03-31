@@ -74,7 +74,7 @@ public class DescriptionListRenderer extends AbstractAsciiListRenderer<Descripti
 			if(ctx.getUseSameLine()==true){
 				//render for key/text on same line
 				itList = Text_To_FormattedText.create(
-						width, ctx.getAlignment().getMappingToTransformer(), Text_To_FormattedText.FORMAT_FIRSTLINE_AND_HANGINGPARAGRAPH,
+						width, ctx.getAlignment().getMapping(), Text_To_FormattedText.FORMAT_FIRSTLINE_AND_HANGINGPARAGRAPH,
 						null, null, null,
 						0, itemString.length(), null, 0, 0, null)
 				.transform(text);
@@ -82,7 +82,7 @@ public class DescriptionListRenderer extends AbstractAsciiListRenderer<Descripti
 			else{
 				//render for key on first line, text on following lines
 				itList = Text_To_FormattedText.create(
-						width-ctx.getDescriptionIndent(), ctx.getAlignment().getMappingToTransformer(), Text_To_FormattedText.FORMAT_NONE,
+						width-ctx.getDescriptionIndent(), ctx.getAlignment().getMapping(), Text_To_FormattedText.FORMAT_NONE,
 						null, null, null,
 						0, 0, null, 0, 0, null)
 				.transform(text);

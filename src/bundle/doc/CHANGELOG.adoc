@@ -11,6 +11,7 @@
 * fixed a naming error for UTF arrows in itemize styles
 * added all_utf_arabic_superscript to NestedEnumerateStyles
 * renamed a few styles in NestedEnumerateStyles (`aLL` to `all`)
+* alignment and format moved to skb-interfaces
 
 
 === v0.0.3 - feature add - 2016-03-01

@@ -63,7 +63,7 @@ public class AbstractAsciiListRenderer<I extends AsciiListItem, C extends AsciiL
 
 			StrBuilder itemString = ctx.getItemString(item, index);
 			Collection<StrBuilder> itList = Text_To_FormattedText.create(
-					width, ctx.getAlignment().getMappingToTransformer(), Text_To_FormattedText.FORMAT_NONE,
+					width, ctx.getAlignment().getMapping(), Text_To_FormattedText.FORMAT_NONE,
 					null, null, null,
 					0, 0, null, 0, 0, null)
 			.transform(text);
