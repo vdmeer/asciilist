@@ -19,16 +19,16 @@ import org.apache.commons.lang3.text.StrBuilder;
 
 import de.vandermeer.asciilist.itemize.ItemizeList;
 import de.vandermeer.asciithemes.u8.U8_ItemizeLists;
-import de.vandermeer.skb.interfaces.StandardExample;
+import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
 
 /**
  * AsciiList example for simple itemize lists.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 170331 (31-Mar-17) for Java 1.8
  * @since      v0.0.4
  */
-public class AL_Example_SimpleItemize implements StandardExample {
+public class AL_Example_SimpleItemize implements StandardExampleAsCmd {
 
 	@Override
 	public void showOutput(){
@@ -92,5 +92,15 @@ public class AL_Example_SimpleItemize implements StandardExample {
 				"System.out.println(\"\\n\" + list.render());",
 		};
 		return new StrBuilder().appendWithSeparators(source, "\n");
+	}
+
+	@Override
+	public String getDescription() {
+		return "simple itemize list";
+	}
+
+	@Override
+	public String getID() {
+		return "itemize";
 	}
 }

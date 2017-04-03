@@ -19,16 +19,16 @@ import org.apache.commons.lang3.text.StrBuilder;
 
 import de.vandermeer.asciilist.enumerate.EnumerateList;
 import de.vandermeer.asciithemes.u8.U8_EnumerateLists;
-import de.vandermeer.skb.interfaces.StandardExample;
+import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
 
 /**
  * AsciiList example for an enumerate list with subscripts.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 170331 (31-Mar-17) for Java 1.8
  * @since      v0.0.4
  */
-public class AL_Example_EnumerateSubscript implements StandardExample {
+public class AL_Example_EnumerateSubscript implements StandardExampleAsCmd {
 
 	@Override
 	public void showOutput(){
@@ -61,5 +61,15 @@ public class AL_Example_EnumerateSubscript implements StandardExample {
 				"System.out.println(list.render());",
 		};
 		return new StrBuilder().appendWithSeparators(source, "\n");
+	}
+
+	@Override
+	public String getDescription() {
+		return "simple enumerate list";
+	}
+
+	@Override
+	public String getID() {
+		return "enumerate";
 	}
 }

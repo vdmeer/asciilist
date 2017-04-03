@@ -21,16 +21,16 @@ import de.vandermeer.asciilist.enumerate.EnumerateList;
 import de.vandermeer.asciilist.itemize.ItemizeList;
 import de.vandermeer.asciithemes.a7.A7_EnumerateLists;
 import de.vandermeer.asciithemes.a7.A7_ItemizeLists;
-import de.vandermeer.skb.interfaces.StandardExample;
+import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
 
 /**
  * AsciiList example with different width.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 160319 (19-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 170331 (31-Mar-17) for Java 1.8
  * @since      v0.0.4
  */
-public class AL_Example_Width implements StandardExample {
+public class AL_Example_Width implements StandardExampleAsCmd {
 
 	@Override
 	public void showOutput(){
@@ -103,5 +103,15 @@ public class AL_Example_Width implements StandardExample {
 				"System.out.println(enumerate.render());",
 		};
 		return new StrBuilder().appendWithSeparators(source, "\n");
+	}
+
+	@Override
+	public String getDescription() {
+		return "setting the width of lists";
+	}
+
+	@Override
+	public String getID() {
+		return "width";
 	}
 }
