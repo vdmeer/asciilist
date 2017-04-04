@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>v0.0.4 - refactoring - 2016-03-##</title>
+<title>v0.1.0 - major rewrite (existing code will break) - 2016-03-##</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -512,8 +512,8 @@ table.CodeRay td.code>pre{padding:0}
 <div id="header">
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_v0_0_4_refactoring_2016_03">v0.0.4 - refactoring - 2016-03-##</a></li>
+<ul class="sectlevel2">
+<li><a href="#_v0_1_0_major_rewrite_existing_code_will_break_2016_03">v0.1.0 - major rewrite (existing code will break) - 2016-03-##</a></li>
 <li><a href="#_v0_0_3_feature_add_2016_03_01">v0.0.3 - feature add - 2016-03-01</a></li>
 <li><a href="#_v0_0_2_feature_add_2015_09_10">v0.0.2 - feature add - 2015-09-10</a></li>
 <li><a href="#_v0_0_1_initial_release_2015_09_01">v0.0.1 - initial release - 2015-09-01</a></li>
@@ -521,11 +521,19 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_v0_0_4_refactoring_2016_03">v0.0.4 - refactoring - 2016-03-##</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_v0_1_0_major_rewrite_existing_code_will_break_2016_03">v0.1.0 - major rewrite (existing code will break) - 2016-03-##</h3>
 <div class="ulist">
 <ul>
+<li>
+<p>changed code to use Java 8</p>
+</li>
+<li>
+<p>interfaces now have default implementations, abstract classes removed</p>
+</li>
+<li>
+<p>using <code>skb-interfaces</code> package, some functionality changed</p>
+</li>
 <li>
 <p>changed pm configuration to new project manager</p>
 </li>
@@ -550,13 +558,14 @@ table.CodeRay td.code>pre{padding:0}
 <li>
 <p>renamed a few styles in NestedEnumerateStyles (<code>aLL</code> to <code>all</code>)</p>
 </li>
+<li>
+<p>alignment and format moved to skb-interfaces</p>
+</li>
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_v0_0_3_feature_add_2016_03_01">v0.0.3 - feature add - 2016-03-01</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_v0_0_3_feature_add_2016_03_01">v0.0.3 - feature add - 2016-03-01</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -571,10 +580,8 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_v0_0_2_feature_add_2015_09_10">v0.0.2 - feature add - 2015-09-10</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_v0_0_2_feature_add_2015_09_10">v0.0.2 - feature add - 2015-09-10</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -612,10 +619,8 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_v0_0_1_initial_release_2015_09_01">v0.0.1 - initial release - 2015-09-01</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_v0_0_1_initial_release_2015_09_01">v0.0.1 - initial release - 2015-09-01</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -640,10 +645,9 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 </div>
-</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-03-08 12:34:51 GMT
+Last updated 2017-03-22 09:09:29 GMT
 </div>
 </div>
 </body>

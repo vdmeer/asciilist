@@ -13,20 +13,29 @@
  * limitations under the License.
  */
 
-package de.vandermeer.asciilist.enumerate;
+package de.vandermeer.asciilist.builder;
+
+import de.vandermeer.asciilist.AsciiList;
 
 /**
- * A theme for an {@link EnumerateList}.
+ * The main list builder.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.1.0
  */
-public interface EnumerateListTheme {
+public class Lb<T extends AsciiList<?, ?, ?>> {
 
-	/**
-	 * Applies the theme by setting parameters in the given context.
-	 * @param ctx the context of the paragraph, should not be null
-	 */
-	void apply(EnumerateListContext ctx);
+	protected Object currentItem;
+
+	protected T list;
+
+	protected Lb<?> currentBuilder;
+
+	protected Lb<?> parrentBuilder;
+
+	public T get(){
+		return null;
+	}
+
 }

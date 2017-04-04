@@ -27,7 +27,7 @@ import de.vandermeer.skb.interfaces.document.IsListRenderer;
  * List renderer interface.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 170331 (31-Mar-17) for Java 1.8
+ * @version    v0.0.4-SNAPSHOT build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.1.0
  */
 public interface AsciiListRenderer<I extends AsciiListItem, C extends AsciiListContext> extends IsListRenderer {

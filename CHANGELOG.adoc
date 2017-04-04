@@ -1,5 +1,8 @@
-v0.0.4 - refactoring - 2016-03-##
----------------------------------
+=== v0.1.0 - major rewrite (existing code will break) - 2016-03-##
+
+* changed code to use Java 8
+* interfaces now have default implementations, abstract classes removed
+* using `skb-interfaces` package, some functionality changed
 * changed pm configuration to new project manager
 * Javadoc now using AsciiDoc doclet
   * changed all documentation to AsciiDoc format
@@ -8,17 +11,18 @@ v0.0.4 - refactoring - 2016-03-##
 * fixed a naming error for UTF arrows in itemize styles
 * added all_utf_arabic_superscript to NestedEnumerateStyles
 * renamed a few styles in NestedEnumerateStyles (`aLL` to `all`)
+* alignment and format moved to skb-interfaces
 
 
-v0.0.3 - feature add - 2016-03-01
----------------------------------
+=== v0.0.3 - feature add - 2016-03-01
+
 * pushed asciidoctor plugin to 1.5.3
 * added addAllItems to AsciiList_Enumerate, AsciiList_Itemize, and AsciiList_Check
 * removed old module/ settings, added bundle/pm settings
 
 
-v0.0.2 - feature add - 2015-09-10
----------------------------------
+=== v0.0.2 - feature add - 2015-09-10
+
 * added width to list
 	** changed render behavior to render against a list width
 * added indentation calculation to list
@@ -29,8 +33,8 @@ v0.0.2 - feature add - 2015-09-10
 * refactored interface and abstract implementations, added prepareRender() to simplify nested lists and allow recursive creation of them
 
 
-v0.0.1 - initial release - 2015-09-01
--------------------------------------
+=== v0.0.1 - initial release - 2015-09-01
+
 * original release with lists: itemize, enumerate, check
 * definition list only as place holder
 * lists can render with several shared capabilities: indent and string before the label as well as after the label

@@ -3,7 +3,7 @@
 :page-layout: base
 :toc: preamble
 
-:release-version: 0.0.4-SNAPSHOT
+:release-version: 0.0.4
 
 Many different lists (itemize/unordered, enumerate/ordered, checklist, description, nested),
 using ASCII and UTF characters for labels,

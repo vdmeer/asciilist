@@ -32,7 +32,7 @@ import de.vandermeer.skb.interfaces.transformers.StrBuilder_To_String;
  * Fully functional abstract implementation of {@link AsciiList}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 170331 (31-Mar-17) for Java 1.8
+ * @version    v0.0.4-SNAPSHOT build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
 public abstract class AbstractAsciiList<C extends AbstractAsciiListContext, I extends AsciiListItem, R extends AbstractAsciiListRenderer<I, C>> implements AsciiList<C, I, R> {
