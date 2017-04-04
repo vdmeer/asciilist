@@ -25,7 +25,7 @@ import de.vandermeer.asciilist.styles.NestedEnumerateStyles;
  * Tests for {@link EnumerateList}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v1.0.0 build 160319 (19-Mar-16) for Java 1.7
+ * @version    v1.0.0 build 170331 (31-Mar-17) for Java 1.7
  * @since      v0.0.1
  */
 public class Test_EnumerateList {

@@ -23,7 +23,7 @@ import de.vandermeer.asciilist.AsciiList_Enumerate;
  * Customizable style for nested enumerate (ordered) lists - {@link AsciiList_Enumerate}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v1.0.0 build 160319 (19-Mar-16) for Java 1.7
+ * @version    v1.0.0 build 170331 (31-Mar-17) for Java 1.7
  * @since      v0.0.1
  */
 public interface ListStyle_EnumerateNested extends ListStyle {
