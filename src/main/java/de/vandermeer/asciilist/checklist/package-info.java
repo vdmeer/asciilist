@@ -14,9 +14,9 @@
  */
 
 /**
- * ASCII lists - A simple tool to format lists of various types with some degree of flexibility for settings.
+ * A checklist.
  * 
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 170404 (04-Apr-17) for Java 1.8
  */
-package de.vandermeer.asciilist;
+package de.vandermeer.asciilist.checklist;

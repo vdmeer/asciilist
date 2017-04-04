@@ -1,0 +1,25 @@
+=== Checklists
+
+Available styles:
+
+* `CheckListStyles.ASCII_SQUARE_BRACKET_BLANK_X` for square brackets and X (left)
+* `CheckListStyles.UTF_BALLOT_BOX` for UTF-8 ballot box characters (middle)
+* `CheckListStyles.UTF_BALLOT_BOX_X` for UTF-8 ballot box characters with X box for checked (right)
+
+---------------------------------------------------
+[ ] unchecked item    ☐ unchecked item    ☐ unchecked item
+[X] checked item      ☑ checked item      ☒ checked item
+---------------------------------------------------
+
+More styles:
+
+* `CheckListStyles.UTF_BALLOT_X` using blank for unchecked and UTF-8 ballot X for checked items (left)
+* `CheckListStyles.UTF_BALLOT_X_HEAVY` using blank for unchecked and UTF-8 ballot heavy X for checked items (second left)
+* `CheckListStyles.UTF_CHECKMARK` using blank for unchecked and UTF-8 checkmark for checked items (second right)
+* `CheckListStyles.UTF_MULTIPLICATION_X` using blank for unchecked and UTF-8 multiplication x for checked items (right)
+
+---------------------------------------------------
+   unchecked item      unchecked item       unchecked item       unchecked item
+✗ checked item      ✘ checked item      ✓ checked item      ✕ checked item
+---------------------------------------------------
+

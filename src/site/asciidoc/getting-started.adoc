@@ -1,0 +1,57 @@
+Getting Started
+---------------
+
+The standard usage is:
+
+* create a list
+* add items to the list
+* configure any aspect to change default render behavior, if required
+* render the list
+* use the created string, e.g. print it to a console or write it to a file
+
+
+First, create a list. The example creates an itemize list.
+
+[source, java]
+----------------------------------------------------------------------------------------
+ItemizeList list = new ItemizeList();
+----------------------------------------------------------------------------------------
+
+
+Next, add content to your list.
+List content are items.
+We add one item at a time.
+
+[source, java]
+----------------------------------------------------------------------------------------
+list.addItem("item 1");
+list.addItem("item 2");
+list.addItem("item 3");
+----------------------------------------------------------------------------------------
+
+
+Next, render the list.
+This will provide the text output using all settings.
+
+[source, java]
+----------------------------------------------------------------------------------------
+String rend = list.render();
+----------------------------------------------------------------------------------------
+
+
+Finally, print the list to standard out.
+
+[source, java]
+----------------------------------------------------------------------------------------
+System.out.println(rend);
+----------------------------------------------------------------------------------------
+
+The output will be:
+
+----------------------------------------------------------------------------------------
+ * item 1
+ * item 2
+ * item 3
+----------------------------------------------------------------------------------------
+
+

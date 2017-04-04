@@ -1,0 +1,47 @@
+Change list render behavior
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We can change pre/post label indentation and strings as well as the label style.
+In the following example we first set the pre-label indentation to 5.
+Then we set the post-label indentation to 5.
+Then we set the post-label string to "all":
+
+[source, java]
+----------------------------------------------------------------------------------------
+list.setPreLabelIndent(5);
+System.out.println(list.render());
+
+list.setLabelDefaults();
+list.setPostLabelIndent(5);
+System.out.println(list.render());
+
+list.setLabelDefaults();
+list.setPreLabelString(">>");
+list.setPostLabelString("<<");
+System.out.println(list.render());
+----------------------------------------------------------------------------------------
+
+
+This will result in the following three outputs (given in three columns):
+----------------------------------------------------------------------------------------
+     * item 1		 *     item 1		 >>*<< item 1
+     * item 2		 *     item 2		 >>*<< item 2
+     * item 3		 *     item 3		 >>*<< item 3
+----------------------------------------------------------------------------------------
+
+
+We can also change the label style:
+
+[source, java]
+----------------------------------------------------------------------------------------
+list.setLabelDefaults();
+list.setListStyle(NestedItemizeStyles.HTML_LIKE);
+System.out.println(list.render());
+----------------------------------------------------------------------------------------
+
+This will result in the following list:
+----------------------------------------------------------------------------------------
+ • item 1
+ • item 2
+ • item 3
+----------------------------------------------------------------------------------------

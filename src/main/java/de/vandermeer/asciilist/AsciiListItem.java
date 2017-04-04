@@ -1,4 +1,4 @@
-/* Copyright 2015 Sven van der Meer <vdmeer.sven@mykolab.com>
+/* Copyright 2016 Sven van der Meer <vdmeer.sven@mykolab.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,30 +15,45 @@
 
 package de.vandermeer.asciilist;
 
+import org.apache.commons.lang3.text.StrBuilder;
+
+import de.vandermeer.skb.interfaces.categories.has.HasToLog;
+import de.vandermeer.skb.interfaces.document.IsList;
+
 /**
- * A list item.
+ * Standard list item.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.3 build 160301 (01-Mar-16) for Java 1.7
- * @since      v0.0.1
+ * @version    v0.0.4-SNAPSHOT build 170404 (04-Apr-17) for Java 1.8
+ * @since      v0.1.0
  */
-public interface AsciiListItem {
+public interface AsciiListItem extends HasToLog {
 
 	/**
-	 * Renders the list item, generates a string representation of it.
-	 * @param preLabelIndent indentation before the label (and before the pre-label string)
-	 * @param preLabelStr a string to be printed after pre-indentation but before the label
-	 * @param label the actual item label (for instance "*" for an itemize list)
-	 * @param postLabelStr a string to be printed right after the label but before the post-indentation
-	 * @param postLabelIndent indentation after the post-label string (before the actual item content)
-	 * @return rendered list item
+	 * Returns the item list.
+	 * @return item list, null if not set
 	 */
-	String render(int preLabelIndent, String preLabelStr, String label, String postLabelStr, int postLabelIndent);
+	IsList getList();
 
 	/**
-	 * Returns the content of the list item.
-	 * @return list item content
+	 * Returns the raw text of the item, excessive white spaces removed
+	 * @return raw text
 	 */
-	Object getContent();
+	default String getRawText(){
+		return this.getText().toString().replaceAll("\\s+", " ");
+	}
 
+	/**
+	 * Returns the item text.
+	 * @return item text, null if not set
+	 */
+	StrBuilder getText();
+
+	/**
+	 * Tests if the item contains another list.
+	 * @return true if the item contains another list, false otherwise
+	 */
+	default boolean hasList(){
+		return (this.getList()==null)?false:true;
+	}
 }

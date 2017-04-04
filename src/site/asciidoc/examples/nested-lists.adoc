@@ -1,0 +1,54 @@
+Nested lists
+~~~~~~~~~~~~
+
+Itemize and enumerate lists can be nested.
+The nesting is not limited.
+Using standard labels ("*", "-", "+") for itemize lists and ASCII-7 characters for enumerate lists, the nesting can be of any depth.
+However, styles for nested lists currently support a maximum of 6 levels only.
+Some nested styles support less than 6 levels.
+
+Let's start with creating an itemize list and add nested itemize lists 6-levels deep to it.
+Additionally, set a nested style for the list:
+
+[source, java]
+----------------------------------------------------------------------------------------
+AsciiList itemize = new ItemizeList()
+.addItem("item 1")
+.addItem(new ItemizeList().addItem("item 2")
+    .addItem(new ItemizeList().addItem("item 3")
+        .addItem(new ItemizeList().addItem("item 4")
+            .addItem(new ItemizeList().addItem("item 5")
+                addItem(new ItemizeList().addItem("item 6"))
+            )
+        )
+    )
+).setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
+----------------------------------------------------------------------------------------
+
+Next, create an enumerate list in the same way, using it's default configuration:
+
+[source, java]
+----------------------------------------------------------------------------------------
+AsciiList_Enumerate enumerate = new EnumerateList()
+.addItem("item 1")
+.addItem(new EnumerateList().addItem("item 2")
+    .addItem(new EnumerateList().addItem("item 3")
+        .addItem(new EnumerateList().addItem("item 4")
+            .addItem(new EnumerateList().addItem("item 5")
+                .addItem(new EnumerateList().addItem("item 6"))
+            )
+        )
+    )
+);
+----------------------------------------------------------------------------------------
+
+
+These two examples will print as follows (manually formatted to a 2-column output):
+----------------------------------------------------------------------------------------
+ * item 1                             1 item 1
+   ** item 2                            1.1 item 2
+      *** item 3                            1.1.1 item 3
+          **** item 4                             1.1.1.1 item 4
+               ***** item 5                               1.1.1.1.1 item 5
+                     ****** item 6                                  1.1.1.1.1.1 item 6
+----------------------------------------------------------------------------------------

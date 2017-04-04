@@ -13,10 +13,44 @@
  * limitations under the License.
  */
 
+package de.vandermeer.asciilist.examples;
+
+import org.junit.Test;
+
+import de.vandermeer.skb.interfaces.StandardExampleRunner;
+
 /**
- * ASCII lists - A simple tool to format lists of various types with some degree of flexibility for settings.
- * 
+ * Tests for ASCII List for code used in documentation.
+ *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 170404 (04-Apr-17) for Java 1.8
+ * @since      v0.0.2
  */
-package de.vandermeer.asciilist;
+public class Test_Examples implements StandardExampleRunner {
+
+	@Test
+	public void test_SimpleListItemize(){
+		this.runExample(new AL_Example_SimpleItemize());
+	}
+
+	@Test
+	public void test_NestedLists(){
+		this.runExample(new AL_Example_NestedLists());
+	}
+
+	@Test
+	public void test_Width(){
+		this.runExample(new AL_Example_Width());
+	}
+
+	@Test
+	public void test_Checklist(){
+		this.runExample(new AL_Example_Checklist());
+	}
+
+	@Test
+	public void test_EnumSubscript(){
+		this.runExample(new AL_Example_EnumerateSubscript());
+	}
+
+}

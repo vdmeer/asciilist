@@ -1,0 +1,68 @@
+Concepts
+--------
+
+The main concepts are: list, item, label, style.
+
+List
+~~~~
+A list is a collection of items.
+The content and form of the items depends on the list.
+Lists can be:
+
+* Itemize or unordered - simple items with same label
+* Enumerate or ordered - simple items, ordered, with individual label
+* Checklist - items that have a label showing that they are checked or unchecked
+* Description or definition or labeled - items that have a term and a description
+* FAQ or Q&amp;A - items that have an question and an answer, can be itemize or enumerate
+
+
+Lists items can contain other lists. This feature results in nested lists.
+If lists of the same type are nested the label itself of the label style can be a continuation of the parent list.
+
+Lists are created and filled.
+Then lists can be configured to get the expected printed output.
+Finally, a list is rendered, i.e. a printable representation of the list and all its items is created.
+
+
+
+Item
+~~~~
+An item is the actual content of a list.
+Simple items have only some text.
+More complex items have several parts, for instance the term and description of a description list.
+Some items have text plus other configuration options, such as items in a checklist.
+
+
+
+Label
+~~~~~
+A label is the marker of an item.
+Labels strongly depend on the particular list.
+Most configuration on lists is actually on the label.
+
+The following concepts are used in the lists here for labels:
+
+* Pre-label indentation - is the indentation used before the label. This is the first set of characters printed.
+* Pre-label string - is a string printed before every label of a list. This is printed after the pre-label indentation, as the second set of characters.
+* Label - the actual label, for instance "*" or "-" for itemize or "1." and "1.1." for enumerate lists.
+* Post-label string - is a string printed right after every label of a list.
+* Post-label indentation - is the indentation after the label (and before the item's content).
+* Multi-line indentation - is used in some lists for the indentation from the second line onwards (if lines are wrapped).
+
+All lists allow to manipulate the pre/post label characteristics directly.
+The label can be styled using a style.
+Multi-line indentation do only apply for some lists, where it cannot or should not be calculated automatically.
+
+
+
+Style
+~~~~~
+Styles are used to style labels of lists or of nested lists.
+The style of a label depends on the particular list.
+Most lists in this package provide a number of different styles.
+
+Styles for nested lists are used if those lists are a continuation.
+These styles allow to change the label style in nested lists.
+For some lists (e.g. enumerate) they also allow to re-use parts of the parent list for the label.
+
+

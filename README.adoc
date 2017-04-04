@@ -1,0 +1,608 @@
+
+= ASCII List
+:page-layout: base
+:toc: preamble
+
+:release-version: 0.0.4-SNAPSHOT
+
+Many different lists (itemize/unordered, enumerate/ordered, checklist, description, nested),
+using ASCII and UTF characters for labels,
+with various degrees of flexibility for labels, indentation, and styles.
+
+Resources
+---------
+
+[frame=topbot, grid=rows, cols="d,d"]
+|===
+| Releases on Maven Central
+| https://search.maven.org/#artifactdetails\|de.vandermeer\|asciilist\|{release-version}\|jar[current release {release-version}], 
+  https://search.maven.org/#search\|gav\|1\|g%3A%22de.vandermeer%22%20AND%20a%3A%22asciilist%22[all releases]
+
+| UTF-8 Howto
+| http://vdmeer-sven.blogspot.ie/2014/06/utf-8-support-w-java-and-console.html[older blog], 
+  https://github.com/vdmeer/skb/wiki/HowTo-UTF-8-Support-in-Java-and-Console[updated SKB Wiki]
+|===
+
+== Installation
+
+=== Maven
+
+For Maven declare a dependency in the `<dependencies>` section of your POM file.
+
+[source,xml,subs=attributes+]
+.Dependency declaration in pom.xml
+----
+<dependency>
+    <groupId>de.vandermeer</groupId>
+    <artifactId>asciilist</artifactId>
+    <version>{release-version}</version>
+</dependency>
+----
+
+For other build systems see https://search.maven.org/#artifactdetails\|de.vandermeer\|asciilist\|{release-version}\|jar[Maven Central]
+
+Features
+--------
+
+The package offers a number of different lists.
+Some of those lists come with specific configuration options.
+
+- Itemize lists (as in LaTeX `itemize` or HTML `ul`)
+- Enumerate lists (as in LaTeX `enumerate` or HTML `ol`)
+- Check lists with items being checked or not checked
+- Description lists (as in LaTeX `description`)
+
+The lists come with several options to add content and to configure render options:
+
+- Add items as plain text, collection of objects, or other lists
+  ** checklist items can be added as a checked or not checked item
+  ** description list items can be added with title and content of the description
+  ** adding lists as item will create nested lists of any combination
+- Set width of the overall list, with automated line wrapping for overlength item text
+- Set indentation and string before and after the list label
+- Enumerate lists can set a label separator
+- Description lists can be one line or two lines, with flexible indentation
+- Set level of items manually
+- Set list style, with a large number of different pre-defined styles available
+
+
+Concepts
+--------
+
+The main concepts are: list, item, label, style.
+
+List
+~~~~
+A list is a collection of items.
+The content and form of the items depends on the list.
+Lists can be:
+
+* Itemize or unordered - simple items with same label
+* Enumerate or ordered - simple items, ordered, with individual label
+* Checklist - items that have a label showing that they are checked or unchecked
+* Description or definition or labeled - items that have a term and a description
+* FAQ or Q&amp;A - items that have an question and an answer, can be itemize or enumerate
+
+
+Lists items can contain other lists. This feature results in nested lists.
+If lists of the same type are nested the label itself of the label style can be a continuation of the parent list.
+
+Lists are created and filled.
+Then lists can be configured to get the expected printed output.
+Finally, a list is rendered, i.e. a printable representation of the list and all its items is created.
+
+
+
+Item
+~~~~
+An item is the actual content of a list.
+Simple items have only some text.
+More complex items have several parts, for instance the term and description of a description list.
+Some items have text plus other configuration options, such as items in a checklist.
+
+
+
+Label
+~~~~~
+A label is the marker of an item.
+Labels strongly depend on the particular list.
+Most configuration on lists is actually on the label.
+
+The following concepts are used in the lists here for labels:
+
+* Pre-label indentation - is the indentation used before the label. This is the first set of characters printed.
+* Pre-label string - is a string printed before every label of a list. This is printed after the pre-label indentation, as the second set of characters.
+* Label - the actual label, for instance "*" or "-" for itemize or "1." and "1.1." for enumerate lists.
+* Post-label string - is a string printed right after every label of a list.
+* Post-label indentation - is the indentation after the label (and before the item's content).
+* Multi-line indentation - is used in some lists for the indentation from the second line onwards (if lines are wrapped).
+
+All lists allow to manipulate the pre/post label characteristics directly.
+The label can be styled using a style.
+Multi-line indentation do only apply for some lists, where it cannot or should not be calculated automatically.
+
+
+
+Style
+~~~~~
+Styles are used to style labels of lists or of nested lists.
+The style of a label depends on the particular list.
+Most lists in this package provide a number of different styles.
+
+Styles for nested lists are used if those lists are a continuation.
+These styles allow to change the label style in nested lists.
+For some lists (e.g. enumerate) they also allow to re-use parts of the parent list for the label.
+
+
+Getting Started
+---------------
+
+The standard usage is:
+
+* create a list
+* add items to the list
+* configure any aspect to change default render behavior, if required
+* render the list
+* use the created string, e.g. print it to a console or write it to a file
+
+
+First, create a list. The example creates an itemize list.
+
+[source, java]
+----------------------------------------------------------------------------------------
+ItemizeList list = new ItemizeList();
+----------------------------------------------------------------------------------------
+
+
+Next, add content to your list.
+List content are items.
+We add one item at a time.
+
+[source, java]
+----------------------------------------------------------------------------------------
+list.addItem("item 1");
+list.addItem("item 2");
+list.addItem("item 3");
+----------------------------------------------------------------------------------------
+
+
+Next, render the list.
+This will provide the text output using all settings.
+
+[source, java]
+----------------------------------------------------------------------------------------
+String rend = list.render();
+----------------------------------------------------------------------------------------
+
+
+Finally, print the list to standard out.
+
+[source, java]
+----------------------------------------------------------------------------------------
+System.out.println(rend);
+----------------------------------------------------------------------------------------
+
+The output will be:
+
+----------------------------------------------------------------------------------------
+ * item 1
+ * item 2
+ * item 3
+----------------------------------------------------------------------------------------
+
+
+== Examples
+
+=== Render behavior
+
+Two examples with different renderer behavior:
+
+* indentation of 5 characters before the label
+* indentation of 5 characters after the label
+* pre and post label characters set to `>>` and `<<`
+
+----------------------------------------------------------------------------------------
+     * item 1		 *     item 1		 >>*<< item 1
+     * item 2		 *     item 2		 >>*<< item 2
+     * item 3		 *     item 3		 >>*<< item 3
+----------------------------------------------------------------------------------------
+
+
+=== Change list render behavior - label style
+
+Using HTML-like labels for an itemize list.
+----------------------------------------------------------------------------------------
+ • item 1
+ • item 2
+ • item 3
+----------------------------------------------------------------------------------------
+
+
+=== Nested lists
+
+Two examples:
+
+* itemize list with `*` character as label
+* numbered list with continued numbering
+
+----------------------------------------------------------------------------------------
+ * item 1                             1 item 1
+   ** item 2                            1.1 item 2
+      *** item 3                            1.1.1 item 3
+          **** item 4                             1.1.1.1 item 4
+               ***** item 5                               1.1.1.1.1 item 5
+                     ****** item 6                                  1.1.1.1.1.1 item 6
+----------------------------------------------------------------------------------------
+
+
+=== Width with automated line wrapping
+
+Two lists without any line wrapping (content of each item fits into the width set for the list).
+----------------------------------------------------------------------------------------
+        * il 1 item 1 some text        1 el 1 item 1 some text
+        * il 1 item 2 some text        2 el 1 item 2 some text
+          ** il 2 item 1 text            2.A el 2 item 1 text
+          ** il 2 item 2 text            2.B el 2 item 2 text
+----------------------------------------------------------------------------------------
+
+Same lists with smaller width and automated line wrapping.
+----------------------------------------------------------------------------------------
+        * il 1 item 1 some        1 el 1 item 1 some
+          text                      text
+        * il 1 item 2 some        2 el 1 item 2 some
+          text                      text
+          ** il 2 item 1            2.A el 2 item 1
+             text                       text
+          ** il 2 item 2            2.B el 2 item 2
+             text                       text
+----------------------------------------------------------------------------------------
+
+
+=== Enumerate list with special pre-label string and style
+
+Set the pre-label to `E` and the style to subscript using Arabic numbers.
+----------------------------------------------------------------------------------------
+	 E₁ item 1
+	 E₂ item 2
+	 E₃ item 3
+----------------------------------------------------------------------------------------
+
+
+=== Checklists with different styles
+
+Standard style (left), UTF ballot box style (middle), and UTF ballot box X style (right).
+
+----------------------------------------------------------------------------------------
+         [ ] item unchecked     ☐ item unchecked     ☐ item unchecked
+         [X] item checked       ☑ item checked       ☒ item checked
+----------------------------------------------------------------------------------------
+
+== Predefined Styles
+
+=== Nested Itemize Lists
+
+Two options for using `*`:
+
+* `NestedItemizeStyles.ALL_STAR` for unlimited levels (left)
+* `NestedItemizeStyles.ALL_STAR_INCREMENTAL` incremental for up to 6 levels (right)
+
+---------------------------------------------------
+* item 1                          * item 1
+* item 2                          * item 2
+   * item 1                          ** item 1
+   * item 2                          ** item 2
+      * item 1                          *** item 1
+      * item 2                          *** item 2
+         * item 1                          **** item 1
+         * item 2                          **** item 2
+            * item 1                          ***** item 1
+            * item 2                          ***** item 2
+               * item 1                          ****** item 1
+               * item 2                          ****** item 2
+---------------------------------------------------
+
+Two options for using `-`:
+
+* `NestedItemizeStyles.ALL_HYPHEN` for unlimited levels (left)
+* `NestedItemizeStyles.ALL_HYPHEN_INCREMENTAL` incremental for up to 6 levels (right)
+
+---------------------------------------------------
+- item 1                       - item 1
+- item 2                       - item 2
+   - item 1                       -- item 1
+   - item 2                       -- item 2
+      - item 1                       --- item 1
+      - item 2                       --- item 2
+         - item 1                       ---- item 1
+         - item 2                       ---- item 2
+            - item 1                       ----- item 1
+            - item 2                       ----- item 2
+               - item 1                       ------ item 1
+               - item 2                       ------ item 2
+---------------------------------------------------
+
+Two options for using `+`:
+
+* `NestedItemizeStyles.ALL_PLUS` for unlimited levels (left)
+* `NestedItemizeStyles.ALL_PLUS_INCREMENTAL` incremental for up to 6 levels (right)
+
+---------------------------------------------------
++ item 1                       + item 1
++ item 2                       + item 2
+   + item 1                       ++ item 1
+   + item 2                       ++ item 2
+      + item 1                       +++ item 1
+      + item 2                       +++ item 2
+         + item 1                       ++++ item 1
+         + item 2                       ++++ item 2
+            + item 1                       +++++ item 1
+            + item 2                       +++++ item 2
+               + item 1                       ++++++ item 1
+               + item 2                       ++++++ item 2
+---------------------------------------------------
+
+Some more options defined for 3 and 2 levels:
+
+* `NestedItemizeStyles.HTML_LIKE` for 3 levels (most left)
+* `NestedItemizeStyles.UTF_TEAR_DROP` for 3 levels (second left)
+* `NestedItemizeStyles.UTF_FLORETTE` for 3 levels (middle)
+* `NestedItemizeStyles.UTF_SNOWFLAKE` for 3 levels (second right)
+* `NestedItemizeStyles.UTF_SPARKLE` for 2 levels (most right)
+
+---------------------------------------------------
+• item 1          ✻ item 1          ✿ item 1          ❄ item 1          ❇ item 1
+• item 2          ✻ item 2          ✿ item 2          ❄ item 2          ❇ item 2
+   ○ item 1          ✼ item 1          ❀ item 1          ❅ item 1          ❈ item 1
+   ○ item 2          ✼ item 2          ❀ item 2          ❅ item 2          ❈ item 2
+      ▪ item 1          ✾ item 1          ❁ item 1          ❆ item 1    
+      ▪ item 2          ✾ item 2          ❁ item 2          ❆ item 2    
+---------------------------------------------------
+
+Three more options for up to 6 levels each:
+
+* `NestedItemizeStyles.UTF_ARROwS` (left)
+* `NestedItemizeStyles.UTF_STARS` (middle)
+* `NestedItemizeStyles.UTF_STARS_OUTLINE` (right)
+
+---------------------------------------------------
+➔ item 1                   ✳ item 1                   ✧ item 1
+➔ item 2                   ✳ item 2                   ✧ item 2
+   ➜ item 1                   ✴ item 1                   ✩ item 1
+   ➜ item 2                   ✴ item 2                   ✩ item 2
+      ➡ item 1                   ✵ item 1                   ✫ item 1
+      ➡ item 2                   ✵ item 2                   ✫ item 2
+         ➞ item 1                   ✷ item 1                   ✬ item 1
+         ➞ item 2                   ✷ item 2                   ✬ item 2
+            ➝ item 1                   ✹ item 1                   ✭ item 1
+            ➝ item 2                   ✹ item 2                   ✭ item 2
+               ➙ item 1                   ✺ item 1                   ✯ item 1
+               ➙ item 2                   ✺ item 2                   ✯ item 2
+---------------------------------------------------
+
+=== Enumerate Lists
+
+Several styles for upper case alphanumeric labels:
+
+* `EnumerateStyles.Alpha_ascii` for standard upper case letters (left)
+* `EnumerateStyles.Alpha_utf_circle` for UTF Circled Latin Capital Letters (middle)
+* `EnumerateStyles.Alpha_utf_fullwidth` for UTF Fullwidth Latin Capital Letters (right)
+
+---------------------------------------------------
+A item 1        Ⓐ item 1        Ａ item 1
+B item 2        Ⓑ item 2        Ｂ item 2
+C item 3        Ⓒ item 3        Ｃ item 3
+---------------------------------------------------
+
+Several options for lower case alphanumeric labels:
+
+* `EnumerateStyles.alpha_ascii` for lower case alphanumeric characters (left)
+* `EnumerateStyles.alpha_utf_circle` for UTF Circled Latin Small Letters characters (second left)
+* `EnumerateStyles.alpha_utf_parenthesized` for UTF Parenthesized Latin Small Letter characters (second right)
+* `EnumerateStyles.alpha_fullwidth` for UTF Fullwidth Latin Small characters (right)
+
+---------------------------------------------------
+a item 1        ⓐ item 1        ⒜ item 1        ａ item 1
+b item 2        ⓑ item 2        ⒝ item 2        ｂ item 2
+c item 3        ⓒ item 3        ⒞ item 3        ｃ item 3
+---------------------------------------------------
+
+Several styles for lower case Arabic number labels:
+
+* `EnumerateStyles.arabic_ascii` for Arabic numbers (left)
+* `EnumerateStyles.arabic_utf_circle` for UTF Circled Digit character (second left)
+* `EnumerateStyles.arabic_utf_double_circle` for UTF Double Circled Digit character (third left)
+* `EnumerateStyles.arabic_utf_circle_dingbat_negative` for UTF Dingbat Negative Circled Digit character (third right)
+* `EnumerateStyles.arabic_utf_circle_dingbat_sanserif` for UTF Dingbat Sanserif Circled Digit character (second right)
+* `EnumerateStyles.arabic_utf_circle_dingbat_negative_sanserif` for UTF Dingbat Negative Sanserif Circled Digit character (right)
+
+---------------------------------------------------
+1 item 1    ① item 1    ⓵ item 1    ❶ item 1    ➀ item 1    ➊ item 1
+2 item 2    ② item 2    ⓶ item 2    ❷ item 2    ➁ item 2    ➋ item 2
+3 item 3    ③ item 3    ⓷ item 3    ❸ item 3    ➂ item 3    ➌ item 3
+---------------------------------------------------
+
+Styles for lower case Arabic number labels:
+
+* `EnumerateStyles.arabic_utf_superscript` for UTF Superscript characters (left)
+* `EnumerateStyles.arabic_utf_subscript` for UTF Subscript characters (second left)
+* `EnumerateStyles.arabic_utf_full_stop` for UTF Fullstop characters (middle)
+* `EnumerateStyles.arabic_parenthesized` for UTF Parenthesized Digit characters (second right)
+* `EnumerateStyles.arabic_utf_fullwidth` for UTF Fullwidth Digit characters (right)
+
+---------------------------------------------------
+¹ item 1   ₁ item 1    ⒈ item 1    ⑴ item 1    １ item 1
+² item 2   ₂ item 2    ⒉ item 2    ⑵ item 2    ２ item 2
+³ item 3   ₃ item 3    ⒊ item 3    ⑶ item 3    ３ item 3
+---------------------------------------------------
+
+Several styles for upper case Roman number labels:
+
+* `EnumerateStyles.Roman_ascii` for Roman number literals characters (left)
+* `EnumerateStyles.Roman_utf_circled` for UTF Circled Latin Capital characters (middle)
+* `EnumerateStyles.Roman_utf_number_forms` for UTF Number Forms characters (right)
+
+---------------------------------------------------
+I item 1          Ⓘ item 1          Ⅰ item 1
+II item 2         ⒾⒾ item 2         Ⅱ item 2
+III item 3        ⒾⒾⒾ item 3        Ⅲ item 3
+---------------------------------------------------
+
+Several styles for lower case Roman number labels:
+
+* `EnumerateStyles.roman_ascii` for Roman number literals characters (left)
+* `EnumerateStyles.roman_utf_circled` for UTF Circled Latin Small characters (middle)
+* `EnumerateStyles.roman_utf_number_forms` for UTF Number Forms characters (right)
+
+---------------------------------------------------
+i item 1          ⓘ item 1          ⅰ item 1
+ii item 2         ⓘⓘ item 2         ⅱ item 2
+iii item 3        ⓘⓘⓘ item 3        ⅲ item 3
+---------------------------------------------------
+
+=== Nested Enumerate Lists
+
+Several styles for all alphanumeric labels:
+
+* `NestedEnumerateStyles.all_Alpha_ascii` for standard upper case characters (left)
+* `NestedEnumerateStyles.all_alpha_ascii` for standard lower case characters (right)
+
+---------------------------------------------------
+A. item 1                        a. item 1
+B. item 2                        b. item 2
+   A. item 1                        a. item 1
+   B. item 2                        b. item 2
+      A. item 1                        a. item 1
+      B. item 2                        b. item 2
+         A. item 1                        a. item 1
+         B. item 2                        b. item 2
+            A. item 1                        a. item 1
+            B. item 2                        b. item 2
+               A. item 1                        a. item 1
+               B. item 2                        b. item 2
+---------------------------------------------------
+
+
+Arabic numbers in `NestedEnumerateStyles.all_arabic_ascii`:
+
+---------------------------------------------------
+1. item 1
+2. item 2
+   1. item 1
+   2. item 2
+      1. item 1
+      2. item 2
+         1. item 1
+         2. item 2
+            1. item 1
+            2. item 2
+               1. item 1
+               2. item 2
+---------------------------------------------------
+
+Several styles for all roman number labels:
+
+* `NestedEnumerateStyles.all_Roman_ascii` for upper case roman numbers (left)
+* `NestedEnumerateStyles.all_roman_ascii` for lower case roman numbers (right)
+
+---------------------------------------------------
+I. item 1                        i. item 1
+II. item 2                       ii. item 2
+   I. item 1                        i. item 1
+   II. item 2                       ii. item 2
+      I. item 1                        i. item 1
+      II. item 2                       ii. item 2
+         I. item 1                        i. item 1
+         II. item 2                       ii. item 2
+            I. item 1                        i. item 1
+            II. item 2                       ii. item 2
+               I. item 1                        i. item 1
+               II. item 2                       ii. item 2
+---------------------------------------------------
+
+Styles for Arabic supscript and superscript labels:
+
+* `NestedEnumerateStyles.all_utf_arabic_subscript` for supscript numbers (left)
+* `NestedEnumerateStyles.all_utf_arabic_superscript` for superscript numbers (right)
+
+---------------------------------------------------
+₁. item 1                       ¹. item 1
+₂. item 2                       ². item 2
+   ₁. item 1                       ¹. item 1
+   ₂. item 2                       ². item 2
+      ₁. item 1                       ¹. item 1
+      ₂. item 2                       ². item 2
+         ₁. item 1                       ¹. item 1
+         ₂. item 2                       ². item 2
+            ₁. item 1                       ¹. item 1
+            ₂. item 2                       ². item 2
+               ₁. item 1                       ¹. item 1
+               ₂. item 2                       ². item 2
+---------------------------------------------------
+
+Mixed styles:
+
+* `NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman` for ### (left)
+* `NestedEnumerateStyles.arabic_utf_circled` for ### (right)
+
+---------------------------------------------------
+1. item 1                     ⓵. item 1
+2. item 2                     ⓶. item 2
+   A. item 1                     ①. item 1
+   B. item 2                     ②. item 2
+      a. item 1                     ➀. item 1
+      b. item 2                     ➁. item 2
+         I. item 1                     ➊. item 1
+         II. item 2                    ➋. item 2
+            i. item 1                     ➊. item 1
+            ii. item 2                    ➋. item 2
+---------------------------------------------------
+
+=== Checklists
+
+Available styles:
+
+* `CheckListStyles.ASCII_SQUARE_BRACKET_BLANK_X` for square brackets and X (left)
+* `CheckListStyles.UTF_BALLOT_BOX` for UTF-8 ballot box characters (middle)
+* `CheckListStyles.UTF_BALLOT_BOX_X` for UTF-8 ballot box characters with X box for checked (right)
+
+---------------------------------------------------
+[ ] unchecked item    ☐ unchecked item    ☐ unchecked item
+[X] checked item      ☑ checked item      ☒ checked item
+---------------------------------------------------
+
+More styles:
+
+* `CheckListStyles.UTF_BALLOT_X` using blank for unchecked and UTF-8 ballot X for checked items (left)
+* `CheckListStyles.UTF_BALLOT_X_HEAVY` using blank for unchecked and UTF-8 ballot heavy X for checked items (second left)
+* `CheckListStyles.UTF_CHECKMARK` using blank for unchecked and UTF-8 checkmark for checked items (second right)
+* `CheckListStyles.UTF_MULTIPLICATION_X` using blank for unchecked and UTF-8 multiplication x for checked items (right)
+
+---------------------------------------------------
+   unchecked item      unchecked item       unchecked item       unchecked item
+✗ checked item      ✘ checked item      ✓ checked item      ✕ checked item
+---------------------------------------------------
+
+=== Nested Checklists
+
+Available styles:
+
+* `NestedCheckStyles.ALL_SQUARE_BRACKET_BLANK_X` for square brackets and X (left)
+* `NestedCheckStyles.ALL_UTF_BALLOT_BOX` for UTF-8 ballot box characters (middle)
+* `NestedCheckStyles.ALL_UTF_BALLOT_BOX_X` for UTF-8 ballot box characters with X box for checked (right)
+
+---------------------------------------------------
+[ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+[X] checked item                     ☑ checked item                     ☒ checked item
+   [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+   [X] checked item                     ☑ checked item                     ☒ checked item
+      [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+      [X] checked item                     ☑ checked item                     ☒ checked item
+         [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+         [X] checked item                     ☑ checked item                     ☒ checked item
+            [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+            [X] checked item                     ☑ checked item                     ☒ checked item
+               [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+               [X] checked item                     ☑ checked item                     ☒ checked item
+---------------------------------------------------
+
+

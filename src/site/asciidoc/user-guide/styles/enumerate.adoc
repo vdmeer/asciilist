@@ -1,0 +1,80 @@
+=== Enumerate Lists
+
+Several styles for upper case alphanumeric labels:
+
+* `EnumerateStyles.Alpha_ascii` for standard upper case letters (left)
+* `EnumerateStyles.Alpha_utf_circle` for UTF Circled Latin Capital Letters (middle)
+* `EnumerateStyles.Alpha_utf_fullwidth` for UTF Fullwidth Latin Capital Letters (right)
+
+---------------------------------------------------
+A item 1        Ⓐ item 1        Ａ item 1
+B item 2        Ⓑ item 2        Ｂ item 2
+C item 3        Ⓒ item 3        Ｃ item 3
+---------------------------------------------------
+
+Several options for lower case alphanumeric labels:
+
+* `EnumerateStyles.alpha_ascii` for lower case alphanumeric characters (left)
+* `EnumerateStyles.alpha_utf_circle` for UTF Circled Latin Small Letters characters (second left)
+* `EnumerateStyles.alpha_utf_parenthesized` for UTF Parenthesized Latin Small Letter characters (second right)
+* `EnumerateStyles.alpha_fullwidth` for UTF Fullwidth Latin Small characters (right)
+
+---------------------------------------------------
+a item 1        ⓐ item 1        ⒜ item 1        ａ item 1
+b item 2        ⓑ item 2        ⒝ item 2        ｂ item 2
+c item 3        ⓒ item 3        ⒞ item 3        ｃ item 3
+---------------------------------------------------
+
+Several styles for lower case Arabic number labels:
+
+* `EnumerateStyles.arabic_ascii` for Arabic numbers (left)
+* `EnumerateStyles.arabic_utf_circle` for UTF Circled Digit character (second left)
+* `EnumerateStyles.arabic_utf_double_circle` for UTF Double Circled Digit character (third left)
+* `EnumerateStyles.arabic_utf_circle_dingbat_negative` for UTF Dingbat Negative Circled Digit character (third right)
+* `EnumerateStyles.arabic_utf_circle_dingbat_sanserif` for UTF Dingbat Sanserif Circled Digit character (second right)
+* `EnumerateStyles.arabic_utf_circle_dingbat_negative_sanserif` for UTF Dingbat Negative Sanserif Circled Digit character (right)
+
+---------------------------------------------------
+1 item 1    ① item 1    ⓵ item 1    ❶ item 1    ➀ item 1    ➊ item 1
+2 item 2    ② item 2    ⓶ item 2    ❷ item 2    ➁ item 2    ➋ item 2
+3 item 3    ③ item 3    ⓷ item 3    ❸ item 3    ➂ item 3    ➌ item 3
+---------------------------------------------------
+
+Styles for lower case Arabic number labels:
+
+* `EnumerateStyles.arabic_utf_superscript` for UTF Superscript characters (left)
+* `EnumerateStyles.arabic_utf_subscript` for UTF Subscript characters (second left)
+* `EnumerateStyles.arabic_utf_full_stop` for UTF Fullstop characters (middle)
+* `EnumerateStyles.arabic_parenthesized` for UTF Parenthesized Digit characters (second right)
+* `EnumerateStyles.arabic_utf_fullwidth` for UTF Fullwidth Digit characters (right)
+
+---------------------------------------------------
+¹ item 1   ₁ item 1    ⒈ item 1    ⑴ item 1    １ item 1
+² item 2   ₂ item 2    ⒉ item 2    ⑵ item 2    ２ item 2
+³ item 3   ₃ item 3    ⒊ item 3    ⑶ item 3    ３ item 3
+---------------------------------------------------
+
+Several styles for upper case Roman number labels:
+
+* `EnumerateStyles.Roman_ascii` for Roman number literals characters (left)
+* `EnumerateStyles.Roman_utf_circled` for UTF Circled Latin Capital characters (middle)
+* `EnumerateStyles.Roman_utf_number_forms` for UTF Number Forms characters (right)
+
+---------------------------------------------------
+I item 1          Ⓘ item 1          Ⅰ item 1
+II item 2         ⒾⒾ item 2         Ⅱ item 2
+III item 3        ⒾⒾⒾ item 3        Ⅲ item 3
+---------------------------------------------------
+
+Several styles for lower case Roman number labels:
+
+* `EnumerateStyles.roman_ascii` for Roman number literals characters (left)
+* `EnumerateStyles.roman_utf_circled` for UTF Circled Latin Small characters (middle)
+* `EnumerateStyles.roman_utf_number_forms` for UTF Number Forms characters (right)
+
+---------------------------------------------------
+i item 1          ⓘ item 1          ⅰ item 1
+ii item 2         ⓘⓘ item 2         ⅱ item 2
+iii item 3        ⓘⓘⓘ item 3        ⅲ item 3
+---------------------------------------------------
+

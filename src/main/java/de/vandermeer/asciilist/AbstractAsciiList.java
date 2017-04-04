@@ -1,4 +1,4 @@
-/* Copyright 2015 Sven van der Meer <vdmeer.sven@mykolab.com>
+/* Copyright 2016 Sven van der Meer <vdmeer.sven@mykolab.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,264 +15,162 @@
 
 package de.vandermeer.asciilist;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.NotImplementedException;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
-import org.apache.commons.lang3.text.WordUtils;
+
+import de.vandermeer.skb.interfaces.strategies.collections.IsSetStrategy;
+import de.vandermeer.skb.interfaces.strategies.collections.list.ArrayListStrategy;
+import de.vandermeer.skb.interfaces.strategies.collections.set.LinkedHashSetStrategy;
+import de.vandermeer.skb.interfaces.transformers.ClusterElementTransformer;
+import de.vandermeer.skb.interfaces.transformers.StrBuilder_To_String;
 
 /**
- * Abstract implementation as base for the {@link AsciiList} hierarchy.
+ * Fully functional abstract implementation of {@link AsciiList}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.3 build 160301 (01-Mar-16) for Java 1.7
+ * @version    v0.0.4-SNAPSHOT build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class AbstractAsciiList implements AsciiList {
+public abstract class AbstractAsciiList<C extends AbstractAsciiListContext, I extends AsciiListItem, R extends AbstractAsciiListRenderer<I, C>> implements AsciiList<C, I, R> {
+
+	/** The list context with optional settings for the list. */
+	public final C ctx;
 
 	/** The items of a list. */
-	protected List<Object> items;
+	protected final Set<I> items;
 
-	/** The indentation before the label (and the pre-label string), default is 1. */
-	protected int preLabelIndent;
+	/** The default list strategy for the item list, set to {@link LinkedHashSetStrategy}. */
+	protected IsSetStrategy<?, I> defaultStrategy = LinkedHashSetStrategy.create();
 
-	/** The indentation after the label (and the post-label string), default is 1. */
-	protected int postLabelIndent;
-
-	/** A string printed directly before the label, other than indentation, default is empty string. */
-	protected String preLabelStr;
-
-	/** A string printed directly after the label, other than indentation, default is empty string. */
-	protected String postLabelStr;
-
-	/** The level of the list, default is 1. */
-	protected int level = 1;
-
-	/** Flag indicating if the list is continued from a previous list of the same type or not. */
-	protected final boolean isContinued;
-
-	/** The maximum item indentation, 0 until calculated. */
-	protected int maxItemIndent = 0;
-
-	/** The maximum width if the list (and all items and sub-lists), -1 for no width until set otherwise. */
-	protected int width = -1;
+	/** The renderer for this context. */
+	protected R renderer;
 
 	/**
 	 * Creates a new list.
+	 * @param ctx the list context, new default context created if null
+	 * @throws NullPointerException if the finally set context is null (that is the given context as well as the locally created context were null)
 	 */
-	public AbstractAsciiList(){
-		this(true);
+	protected AbstractAsciiList(C ctx){
+		this(ctx, null);
 	}
 
 	/**
 	 * Creates a new list.
-	 * @param list original list
+	 * @param strategy the list strategy to be used for the list of items
+	 * @throws NullPointerException if the finally set context is null (that is the given context as well as the locally created context were null)
 	 */
-	public AbstractAsciiList(AbstractAsciiList list){
-		this(list.isContinued);
-
-		this.preLabelIndent = list.preLabelIndent;
-		this.postLabelIndent = list.postLabelIndent;
-		this.preLabelStr = list.preLabelStr;
-		this.postLabelStr = list.postLabelStr;
-		this.level = list.level;
-
-		this.items.addAll(list.items);
+	protected AbstractAsciiList(IsSetStrategy<?, I> strategy){
+		this(null, strategy);
 	}
 
 	/**
 	 * Creates a new list.
-	 * @param isContinued true if the list is continued from a previous list of the same type, false otherwise
+	 * @param ctx the list context, new default context created if null
+	 * @param strategy the list strategy to be used for the list of items
+	 * @throws NullPointerException if the finally set context is null (that is the given context as well as the locally created context were null)
 	 */
-	public AbstractAsciiList(boolean isContinued){
-		this.items = new ArrayList<>();
-		this.isContinued = isContinued;
-		this.setLabelDefaults();
+	protected AbstractAsciiList(C ctx, IsSetStrategy<?, I> strategy){
+		this.items = (strategy==null)?this.defaultStrategy.get():strategy.get();
+		this.ctx = (ctx==null)?this.getNewContext():ctx;
+		Validate.notNull(this.ctx, "could not create any context, all attempts are 'null'");
 	}
 
-	@Override
-	public AsciiList setLabelDefaults(){
-		this.preLabelIndent = 1;
-		this.postLabelIndent = 1;
-		this.preLabelStr = "";
-		this.postLabelStr = "";
-		return this;
+	/**
+	 * Returns the list context.
+	 * @return context, null if not set
+	 */
+	public C getContext(){
+		return this.ctx;
 	}
 
-	@Override
-	public int calculateMaxIndentation(){
-		int position = 0;
-		for(int i=0; i<this.items.size(); i++){
-			if(this.items.get(i) instanceof AsciiListItem){
-				position++;
-				int indent = this.calculateMaxIndentation((AsciiListItem)this.items.get(i), position);
-				if(this.maxItemIndent < indent){
-					this.maxItemIndent = indent;
-				}
-			}
-		}
-		return this.maxItemIndent;
-	}
-
-	@Override
-	public List<Object> getItems() {
+	/**
+	 * Returns the items of the list.
+	 * @return items of the list
+	 */
+	public Set<I> getItems() {
 		return this.items;
 	}
 
 	@Override
-	public int getLevel(){
-		return this.level;
+	public int getLongestLineLength() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public int getPostLabelIndent() {
-		return this.postLabelIndent;
+	public Set<I> getRawContent() {
+		return this.items;
 	}
 
 	@Override
-	public String getPostLabelString() {
-		return this.postLabelStr;
+	public AbstractAsciiListRenderer<I, C> getRenderer(){
+		return this.renderer;
 	}
 
 	@Override
-	public int getPreLabelIndent() {
-		return this.preLabelIndent;
+	public String render() {
+		return new StrBuilder().appendWithSeparators(this.renderer.render(this.getRawContent(), this.ctx), "\n").toString();
 	}
 
 	@Override
-	public String getPreLabelString() {
-		return this.preLabelStr;
+	public String render(int width) {
+		C renderCtx = this.getNewContext();
+		renderCtx.copySettings(this.ctx);
+		renderCtx.inheritSettings(this.ctx);
+		renderCtx.setWidth(renderCtx.getTextWidth(width + renderCtx.getCalculatedItemString().length()));
+		return new StrBuilder().appendWithSeparators(this.renderer.render(this.getRawContent(), renderCtx), "\n").toString();
 	}
 
 	@Override
-	public boolean isContinuedList(){
-		return this.isContinued;
+	public Collection<StrBuilder> renderAsChild(AsciiListContext parentCtx, int parentIndent, int parentIndex){
+		C renderCtx = this.getNewContext();
+		renderCtx.copySettings(this.ctx);
+		renderCtx.setParents(ArrayUtils.add(parentCtx.getParentIndex(), parentIndex));
+		renderCtx.inheritSettings(parentCtx);
+		renderCtx.setLevel(parentCtx.getLevel()+1);
+		renderCtx.setItemMargin(parentIndent);
+		renderCtx.setWidth((parentCtx.getWidth()+(renderCtx.getItemMargin()-renderCtx.getCalculatedItemString().length())));
+		return this.renderer.render(this.getRawContent(), renderCtx);
 	}
 
 	@Override
-	public String render(){
-		this.prepareRender();
-		StrBuilder ret = new StrBuilder(100);
-
-		this.maxItemIndent = 0;
-		this.calculateMaxIndentation();
-		if(this.width>0 && ((maxItemIndent+6) > this.width)){
-			throw new IllegalArgumentException("width <" + this.width + "> is to small for list content with indentation already at <" + this.maxItemIndent + ">");
-		}
-		int position = 0;
-		for(int i=0; i<this.items.size(); i++){
-			if(this.items.get(i) instanceof AsciiListItem){
-				position++;
-				ret.appendSeparator("\n").append(this.wrapItem(this.renderItem((AsciiListItem)this.items.get(i), position)));
-			}
-			else if(this.items.get(i) instanceof AsciiList){
-				AsciiList l = (AsciiList)this.items.get(i);
-				l.setPreLabelIndent(this.maxItemIndent);
-				ret.appendSeparator("\n").append(l.render());
-			}
-			else{
-				throw new NotImplementedException("not yet implemented, only AsciiList and AsciiListItem supported");
-			}
-		}
-		return ret.toString();
+	public Collection<String> renderAsCollection() {
+		return ClusterElementTransformer.create().transform(
+				this.renderer.render(this.getRawContent(), this.ctx),
+				StrBuilder_To_String.create(),
+				ArrayListStrategy.create()
+		);
 	}
 
 	@Override
-	public AsciiList setLevel(int level){
-		if(level>1){
-			this.level = level;
-		}
-		return this;
+	public Collection<String> renderAsCollection(int width) {
+		return ClusterElementTransformer.create().transform(
+				this.renderer.render(this.getRawContent(), this.ctx, this.ctx.getTextWidth(width)),
+				StrBuilder_To_String.create(),
+				ArrayListStrategy.create()
+		);
 	}
 
 	@Override
-	public void prepareRender() {
-		for(Object obj : this.items){
-			if(obj instanceof AsciiList){
-				((AsciiList) obj).setLevel(this.level+1);
-				((AsciiList) obj).setWidth(this.width);
-			}
-		}
-	}
-
-	@Override
-	public AsciiList setPostLabelIndent(int indent) {
-		if(indent>-1){
-			this.postLabelIndent = indent;
+	public AsciiList<?, ?, ?> setRenderer(R renderer){
+		if(renderer!=null){
+			this.renderer = renderer;
 		}
 		return this;
 	}
 
 	@Override
-	public AsciiList setPostLabelString(String str) {
-		this.postLabelStr = str;
-		return this;
-	}
-
-	@Override
-	public AsciiList setPreLabelIndent(int indent) {
-		if(indent>-1){
-			this.preLabelIndent = indent;
+	public StrBuilder toLog() {
+		StrBuilder ret = new StrBuilder();
+		for(AsciiListItem i : this.getItems()){
+			ret.append(i.toLog());
+			ret.appendNewLine();
 		}
-		return this;
+		return ret;
 	}
 
-	@Override
-	public AsciiList setPreLabelString(String str) {
-		this.preLabelStr = str;
-		return this;
-	}
-
-	@Override
-	public AsciiList setWidth(int width){
-		this.width = width;
-		return this;
-	}
-
-	/**
-	 * Wraps a rendered list item for the width given in the list.
-	 * @param renderedItem the rendered item to wrap
-	 * @return a string with the wrapped item (lines separated by "\n")
-	 */
-	protected String wrapItem(String renderedItem){
-		String ret = "";
-		if(renderedItem.contains(IMPLICIT_NEWLINE)){
-			//for descriptions with multi lines
-			String[] split = StringUtils.split(renderedItem, IMPLICIT_NEWLINE);
-			String rest = StringUtils.repeat(" ", this.maxItemIndent) + split[1];
-			if(this.width>0 && rest.length()<this.width){
-				return split[0] + "\n" + rest;
-			}
-			else if(this.width<0){
-				return split[0] + "\n" + rest;
-			}
-		}
-
-		if(this.width>0 && renderedItem.length()>this.width){
-			String[] wrap = StringUtils.split(WordUtils.wrap(renderedItem, (this.width-this.preLabelIndent-this.preLabelStr.length()), IMPLICIT_NEWLINE, true), IMPLICIT_NEWLINE);
-			ret += StringUtils.repeat(" ", this.preLabelIndent) + StringUtils.repeat(" ", this.preLabelStr.length()) + wrap[0];
-			if(wrap.length>1){
-				ret += "\n" + this.wrapItemNextLine(StringUtils.repeat(" ", this.maxItemIndent) + StringUtils.join(ArrayUtils.remove(wrap, 0), " "));
-			}
-			return ret;
-		}
-		return renderedItem;
-	}
-
-	/**
-	 * Wraps all following lines of an item
-	 * @param str the string to wrap
-	 * @return wrapped string
-	 */
-	protected String wrapItemNextLine(String str){
-		String[] wrap = StringUtils.split(WordUtils.wrap(str, (this.width-this.maxItemIndent), IMPLICIT_NEWLINE, true), IMPLICIT_NEWLINE);
-		String ret = StringUtils.repeat(" ", this.maxItemIndent) + wrap[0];
-		if(wrap.length==1){
-			return ret;
-		}
-		return ret + "\n" + this.wrapItemNextLine(StringUtils.repeat(" ", this.maxItemIndent) + StringUtils.join(ArrayUtils.remove(wrap, 0), " "));
-	}
 }

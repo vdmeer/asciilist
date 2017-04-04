@@ -1,0 +1,57 @@
+Width with automated line wrapping
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The lists allow to set a maximum width and will, if any item is longer than that width, an automatic line break with indentation calculation will be performed.
+All lists support this feature.
+
+We create two lists, one itemize and one enumerate:
+
+[source, java]
+----------------------------------------------------------------------------------------
+AsciiList itemize = new ItemizeList()
+	.addItem("il 1 item 1 some text")
+	.addItem("il 1 item 2 some text")
+	.addItem(new ItemizeList()
+		.addItem("il 2 item 1 text")
+		.addItem("il 2 item 2 text")
+	)
+	.setPreLabelIndent(0)
+	.setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
+
+AsciiList enumerate = new EnumerateList()
+	.addItem("el 1 item 1 some text")
+	.addItem("el 1 item 2 some text")
+	.addItem(new EnumerateList()
+		.addItem("el 2 item 1 text")
+		.addItem("el 2 item 2 text")
+	)
+	.setPreLabelIndent(0)
+	.setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);
+----------------------------------------------------------------------------------------
+
+Rendering and printing the two lists will result in the following output (shown in two columns):
+----------------------------------------------------------------------------------------
+        * il 1 item 1 some text        1 el 1 item 1 some text
+        * il 1 item 2 some text        2 el 1 item 2 some text
+          ** il 2 item 1 text            2.A el 2 item 1 text
+          ** il 2 item 2 text            2.B el 2 item 2 text
+----------------------------------------------------------------------------------------
+
+
+Changing the width of both lists will result in line wrapping:
+----------------------------------------------------------------------------------------
+	itemize.setWidth(19);
+	enumerate.setWidth(19);
+----------------------------------------------------------------------------------------
+
+Now the rendering and printing will result in the following output:
+----------------------------------------------------------------------------------------
+        * il 1 item 1 some        1 el 1 item 1 some
+          text                      text
+        * il 1 item 2 some        2 el 1 item 2 some
+          text                      text
+          ** il 2 item 1            2.A el 2 item 1
+             text                       text
+          ** il 2 item 2            2.B el 2 item 2
+             text                       text
+----------------------------------------------------------------------------------------

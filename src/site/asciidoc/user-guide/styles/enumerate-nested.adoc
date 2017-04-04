@@ -1,0 +1,98 @@
+=== Nested Enumerate Lists
+
+Several styles for all alphanumeric labels:
+
+* `NestedEnumerateStyles.all_Alpha_ascii` for standard upper case characters (left)
+* `NestedEnumerateStyles.all_alpha_ascii` for standard lower case characters (right)
+
+---------------------------------------------------
+A. item 1                        a. item 1
+B. item 2                        b. item 2
+   A. item 1                        a. item 1
+   B. item 2                        b. item 2
+      A. item 1                        a. item 1
+      B. item 2                        b. item 2
+         A. item 1                        a. item 1
+         B. item 2                        b. item 2
+            A. item 1                        a. item 1
+            B. item 2                        b. item 2
+               A. item 1                        a. item 1
+               B. item 2                        b. item 2
+---------------------------------------------------
+
+
+Arabic numbers in `NestedEnumerateStyles.all_arabic_ascii`:
+
+---------------------------------------------------
+1. item 1
+2. item 2
+   1. item 1
+   2. item 2
+      1. item 1
+      2. item 2
+         1. item 1
+         2. item 2
+            1. item 1
+            2. item 2
+               1. item 1
+               2. item 2
+---------------------------------------------------
+
+Several styles for all roman number labels:
+
+* `NestedEnumerateStyles.all_Roman_ascii` for upper case roman numbers (left)
+* `NestedEnumerateStyles.all_roman_ascii` for lower case roman numbers (right)
+
+---------------------------------------------------
+I. item 1                        i. item 1
+II. item 2                       ii. item 2
+   I. item 1                        i. item 1
+   II. item 2                       ii. item 2
+      I. item 1                        i. item 1
+      II. item 2                       ii. item 2
+         I. item 1                        i. item 1
+         II. item 2                       ii. item 2
+            I. item 1                        i. item 1
+            II. item 2                       ii. item 2
+               I. item 1                        i. item 1
+               II. item 2                       ii. item 2
+---------------------------------------------------
+
+Styles for Arabic supscript and superscript labels:
+
+* `NestedEnumerateStyles.all_utf_arabic_subscript` for supscript numbers (left)
+* `NestedEnumerateStyles.all_utf_arabic_superscript` for superscript numbers (right)
+
+---------------------------------------------------
+₁. item 1                       ¹. item 1
+₂. item 2                       ². item 2
+   ₁. item 1                       ¹. item 1
+   ₂. item 2                       ². item 2
+      ₁. item 1                       ¹. item 1
+      ₂. item 2                       ². item 2
+         ₁. item 1                       ¹. item 1
+         ₂. item 2                       ². item 2
+            ₁. item 1                       ¹. item 1
+            ₂. item 2                       ². item 2
+               ₁. item 1                       ¹. item 1
+               ₂. item 2                       ². item 2
+---------------------------------------------------
+
+Mixed styles:
+
+* `NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman` for ### (left)
+* `NestedEnumerateStyles.arabic_utf_circled` for ### (right)
+
+---------------------------------------------------
+1. item 1                     ⓵. item 1
+2. item 2                     ⓶. item 2
+   A. item 1                     ①. item 1
+   B. item 2                     ②. item 2
+      a. item 1                     ➀. item 1
+      b. item 2                     ➁. item 2
+         I. item 1                     ➊. item 1
+         II. item 2                    ➋. item 2
+            i. item 1                     ➊. item 1
+            ii. item 2                    ➋. item 2
+---------------------------------------------------
+

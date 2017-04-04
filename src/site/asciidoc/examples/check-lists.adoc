@@ -1,0 +1,20 @@
+Checklists
+~~~~~~~~~~
+
+The package also provides a check list.
+In this list, items can be marked as checked and unchecked resulting in different labels.
+The checklist supports styles to use different characters (ASCII and UTF) for checked and unchecked items.
+
+The following code shows the creation of a checklist and the use of different styles for rendering it:
+
+[source, java]
+----------------------------------------------------------------------------------------
+include::{basedir}/test/java/de/vandermeer/asciilist/examples/AL_Example_CheckList.java[tags=example,indent=0]
+----------------------------------------------------------------------------------------
+
+
+The resulting output of these examples is (in columns):
+----------------------------------------------------------------------------------------
+         [ ] item unchecked     ☐ item unchecked     ☐ item unchecked
+         [X] item checked       ☑ item checked       ☒ item checked
+----------------------------------------------------------------------------------------

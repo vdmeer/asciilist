@@ -1,0 +1,23 @@
+Enumerate list, pre-label string and special style
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The list configuration option offer a lot of possibilities.
+The following example creates an enumerate list with a set pre-label string and a particular style:
+
+[source, java]
+----------------------------------------------------------------------------------------
+AsciiList enumerate = new EnumerateList()
+	.addItem("item 1")
+	.addItem("item 2")
+	.addItem("item 3")
+	.setPreLabelString("E")
+	.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
+;
+----------------------------------------------------------------------------------------
+
+The rendered list looks like this:
+----------------------------------------------------------------------------------------
+	 E₁ item 1
+	 E₂ item 2
+	 E₃ item 3
+----------------------------------------------------------------------------------------

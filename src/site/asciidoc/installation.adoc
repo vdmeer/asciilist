@@ -1,0 +1,18 @@
+== Installation
+
+=== Maven
+
+For Maven declare a dependency in the `<dependencies>` section of your POM file.
+
+[source,xml,subs=attributes+]
+.Dependency declaration in pom.xml
+----
+<dependency>
+    <groupId>de.vandermeer</groupId>
+    <artifactId>asciilist</artifactId>
+    <version>{release-version}</version>
+</dependency>
+----
+
+For other build systems see https://search.maven.org/#artifactdetails\|de.vandermeer\|asciilist\|{release-version}\|jar[Maven Central]
+

@@ -1,0 +1,14 @@
+Resources
+---------
+
+[frame=topbot, grid=rows, cols="d,d"]
+|===
+| Releases on Maven Central
+| https://search.maven.org/#artifactdetails\|de.vandermeer\|asciilist\|{release-version}\|jar[current release {release-version}], 
+  https://search.maven.org/#search\|gav\|1\|g%3A%22de.vandermeer%22%20AND%20a%3A%22asciilist%22[all releases]
+
+| UTF-8 Howto
+| http://vdmeer-sven.blogspot.ie/2014/06/utf-8-support-w-java-and-console.html[older blog], 
+  https://github.com/vdmeer/skb/wiki/HowTo-UTF-8-Support-in-Java-and-Console[updated SKB Wiki]
+|===
+

@@ -5,7 +5,6 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<meta name="author" content="Many different lists (itemize/unordered, enumerate/ordered, checklist, description) with support for nested lists, using ASCII and UTF characters for labels.">
 <title>ASCII List</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -417,36 +416,137 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
 </head>
 <body class="article">
 <div id="header">
 <h1>ASCII List</h1>
-<div class="details">
-<span id="author" class="author">Many different lists (itemize/unordered, enumerate/ordered, checklist, description) with support for nested lists, using ASCII and UTF characters for labels.</span><br>
-</div>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_overview">Overview</a>
+<li><a href="#_resources">Resources</a></li>
+<li><a href="#_installation">Installation</a>
 <ul class="sectlevel2">
-<li><a href="#_concepts_and_realization">Concepts and Realization</a></li>
+<li><a href="#_maven">Maven</a></li>
 </ul>
 </li>
-<li><a href="#_standard_usage_create_and_render_a_simple_list">Standard usage - create and render a simple list</a>
+<li><a href="#_features">Features</a></li>
+<li><a href="#_concepts">Concepts</a>
 <ul class="sectlevel2">
-<li><a href="#_create_a_list">Create a list</a></li>
-<li><a href="#_add_content_items">Add content (items)</a></li>
-<li><a href="#_render_the_list">Render the list</a></li>
-<li><a href="#_print_the_list">Print the list</a></li>
+<li><a href="#_list">List</a></li>
+<li><a href="#_item">Item</a></li>
+<li><a href="#_label">Label</a></li>
+<li><a href="#_style">Style</a></li>
 </ul>
 </li>
-<li><a href="#_set_of_examples_for_list_features">Set of examples for list features</a>
+<li><a href="#_getting_started">Getting Started</a></li>
+<li><a href="#_examples">Examples</a>
 <ul class="sectlevel2">
-<li><a href="#_change_list_render_behavior">Change list render behavior</a></li>
+<li><a href="#_render_behavior">Render behavior</a></li>
+<li><a href="#_change_list_render_behavior_label_style">Change list render behavior - label style</a></li>
 <li><a href="#_nested_lists">Nested lists</a></li>
 <li><a href="#_width_with_automated_line_wrapping">Width with automated line wrapping</a></li>
-<li><a href="#_enumerate_list_pre_label_string_and_special_style">Enumerate list, pre-label string and special style</a></li>
+<li><a href="#_enumerate_list_with_special_pre_label_string_and_style">Enumerate list with special pre-label string and style</a></li>
+<li><a href="#_checklists_with_different_styles">Checklists with different styles</a></li>
+</ul>
+</li>
+<li><a href="#_predefined_styles">Predefined Styles</a>
+<ul class="sectlevel2">
+<li><a href="#_nested_itemize_lists">Nested Itemize Lists</a></li>
+<li><a href="#_enumerate_lists">Enumerate Lists</a></li>
+<li><a href="#_nested_enumerate_lists">Nested Enumerate Lists</a></li>
 <li><a href="#_checklists">Checklists</a></li>
+<li><a href="#_nested_checklists">Nested Checklists</a></li>
 </ul>
 </li>
 </ul>
@@ -456,28 +556,133 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The lists allows for various degrees of flexibility for labels, nested lists, indentation (with auto-indentation for nested lists), and styles for list labels.</p>
-</div>
-<div class="paragraph">
-<p>Current release is <a href="https://search.maven.org/#artifactdetails|de.vandermeer|asciilist|0.0.3|jar">0.0.3</a>.
-All releases are on <a href="https://search.maven.org/#search|gav|1|g%3A%22de.vandermeer%22%20AND%20a%3A%22asciilist%22">Maven Central</a>.</p>
-</div>
-<div class="paragraph">
-<p>This blog post explains how to get UTF-8 support in the whole tool chain <a href="http://vdmeer-sven.blogspot.ie/2014/06/utf-8-support-w-java-and-console.html">blog on UTF-8</a>.
-Updates will be at here <a href="https://github.com/vdmeer/skb/wiki/HowTo-UTF-8-Support-in-Java-and-Console">SKB Wiki on UTF-8</a>.</p>
+<p>Many different lists (itemize/unordered, enumerate/ordered, checklist, description, nested),
+using ASCII and UTF characters for labels,
+with various degrees of flexibility for labels, indentation, and styles.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_overview">Overview</h2>
+<h2 id="_resources">Resources</h2>
+<div class="sectionbody">
+<table class="tableblock frame-topbot grid-rows spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Releases on Maven Central</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://search.maven.org/#artifactdetails|de.vandermeer|asciilist|0.0.4-SNAPSHOT|jar">current release 0.0.4-SNAPSHOT</a>,
+  <a href="https://search.maven.org/#search|gav|1|g%3A%22de.vandermeer%22%20AND%20a%3A%22asciilist%22">all releases</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UTF-8 Howto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://vdmeer-sven.blogspot.ie/2014/06/utf-8-support-w-java-and-console.html">older blog</a>,
+  <a href="https://github.com/vdmeer/skb/wiki/HowTo-UTF-8-Support-in-Java-and-Console">updated SKB Wiki</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation">Installation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_concepts_and_realization">Concepts and Realization</h3>
+<h3 id="_maven">Maven</h3>
+<div class="paragraph">
+<p>For Maven declare a dependency in the <code>&lt;dependencies&gt;</code> section of your POM file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Dependency declaration in pom.xml</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>de.vandermeer<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>asciilist<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>0.0.4-SNAPSHOT<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For other build systems see <a href="https://search.maven.org/#artifactdetails\|de.vandermeer\|asciilist\|0.0.4-SNAPSHOT\|jar">Maven Central</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_features">Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The package offers a number of different lists.
+Some of those lists come with specific configuration options.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Itemize lists (as in LaTeX <code>itemize</code> or HTML <code>ul</code>)</p>
+</li>
+<li>
+<p>Enumerate lists (as in LaTeX <code>enumerate</code> or HTML <code>ol</code>)</p>
+</li>
+<li>
+<p>Check lists with items being checked or not checked</p>
+</li>
+<li>
+<p>Description lists (as in LaTeX <code>description</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The lists come with several options to add content and to configure render options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add items as plain text, collection of objects, or other lists</p>
+<div class="ulist">
+<ul>
+<li>
+<p>checklist items can be added as a checked or not checked item</p>
+</li>
+<li>
+<p>description list items can be added with title and content of the description</p>
+</li>
+<li>
+<p>adding lists as item will create nested lists of any combination</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Set width of the overall list, with automated line wrapping for overlength item text</p>
+</li>
+<li>
+<p>Set indentation and string before and after the list label</p>
+</li>
+<li>
+<p>Enumerate lists can set a label separator</p>
+</li>
+<li>
+<p>Description lists can be one line or two lines, with flexible indentation</p>
+</li>
+<li>
+<p>Set level of items manually</p>
+</li>
+<li>
+<p>Set list style, with a large number of different pre-defined styles available</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_concepts">Concepts</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The main concepts are: list, item, label, style.</p>
 </div>
-<div class="sect3">
-<h4 id="_list">List</h4>
+<div class="sect2">
+<h3 id="_list">List</h3>
 <div class="paragraph">
 <p>A list is a collection of items.
 The content and form of the items depends on the list.
@@ -512,8 +717,8 @@ Then lists can be configured to get the expected printed output.
 Finally, a list is rendered, i.e. a printable representation of the list and all its items is created.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_item">Item</h4>
+<div class="sect2">
+<h3 id="_item">Item</h3>
 <div class="paragraph">
 <p>An item is the actual content of a list.
 Simple items have only some text.
@@ -521,8 +726,8 @@ More complex items have several parts, for instance the term and description of 
 Some items have text plus other configuration options, such as items in a checklist.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_label">Label</h4>
+<div class="sect2">
+<h3 id="_label">Label</h3>
 <div class="paragraph">
 <p>A label is the marker of an item.
 Labels strongly depend on the particular list.
@@ -559,8 +764,8 @@ The label can be styled using a style.
 Multi-line indentation do only apply for some lists, where it cannot or should not be calculated automatically.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_style">Style</h4>
+<div class="sect2">
+<h3 id="_style">Style</h3>
 <div class="paragraph">
 <p>Styles are used to style labels of lists or of nested lists.
 The style of a label depends on the particular list.
@@ -574,9 +779,8 @@ For some lists (e.g. enumerate) they also allow to re-use parts of the parent li
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="_standard_usage_create_and_render_a_simple_list">Standard usage - create and render a simple list</h2>
+<h2 id="_getting_started">Getting Started</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The standard usage is:</p>
@@ -600,157 +804,111 @@ For some lists (e.g. enumerate) they also allow to re-use parts of the parent li
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="_create_a_list">Create a list</h3>
+<div class="paragraph">
+<p>First, create a list. The example creates an itemize list.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>	ItemizeList list = new ItemizeList();</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_add_content_items">Add content (items)</h3>
-<div class="listingblock">
-<div class="content">
-<pre>	list.addItem("item 1");
-	list.addItem("item 2");
-	list.addItem("item 3");</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_render_the_list">Render the list</h3>
-<div class="listingblock">
-<div class="content">
-<pre>	String rend = list.render();</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_print_the_list">Print the list</h3>
-<div class="listingblock">
-<div class="content">
-<pre>	System.out.println(rend);</pre>
+<pre class="CodeRay highlight"><code data-lang="java">ItemizeList list = <span class="keyword">new</span> ItemizeList();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will result in the following list:</p>
+<p>Next, add content to your list.
+List content are items.
+We add one item at a time.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>	 * item 1
-	 * item 2
-	 * item 3</pre>
+<pre class="CodeRay highlight"><code data-lang="java">list.addItem(<span class="string"><span class="delimiter">&quot;</span><span class="content">item 1</span><span class="delimiter">&quot;</span></span>);
+list.addItem(<span class="string"><span class="delimiter">&quot;</span><span class="content">item 2</span><span class="delimiter">&quot;</span></span>);
+list.addItem(<span class="string"><span class="delimiter">&quot;</span><span class="content">item 3</span><span class="delimiter">&quot;</span></span>);</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Next, render the list.
+This will provide the text output using all settings.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">String</span> rend = list.render();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, print the list to standard out.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">System</span>.out.println(rend);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output will be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> * item 1
+ * item 2
+ * item 3</pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_set_of_examples_for_list_features">Set of examples for list features</h2>
+<h2 id="_examples">Examples</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_change_list_render_behavior">Change list render behavior</h3>
+<h3 id="_render_behavior">Render behavior</h3>
 <div class="paragraph">
-<p>We can change pre/post label indentation and strings as well as the label style.
-In the following example we first set the pre-label indentation to 5.
-Then we set the post-label indentation to 5.
-Then we set the post-label string to "all":</p>
+<p>Two examples with different renderer behavior:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>indentation of 5 characters before the label</p>
+</li>
+<li>
+<p>indentation of 5 characters after the label</p>
+</li>
+<li>
+<p>pre and post label characters set to <code>&gt;&gt;</code> and <code>&lt;&lt;</code></p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>	list.setPreLabelIndent(5);
-	System.out.println(list.render());
-
-	list.setLabelDefaults();
-	list.setPostLabelIndent(5);
-	System.out.println(list.render());
-
-	list.setLabelDefaults();
-	list.setPreLabelString("&gt;&gt;");
-	list.setPostLabelString("&lt;&lt;");
-	System.out.println(list.render());</pre>
+<pre>     * item 1		 *     item 1		 &gt;&gt;*&lt;&lt; item 1
+     * item 2		 *     item 2		 &gt;&gt;*&lt;&lt; item 2
+     * item 3		 *     item 3		 &gt;&gt;*&lt;&lt; item 3</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_change_list_render_behavior_label_style">Change list render behavior - label style</h3>
 <div class="paragraph">
-<p>This will result in the following three outputs (given in three columns):</p>
+<p>Using HTML-like labels for an itemize list.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>	     * item 1		 *     item 1		 &gt;&gt;*&lt;&lt; item 1
-	     * item 2		 *     item 2		 &gt;&gt;*&lt;&lt; item 2
-	     * item 3		 *     item 3		 &gt;&gt;*&lt;&lt; item 3</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>We can also change the label style:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>	list.setLabelDefaults();
-	list.setListStyle(NestedItemizeStyles.HTML_LIKE);
-	System.out.println(list.render());</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will result in the following list:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>	 • item 1
-	 • item 2
-	 • item 3</pre>
+<pre> • item 1
+ • item 2
+ • item 3</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_nested_lists">Nested lists</h3>
 <div class="paragraph">
-<p>Itemize and enumerate lists can be nested.
-The nesting is not limited.
-Using standard labels ("*", "-", "+") for itemize lists and ASCII-7 characters for enumerate lists, the nesting can be of any depth.
-However, styles for nested lists currently support a maximum of 6 levels only.
-Some nested styles support less than 6 levels.</p>
+<p>Two examples:</p>
 </div>
-<div class="paragraph">
-<p>Let&#8217;s start with creating an itemize list and add nested itemize lists 6-levels deep to it.
-Additionally, set a nested style for the list:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>AsciiList itemize = new ItemizeList()
-.addItem("item 1")
-.addItem(new ItemizeList().addItem("item 2")
-    .addItem(new ItemizeList().addItem("item 3")
-        .addItem(new ItemizeList().addItem("item 4")
-            .addItem(new ItemizeList().addItem("item 5")
-                addItem(new ItemizeList().addItem("item 6"))
-            )
-        )
-    )
-).setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Next, create an enumerate list in the same way, using it&#8217;s default configuration:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>AsciiList_Enumerate enumerate = new EnumerateList()
-.addItem("item 1")
-.addItem(new EnumerateList().addItem("item 2")
-    .addItem(new EnumerateList().addItem("item 3")
-        .addItem(new EnumerateList().addItem("item 4")
-            .addItem(new EnumerateList().addItem("item 5")
-                .addItem(new EnumerateList().addItem("item 6"))
-            )
-        )
-    )
-);</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>These two examples will print as follows (manually formatted to a 2-column output):</p>
+<div class="ulist">
+<ul>
+<li>
+<p>itemize list with <code>*</code> character as label</p>
+</li>
+<li>
+<p>numbered list with continued numbering</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -766,37 +924,7 @@ Additionally, set a nested style for the list:</p>
 <div class="sect2">
 <h3 id="_width_with_automated_line_wrapping">Width with automated line wrapping</h3>
 <div class="paragraph">
-<p>The lists allow to set a maximum width and will, if any item is longer than that width, an automatic line break with indentation calculation will be performed.
-All lists support this feature.</p>
-</div>
-<div class="paragraph">
-<p>We create two lists, one itemize and one enumerate:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>	AsciiList itemize = new ItemizeList()
-		.addItem("il 1 item 1 some text")
-		.addItem("il 1 item 2 some text")
-		.addItem(new ItemizeList()
-			.addItem("il 2 item 1 text")
-			.addItem("il 2 item 2 text")
-		)
-		.setPreLabelIndent(0)
-		.setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);
-
-	AsciiList enumerate = new EnumerateList()
-		.addItem("el 1 item 1 some text")
-		.addItem("el 1 item 2 some text")
-		.addItem(new EnumerateList()
-			.addItem("el 2 item 1 text")
-			.addItem("el 2 item 2 text")
-		)
-		.setPreLabelIndent(0)
-		.setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Rendering and printint the two lists will result in the following output (shown in two columns):</p>
+<p>Two lists without any line wrapping (content of each item fits into the width set for the list).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -807,16 +935,7 @@ All lists support this feature.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Changing the width of both lists will result in line wrapping:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>	itemize.setWidth(19);
-	enumerate.setWidth(19);</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now the rendering and printing will result in the following output:</p>
+<p>Same lists with smaller width and automated line wrapping.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -832,24 +951,9 @@ All lists support this feature.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_enumerate_list_pre_label_string_and_special_style">Enumerate list, pre-label string and special style</h3>
+<h3 id="_enumerate_list_with_special_pre_label_string_and_style">Enumerate list with special pre-label string and style</h3>
 <div class="paragraph">
-<p>The list configuration option offer a lot of possibilities.
-The following example creates an enumerate list with a set pre-label string and a particular style:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>	AsciiList enumerate = new EnumerateList()
-		.addItem("item 1")
-		.addItem("item 2")
-		.addItem("item 3")
-		.setPreLabelString("E")
-		.setListStyle(NestedEnumerateStyles.all_utf_arabic_subscript)
-	;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The rendered list looks like this:</p>
+<p>Set the pre-label to <code>E</code> and the style to subscript using Arabic numbers.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -860,28 +964,9 @@ The following example creates an enumerate list with a set pre-label string and 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_checklists">Checklists</h3>
+<h3 id="_checklists_with_different_styles">Checklists with different styles</h3>
 <div class="paragraph">
-<p>The package also provides a check list.
-In this list, items can be marked as checked and unchecked resulting in different labels.
-The checklist supports styles to use different characters (ASCII and UTF) for checked and unchecked items.</p>
-</div>
-<div class="paragraph">
-<p>The following code shows the creation of a checklist and the use of different styles for rendering it:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>	CheckList list = new CheckList();
-	list.addItem("item unchecked");
-	list.addItemChecked("item checked");
-
-	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX);
-
-	list.setListStyle(NestedCheckStyles.ALL_UTF_BALLOT_BOX_X);</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The resulting output of these examples is (in columns):</p>
+<p>Standard style (left), UTF ballot box style (middle), and UTF ballot box X style (right).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -892,10 +977,549 @@ The checklist supports styles to use different characters (ASCII and UTF) for ch
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_predefined_styles">Predefined Styles</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_nested_itemize_lists">Nested Itemize Lists</h3>
+<div class="paragraph">
+<p>Two options for using <code>*</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedItemizeStyles.ALL_STAR</code> for unlimited levels (left)</p>
+</li>
+<li>
+<p><code>NestedItemizeStyles.ALL_STAR_INCREMENTAL</code> incremental for up to 6 levels (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>* item 1                          * item 1
+* item 2                          * item 2
+   * item 1                          ** item 1
+   * item 2                          ** item 2
+      * item 1                          *** item 1
+      * item 2                          *** item 2
+         * item 1                          **** item 1
+         * item 2                          **** item 2
+            * item 1                          ***** item 1
+            * item 2                          ***** item 2
+               * item 1                          ****** item 1
+               * item 2                          ****** item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Two options for using <code>-</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedItemizeStyles.ALL_HYPHEN</code> for unlimited levels (left)</p>
+</li>
+<li>
+<p><code>NestedItemizeStyles.ALL_HYPHEN_INCREMENTAL</code> incremental for up to 6 levels (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>- item 1                       - item 1
+- item 2                       - item 2
+   - item 1                       -- item 1
+   - item 2                       -- item 2
+      - item 1                       --- item 1
+      - item 2                       --- item 2
+         - item 1                       ---- item 1
+         - item 2                       ---- item 2
+            - item 1                       ----- item 1
+            - item 2                       ----- item 2
+               - item 1                       ------ item 1
+               - item 2                       ------ item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Two options for using <code>+</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedItemizeStyles.ALL_PLUS</code> for unlimited levels (left)</p>
+</li>
+<li>
+<p><code>NestedItemizeStyles.ALL_PLUS_INCREMENTAL</code> incremental for up to 6 levels (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>+ item 1                       + item 1
++ item 2                       + item 2
+   + item 1                       ++ item 1
+   + item 2                       ++ item 2
+      + item 1                       +++ item 1
+      + item 2                       +++ item 2
+         + item 1                       ++++ item 1
+         + item 2                       ++++ item 2
+            + item 1                       +++++ item 1
+            + item 2                       +++++ item 2
+               + item 1                       ++++++ item 1
+               + item 2                       ++++++ item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some more options defined for 3 and 2 levels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedItemizeStyles.HTML_LIKE</code> for 3 levels (most left)</p>
+</li>
+<li>
+<p><code>NestedItemizeStyles.UTF_TEAR_DROP</code> for 3 levels (second left)</p>
+</li>
+<li>
+<p><code>NestedItemizeStyles.UTF_FLORETTE</code> for 3 levels (middle)</p>
+</li>
+<li>
+<p><code>NestedItemizeStyles.UTF_SNOWFLAKE</code> for 3 levels (second right)</p>
+</li>
+<li>
+<p><code>NestedItemizeStyles.UTF_SPARKLE</code> for 2 levels (most right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>• item 1          ✻ item 1          ✿ item 1          ❄ item 1          ❇ item 1
+• item 2          ✻ item 2          ✿ item 2          ❄ item 2          ❇ item 2
+   ○ item 1          ✼ item 1          ❀ item 1          ❅ item 1          ❈ item 1
+   ○ item 2          ✼ item 2          ❀ item 2          ❅ item 2          ❈ item 2
+      ▪ item 1          ✾ item 1          ❁ item 1          ❆ item 1
+      ▪ item 2          ✾ item 2          ❁ item 2          ❆ item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Three more options for up to 6 levels each:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedItemizeStyles.UTF_ARROwS</code> (left)</p>
+</li>
+<li>
+<p><code>NestedItemizeStyles.UTF_STARS</code> (middle)</p>
+</li>
+<li>
+<p><code>NestedItemizeStyles.UTF_STARS_OUTLINE</code> (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>➔ item 1                   ✳ item 1                   ✧ item 1
+➔ item 2                   ✳ item 2                   ✧ item 2
+   ➜ item 1                   ✴ item 1                   ✩ item 1
+   ➜ item 2                   ✴ item 2                   ✩ item 2
+      ➡ item 1                   ✵ item 1                   ✫ item 1
+      ➡ item 2                   ✵ item 2                   ✫ item 2
+         ➞ item 1                   ✷ item 1                   ✬ item 1
+         ➞ item 2                   ✷ item 2                   ✬ item 2
+            ➝ item 1                   ✹ item 1                   ✭ item 1
+            ➝ item 2                   ✹ item 2                   ✭ item 2
+               ➙ item 1                   ✺ item 1                   ✯ item 1
+               ➙ item 2                   ✺ item 2                   ✯ item 2</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enumerate_lists">Enumerate Lists</h3>
+<div class="paragraph">
+<p>Several styles for upper case alphanumeric labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EnumerateStyles.Alpha_ascii</code> for standard upper case letters (left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.Alpha_utf_circle</code> for UTF Circled Latin Capital Letters (middle)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.Alpha_utf_fullwidth</code> for UTF Fullwidth Latin Capital Letters (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>A item 1        Ⓐ item 1        Ａ item 1
+B item 2        Ⓑ item 2        Ｂ item 2
+C item 3        Ⓒ item 3        Ｃ item 3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Several options for lower case alphanumeric labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EnumerateStyles.alpha_ascii</code> for lower case alphanumeric characters (left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.alpha_utf_circle</code> for UTF Circled Latin Small Letters characters (second left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.alpha_utf_parenthesized</code> for UTF Parenthesized Latin Small Letter characters (second right)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.alpha_fullwidth</code> for UTF Fullwidth Latin Small characters (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>a item 1        ⓐ item 1        ⒜ item 1        ａ item 1
+b item 2        ⓑ item 2        ⒝ item 2        ｂ item 2
+c item 3        ⓒ item 3        ⒞ item 3        ｃ item 3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Several styles for lower case Arabic number labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EnumerateStyles.arabic_ascii</code> for Arabic numbers (left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.arabic_utf_circle</code> for UTF Circled Digit character (second left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.arabic_utf_double_circle</code> for UTF Double Circled Digit character (third left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.arabic_utf_circle_dingbat_negative</code> for UTF Dingbat Negative Circled Digit character (third right)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.arabic_utf_circle_dingbat_sanserif</code> for UTF Dingbat Sanserif Circled Digit character (second right)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.arabic_utf_circle_dingbat_negative_sanserif</code> for UTF Dingbat Negative Sanserif Circled Digit character (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>1 item 1    ① item 1    ⓵ item 1    ❶ item 1    ➀ item 1    ➊ item 1
+2 item 2    ② item 2    ⓶ item 2    ❷ item 2    ➁ item 2    ➋ item 2
+3 item 3    ③ item 3    ⓷ item 3    ❸ item 3    ➂ item 3    ➌ item 3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Styles for lower case Arabic number labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EnumerateStyles.arabic_utf_superscript</code> for UTF Superscript characters (left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.arabic_utf_subscript</code> for UTF Subscript characters (second left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.arabic_utf_full_stop</code> for UTF Fullstop characters (middle)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.arabic_parenthesized</code> for UTF Parenthesized Digit characters (second right)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.arabic_utf_fullwidth</code> for UTF Fullwidth Digit characters (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>¹ item 1   ₁ item 1    ⒈ item 1    ⑴ item 1    １ item 1
+² item 2   ₂ item 2    ⒉ item 2    ⑵ item 2    ２ item 2
+³ item 3   ₃ item 3    ⒊ item 3    ⑶ item 3    ３ item 3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Several styles for upper case Roman number labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EnumerateStyles.Roman_ascii</code> for Roman number literals characters (left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.Roman_utf_circled</code> for UTF Circled Latin Capital characters (middle)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.Roman_utf_number_forms</code> for UTF Number Forms characters (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>I item 1          Ⓘ item 1          Ⅰ item 1
+II item 2         ⒾⒾ item 2         Ⅱ item 2
+III item 3        ⒾⒾⒾ item 3        Ⅲ item 3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Several styles for lower case Roman number labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EnumerateStyles.roman_ascii</code> for Roman number literals characters (left)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.roman_utf_circled</code> for UTF Circled Latin Small characters (middle)</p>
+</li>
+<li>
+<p><code>EnumerateStyles.roman_utf_number_forms</code> for UTF Number Forms characters (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>i item 1          ⓘ item 1          ⅰ item 1
+ii item 2         ⓘⓘ item 2         ⅱ item 2
+iii item 3        ⓘⓘⓘ item 3        ⅲ item 3</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nested_enumerate_lists">Nested Enumerate Lists</h3>
+<div class="paragraph">
+<p>Several styles for all alphanumeric labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedEnumerateStyles.all_Alpha_ascii</code> for standard upper case characters (left)</p>
+</li>
+<li>
+<p><code>NestedEnumerateStyles.all_alpha_ascii</code> for standard lower case characters (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>A. item 1                        a. item 1
+B. item 2                        b. item 2
+   A. item 1                        a. item 1
+   B. item 2                        b. item 2
+      A. item 1                        a. item 1
+      B. item 2                        b. item 2
+         A. item 1                        a. item 1
+         B. item 2                        b. item 2
+            A. item 1                        a. item 1
+            B. item 2                        b. item 2
+               A. item 1                        a. item 1
+               B. item 2                        b. item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Arabic numbers in <code>NestedEnumerateStyles.all_arabic_ascii</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>1. item 1
+2. item 2
+   1. item 1
+   2. item 2
+      1. item 1
+      2. item 2
+         1. item 1
+         2. item 2
+            1. item 1
+            2. item 2
+               1. item 1
+               2. item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Several styles for all roman number labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedEnumerateStyles.all_Roman_ascii</code> for upper case roman numbers (left)</p>
+</li>
+<li>
+<p><code>NestedEnumerateStyles.all_roman_ascii</code> for lower case roman numbers (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>I. item 1                        i. item 1
+II. item 2                       ii. item 2
+   I. item 1                        i. item 1
+   II. item 2                       ii. item 2
+      I. item 1                        i. item 1
+      II. item 2                       ii. item 2
+         I. item 1                        i. item 1
+         II. item 2                       ii. item 2
+            I. item 1                        i. item 1
+            II. item 2                       ii. item 2
+               I. item 1                        i. item 1
+               II. item 2                       ii. item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Styles for Arabic supscript and superscript labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedEnumerateStyles.all_utf_arabic_subscript</code> for supscript numbers (left)</p>
+</li>
+<li>
+<p><code>NestedEnumerateStyles.all_utf_arabic_superscript</code> for superscript numbers (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>₁. item 1                       ¹. item 1
+₂. item 2                       ². item 2
+   ₁. item 1                       ¹. item 1
+   ₂. item 2                       ². item 2
+      ₁. item 1                       ¹. item 1
+      ₂. item 2                       ². item 2
+         ₁. item 1                       ¹. item 1
+         ₂. item 2                       ². item 2
+            ₁. item 1                       ¹. item 1
+            ₂. item 2                       ². item 2
+               ₁. item 1                       ¹. item 1
+               ₂. item 2                       ². item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Mixed styles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman</code> for <mark>#</mark> (left)</p>
+</li>
+<li>
+<p><code>NestedEnumerateStyles.arabic_utf_circled</code> for <mark>#</mark> (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>1. item 1                     ⓵. item 1
+2. item 2                     ⓶. item 2
+   A. item 1                     ①. item 1
+   B. item 2                     ②. item 2
+      a. item 1                     ➀. item 1
+      b. item 2                     ➁. item 2
+         I. item 1                     ➊. item 1
+         II. item 2                    ➋. item 2
+            i. item 1                     ➊. item 1
+            ii. item 2                    ➋. item 2</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checklists">Checklists</h3>
+<div class="paragraph">
+<p>Available styles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CheckListStyles.ASCII_SQUARE_BRACKET_BLANK_X</code> for square brackets and X (left)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_BALLOT_BOX</code> for UTF-8 ballot box characters (middle)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_BALLOT_BOX_X</code> for UTF-8 ballot box characters with X box for checked (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[ ] unchecked item    ☐ unchecked item    ☐ unchecked item
+[X] checked item      ☑ checked item      ☒ checked item</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>More styles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CheckListStyles.UTF_BALLOT_X</code> using blank for unchecked and UTF-8 ballot X for checked items (left)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_BALLOT_X_HEAVY</code> using blank for unchecked and UTF-8 ballot heavy X for checked items (second left)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_CHECKMARK</code> using blank for unchecked and UTF-8 checkmark for checked items (second right)</p>
+</li>
+<li>
+<p><code>CheckListStyles.UTF_MULTIPLICATION_X</code> using blank for unchecked and UTF-8 multiplication x for checked items (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>   unchecked item      unchecked item       unchecked item       unchecked item
+✗ checked item      ✘ checked item      ✓ checked item      ✕ checked item</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nested_checklists">Nested Checklists</h3>
+<div class="paragraph">
+<p>Available styles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NestedCheckStyles.ALL_SQUARE_BRACKET_BLANK_X</code> for square brackets and X (left)</p>
+</li>
+<li>
+<p><code>NestedCheckStyles.ALL_UTF_BALLOT_BOX</code> for UTF-8 ballot box characters (middle)</p>
+</li>
+<li>
+<p><code>NestedCheckStyles.ALL_UTF_BALLOT_BOX_X</code> for UTF-8 ballot box characters with X box for checked (right)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+[X] checked item                     ☑ checked item                     ☒ checked item
+   [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+   [X] checked item                     ☑ checked item                     ☒ checked item
+      [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+      [X] checked item                     ☑ checked item                     ☒ checked item
+         [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+         [X] checked item                     ☑ checked item                     ☒ checked item
+            [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+            [X] checked item                     ☑ checked item                     ☒ checked item
+               [ ] unchecked item                   ☐ unchecked item                   ☐ unchecked item
+               [X] checked item                     ☑ checked item                     ☒ checked item</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-03-01 03:18:27 GMT
+Last updated 2017-03-22 06:54:56 GMT
 </div>
 </div>
 </body>
