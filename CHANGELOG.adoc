@@ -1,4 +1,4 @@
-=== v0.1.0 - major rewrite (existing code will break) - 2016-03-##
+=== v0.0.4 - major rewrite (existing code will break) - 2017-04-04
 
 * changed code to use Java 8
 * interfaces now have default implementations, abstract classes removed

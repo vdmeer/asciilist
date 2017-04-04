@@ -23,7 +23,7 @@ import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
  * AsciiList example for nested lists.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 170404 (04-Apr-17) for Java 1.8
+ * @version    v0.0.4 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.4
  */
 public class AL_Example_NestedLists implements StandardExampleAsCmd {
