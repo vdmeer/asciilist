@@ -2,4 +2,6 @@
 .classpath
 .settings/
 target
+bin
+_entry-point
 

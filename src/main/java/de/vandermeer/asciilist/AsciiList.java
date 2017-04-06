@@ -43,7 +43,7 @@ import de.vandermeer.asciilist.styles.ListStyle;
  * In addition: some lists allow for adding other lists (e.g. enumerate, itemize) while other lists do not support that (e.g. checklist).
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v1.0.0 build 170331 (31-Mar-17) for Java 1.7
+ * @version    v1.0.0 build 170404 (04-Apr-17) for Java 1.7
  * @since      v0.0.1
  */
 public interface AsciiList {
