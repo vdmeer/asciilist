@@ -17,8 +17,6 @@ package de.vandermeer.asciilist.builder;
 
 import org.junit.Test;
 
-import de.vandermeer.asciilist.itemize.ItemizeList;
-
 /**
  * Tests for {@link ItemizeListBuilder}.
  *
