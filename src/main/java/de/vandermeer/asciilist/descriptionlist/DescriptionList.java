@@ -46,20 +46,20 @@ public class DescriptionList extends AbstractAsciiList<DescriptionListContext, D
 
 	/**
 	 * Creates a new description list.
-	 * @param strategy the list strategy to be used for the list of items
-	 */
-	public DescriptionList(IsSetStrategy<?, DescriptionListItem> strategy){
-		this(null, strategy);
-	}
-
-	/**
-	 * Creates a new description list.
 	 * @param ctx list context, using default if null
 	 * @param strategy the list strategy to be used for the list of items
 	 */
 	public DescriptionList(DescriptionListContext ctx, IsSetStrategy<?, DescriptionListItem> strategy){
 		super(ctx, strategy);
 		this.renderer = new DescriptionListRenderer();
+	}
+
+	/**
+	 * Creates a new description list.
+	 * @param strategy the list strategy to be used for the list of items
+	 */
+	public DescriptionList(IsSetStrategy<?, DescriptionListItem> strategy){
+		this(null, strategy);
 	}
 
 	/**
@@ -85,11 +85,6 @@ public class DescriptionList extends AbstractAsciiList<DescriptionListContext, D
 		return this;
 	}
 
-	@Override
-	public DescriptionListContext getNewContext() {
-		return new DescriptionListContext();
-	}
-
 	/**
 	 * Applies the theme by setting parameters in the given context.
 	 * @param theme the theme to apply
@@ -100,5 +95,10 @@ public class DescriptionList extends AbstractAsciiList<DescriptionListContext, D
 			theme.apply(this.ctx);
 		}
 		return this;
+	}
+
+	@Override
+	public DescriptionListContext getNewContext() {
+		return new DescriptionListContext();
 	}
 }

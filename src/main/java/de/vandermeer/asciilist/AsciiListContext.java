@@ -139,6 +139,12 @@ public interface AsciiListContext extends IsListContext {
 	int getLevel();
 
 	/**
+	 * Returns the current set line separator.
+	 * @return the line separator, null if none set
+	 */
+	String getLineSeparator();
+
+	/**
 	 * Returns the list end string
 	 * @return list end string
 	 */
@@ -324,6 +330,13 @@ public interface AsciiListContext extends IsListContext {
 	AsciiListContext setLevel(int level);
 
 	/**
+	 * Sets a new line separator for the renderer.
+	 * @param separator the new separator, ignored if blank
+	 * @return self to allow chaining
+	 */
+	AsciiListContext setLineSeparator(String separator);
+
+	/**
 	 * Sets the list end string
 	 * @param listEnd new list end string, null and blank are ok
 	 * @return this to allow chaining
@@ -395,17 +408,4 @@ public interface AsciiListContext extends IsListContext {
 	 * @throws IllegalStateException if the resulting text width was smaller than 3
 	 */
 	AsciiListContext setWidth(int width);
-
-	/**
-	 * Sets a new line separator for the renderer.
-	 * @param separator the new separator, ignored if blank
-	 * @return self to allow chaining
-	 */
-	AsciiListContext setLineSeparator(String separator);
-
-	/**
-	 * Returns the current set line separator.
-	 * @return the line separator, null if none set
-	 */
-	String getLineSeparator();
 }

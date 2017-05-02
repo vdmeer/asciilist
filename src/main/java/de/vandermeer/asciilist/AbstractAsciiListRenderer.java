@@ -39,6 +39,24 @@ public class AbstractAsciiListRenderer<I extends AsciiListItem, C extends AsciiL
 	String lineSeparator = null;
 
 	@Override
+	public String getLineSeparator() {
+		return this.lineSeparator;
+	}
+
+	@Override
+	public String render(Set<I> items, C ctx, int width) {
+		Collection<StrBuilder> coll = this.renderAsCollection(items, ctx, width);
+		String fileSeparator = this.getLineSeparator();
+		if(fileSeparator==null){
+			fileSeparator = ctx.getLineSeparator();
+		}
+		if(fileSeparator==null){
+			fileSeparator = System.lineSeparator();
+		}
+		return new StrBuilder().appendWithSeparators(coll, fileSeparator).build();
+	}
+
+	@Override
 	public Collection<StrBuilder> renderAsCollection(Set<I> items, C ctx, int width){
 		Validate.notNull(items);
 		Validate.notNull(ctx);
@@ -112,23 +130,5 @@ public class AbstractAsciiListRenderer<I extends AsciiListItem, C extends AsciiL
 		if(!StringUtils.isBlank(separator)){
 			this.lineSeparator = separator;
 		}
-	}
-
-	@Override
-	public String getLineSeparator() {
-		return this.lineSeparator;
-	}
-
-	@Override
-	public String render(Set<I> items, C ctx, int width) {
-		Collection<StrBuilder> coll = this.renderAsCollection(items, ctx, width);
-		String fileSeparator = this.getLineSeparator();
-		if(fileSeparator==null){
-			fileSeparator = ctx.getLineSeparator();
-		}
-		if(fileSeparator==null){
-			fileSeparator = System.lineSeparator();
-		}
-		return new StrBuilder().appendWithSeparators(coll, fileSeparator).build();
 	}
 }

@@ -55,16 +55,16 @@ public class ChecklistItem extends AbstractAsciiListItem implements Comparable<C
 	}
 
 
+	@Override
+	public int compareTo(ChecklistItem o) {
+		return this.text.toString().compareTo(o.text.toString());
+	}
+
 	/**
 	 * Returns the checked status
 	 * @return true if checked, false otherwise
 	 */
 	public boolean isChecked() {
 		return this.isChecked;
-	}
-
-	@Override
-	public int compareTo(ChecklistItem o) {
-		return this.text.toString().compareTo(o.text.toString());
 	}
 }

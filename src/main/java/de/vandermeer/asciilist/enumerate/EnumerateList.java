@@ -44,14 +44,6 @@ public class EnumerateList extends AbstractAsciiList<EnumerateListContext, Enume
 	}
 
 	/**
-	 * Creates a new enumerate list with a sorted set for the list items.
-	 * @param strategy the list strategy to be used for the list of items
-	 */
-	public EnumerateList(IsSetStrategy<?, EnumerateListItem> strategy){
-		this(null, strategy);
-	}
-
-	/**
 	 * Creates a new enumerate list.
 	 * @param ctx list context, using default if null
 	 * @param strategy the list strategy to be used for the list of items
@@ -59,6 +51,14 @@ public class EnumerateList extends AbstractAsciiList<EnumerateListContext, Enume
 	public EnumerateList(EnumerateListContext ctx, IsSetStrategy<?, EnumerateListItem> strategy){
 		super(ctx, strategy);
 		this.renderer = new EnumerateListRenderer();
+	}
+
+	/**
+	 * Creates a new enumerate list with a sorted set for the list items.
+	 * @param strategy the list strategy to be used for the list of items
+	 */
+	public EnumerateList(IsSetStrategy<?, EnumerateListItem> strategy){
+		this(null, strategy);
 	}
 
 	/**
@@ -82,11 +82,6 @@ public class EnumerateList extends AbstractAsciiList<EnumerateListContext, Enume
 		return this;
 	}
 
-	@Override
-	public EnumerateListContext getNewContext() {
-		return new EnumerateListContext();
-	}
-
 	/**
 	 * Applies the theme by setting parameters in the given context.
 	 * @param theme the theme to apply
@@ -97,5 +92,10 @@ public class EnumerateList extends AbstractAsciiList<EnumerateListContext, Enume
 			theme.apply(this.ctx);
 		}
 		return this;
+	}
+
+	@Override
+	public EnumerateListContext getNewContext() {
+		return new EnumerateListContext();
 	}
 }

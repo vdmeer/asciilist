@@ -19,16 +19,33 @@ public class AbstractItemizeBuilder extends Lb2<ItemizeList> {
 		this(null, null);
 	}
 
-	public AbstractItemizeBuilder(ItemizeListContext ctx){
-		this(ctx, null);
-	}
-
 	public AbstractItemizeBuilder(IsSetStrategy<?, ItemizeListItem> strategy){
 		this(null, strategy);
 	}
 
+	public AbstractItemizeBuilder(ItemizeListContext ctx){
+		this(ctx, null);
+	}
+
 	public AbstractItemizeBuilder(ItemizeListContext ctx, IsSetStrategy<?, ItemizeListItem> strategy){
 		this.list = new ItemizeList(ctx, strategy);
+	}
+
+	public AbstractItemizeBuilder endItemize(){
+		this.item(null);
+		if(this.parrentBuilder!=null && (this.parrentBuilder instanceof AbstractItemizeBuilder)){
+			return (AbstractItemizeBuilder)this.parrentBuilder;
+		}
+		else if(this.parrentBuilder!=null){
+			throw new IllegalThreadStateException("end itemize called without a start itemze");
+		}
+		return this;
+	}
+
+	@Override
+	public ItemizeList get(){
+		this.item(null);
+		return this.list;
 	}
 
 	public AbstractItemizeBuilder item(Object text){
@@ -48,25 +65,8 @@ public class AbstractItemizeBuilder extends Lb2<ItemizeList> {
 		this.parrentBuilder = parent;
 	}
 
-	public AbstractItemizeBuilder endItemize(){
-		this.item(null);
-		if(this.parrentBuilder!=null && (this.parrentBuilder instanceof AbstractItemizeBuilder)){
-			return (AbstractItemizeBuilder)this.parrentBuilder;
-		}
-		else if(this.parrentBuilder!=null){
-			throw new IllegalThreadStateException("end itemize called without a start itemze");
-		}
-		return this;
-	}
-
 	public AbstractItemizeBuilder withItemizeList(){
 		this.currentBuilder = new AbstractItemizeBuilder();
 		return (AbstractItemizeBuilder)this.currentBuilder;
-	}
-
-	@Override
-	public ItemizeList get(){
-		this.item(null);
-		return this.list;
 	}
 }

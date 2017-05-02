@@ -33,12 +33,6 @@ import de.vandermeer.skb.interfaces.document.IsListRenderer;
 public interface AsciiListRenderer<I extends AsciiListItem, C extends AsciiListContext> extends IsListRenderer {
 
 	/**
-	 * Sets a new line separator for the renderer, overwriting any separator a list defines.
-	 * @param separator the new separator, ignored if blank
-	 */
-	void setLineSeparator(String separator);
-
-	/**
 	 * Returns the current set line separator.
 	 * @return the line separator, null if none set
 	 */
@@ -97,4 +91,10 @@ public interface AsciiListRenderer<I extends AsciiListItem, C extends AsciiListC
 	 * @return collection of lines, each as a {@link StrBuilder}
 	 */
 	Collection<StrBuilder> renderAsCollection(Set<I> items, C ctx, int width);
+
+	/**
+	 * Sets a new line separator for the renderer, overwriting any separator a list defines.
+	 * @param separator the new separator, ignored if blank
+	 */
+	void setLineSeparator(String separator);
 }

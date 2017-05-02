@@ -33,12 +33,12 @@ public class ItemizeListBuilder extends Lb<ItemizeList> {
 		this(null, null);
 	}
 
-	public ItemizeListBuilder(ItemizeListContext ctx){
-		this(ctx, null);
-	}
-
 	public ItemizeListBuilder(IsSetStrategy<?, ItemizeListItem> strategy){
 		this(null, strategy);
+	}
+
+	public ItemizeListBuilder(ItemizeListContext ctx){
+		this(ctx, null);
 	}
 
 	public ItemizeListBuilder(ItemizeListContext ctx, IsSetStrategy<?, ItemizeListItem> strategy){
@@ -48,23 +48,6 @@ public class ItemizeListBuilder extends Lb<ItemizeList> {
 	protected ItemizeListBuilder(Lb<?> builder){
 		this();
 		this.parrentBuilder = builder;
-	}
-
-	public ItemizeListBuilder item(Object text){
-		if(this.currentItem!=null && this.currentBuilder==null){
-			this.list.addItem(this.currentItem);
-		}
-		else if(this.currentItem!=null && this.currentBuilder!=null){
-			this.list.addItem(this.currentItem, this.currentBuilder.get());
-			this.currentBuilder = null;
-		}
-		this.currentItem = text;
-		return this;
-	}
-
-	public ItemizeListBuilder withItemizeList(){
-		this.currentBuilder = new ItemizeListBuilder(this);
-		return (ItemizeListBuilder)this.currentBuilder;
 	}
 
 	public ItemizeListBuilder endItemize(){
@@ -84,5 +67,22 @@ public class ItemizeListBuilder extends Lb<ItemizeList> {
 			this.endItemize();
 		}
 		return this.list;
+	}
+
+	public ItemizeListBuilder item(Object text){
+		if(this.currentItem!=null && this.currentBuilder==null){
+			this.list.addItem(this.currentItem);
+		}
+		else if(this.currentItem!=null && this.currentBuilder!=null){
+			this.list.addItem(this.currentItem, this.currentBuilder.get());
+			this.currentBuilder = null;
+		}
+		this.currentItem = text;
+		return this;
+	}
+
+	public ItemizeListBuilder withItemizeList(){
+		this.currentBuilder = new ItemizeListBuilder(this);
+		return (ItemizeListBuilder)this.currentBuilder;
 	}
 }

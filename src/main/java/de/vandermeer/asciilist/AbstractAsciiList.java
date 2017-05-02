@@ -60,15 +60,6 @@ public abstract class AbstractAsciiList<C extends AbstractAsciiListContext, I ex
 
 	/**
 	 * Creates a new list.
-	 * @param strategy the list strategy to be used for the list of items
-	 * @throws NullPointerException if the finally set context is null (that is the given context as well as the locally created context were null)
-	 */
-	protected AbstractAsciiList(IsSetStrategy<?, I> strategy){
-		this(null, strategy);
-	}
-
-	/**
-	 * Creates a new list.
 	 * @param ctx the list context, new default context created if null
 	 * @param strategy the list strategy to be used for the list of items
 	 * @throws NullPointerException if the finally set context is null (that is the given context as well as the locally created context were null)
@@ -77,6 +68,15 @@ public abstract class AbstractAsciiList<C extends AbstractAsciiListContext, I ex
 		this.items = (strategy==null)?this.defaultStrategy.get():strategy.get();
 		this.ctx = (ctx==null)?this.getNewContext():ctx;
 		Validate.notNull(this.ctx, "could not create any context, all attempts are 'null'");
+	}
+
+	/**
+	 * Creates a new list.
+	 * @param strategy the list strategy to be used for the list of items
+	 * @throws NullPointerException if the finally set context is null (that is the given context as well as the locally created context were null)
+	 */
+	protected AbstractAsciiList(IsSetStrategy<?, I> strategy){
+		this(null, strategy);
 	}
 
 	/**

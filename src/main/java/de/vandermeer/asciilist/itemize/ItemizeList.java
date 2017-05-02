@@ -36,19 +36,19 @@ public class ItemizeList extends AbstractAsciiList<ItemizeListContext, ItemizeLi
 	}
 
 	/**
-	 * Creates a new itemize list with a linked hash set for list items.
-	 * @param ctx list context, using default if null
-	 */
-	public ItemizeList(ItemizeListContext ctx){
-		this(ctx, null);
-	}
-
-	/**
 	 * Creates a new itemize list with a sorted set for the list items.
 	 * @param strategy the list strategy to be used for the list of items
 	 */
 	public ItemizeList(IsSetStrategy<?, ItemizeListItem> strategy){
 		this(null, strategy);
+	}
+
+	/**
+	 * Creates a new itemize list with a linked hash set for list items.
+	 * @param ctx list context, using default if null
+	 */
+	public ItemizeList(ItemizeListContext ctx){
+		this(ctx, null);
 	}
 
 	/**
@@ -82,11 +82,6 @@ public class ItemizeList extends AbstractAsciiList<ItemizeListContext, ItemizeLi
 		return this;
 	}
 
-	@Override
-	public ItemizeListContext getNewContext() {
-		return new ItemizeListContext();
-	}
-
 	/**
 	 * Applies the theme by setting parameters in the given context.
 	 * @param theme the theme to apply
@@ -97,5 +92,10 @@ public class ItemizeList extends AbstractAsciiList<ItemizeListContext, ItemizeLi
 			theme.apply(this.ctx);
 		}
 		return this;
+	}
+
+	@Override
+	public ItemizeListContext getNewContext() {
+		return new ItemizeListContext();
 	}
 }

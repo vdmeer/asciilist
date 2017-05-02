@@ -44,14 +44,6 @@ public class Checklist extends AbstractAsciiList<ChecklistContext, ChecklistItem
 	}
 
 	/**
-	 * Creates a new checklist list with a sorted set for the list items.
-	 * @param strategy the list strategy to be used for the list of items
-	 */
-	public Checklist(IsSetStrategy<?, ChecklistItem> strategy){
-		this(null, strategy);
-	}
-
-	/**
 	 * Creates a new checklist list.
 	 * @param ctx list context, using default if null
 	 * @param strategy the list strategy to be used for the list of items
@@ -59,6 +51,14 @@ public class Checklist extends AbstractAsciiList<ChecklistContext, ChecklistItem
 	public Checklist(ChecklistContext ctx, IsSetStrategy<?, ChecklistItem> strategy){
 		super(ctx, strategy);
 		this.renderer = new ChecklistRenderer();
+	}
+
+	/**
+	 * Creates a new checklist list with a sorted set for the list items.
+	 * @param strategy the list strategy to be used for the list of items
+	 */
+	public Checklist(IsSetStrategy<?, ChecklistItem> strategy){
+		this(null, strategy);
 	}
 
 	/**

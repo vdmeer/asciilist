@@ -39,7 +39,7 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	/** A line separator for generating text output. */
 	protected String lineSeparator;
 
-	/** List alignment, default is {@link AL_Alignment#JUSTIFIED_LEFT}. */
+	/** List alignment. */
 	protected TextAlignment alignment;
 
 	/** A simple character translator. */
@@ -224,6 +224,11 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	@Override
 	public int getLevel(){
 		return this.level;
+	}
+
+	@Override
+	public String getLineSeparator(){
+		return this.lineSeparator;
 	}
 
 	@Override
@@ -428,6 +433,14 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	}
 
 	@Override
+	public AsciiListContext setLineSeparator(String separator){
+		if(!StringUtils.isBlank(separator)){
+			this.lineSeparator = separator;
+		}
+		return this;
+	}
+
+	@Override
 	public AsciiListContext setListEnd(String listEnd) {
 		this.listEndString = listEnd;
 		return this;
@@ -498,18 +511,5 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	public AsciiListContext setWidth(int width) {
 		this.width = width;
 		return this;
-	}
-
-	@Override
-	public AsciiListContext setLineSeparator(String separator){
-		if(!StringUtils.isBlank(separator)){
-			this.lineSeparator = separator;
-		}
-		return this;
-	}
-
-	@Override
-	public String getLineSeparator(){
-		return this.lineSeparator;
 	}
 }
