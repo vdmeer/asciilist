@@ -1,3 +1,10 @@
+=== v0.0.5 - feature add - 2017-05-02
+* added file separator setting for list context
+  ** moved render functions to renderer
+  ** harmonized render method names in list and renderer
+* changed build to single doc souces (changelog/readme)
+
+
 === v0.0.4 - major rewrite (existing code will break) - 2017-04-04
 
 * changed code to use Java 8

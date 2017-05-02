@@ -113,7 +113,7 @@ public abstract class AbstractAsciiList<C extends AbstractAsciiListContext, I ex
 
 	@Override
 	public String render() {
-		return new StrBuilder().appendWithSeparators(this.renderer.render(this.getRawContent(), this.ctx), "\n").toString();
+		return new StrBuilder().appendWithSeparators(this.renderer.renderAsCollection(this.getRawContent(), this.ctx), "\n").toString();
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public abstract class AbstractAsciiList<C extends AbstractAsciiListContext, I ex
 		renderCtx.copySettings(this.ctx);
 		renderCtx.inheritSettings(this.ctx);
 		renderCtx.setWidth(renderCtx.getTextWidth(width + renderCtx.getCalculatedItemString().length()));
-		return new StrBuilder().appendWithSeparators(this.renderer.render(this.getRawContent(), renderCtx), "\n").toString();
+		return new StrBuilder().appendWithSeparators(this.renderer.renderAsCollection(this.getRawContent(), renderCtx), "\n").toString();
 	}
 
 	@Override
@@ -134,13 +134,13 @@ public abstract class AbstractAsciiList<C extends AbstractAsciiListContext, I ex
 		renderCtx.setLevel(parentCtx.getLevel()+1);
 		renderCtx.setItemMargin(parentIndent);
 		renderCtx.setWidth((parentCtx.getWidth()+(renderCtx.getItemMargin()-renderCtx.getCalculatedItemString().length())));
-		return this.renderer.render(this.getRawContent(), renderCtx);
+		return this.renderer.renderAsCollection(this.getRawContent(), renderCtx);
 	}
 
 	@Override
 	public Collection<String> renderAsCollection() {
 		return ClusterElementTransformer.create().transform(
-				this.renderer.render(this.getRawContent(), this.ctx),
+				this.renderer.renderAsCollection(this.getRawContent(), this.ctx),
 				StrBuilder_To_String.create(),
 				ArrayListStrategy.create()
 		);
@@ -149,7 +149,7 @@ public abstract class AbstractAsciiList<C extends AbstractAsciiListContext, I ex
 	@Override
 	public Collection<String> renderAsCollection(int width) {
 		return ClusterElementTransformer.create().transform(
-				this.renderer.render(this.getRawContent(), this.ctx, this.ctx.getTextWidth(width)),
+				this.renderer.renderAsCollection(this.getRawContent(), this.ctx, this.ctx.getTextWidth(width)),
 				StrBuilder_To_String.create(),
 				ArrayListStrategy.create()
 		);

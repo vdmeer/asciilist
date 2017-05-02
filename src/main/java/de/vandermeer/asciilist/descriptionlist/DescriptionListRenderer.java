@@ -43,7 +43,7 @@ public class DescriptionListRenderer extends AbstractAsciiListRenderer<Descripti
 	}
 
 	@Override
-	public Collection<StrBuilder> render(Set<DescriptionListItem> items, DescriptionListContext ctx, int width){
+	public Collection<StrBuilder> renderAsCollection(Set<DescriptionListItem> items, DescriptionListContext ctx, int width){
 		Validate.notNull(items);
 		Validate.notNull(ctx);
 

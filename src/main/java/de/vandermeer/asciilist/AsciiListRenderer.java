@@ -33,15 +33,27 @@ import de.vandermeer.skb.interfaces.document.IsListRenderer;
 public interface AsciiListRenderer<I extends AsciiListItem, C extends AsciiListContext> extends IsListRenderer {
 
 	/**
+	 * Sets a new line separator for the renderer, overwriting any separator a list defines.
+	 * @param separator the new separator, ignored if blank
+	 */
+	void setLineSeparator(String separator);
+
+	/**
+	 * Returns the current set line separator.
+	 * @return the line separator, null if none set
+	 */
+	String getLineSeparator();
+
+	/**
 	 * Renders an {@link AsciiList}.
 	 * Each line will have text according to width.
 	 * Any padding (left or right) and start/end strings will add to the line width.
 	 * To use a calculated width for rendering use one of the other render methods.
 	 * @param items the set of items to render
 	 * @param ctx context of the original list with relevant settings
-	 * @return collection of lines, each as a {@link StrBuilder}
+	 * @return a single string with the rendered list
 	 */
-	default Collection<StrBuilder> render(Set<I> items, C ctx){
+	default String render(Set<I> items, C ctx){
 		Validate.notNull(items);
 		Validate.notNull(ctx);
 		return this.render(items, ctx, ctx.getWidth());
@@ -55,7 +67,34 @@ public interface AsciiListRenderer<I extends AsciiListItem, C extends AsciiListC
 	 * @param items the set of items to render
 	 * @param ctx context of the original list with relevant settings
 	 * @param width maximum line width, excluding any extra strings and paddings
+	 * @return a single string with the rendered list
+	 */
+	String render(Set<I> items, C ctx, int width);
+
+	/**
+	 * Renders an {@link AsciiList}.
+	 * Each line will have text according to width.
+	 * Any padding (left or right) and start/end strings will add to the line width.
+	 * To use a calculated width for rendering use one of the other render methods.
+	 * @param items the set of items to render
+	 * @param ctx context of the original list with relevant settings
 	 * @return collection of lines, each as a {@link StrBuilder}
 	 */
-	Collection<StrBuilder> render(Set<I> items, C ctx, int width);
+	default Collection<StrBuilder> renderAsCollection(Set<I> items, C ctx){
+		Validate.notNull(items);
+		Validate.notNull(ctx);
+		return this.renderAsCollection(items, ctx, ctx.getWidth());
+	}
+
+	/**
+	 * Renders an {@link AsciiList}.
+	 * Each line will have text according to width.
+	 * Any padding (left or right) and start/end strings will add to the line width.
+	 * To use a calculated width for rendering use one of the other render methods.
+	 * @param items the set of items to render
+	 * @param ctx context of the original list with relevant settings
+	 * @param width maximum line width, excluding any extra strings and paddings
+	 * @return collection of lines, each as a {@link StrBuilder}
+	 */
+	Collection<StrBuilder> renderAsCollection(Set<I> items, C ctx, int width);
 }

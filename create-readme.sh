@@ -18,7 +18,7 @@ files="
 	src/site/asciidoc/user-guide/styles/checklist-nested.adoc
 "
 
-output_file=src/bundle/doc/README.adoc
+output_file=./README.adoc
 
 echo > ${output_file}
 cat src/bundle/doc-fragments/title.adoc >>${output_file}

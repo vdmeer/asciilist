@@ -220,7 +220,7 @@ public interface AsciiListContext extends IsListContext {
 	 * @param ctx the context to inherit settings from
 	 * @return self to allow chaining
 	 */
-	abstract AsciiListContext inheritSettings(AsciiListContext ctx);
+	AsciiListContext inheritSettings(AsciiListContext ctx);
 
 	/**
 	 * Sets all converters, margins, characters, indentations, and strings to default values.
@@ -249,14 +249,14 @@ public interface AsciiListContext extends IsListContext {
 	 * @param frame new frame, null to reset
 	 * @return this to allow chaining
 	 */
-	public AsciiListContext setFrame(TA_Frame frame);
+	AsciiListContext setFrame(TA_Frame frame);
 
 	/**
 	 * Sets the frame mode.
 	 * @param frameMode new frame mode, only used if 0 or positive integer
 	 * @return this to allow chaining
 	 */
-	public AsciiListContext setFrameMode(int frameMode);
+	AsciiListContext setFrameMode(int frameMode);
 
 	/**
 	 * Sets the HTML entity translator.
@@ -358,7 +358,7 @@ public interface AsciiListContext extends IsListContext {
 	 * @param targetTranslator translator
 	 * @return this to allow chaining
 	 */
-	public AsciiListContext setTargetTranslator(TargetTranslator targetTranslator);
+	AsciiListContext setTargetTranslator(TargetTranslator targetTranslator);
 
 	/**
 	 * Sets the left text margin character.
@@ -395,4 +395,17 @@ public interface AsciiListContext extends IsListContext {
 	 * @throws IllegalStateException if the resulting text width was smaller than 3
 	 */
 	AsciiListContext setWidth(int width);
+
+	/**
+	 * Sets a new line separator for the renderer.
+	 * @param separator the new separator, ignored if blank
+	 * @return self to allow chaining
+	 */
+	AsciiListContext setLineSeparator(String separator);
+
+	/**
+	 * Returns the current set line separator.
+	 * @return the line separator, null if none set
+	 */
+	String getLineSeparator();
 }

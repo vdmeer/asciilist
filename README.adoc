@@ -3,7 +3,7 @@
 :page-layout: base
 :toc: preamble
 
-:release-version: 0.0.4
+:release-version: 0.0.5
 
 Many different lists (itemize/unordered, enumerate/ordered, checklist, description, nested),
 using ASCII and UTF characters for labels,
@@ -38,6 +38,15 @@ For Maven declare a dependency in the `<dependencies>` section of your POM file.
     <version>{release-version}</version>
 </dependency>
 ----
+
+
+=== Gradle / Grails
+
+[source,sh,subs=attributes+]
+----
+compile 'de.vandermeer:asciilist:{release-version}'
+----
+
 
 For other build systems see https://search.maven.org/#artifactdetails\|de.vandermeer\|asciilist\|{release-version}\|jar[Maven Central]
 
