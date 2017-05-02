@@ -16,6 +16,7 @@
 package de.vandermeer.asciilist;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
@@ -34,6 +35,9 @@ import de.vandermeer.skb.interfaces.translators.TargetTranslator;
  * @since      v0.1.0
  */
 public abstract class AbstractAsciiListContext implements AsciiListContext {
+
+	/** A line separator for generating text output. */
+	protected String lineSeparator;
 
 	/** List alignment, default is {@link AL_Alignment#JUSTIFIED_LEFT}. */
 	protected TextAlignment alignment;
@@ -494,5 +498,18 @@ public abstract class AbstractAsciiListContext implements AsciiListContext {
 	public AsciiListContext setWidth(int width) {
 		this.width = width;
 		return this;
+	}
+
+	@Override
+	public AsciiListContext setLineSeparator(String separator){
+		if(!StringUtils.isBlank(separator)){
+			this.lineSeparator = separator;
+		}
+		return this;
+	}
+
+	@Override
+	public String getLineSeparator(){
+		return this.lineSeparator;
 	}
 }

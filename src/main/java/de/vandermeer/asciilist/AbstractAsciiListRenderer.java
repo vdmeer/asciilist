@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.apache.commons.lang3.NotImplementedException;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.StrBuilder;
 
@@ -34,8 +35,11 @@ import de.vandermeer.skb.interfaces.transformers.textformat.Text_To_FormattedTex
  */
 public class AbstractAsciiListRenderer<I extends AsciiListItem, C extends AsciiListContext> implements AsciiListRenderer<I, C> {
 
+	/** The line separator for the renderer. */
+	String lineSeparator = null;
+
 	@Override
-	public Collection<StrBuilder> render(Set<I> items, C ctx, int width){
+	public Collection<StrBuilder> renderAsCollection(Set<I> items, C ctx, int width){
 		Validate.notNull(items);
 		Validate.notNull(ctx);
 
@@ -101,5 +105,30 @@ public class AbstractAsciiListRenderer<I extends AsciiListItem, C extends AsciiL
 		}
 
 		return ret;
+	}
+
+	@Override
+	public void setLineSeparator(String separator) {
+		if(!StringUtils.isBlank(separator)){
+			this.lineSeparator = separator;
+		}
+	}
+
+	@Override
+	public String getLineSeparator() {
+		return this.lineSeparator;
+	}
+
+	@Override
+	public String render(Set<I> items, C ctx, int width) {
+		Collection<StrBuilder> coll = this.renderAsCollection(items, ctx, width);
+		String fileSeparator = this.getLineSeparator();
+		if(fileSeparator==null){
+			fileSeparator = ctx.getLineSeparator();
+		}
+		if(fileSeparator==null){
+			fileSeparator = System.lineSeparator();
+		}
+		return new StrBuilder().appendWithSeparators(coll, fileSeparator).build();
 	}
 }
