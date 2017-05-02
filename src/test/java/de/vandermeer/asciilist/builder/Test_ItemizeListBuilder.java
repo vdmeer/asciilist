@@ -21,7 +21,7 @@ import org.junit.Test;
  * Tests for {@link ItemizeListBuilder}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 170404 (04-Apr-17) for Java 1.8
+ * @version    v0.0.5 build 170502 (02-May-17) for Java 1.8
  * @since      v0.1.0
  */
 public class Test_ItemizeListBuilder {

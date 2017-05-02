@@ -26,7 +26,7 @@ import de.vandermeer.skb.interfaces.document.IsList;
  * An ASCII list with some formatting options.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 170404 (04-Apr-17) for Java 1.8
+ * @version    v0.0.5 build 170502 (02-May-17) for Java 1.8
  * @since      v0.0.1
  */
 public interface AsciiList<C extends AsciiListContext, I extends AsciiListItem, R extends AsciiListRenderer<I, C>> extends IsList {
