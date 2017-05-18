@@ -17,7 +17,7 @@ package de.vandermeer.asciilist.examples;
 
 import org.junit.Test;
 
-import de.vandermeer.skb.interfaces.StandardExampleRunner;
+import de.vandermeer.skb.interfaces.examples.StandardExampleRunner;
 
 /**
  * Tests for ASCII List for code used in documentation.
@@ -33,10 +33,10 @@ public class Test_Examples implements StandardExampleRunner {
 		this.runExample(new AL_Example_SimpleItemize());
 	}
 
-	@Test
-	public void test_NestedLists(){
-		this.runExample(new AL_Example_NestedLists());
-	}
+//	@Test
+//	public void test_NestedLists(){
+//		this.runExample(new AL_Example_NestedLists());
+//	}
 
 	@Test
 	public void test_Width(){

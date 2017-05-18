@@ -15,11 +15,9 @@
 
 package de.vandermeer.asciilist.examples;
 
-import org.apache.commons.lang3.text.StrBuilder;
-
 import de.vandermeer.asciilist.enumerate.EnumerateList;
 import de.vandermeer.asciithemes.u8.U8_EnumerateLists;
-import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
+import de.vandermeer.skb.interfaces.examples.StandardExampleAsCmd;
 
 /**
  * AsciiList example for an enumerate list with subscripts.
@@ -47,20 +45,19 @@ public class AL_Example_EnumerateSubscript implements StandardExampleAsCmd {
 	}
 
 	@Override
-	public StrBuilder getSource(){
-		String[] source = new String[]{
-				"EnumerateList list = new EnumerateList()",
-				"		.addItem(\"item 1\")",
-				"		.addItem(\"item 2\")",
-				"		.addItem(\"item 3\")",
-				";",
-				"list.getContext().setLeftLabelString(\"E\");",
-				"list.getContext().setSeparatorAfterLastNumber(false);",
-				"list.getContext().setStyle(U8_EnumerateLists.numberSubscript());",
-				";",
-				"System.out.println(list.render());",
-		};
-		return new StrBuilder().appendWithSeparators(source, "\n");
+	public String getSource(){
+		return
+				"EnumerateList list = new EnumerateList()\r\n" + 
+				"		.addItem(\"item 1\")\r\n" + 
+				"		.addItem(\"item 2\")\r\n" + 
+				"		.addItem(\"item 3\")\r\n" + 
+				";\r\n" + 
+				"list.getContext().setLeftLabelString(\"E\");\r\n" + 
+				"list.getContext().setSeparatorAfterLastNumber(false);\r\n" + 
+				"list.getContext().setStyle(U8_EnumerateLists.numberSubscript());\r\n" + 
+				";\r\n" + 
+				"System.out.println(list.render());"
+		;
 	}
 
 	@Override
@@ -69,7 +66,13 @@ public class AL_Example_EnumerateSubscript implements StandardExampleAsCmd {
 	}
 
 	@Override
-	public String getID() {
+	public String getName() {
 		return "enumerate";
+	}
+
+	@Override
+	public Object getLongDescription() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

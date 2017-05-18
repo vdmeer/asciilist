@@ -15,9 +15,7 @@
 
 package de.vandermeer.asciilist.examples;
 
-import org.apache.commons.lang3.text.StrBuilder;
-
-import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
+import de.vandermeer.skb.interfaces.examples.StandardExampleAsCmd;
 
 /**
  * AsciiList example for nested lists.
@@ -61,38 +59,8 @@ public class AL_Example_NestedLists implements StandardExampleAsCmd {
 	}
 
 	@Override
-	public StrBuilder getSource(){
-		String[] source = new String[]{
-				"AsciiList itemize = new ItemizeList()",
-				".addItem(\"item 1\")",
-				".addItem(new ItemizeList().addItem(\"item 2\")",
-				"	.addItem(new ItemizeList().addItem(\"item 3\")",
-				"		.addItem(new ItemizeList().addItem(\"item 4\")",
-				"			.addItem(new ItemizeList().addItem(\"item 5\")",
-				"				.addItem(new ItemizeList().addItem(\"item 6\"))",
-				"			)",
-				"		)",
-				"	)",
-				").setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);",
-
-				"",
-				"AsciiList_Enumerate enumerate = new EnumerateList()",
-				".addItem(\"item 1\")",
-				".addItem(new EnumerateList().addItem(\"item 2\")",
-				"	.addItem(new EnumerateList().addItem(\"item 3\")",
-				"		.addItem(new EnumerateList().addItem(\"item 4\")",
-				"			.addItem(new EnumerateList().addItem(\"item 5\")",
-				"				.addItem(new EnumerateList().addItem(\"item 6\"))",
-				"			)",
-				"		)",
-				"	)",
-				");",
-
-				"",
-				"System.out.println(itemize.render());",
-				"System.out.println(enumerate.render());",
-		};
-		return new StrBuilder().appendWithSeparators(source, "\n");
+	public String getSource(){
+		return "";
 	}
 
 	@Override
@@ -102,7 +70,13 @@ public class AL_Example_NestedLists implements StandardExampleAsCmd {
 	}
 
 	@Override
-	public String getID() {
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getLongDescription() {
 		// TODO Auto-generated method stub
 		return null;
 	}

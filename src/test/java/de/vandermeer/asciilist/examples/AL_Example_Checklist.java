@@ -15,11 +15,9 @@
 
 package de.vandermeer.asciilist.examples;
 
-import org.apache.commons.lang3.text.StrBuilder;
-
 import de.vandermeer.asciilist.checklist.Checklist;
 import de.vandermeer.asciithemes.u8.U8_Checklists;
-import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
+import de.vandermeer.skb.interfaces.examples.StandardExampleAsCmd;
 
 /**
  * AsciiList example for checklists.
@@ -29,6 +27,43 @@ import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
  * @since      v0.0.4
  */
 public class AL_Example_Checklist implements StandardExampleAsCmd {
+
+	@Override
+	public String getDescription() {
+		return "simple checklist examples";
+	}
+
+	@Override
+	public Object getLongDescription() {
+		return
+				"The package also provides a check list.\r\n" + 
+				"In this list, items can be marked as checked and unchecked resulting in different labels.\r\n" + 
+				"The checklist supports styles to use different characters (ASCII and UTF) for checked and unchecked items.\r\n" + 
+				"<br /><br />" + 
+				"The example shows the creation of a checklist and the use of different styles for rendering it"
+		;
+	}
+
+	@Override
+	public String getName() {
+		return "checklist";
+	}
+
+	@Override
+	public String getSource(){
+		return
+				"Checklist list = new Checklist();\r\n" + 
+				"list.addItem(\"item unchecked\", false);\r\n" + 
+				"list.addItem(\"item checked\", true);\r\n" + 
+				"System.out.println(list.render());\r\n" + 
+				"\r\n" + 
+				"list.getContext().setStyle(U8_Checklists.ballotBox());\r\n" + 
+				"System.out.println(list.render());\r\n" + 
+				"\r\n" + 
+				"list.getContext().setStyle(U8_Checklists.ballotBoxX());\r\n" + 
+				"System.out.println(list.render());"
+		;
+	}
 
 	@Override
 	public void showOutput(){
@@ -44,32 +79,5 @@ public class AL_Example_Checklist implements StandardExampleAsCmd {
 		list.getContext().setStyle(U8_Checklists.ballotBoxX());
 		System.out.println(list.render());
 		// end::example[]
-	}
-
-	@Override
-	public StrBuilder getSource(){
-		String[] source = new String[]{
-				"Checklist list = new Checklist();",
-				"list.addItem(\"item unchecked\", false);",
-				"list.addItem(\"item checked\", true);",
-				"System.out.println(list.render());",
-				"",
-				"list.getContext().setStyle(U8_Checklists.ballotBox());",
-				"System.out.println(list.render());",
-				"",
-				"list.getContext().setStyle(U8_Checklists.ballotBoxX());",
-				"System.out.println(list.render());",
-		};
-		return new StrBuilder().appendWithSeparators(source, "\n");
-	}
-
-	@Override
-	public String getDescription() {
-		return "simple checklist";
-	}
-
-	@Override
-	public String getID() {
-		return "checklist";
 	}
 }

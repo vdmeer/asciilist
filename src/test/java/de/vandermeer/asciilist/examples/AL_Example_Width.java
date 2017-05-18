@@ -15,13 +15,11 @@
 
 package de.vandermeer.asciilist.examples;
 
-import org.apache.commons.lang3.text.StrBuilder;
-
 import de.vandermeer.asciilist.enumerate.EnumerateList;
 import de.vandermeer.asciilist.itemize.ItemizeList;
 import de.vandermeer.asciithemes.a7.A7_EnumerateLists;
 import de.vandermeer.asciithemes.a7.A7_ItemizeLists;
-import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
+import de.vandermeer.skb.interfaces.examples.StandardExampleAsCmd;
 
 /**
  * AsciiList example with different width.
@@ -69,40 +67,39 @@ public class AL_Example_Width implements StandardExampleAsCmd {
 	}
 
 	@Override
-	public StrBuilder getSource(){
-		String[] source = new String[]{
-				"AsciiList itemize = new ItemizeList()",
-				".addItem(\"il 1 item 1 some text\")",
-				".addItem(\"il 1 item 2 some text\")",
-				".addItem(new ItemizeList()",
-				"	.addItem(\"il 2 item 1 text\")",
-				"	.addItem(\"il 2 item 2 text\")",
-				")",
-				".setPreLabelIndent(0)",
-				".setListStyle(NestedItemizeStyles.ALL_STAR_INCREMENTAL);",
-
-				"",
-				"AsciiList enumerate = new EnumerateList()",
-				".addItem(\"el 1 item 1 some text\")",
-				".addItem(\"el 1 item 2 some text\")",
-				".addItem(new EnumerateList()",
-				"	.addItem(\"el 2 item 1 text\")",
-				"	.addItem(\"el 2 item 2 text\")",
-				")",
-				".setPreLabelIndent(0)",
-				".setListStyle(NestedEnumerateStyles.arabic_Alpha_alpha_Roman_roman);",
-
-				"",
-				"System.out.println(itemize.render() + \"\\n\");",
-				"System.out.println(enumerate.render() + \"\\n\");",
-
-				"",
-				"itemize.setWidth(19);",
-				"enumerate.setWidth(19);",
-				"System.out.println(itemize.render() + \"\\n\");",
-				"System.out.println(enumerate.render());",
-		};
-		return new StrBuilder().appendWithSeparators(source, "\n");
+	public String getSource(){
+		return
+				"ItemizeList itemize = new ItemizeList()\r\n" + 
+				"		.addItem(\"il 1 item 1 some text\")\r\n" + 
+				"		.addItem(\"il 1 item 2 some text\")\r\n" + 
+				";\r\n" + 
+				"ItemizeList il2 = new ItemizeList()\r\n" + 
+				"	.addItem(\"il 2 item 1 text\")\r\n" + 
+				"	.addItem(\"il 2 item 2 text\")\r\n" + 
+				";\r\n" + 
+				"itemize.addItem(\"il 1 item 3 some text\", il2);\r\n" + 
+				"\r\n" + 
+				"itemize.getContext().setLabelLeftMargin(0);\r\n" + 
+				"itemize.getContext().setStyle(A7_ItemizeLists.allStarIncremental());\r\n" + 
+				"\r\n" + 
+				"EnumerateList enumerate = new EnumerateList()\r\n" + 
+				"		.addItem(\"el 1 item 1 some text\")\r\n" + 
+				"		.addItem(\"el 1 item 2 some text\")\r\n" + 
+				";\r\n" + 
+				"EnumerateList e2 = new EnumerateList()\r\n" + 
+				"	.addItem(\"el 2 item 1 text\")\r\n" + 
+				"	.addItem(\"el 2 item 2 text\")\r\n" + 
+				";\r\n" + 
+				"enumerate.addItem(\"el 1 item 3 some text\", e2);\r\n" + 
+				"enumerate.getContext().setLabelLeftMargin(0);\r\n" + 
+				"enumerate.getContext().setStyle(A7_EnumerateLists.arabic_Alpha_alpha_Roman_roman());\r\n" + 
+				"\r\n" + 
+				"System.out.println(itemize.render() + \"\\n\");\r\n" + 
+				"System.out.println(enumerate.render() + \"\\n\");\r\n" + 
+				"\r\n" + 
+				"System.out.println(itemize.render(15) + \"\\n\");\r\n" + 
+				"System.out.println(enumerate.render(15));"
+		;
 	}
 
 	@Override
@@ -111,7 +108,13 @@ public class AL_Example_Width implements StandardExampleAsCmd {
 	}
 
 	@Override
-	public String getID() {
+	public String getName() {
 		return "width";
+	}
+
+	@Override
+	public Object getLongDescription() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -15,11 +15,9 @@
 
 package de.vandermeer.asciilist.examples;
 
-import org.apache.commons.lang3.text.StrBuilder;
-
 import de.vandermeer.asciilist.itemize.ItemizeList;
 import de.vandermeer.asciithemes.u8.U8_ItemizeLists;
-import de.vandermeer.skb.interfaces.StandardExampleAsCmd;
+import de.vandermeer.skb.interfaces.examples.StandardExampleAsCmd;
 
 /**
  * AsciiList example for simple itemize lists.
@@ -60,38 +58,32 @@ public class AL_Example_SimpleItemize implements StandardExampleAsCmd {
 	}
 
 	@Override
-	public StrBuilder getSource(){
-		String[] source = new String[]{
-				"ItemizeList list = new ItemizeList();",
-				"list.addItem(\"item 1\");",
-				"list.addItem(\"item 2\");",
-				"list.addItem(\"item 3\");",
-
-				"",
-				"String rend = list.render();",
-				"System.out.println(rend);",
-
-				"",
-				"list.setPreLabelIndent(5);",
-				"System.out.println(\"\\n\" + list.render());",
-
-				"",
-				"list.setLabelDefaults();",
-				"list.setPostLabelIndent(5);",
-				"System.out.println(\"\\n\" + list.render());",
-
-				"",
-				"list.setLabelDefaults();",
-				"list.setPreLabelString(\">>\");",
-				"list.setPostLabelString(\"<<\");",
-				"System.out.println(\"\\n\" + list.render());",
-
-				"",
-				"list.setLabelDefaults();",
-				"list.setListStyle(NestedItemizeStyles.HTML_LIKE);",
-				"System.out.println(\"\\n\" + list.render());",
-		};
-		return new StrBuilder().appendWithSeparators(source, "\n");
+	public String getSource(){
+		return
+				"ItemizeList list = new ItemizeList();\r\n" + 
+				"list.addItem(\"item 1\");\r\n" + 
+				"list.addItem(\"item 2\");\r\n" + 
+				"list.addItem(\"item 3\");\r\n" + 
+				"\r\n" + 
+				"String rend = list.render();\r\n" + 
+				"System.out.println(rend);\r\n" + 
+				"\r\n" + 
+				"list.getContext().setLabelLeftMargin(5);\r\n" + 
+				"System.out.println(\"\\n\" + list.render());\r\n" + 
+				"\r\n" + 
+				"list.getContext().init();\r\n" + 
+				"list.getContext().setLabelRightMargin(5);\r\n" + 
+				"System.out.println(\"\\n\" + list.render());\r\n" + 
+				"\r\n" + 
+				"list.getContext().init();\r\n" + 
+				"list.getContext().setLeftLabelString(\">>\");\r\n" + 
+				"list.getContext().setRightLabelString(\"<<\");\r\n" + 
+				"System.out.println(\"\\n\" + list.render());\r\n" + 
+				"\r\n" + 
+				"list.getContext().init();\r\n" + 
+				"list.getContext().setStyle(U8_ItemizeLists.htmlLike());\r\n" + 
+				"System.out.println(\"\\n\" + list.render());"
+		;
 	}
 
 	@Override
@@ -100,7 +92,13 @@ public class AL_Example_SimpleItemize implements StandardExampleAsCmd {
 	}
 
 	@Override
-	public String getID() {
+	public String getName() {
 		return "itemize";
+	}
+
+	@Override
+	public Object getLongDescription() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
