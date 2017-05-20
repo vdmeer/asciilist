@@ -16,7 +16,7 @@
 package de.vandermeer.asciilist.descriptionlist;
 
 import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
-import de.vandermeer.translation.targets.Text2Latex;
+import de.vandermeer.skb.interfaces.translators.target.Text2Latex;
 
 /**
  * Collection of themes for an {@link DescriptionList}.
@@ -36,7 +36,7 @@ public interface Dl_Themes {
 		return new DescriptionListTheme() {
 			@Override
 			public void apply(DescriptionListContext ctx) {
-				ctx.setTargetTranslator(new Text2Latex());
+				ctx.setTargetTranslator(Text2Latex.create());
 				ctx.setListStart("\\begin{description}");
 				ctx.setListEnd("\\end{description}");
 				ctx.setLeftLabelString("\\item[");

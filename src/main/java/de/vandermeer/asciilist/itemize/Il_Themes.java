@@ -16,7 +16,7 @@
 package de.vandermeer.asciilist.itemize;
 
 import de.vandermeer.asciithemes.a7.A7_ItemizeLists;
-import de.vandermeer.translation.targets.Text2Latex;
+import de.vandermeer.skb.interfaces.translators.target.Text2Latex;
 
 /**
  * Collection of themes for an {@link ItemizeList}.
@@ -36,7 +36,7 @@ public interface Il_Themes {
 		return new ItemizeListTheme() {
 			@Override
 			public void apply(ItemizeListContext ctx) {
-				ctx.setTargetTranslator(new Text2Latex());
+				ctx.setTargetTranslator(Text2Latex.create());
 				ctx.setListStart("\\begin{itemize}");
 				ctx.setListEnd("\\end{itemize}");
 				ctx.setStyle(A7_ItemizeLists.allBlank());

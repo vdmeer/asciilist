@@ -16,7 +16,7 @@
 package de.vandermeer.asciilist.enumerate;
 
 import de.vandermeer.asciithemes.a7.A7_EnumerateLists;
-import de.vandermeer.translation.targets.Text2Latex;
+import de.vandermeer.skb.interfaces.translators.target.Text2Latex;
 
 /**
  * Collection of themes for an {@link EnumerateList}.
@@ -36,7 +36,7 @@ public interface El_Themes {
 		return new EnumerateListTheme() {
 			@Override
 			public void apply(EnumerateListContext ctx) {
-				ctx.setTargetTranslator(new Text2Latex());
+				ctx.setTargetTranslator(Text2Latex.create());
 				ctx.setListStart("\\begin{enumerate}");
 				ctx.setListEnd("\\end{enumerate}");
 				ctx.setStyle(A7_EnumerateLists.blank());

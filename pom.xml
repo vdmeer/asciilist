@@ -102,12 +102,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>de.vandermeer</groupId>
-            <artifactId>char-translation</artifactId>
-            <version>0.0.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
